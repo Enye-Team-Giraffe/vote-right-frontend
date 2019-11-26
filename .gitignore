@@ -38,6 +38,7 @@ coverage
 node_modules/
 jspm_packages/
 package-lock.json
+.env
 
 # Optional npm cache directory
 .npm
@@ -49,8 +50,13 @@ package-lock.json
 .yarn-integrity
 /yarn.lock
 
+.nyc_output
+.vscode
+
 # dotenv environment variables file
 .env
 .env.test
+
+junit.xml
 
 
