@@ -17,7 +17,7 @@ module.exports = {
     ],
     moduleNameMapper: {
         '.+\\.(css|scss)$': 'identity-obj-proxy',
-        '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2)$': 'jest-transform-stub',
+        '.+\\.(jpg|jpeg|png|gif|svg|eot|otf|webp|ttf|woff|woff2)$': 'jest-transform-stub',
     },
     testPathIgnorePatterns: ['<rootDir>/node_modules/'],
 

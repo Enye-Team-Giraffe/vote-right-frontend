@@ -1,0 +1,75 @@
+@import '~antd/dist/antd.css';
+.header-class {
+    background-color: #fff;
+}
+
+body {
+    font-family: "PT Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    background-color: #fffffa;
+    display: flex;
+    flex-direction: column;
+    color: #3c4859;
+}
+
+.navbar1 {
+    width: 80%;
+    float: left;
+}
+
+.navbar2 {
+    width: 15%;
+    float: right;
+}
+
+/* Hero Section */
+
+.hero {
+    align-items: center;
+    background-image: linear-gradient( to right bottom, rgba(114, 240, 240, 0.78), rgba(40, 180, 133, 0.8)), url(../../../static/images/elections-voting.jpg);
+    background-size: cover;
+    height: 470px;
+    justify-content: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 80px;
+}
+
+.hero-title, .hero-paragraph {
+    margin-bottom: 5px;
+}
+
+.hero-title {
+    font-size: 2em;
+    justify-content: center;
+}
+
+.hero-paragraph {
+    font-size: 1.5em;
+}
+
+footer img {
+    width: 20px;
+    margin-left: 10px;
+}
+
+.button-class {
+    width: 100px;
+}
+
+.credits {
+    font-weight: 600;
+    color: #1890FF;
+}
+
+.footer-content1 {
+    width: 80%;
+    float: left;
+}
+
+.footer-content2 {
+    width: 15%;
+    float: right;
+}
