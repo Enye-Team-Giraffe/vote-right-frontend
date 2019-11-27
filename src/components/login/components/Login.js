@@ -5,10 +5,20 @@ import './style.css';
 import 'antd/dist/antd.css';
 
 const { Title } = Typography;
+
+/**
+ * Login form to authenticate voters
+ * @return {jsx component} Login form
+ */
 function Login() {
     const [nin, setNin] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
 
+/**
+ * Handles users NIN number
+ * @function
+ * @param {event} event - the event of 
+ */
     const handleChangeNin = ({ target }) => {
         const pattern = /^\d+$/;
         if (pattern.test(target.value)) {
@@ -19,6 +29,11 @@ function Login() {
         }
     };
 
+/**
+ * Handles users phone number
+ * @function
+ * @param {event} event - the event of 
+ */
     const handleChangePhoneNumber = ({ target }) => {
         const pattern = /^\d+$/;
         if (pattern.test(target.value)) {
