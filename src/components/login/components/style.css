@@ -27,36 +27,7 @@
     padding-right: 50px;
 }
 
-.whyNin {
-    margin-top: 8rem;
-    margin-left: 100px;
-    margin-right: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.whyNin .__whyNinText {
-    margin-top: 2rem;
-    text-align: justify;
-}
-.whyNin .-white {
-    color: #FFFFFF;
-}
-
 @media (max-width: 869px) {
-   .whyNin {
-     margin: 2rem 0;
-     align-items: center;
-   }
-
-   .whyNin .__whyNinText {
-      margin-top: 1rem;
-      margin-left: 10%;
-      margin-right: 10%;
-      text-align: justify;
-    }
-
     .form {
         margin-top: 1rem;
         width: 100%;

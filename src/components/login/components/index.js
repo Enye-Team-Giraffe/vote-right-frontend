@@ -1,7 +1,6 @@
 import React from 'react';
 import Layout from '../../layout';
 import Login from './Login';
-import WhyNin from './WhyNin';
 
 /**
  * Login page
@@ -10,7 +9,7 @@ import WhyNin from './WhyNin';
 function login() {
     return (
         <Layout>
-            {[<Login />, <WhyNin />]}
+            {[<Login />]}
         </Layout>
     );
 }
