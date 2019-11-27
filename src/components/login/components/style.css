@@ -1,0 +1,31 @@
+.form {
+    margin-top: 8rem;
+    display: flex;
+    justify-content: center;
+}
+
+.form .form__heading {
+    padding-bottom: 3rem;
+    text-align: center;
+}
+.form .form_subSection {
+    padding: 0 10px;
+}
+
+.form .form_subSection .form__input {
+    margin: 1rem 0;
+}
+
+.-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.form .form_subSection .form__submit {
+    margin: 1rem 0;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+

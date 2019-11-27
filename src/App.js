@@ -1,7 +1,9 @@
 import React from 'react';
+import Login from './components/login/components';
 
 function App() {
-    return <h1>WELCOME TO VOTE RIGHT APPLICATION</h1>;
+    return (
+        <Login />
+    );
 }
-
 export default App;
