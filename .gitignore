@@ -59,4 +59,12 @@ package-lock.json
 
 junit.xml
 
+#snapshots
+\__test__\__snapshots__
+*__snapshots__/
+*.svg
+/src/static/icons/**
+*/__snapshots__/**
+
+
 
