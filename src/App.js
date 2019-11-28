@@ -1,9 +1,14 @@
 import React from 'react';
-import Login from './components/login/components';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { LandingPage } from './components/landingPage/components';
 
-function App() {
-    return (
-        <Login />
-    );
-}
+const App = () => (
+    <Router>
+        <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/login" component={LandingPage} />
+        </Switch>
+    </Router>
+);
+
 export default App;

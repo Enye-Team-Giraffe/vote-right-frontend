@@ -7,4 +7,8 @@ describe('SAMPLE TEST', () => {
     it('should return a successful sample test ', () => {
         expect(true).toBeTruthy();
     });
+    // it('should render the App component correctly', () => {
+    //     const Wrapper = mount(<App />);
+    //     expect(toJson(Wrapper)).toMatchSnapshot();
+    // });
 });

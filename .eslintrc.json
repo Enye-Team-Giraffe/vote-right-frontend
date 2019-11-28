@@ -16,7 +16,9 @@
     "ecmaVersion": 10,
     "sourceType": "module",
     "ecmaFeatures": {
-    "jsx": true
+    "jsx": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true
   }
   },
   "rules": {
@@ -89,6 +91,7 @@
     "react/jsx-no-comment-textnodes": "error",
     "jsx-a11y/anchor-is-valid": 0,
     "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
   "settings": {
