@@ -4,13 +4,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Layout, Button } from 'antd';
 import './LandingPage.css';
-import Facebook from '../../../static/icons/facebook.svg';
-import Instagram from '../../../static/icons/instagram.svg';
-import Twitter from '../../../static/icons/twitter.svg';
-import Youtube from '../../../static/icons/youtube.svg';
-import {
-    FACEBOOK_PAGE, INSTAGRAM_PAGE, TWITTER_PAGE, YOUTUBE_PAGE
-} from '../constants';
+// import Facebook from '../../../static/icons/facebook.svg';
+// import Instagram from '../../../static/icons/instagram.svg';
+// import Twitter from '../../../static/icons/twitter.svg';
+// import Youtube from '../../../static/icons/youtube.svg';
+// import {
+//     FACEBOOK_PAGE, INSTAGRAM_PAGE, TWITTER_PAGE, YOUTUBE_PAGE
+// } from '../constants';
 
 const {
     Header, Footer, Content,
@@ -42,7 +42,7 @@ const LandingPage = () => (
         <Footer>
             <div className="footer-content1"><p className="credits">Vote Right | Copyright &copy; Team Giraffe 2019</p></div>
             <div className="footer-content2">
-                <a href={FACEBOOK_PAGE}>
+                {/* <a href={FACEBOOK_PAGE}>
                     <img src={Facebook} alt="Facebook" />
                 </a>
                 <a href={INSTAGRAM_PAGE}>
@@ -53,7 +53,7 @@ const LandingPage = () => (
                 </a>
                 <a href={YOUTUBE_PAGE}>
                     <img src={Youtube} alt="Youtube" />
-                </a>
+                </a> */}
             </div>
         </Footer>
     </Layout>
