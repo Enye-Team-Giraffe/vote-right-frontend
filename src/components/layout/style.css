@@ -1,0 +1,42 @@
+
+.layout {
+    display: flex;
+    height: 100%;
+ }
+
+.whiteSection {
+    width: 60%; 
+}
+
+.blueSection {
+    width: 40%;
+    clip-path: polygon(
+      0 0, /* left top */
+      100% 0, /* right top */ 
+      100% 100%, /* right bottom */
+      30% 100% /* left bottom */
+    );
+    background-color: #387ECC;
+    min-height: 100vh;
+}
+
+@media (max-width: 869px) {
+    .layout {
+        flex-direction: column-reverse;
+    }
+
+    .whiteSection {
+        width: 100%; 
+    }
+
+    .blueSection {
+        width: 100%;
+        clip-path: polygon(
+          0 0, /* left top */
+          100% 0, /* right top */ 
+          100% 100%, /* right bottom */
+          0 100% /* left bottom */
+        );
+        min-height: 3rem;
+    };
+}
