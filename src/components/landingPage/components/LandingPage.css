@@ -73,3 +73,39 @@ footer img {
     width: 15%;
     float: right;
 }
+
+/* For smartphones (<768px) */
+
+@media screen and (max-width: 768px) {
+    .hero {
+        padding: 40px 25px;
+        height: 800px;
+        background-image: linear-gradient( to left top, rgba(114, 240, 240, 0.78), rgba(40, 180, 133, 0.8)), url(../../../static/images/elections-voting.jpg);
+        background-size: contain;
+    }
+    .hero-title {
+        font-size: 2em;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    .hero-paragraph {
+        font-size: 1.3em;
+    }
+  
+    .ant-layout-footer {
+        background-color: #fff;
+        height: 10px;
+        padding: 0;
+    }
+  
+    .footer-content1 {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .footer-content2 {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+  }
