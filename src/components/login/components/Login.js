@@ -1,6 +1,8 @@
+/* eslint-disable max-lines-per-function */
 import React, { useState } from 'react';
-
 import { Typography, Input, Button } from 'antd';
+import { SIGNINWITHACCOUNT, SIGNIN } from '../constants';
+
 import './style.css';
 import 'antd/dist/antd.css';
 
@@ -14,11 +16,11 @@ function Login() {
     const [nin, setNin] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
 
-/**
- * Handles users NIN number
- * @function
- * @param {event} event - the event of 
- */
+    /**
+     * Handles users NIN number
+     * @function
+     * @param {event} event - the event of the input field
+     */
     const handleChangeNin = ({ target }) => {
         const pattern = /^\d+$/;
         if (pattern.test(target.value)) {
@@ -29,11 +31,11 @@ function Login() {
         }
     };
 
-/**
- * Handles users phone number
- * @function
- * @param {event} event - the event of 
- */
+    /**
+     * Handles users phone number
+     * @function
+     * @param {event} event - the event of
+     */
     const handleChangePhoneNumber = ({ target }) => {
         const pattern = /^\d+$/;
         if (pattern.test(target.value)) {
@@ -46,13 +48,13 @@ function Login() {
 
     const handleSubmit = event => {
         event.preventDefault();
-        console.log({ nin, phoneNumber });
     };
 
     return (
         <form className="form" onSubmit={handleSubmit}>
             <div className="form_subSection">
-                <Title className="form__heading" level={3}>Sign in to your Account</Title>
+                <Title className="form__heading" level={3}>{SIGNINWITHACCOUNT}</Title>
+                {/* Nin input field */}
                 <Input
                     className="form__input"
                     placeholder="NIN number"
@@ -60,6 +62,7 @@ function Login() {
                     onChange={handleChangeNin}
                     required
                 />
+                {/* Phone number input field */}
                 <Input
                     className="form__input"
                     placeholder="Phone Number"
@@ -70,12 +73,13 @@ function Login() {
                     required
                 />
                 <div className="-flex">
+                    {/* Submit button */}
                     <Button
                         className="form__submit"
                         type="primary"
                         htmlType="submit"
                     >
-                      SIGN IN
+                        {SIGNIN}
                     </Button>
                 </div>
             </div>

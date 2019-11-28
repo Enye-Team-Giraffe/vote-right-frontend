@@ -1,6 +1,8 @@
 import React from 'react';
-import Layout from '../../layout';
+import withLayout from '../../layout';
 import Login from './Login';
+
+const LoginWithLayout = withLayout(Login);
 
 /**
  * Login page
@@ -8,9 +10,7 @@ import Login from './Login';
  */
 function login() {
     return (
-        <Layout>
-            {[<Login />]}
-        </Layout>
+        <LoginWithLayout />
     );
 }
 
