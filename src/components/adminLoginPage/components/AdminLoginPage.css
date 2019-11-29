@@ -1,13 +1,13 @@
 .form {
-    margin-top: -8rem;
+    margin-top: 6rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin-top: -100px; */
+    margin-left: 100px;
 }
 
 .form .form__heading {
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
     text-align: center;
 }
 .form .form_subSection {
@@ -32,8 +32,9 @@
 
 @media (max-width: 950px) {
     .form {
-        margin-top: 1rem;
         width: 100%;
+        margin-top: 1rem;
+        margin-left: 0px;
     }
     
 }

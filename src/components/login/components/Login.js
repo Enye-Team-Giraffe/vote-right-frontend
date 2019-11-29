@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Typography, Input, Button } from 'antd';
 import { SIGNINWITHACCOUNT, SIGNIN } from '../constants';
 
-import './style.css';
+import './Login.css';
 import 'antd/dist/antd.css';
 
 const { Title } = Typography;

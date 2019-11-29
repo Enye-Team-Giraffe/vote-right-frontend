@@ -1,0 +1,40 @@
+.form {
+    margin-top: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+}
+
+.form .form__heading {
+    padding-bottom: 2rem;
+    text-align: center;
+}
+.form .form_subSection {
+    padding: 0 10px;
+}
+
+.form .form_subSection .form__input {
+    margin: 1rem 0;
+}
+
+.-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.form .form_subSection .form__submit {
+    margin: 1rem 0;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #0D3578;
+}
+
+@media (max-width: 950px) {
+    .form {
+        width: 100%;
+        margin-top: 1rem;
+        margin-left: 0px;
+    }
+    
+}

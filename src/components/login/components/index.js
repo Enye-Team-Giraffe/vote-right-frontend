@@ -1,8 +1,9 @@
 import React from 'react';
 import withLayout from '../../layout';
 import Login from './Login';
+import WhyNin from './WhyNin';
 
-const LoginWithLayout = withLayout(Login);
+const LoginWithLayout = withLayout(Login, WhyNin);
 
 /**
  * Login page
