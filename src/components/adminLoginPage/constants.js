@@ -1,3 +1,3 @@
-export const SIGNINHEADER = 'Sign in';
-export const SIGNIN = 'SIGNIN';
+export const SIGNINHEADER = 'Admin Sign in';
+export const SIGNIN = 'LOG IN';
 

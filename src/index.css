@@ -5,3 +5,8 @@ body {
     margin: 0;
     height: 100%;
 }
+
+:root{
+    --primary-color:#3B2F84;
+    --secondary-color:#0D3578;
+}

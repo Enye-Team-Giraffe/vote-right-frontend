@@ -1,19 +1,20 @@
 .whyNin {
-    margin-top: 8rem;
+    margin-top: -8rem;
     margin-left: 100px;
-    margin-right: 50px;
+    padding-right: 50px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    padding: 0 0 0 60px;
+    width: 500px;
 }
 
 .whyNin .__whyNinText {
     margin-top: 0rem;
-    margin-left: 200px;
-    text-align: justify;
+    font-size: 20px;
 }
 .whyNin .-white {
     color: #FFFFFF;
+    text-align: center;
 }
 
 
@@ -22,11 +23,11 @@
     .whyNin {
         margin: 2rem 0;
         align-items: center;
-      }
-   
-      .whyNin .__whyNinText {
-         margin-left: 10%;
-         margin-right: 10%;
-         text-align: justify;
-       }
+        }
+
+        .whyNin .__whyNinText {
+            margin-left: 10%;
+            margin-right: 10%;
+            text-align: justify;
+        }
 }
