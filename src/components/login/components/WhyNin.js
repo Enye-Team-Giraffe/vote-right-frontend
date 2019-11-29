@@ -13,7 +13,7 @@ const { Title, Text } = Typography;
 function WhyNin() {
     return (
         <div className="whyNin">
-            <Title className="-white" level={3}>{WHYWENEED}</Title>
+            <Title className="-white">{WHYWENEED}</Title>
             <Text className="__whyNinText -white">
                 {WHYNIN}
             </Text>

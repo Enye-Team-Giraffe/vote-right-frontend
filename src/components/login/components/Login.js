@@ -53,7 +53,7 @@ function Login() {
     return (
         <form className="form" onSubmit={handleSubmit}>
             <div className="form_subSection">
-                <Title className="form__heading" level={3}>{SIGNINWITHACCOUNT}</Title>
+                <Title className="form__heading" level={2}>{SIGNINWITHACCOUNT}</Title>
                 {/* Nin input field */}
                 <Input
                     className="form__input"

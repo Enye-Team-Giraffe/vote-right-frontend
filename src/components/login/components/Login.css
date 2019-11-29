@@ -1,5 +1,5 @@
 .form {
-    margin-top: 6rem;
+    margin-top: -6rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@
     margin: 1rem 0;
     padding-left: 50px;
     padding-right: 50px;
-    background-color: #0D3578;
+    background-color:var(--secondary-color);
 }
 
 @media (max-width: 950px) {

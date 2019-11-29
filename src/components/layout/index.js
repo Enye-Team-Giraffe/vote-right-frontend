@@ -1,28 +1,10 @@
 import React from 'react';
 import Particles from 'react-particles-js';
 import './layout.css';
+import { Typography } from 'antd';
 import { particleParameters } from './constants';
 
-// style for the item which we put over the animation
-const overlay = {
-    alignItems: 'center',
-    color: 'white',
-    display: 'flex',
-    fontSize: '20px',
-    height: '100%',
-    justifyContent: 'center',
-};
-
-// style for the particle which we want to display
-const particleStyle = {
-    height: '100%',
-    left: 0,
-    paddingBottom: '3%',
-    paddingTop: '3%',
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-};
+const { Title } = Typography;
 
 /**
  * Default layout for pages
@@ -36,13 +18,16 @@ const withLayout = (ComponentOne = 'div', ComponentTwo = 'div') => () => (
     <div>
         <div className="layout">
             <div className="whiteSection">
+                <div className="heading">
+                    <Title level={1}><span className="headingText">Vote-Right</span></Title>
+                </div>
                 <ComponentOne />
             </div>
             <div className="blueSection -blue">
-                <ComponentTwo style={overlay} />
+                <ComponentTwo />
                 <Particles
                     params={particleParameters}
-                    style={particleStyle}
+                    className="particle"
                 />
             </div>
         </div>
