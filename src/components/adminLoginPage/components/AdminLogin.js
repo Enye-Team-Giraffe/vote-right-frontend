@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Typography, Input, Button } from 'antd';
 import { SIGNINHEADER, SIGNIN } from '../constants';
 
-import './AdminLogin';
 import 'antd/dist/antd.css';
 
 const { Title } = Typography;
@@ -26,15 +25,12 @@ function AdminLogin() {
             ...state,
             [target.name]: target.value,
         };
-        
-        setState(newState);
-        console.log(target.name, state[target.name])
 
+        setState(newState);
     };
 
     const handleSubmit = event => {
         event.preventDefault();
-        console.log(state)
     };
 
     return (

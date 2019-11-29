@@ -1,7 +1,6 @@
 import React from 'react';
 import Particles from 'react-particles-js';
-// import PropTypes from 'prop-types';
-import './style.css';
+import './layout.css';
 import { particleParameters } from './constants';
 
 // style for the item which we put over the animation
@@ -34,16 +33,18 @@ const particleStyle = {
  * @return {Component} the jsx component for default page layout
  */
 const withLayout = (ComponentOne = 'div', ComponentTwo = 'div') => () => (
-    <div className="layout">
-        <div className="whiteSection">
-            <ComponentOne />
-        </div>
-        <div className="blueSection -blue">
-            <ComponentTwo style={overlay} />
-            <Particles
-                params={particleParameters}
-                style={particleStyle}
-            />
+    <div>
+        <div className="layout">
+            <div className="whiteSection">
+                <ComponentOne />
+            </div>
+            <div className="blueSection -blue">
+                <ComponentTwo style={overlay} />
+                <Particles
+                    params={particleParameters}
+                    style={particleStyle}
+                />
+            </div>
         </div>
     </div>
 );
