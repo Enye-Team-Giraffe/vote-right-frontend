@@ -24,11 +24,13 @@ const withLayout = (ComponentOne = 'div', ComponentTwo = 'div') => () => (
                 <ComponentOne />
             </div>
             <div className="blueSection -blue">
-                <ComponentTwo />
-                <Particles
-                    params={particleParameters}
-                    className="particle"
-                />
+                <div className="wrapper">
+                    <ComponentTwo />
+                    <Particles
+                        params={particleParameters}
+                        className="particle"
+                    />
+                </div>
             </div>
         </div>
     </div>
