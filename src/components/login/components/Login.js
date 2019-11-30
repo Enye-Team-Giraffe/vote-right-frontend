@@ -1,10 +1,17 @@
 /* eslint-disable max-lines-per-function */
+
+// import the modules to use
 import React, { useState } from 'react';
 import { Typography, Input, Button } from 'antd';
 import { SIGNINWITHACCOUNT, SIGNIN } from '../constants';
+import { useDispatch } from 'react-redux';
 
+// import the css
 import './Login.css';
 import 'antd/dist/antd.css';
+
+// import the action
+import actions from "../actions"
 
 const { Title } = Typography;
 
@@ -13,8 +20,12 @@ const { Title } = Typography;
  * @return {jsx component} Login form
  */
 function Login() {
+    // initialise the states of the component and default them to an empty string
     const [nin, setNin] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    
+    // create a dispatch instance for our actions
+    const dispatch=useDispatch();
 
     /**
      * Handles users NIN number
@@ -34,7 +45,7 @@ function Login() {
     /**
      * Handles users phone number
      * @function
-     * @param {event} event - the event of
+     * @param {event} event - the event of trigger of the event
      */
     const handleChangePhoneNumber = ({ target }) => {
         const pattern = /^\d+$/;
@@ -48,6 +59,9 @@ function Login() {
 
     const handleSubmit = event => {
         event.preventDefault();
+        
+        // dispatch the login function with the phone number
+        dispatch(actions.authenticateUser({phoneNumber,nin}));
     };
 
     return (
