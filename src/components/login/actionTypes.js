@@ -4,7 +4,7 @@
  *
  * @type {String}
  */
-export const LOGIN_USER="LOGIN_USER";
+export const LOGIN_USER = 'LOGIN_USER';
 
 /**
  * Fired by the {@link actions.authenticateUser authenticateUser}
@@ -12,4 +12,4 @@ export const LOGIN_USER="LOGIN_USER";
  *
  * @type {String}
  */
-export const AUTHENTICATE_USER="AUTHENTICATE_USER";
+export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';

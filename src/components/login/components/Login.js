@@ -3,15 +3,15 @@
 // import the modules to use
 import React, { useState } from 'react';
 import { Typography, Input, Button } from 'antd';
-import { SIGNINWITHACCOUNT, SIGNIN } from '../constants';
 import { useDispatch } from 'react-redux';
+import { SIGNINWITHACCOUNT, SIGNIN } from '../constants';
 
 // import the css
 import './Login.css';
 import 'antd/dist/antd.css';
 
 // import the action
-import actions from "../actions"
+import actions from '../actions';
 
 const { Title } = Typography;
 
@@ -23,9 +23,9 @@ function Login() {
     // initialise the states of the component and default them to an empty string
     const [nin, setNin] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    
+
     // create a dispatch instance for our actions
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
 
     /**
      * Handles users NIN number
@@ -59,9 +59,9 @@ function Login() {
 
     const handleSubmit = event => {
         event.preventDefault();
-        
+
         // dispatch the login function with the phone number
-        dispatch(actions.authenticateUser({phoneNumber,nin}));
+        dispatch(actions.authenticateUser({ nin, phoneNumber }));
     };
 
     return (

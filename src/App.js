@@ -3,41 +3,40 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import the pages/components
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk'; // import thunk middleware
+import createSagaMiddleware from '@redux-saga/core';
 import { LandingPage } from './components/landingPage/components';
-import {components as LoginPage} from './components/login';
+import { components as LoginPage } from './components/login';
 import AdminLoginPage from './components/adminLoginPage/components';
 
-// import the combinedSagas and the combinedReducers 
-import rootSaga from "./sagas";
-import allReducers from "./reducers"; //import all the reducers
+// import the combinedSagas and the combinedReducers
+import rootSaga from './sagas';
+import allReducers from './reducers'; // import all the reducers
 
 // import the modules for making the store
-import { Provider } from "react-redux";
-import {createStore, applyMiddleware, compose} from 'redux'; //import the function to create a global store
-import thunk from 'redux-thunk'; //import thunk middleware to allow use other drivers in our application
-import createSagaMiddleware from '@redux-saga/core';
 
 // initialise the saga middleware
-const sagaMiddleware=createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
 // initialise an array of all the middlewares we are going to use
-const middleware=[thunk,sagaMiddleware];
-const initialState={};
+const middleware = [thunk, sagaMiddleware];
+const initialState = {};
 
 // create the globa store
-const store=createStore(
+const store = createStore(
     allReducers,
     initialState,
     // wrap all of them in a compose in order to wrap them as a single argument
     compose(
-        applyMiddleware(...middleware),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        applyMiddleware(...middleware)
+        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
 
 // run the middleware for the rootsaga
 sagaMiddleware.run(rootSaga);
-
 
 // the exported app
 const App = () => (
