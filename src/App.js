@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import the pages/components
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk'; // import thunk middleware
 import createSagaMiddleware from '@redux-saga/core';
 import { LandingPage } from './components/landingPage/components';
 import { components as LoginPage } from './components/login';
@@ -15,13 +14,11 @@ import AdminLoginPage from './components/adminLoginPage/components';
 import rootSaga from './sagas';
 import allReducers from './reducers'; // import all the reducers
 
-// import the modules for making the store
-
 // initialise the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
 // initialise an array of all the middlewares we are going to use
-const middleware = [thunk, sagaMiddleware];
+const middleware = [sagaMiddleware];
 const initialState = {};
 
 // create the globa store
