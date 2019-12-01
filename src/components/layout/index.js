@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React from 'react';
 import Particles from 'react-particles-js';
 import './layout.css';
@@ -24,11 +25,13 @@ const withLayout = (ComponentOne = 'div', ComponentTwo = 'div') => () => (
                 <ComponentOne />
             </div>
             <div className="blueSection -blue">
-                <ComponentTwo />
-                <Particles
-                    params={particleParameters}
-                    className="particle"
-                />
+                <div className="wrapper">
+                    <ComponentTwo />
+                    <Particles
+                        params={particleParameters}
+                        className="particle"
+                    />
+                </div>
             </div>
         </div>
     </div>
