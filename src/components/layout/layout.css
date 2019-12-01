@@ -32,6 +32,7 @@
     left: 0;
     padding-bottom:2%;
     padding-top: 2%;
+    z-index: 1;
 }
 
 
@@ -108,3 +109,4 @@
     
 
 }
+

@@ -40,7 +40,7 @@ export const particleParameters = {
     },
     particles: {
         color: {
-            value: '#ffffff',
+            value: ['#747880', '#E31C79'],
         },
         line_linked: {
             color: '#ffffff',

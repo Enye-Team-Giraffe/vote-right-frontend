@@ -138,8 +138,11 @@ function Login() {
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('cap', {
             size: 'invisible',
         });
-        dispatch(actions.loadingReducer(false));
-        dispatch(actions.loginUser(phoneNumber));
+
+        const stringPassword = String(phoneNumber);
+        const countryphoneNumber = `+234${stringPassword.slice(1)}`;
+        dispatch(actions.loadingReducer(true));
+        dispatch(actions.loginUser(countryphoneNumber));
     };
 
     const dummy = () => {
