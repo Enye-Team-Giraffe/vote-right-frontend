@@ -1,37 +1,17 @@
 /* eslint-disable max-lines-per-function */
-
-// import the modules to use
 import React, { useState } from 'react';
 import { Typography, Input, Button } from 'antd';
 import { useDispatch } from 'react-redux';
 import { SIGNINWITHACCOUNT, SIGNIN } from '../constants';
-
-// import the css
 import './Login.css';
 import 'antd/dist/antd.css';
-
-// import the action
 import actions from '../actions';
-
 const { Title } = Typography;
-
-/**
- * Login form to authenticate voters
- * @return {jsx component} Login form
- */
 function Login() {
-    // initialise the states of the component and default them to an empty string
     const [nin, setNin] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
 
-    // create a dispatch instance for our actions
     const dispatch = useDispatch();
-
-    /**
-     * Handles users NIN number
-     * @function
-     * @param {event} event - the event of the input field
-     */
     const handleChangeNin = ({ target }) => {
         const pattern = /^\d+$/;
         if (pattern.test(target.value)) {
@@ -41,12 +21,6 @@ function Login() {
             setNin(target.value);
         }
     };
-
-    /**
-     * Handles users phone number
-     * @function
-     * @param {event} event - the event of trigger of the event
-     */
     const handleChangePhoneNumber = ({ target }) => {
         const pattern = /^\d+$/;
         if (pattern.test(target.value)) {
