@@ -13,14 +13,39 @@ const loginAdmin = adminData => ({
     payload: adminData,
     type: LOGIN_ADMIN,
 });
+
+/**
+ * Triggers request to start spinning the admin loader
+ *indicating an async request is going on
+ *
+ * @function
+ * @return {Object} The {@link actionTypes.TOGGLE_LOADING_ADMIN
+ *                       TOGGLE_LOADING_ADMIN} action.
+ */
 const loadingAdmin = truthyvalue => ({
     payload: truthyvalue,
     type: TOGGLE_LOADING_ADMIN,
 });
+
+/**
+ * Triggers request to change the admin's state to authenticated
+ *
+ * @function
+ * @return {Object} The {@link actionTypes.AUTHENTICATE_ADMIN
+ *                       AUTHENTICATE_ADMIN} action.
+ */
 const authenticateAdmin = truthyvalue => ({
     payload: truthyvalue,
     type: AUTHENTICATE_ADMIN,
 });
+
+/**
+ * Triggers request to check if the admin is authenticated
+ *
+ * @function
+ * @return {Object} The {@link actionTypes.AUTHENTICATE_ADMIN
+ *                       AUTHENTICATE_ADMIN} action.
+ */
 const isAdminAuthenticated = () => ({
     type: IS_ADMIN_LOGGEDIN,
 });
