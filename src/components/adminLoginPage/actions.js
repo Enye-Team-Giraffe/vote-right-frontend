@@ -1,6 +1,7 @@
 import {
     TOGGLE_LOADING_ADMIN, LOGIN_ADMIN, AUTHENTICATE_ADMIN, IS_ADMIN_LOGGEDIN
 } from './actionTypes';
+
 const loginAdmin = adminData => ({
     payload: adminData,
     type: LOGIN_ADMIN,

@@ -6,6 +6,7 @@ import { SIGNINWITHACCOUNT, SIGNIN } from '../constants';
 import './Login.css';
 import 'antd/dist/antd.css';
 import actions from '../actions';
+
 const { Title } = Typography;
 function Login() {
     const [nin, setNin] = useState('');

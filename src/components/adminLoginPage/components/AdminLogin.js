@@ -31,7 +31,6 @@ function AdminLogin() {
     };
 
     const adminLoading = useSelector(store => store.adminLoading);
-    const adminAuthenticated = useSelector(store => store.adminAuthenticated);
     const antIcon = <Icon type="loading" className="loader" spin />;
 
     return (
