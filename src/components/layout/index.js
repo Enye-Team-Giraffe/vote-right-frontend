@@ -3,6 +3,7 @@ import React from 'react';
 import Particles from 'react-particles-js';
 import './layout.css';
 import { Typography } from 'antd';
+import { Link } from 'react-router-dom';
 import { particleParameters } from './constants';
 
 const { Title } = Typography;
@@ -20,7 +21,11 @@ const withLayout = (ComponentOne = 'div', ComponentTwo = 'div') => () => (
         <div className="layout">
             <div className="whiteSection">
                 <div className="heading">
-                    <Title level={1}><span className="headingText">Vote-Right</span></Title>
+                    <Link to="/">
+                        <Title level={1}>
+                            <span className="headingText">Vote-Right</span>
+                        </Title>
+                    </Link>
                 </div>
                 <ComponentOne />
             </div>
