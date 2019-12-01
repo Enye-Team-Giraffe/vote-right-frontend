@@ -38,3 +38,23 @@
     }
     
 }
+
+.loader{
+    font-size: 1.2rem;
+    color:var(--secondary-color);
+}
+
+.alt{
+    width:100%;
+}
+
+.alt__text{
+    font-size: 13px;
+    text-align: center;
+}
+
+.alt__text--resend{
+    text-decoration: underline;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
