@@ -1,0 +1,34 @@
+.whyNin {
+    margin-top: -6rem;
+    margin-left: 100px;
+    padding-right: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 60px;
+    width: 500px;
+    z-index: 10;
+}
+
+.whyNin .__whyNinText {
+    margin-top: 0rem;
+    font-size: 20px;
+}
+.whyNin .-white {
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+
+
+@media (max-width: 950px) {
+    .whyNin {
+        margin: 2rem 0;
+        align-items: center;
+        }
+
+        .whyNin .__whyNinText {
+            margin-left: 10%;
+            margin-right: 10%;
+            text-align: justify;
+        }
+}
