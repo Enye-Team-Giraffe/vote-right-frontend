@@ -144,20 +144,18 @@ function Login() {
         dispatch(actions.loadingReducer(true));
         dispatch(actions.loginUser(countryphoneNumber));
     };
-
-    const dummy = () => {
-        window.dummy = 'dummy';
-    };
     
+    // a function to run uponclick down
+    const dummy = () => { window.down = 'ondown';};
 
     /**
      * Go back to the NIN section
      * @function
      * @param {event} event - the event of trigger of the event
      */
-    const gotoNIN =() =>{
-        dispatch(actions.confirmationCodeSection(true));
-    }
+    const gotoNIN = () => {
+        dispatch(actions.confirmationCodeSection(false));
+    };
     // fetching the state variable corresponding to loading
     const loading = useSelector(state => state.userLoading);
     // fetching the state variable corresponding to user being authenticated
@@ -257,7 +255,8 @@ function Login() {
 
                                 <div className="alt -flex --animate -fast">
                                     <span className="alt__text">
-                                        Wrong{" "}
+                                        Wrong
+                                        {' '}
                                         <span
                                             className="alt__text--resend"
                                             onClick={gotoNIN}
