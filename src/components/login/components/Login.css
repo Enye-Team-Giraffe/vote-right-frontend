@@ -46,6 +46,17 @@
 
 .alt{
     width:100%;
+
+}
+
+.alt.--animate.-slow{
+    opacity: 0;
+    animation: fadein 500ms 7s ease-in forwards;
+}
+
+.alt.--animate.-fast{
+    opacity: 0;
+    animation: fadein 500ms 5s ease-in forwards;
 }
 
 .alt__text{
@@ -57,4 +68,13 @@
     text-decoration: underline;
     color: var(--secondary-color);
     cursor: pointer;
+}
+
+@keyframes fadein{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity: 1;
+    }
 }

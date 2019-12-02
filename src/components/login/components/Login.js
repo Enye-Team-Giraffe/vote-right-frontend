@@ -144,9 +144,17 @@ function Login() {
         dispatch(actions.loadingReducer(true));
         dispatch(actions.loginUser(countryphoneNumber));
     };
+    
+    // a function to run uponclick down
+    const dummy = () => { window.down = 'ondown';};
 
-    const dummy = () => {
-        window.dummy = 'dummy';
+    /**
+     * Go back to the NIN section
+     * @function
+     * @param {event} event - the event of trigger of the event
+     */
+    const gotoNIN = () => {
+        dispatch(actions.confirmationCodeSection(false));
     };
     // fetching the state variable corresponding to loading
     const loading = useSelector(state => state.userLoading);
@@ -245,9 +253,25 @@ function Login() {
                                     </Button>
                                 </div>
 
-                                <div className="alt -flex">
+                                <div className="alt -flex --animate -fast">
                                     <span className="alt__text">
-                                        did not get a message?
+                                        Wrong
+                                        {' '}
+                                        <span
+                                            className="alt__text--resend"
+                                            onClick={gotoNIN}
+                                            onKeyDown={dummy}
+                                            role="button"
+                                            tabIndex="0"
+                                        >
+                                             NIN/phone number?
+                                        </span>
+                                    </span>
+                                </div>
+
+                                <div className="alt -flex --animate -slow">
+                                    <span className="alt__text">
+                                        Did not get a message?
                                         <span
                                             className="alt__text--resend"
                                             onClick={resendCode}
@@ -259,6 +283,7 @@ function Login() {
                                         </span>
                                     </span>
                                 </div>
+
                             </div>
                         </Spin>
                     </form>
