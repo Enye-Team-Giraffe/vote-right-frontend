@@ -7,7 +7,8 @@ import {
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import { Redirect } from 'react-router-dom';
 import {
     SIGNINWITHACCOUNT, SIGNIN, CONFIRM_HEADER, CONFIRM, LOADING_MESSAGE
