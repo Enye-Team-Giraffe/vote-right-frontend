@@ -1,112 +1,52 @@
 @import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css?family=Satisfy|Sulphur+Point&display=swap');
 
-.header-class {
-    background-color: #fff;
-}
-
-body {
-    font-family: "PT Sans", sans-serif;
-    font-size: 16px;
-    line-height: 1.4;
-    background-color: #fffffa;
-    display: flex;
-    flex-direction: column;
-    color: #3c4859;
-}
-
-.navbar1 {
-    width: 80%;
-    float: left;
-}
-
-.navbar2 {
-    width: 15%;
-    float: right;
-}
-
-/* Hero Section */
-
-.hero {
-    align-items: center;
-    background-image: linear-gradient( to right bottom, rgba(114, 240, 240, 0.78), rgba(40, 180, 133, 0.8)), url(../../../static/images/elections-voting.jpg);
+.homepage-wrapper{
+    background-image: url(../../../static/images/rising_sun.jpg);
+    background-color: rgba(59, 47, 132,0.05);
+    background-blend-mode: overlay;
+    height: 100vh;
     background-size: cover;
-    height: 470px;
-    justify-content: center;
-    color: #fff;
     display: flex;
     flex-direction: column;
-    padding: 100px 80px;
 }
 
-.hero-title, .hero-paragraph {
-    margin-bottom: 5px;
+.homepage-wrapper__header{
+    padding-left:30px;
+    padding-right:50px;
+    height: 84px;
+    width:100vw;
+    background: rgba(34, 27, 78, 0.4);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.hero-title {
-    font-size: 2em;
-    justify-content: center;
+.homepage-wrapper__content{
+    height:50%;
 }
 
-.hero-paragraph {
-    font-size: 1.5em;
+.description{
+    font-size: 4em;
 }
 
-footer img {
-    width: 20px;
-    margin-left: 10px;
+
+.--cursivefont{
+    font-family: 'Satisfy', cursive;
 }
 
-.button-class {
-    width: 100px;
+.--boldfont{
+    font-family: 'Sulphur Point', sans-serif;
+}
+.--white{
+    color: hsl(0, 0%, 92%);
 }
 
-.credits {
-    font-weight: 600;
-    color: #0D3578;
+.--mediumsized{
+    font-size: 1.3em;
 }
 
-.footer-content1 {
-    width: 80%;
-    float: left;
+.--bolder{
+    font-weight: bolder;
 }
-
-.footer-content2 {
-    width: 15%;
-    float: right;
-}
-
-/* For smartphones (<768px) */
-
-@media screen and (max-width: 768px) {
-    .hero {
-        padding: 40px 25px;
-        height: 800px;
-        background-image: linear-gradient( to left top, rgba(114, 240, 240, 0.78), rgba(40, 180, 133, 0.8)), url(../../../static/images/elections-voting.jpg);
-        background-size: contain;
-    }
-    .hero-title {
-        font-size: 2em;
-        margin-bottom: 25px;
-        text-align: center;
-    }
-    .hero-paragraph {
-        font-size: 1.3em;
-    }
-  
-    .ant-layout-footer {
-        background-color: #fff;
-        height: 10px;
-        padding: 0;
-    }
-  
-    .footer-content1 {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .footer-content2 {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-    }
-  }

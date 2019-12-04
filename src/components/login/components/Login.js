@@ -28,6 +28,9 @@ const { Title } = Typography;
  * @return {jsx component} Login form
  */
 function Login() {
+    // initialise the doispatching instance
+    const dispatch = useDispatch();
+
     // initialise the states of the component and default them to an empty string
     const [nin, setNin] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -41,10 +44,9 @@ function Login() {
         });
 
         // check if this iser is already authenticated
-        // dispatch(actions.isUserAuthenticated());
+        dispatch(actions.isUserAuthenticated());
     });
     // create a dispatch instance for our actions
-    const dispatch = useDispatch();
 
     /**
      * Handles users NIN number
@@ -145,9 +147,9 @@ function Login() {
         dispatch(actions.loadingReducer(true));
         dispatch(actions.loginUser(countryphoneNumber));
     };
-    
+
     // a function to run uponclick down
-    const dummy = () => { window.down = 'ondown';};
+    const dummy = () => { window.down = 'ondown'; };
 
     /**
      * Go back to the NIN section
