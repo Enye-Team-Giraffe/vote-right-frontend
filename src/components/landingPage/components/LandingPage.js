@@ -24,7 +24,7 @@ const LandingPage = () => (
             {/* the icon/logo for voteright */}
             <div className="homepage-wrapper__header__icon">
                 <Title level={1} className="icon">
-                    <span className="heading-logo --white --cursivefont">ONE TWO</span>
+                    <span className="heading-logo --white --cursivefont">voteRight</span>
                 </Title>
             </div>
             {/* the icon/logo for voteright */}
@@ -44,14 +44,20 @@ const LandingPage = () => (
 
         {/* content for displaying on the home page */}
         <div className="homepage-wrapper__content --white --boldfont --mediumsized">
+            <div className="homepage-wrapper__content__side-bar">
+                <div className="item" id="one"></div>
+                <div className="item" id="two"></div>
+                <div className="item" id="three"></div>
+                <div className="item" id="four"></div>
+            </div>
             <div className="homepage-wrapper__content--wrapper">
                 <div className="description">Worldclass</div>
                 <div className="description --bolder">Blockchain Solution</div>
                 <div className="text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nam laboriosam explicabo voluptatem fugit obcaecati,
-                    asperiores tempora neque voluptate excepturi eveniet itaque ullam ad,
-                    corporis nihil facere fuga quod perferendis quidem!
+                    VoteRight aims to solve the challenge of voting in Nigeria. 
+                    Ever gone to vote and almost gotten shot, mugged?
+                    Or maybe you spent hours on the Queue all to spend less than 10 minutes actually voting
+                    VoteRight to the rescue!!!
                 </div>
             </div>
         </div>

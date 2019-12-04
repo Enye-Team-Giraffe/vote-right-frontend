@@ -2,11 +2,15 @@
 @import url('https://fonts.googleapis.com/css?family=Satisfy|Sulphur+Point&display=swap');
 
 .homepage-wrapper{
-    /* background-image:  url(../../../static/images/rising_sun.jpg); */
-    background-image:linear-gradient( to right bottom, rgba(59, 47, 132,0.5) rgba(59, 47, 132,0.5)),url(../../../static/images/rising_sun.jpg);
-    /* background-color: rgba(59, 47, 132,0.5);
-    background-blend-mode: overlay; */
+    background-image: linear-gradient( 
+                        to right, 
+                        black, 
+                        rgba(59, 47, 132,0) 80%) , 
+                        url(../../../static/images/rising_sun.jpg
+                        );
+
     height: 100vh;
+    width: 100vw;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -15,9 +19,9 @@
 .homepage-wrapper__header{
     padding-left:30px;
     padding-right:50px;
-    height: 84px;
+    height: 94px;
     width:100vw;
-    background: rgba(34, 27, 78, 0.4);
+    background: rgba(34, 27, 78, 0.19);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -25,20 +29,43 @@
 }
 
 .homepage-wrapper__content{
-    padding-left:100px;
+    padding-left:70px;
+    width: 100vw !important;
     height:calc( 100vh - 400px );
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content:flex-start ;
+    align-items:center ;
 }
 
-.homepage-wrapper__content .text{
-    text-align: left;
-    
-    width: 60%;
+.text{    
+    width: 70%;
     max-width:550px;
+}
 
+.item{
+    height: 20px;
+    width:20px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 3px solid #d8dfe3;
+}
+
+#one{
+    background: hsl(202, 16%, 77%);
+}
+
+.homepage-wrapper__content--wrapper{
+    margin-left: 50px;
+}
+
+.homepage-wrapper__content__side-bar{
+    justify-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-around;
+    height: 45%;
 }
 
 
@@ -55,7 +82,7 @@
     font-family: 'Sulphur Point', sans-serif;
 }
 .--white{
-    color: hsl(0, 0%, 92%);
+    color: hsl(0, 0%, 100%);
 }
 
 .--mediumsized{
