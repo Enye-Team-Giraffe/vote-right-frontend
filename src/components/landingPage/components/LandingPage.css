@@ -2,9 +2,10 @@
 @import url('https://fonts.googleapis.com/css?family=Satisfy|Sulphur+Point&display=swap');
 
 .homepage-wrapper{
-    background-image: url(../../../static/images/rising_sun.jpg);
-    background-color: rgba(59, 47, 132,0.05);
-    background-blend-mode: overlay;
+    /* background-image:  url(../../../static/images/rising_sun.jpg); */
+    background-image:linear-gradient( to right bottom, rgba(59, 47, 132,0.5) rgba(59, 47, 132,0.5)),url(../../../static/images/rising_sun.jpg);
+    /* background-color: rgba(59, 47, 132,0.5);
+    background-blend-mode: overlay; */
     height: 100vh;
     background-size: cover;
     display: flex;
