@@ -44,13 +44,15 @@ const LandingPage = () => (
 
         {/* content for displaying on the home page */}
         <div className="homepage-wrapper__content --white --boldfont --mediumsized">
-            <div className="description">Worldclass</div>
-            <div className="description --bolder">Blockchain Solution</div>
-            <div className="text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Nam laboriosam explicabo voluptatem fugit obcaecati,
-                asperiores tempora neque voluptate excepturi eveniet itaque ullam ad,
-                corporis nihil facere fuga quod perferendis quidem!
+            <div className="homepage-wrapper__content--wrapper">
+                <div className="description">Worldclass</div>
+                <div className="description --bolder">Blockchain Solution</div>
+                <div className="text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nam laboriosam explicabo voluptatem fugit obcaecati,
+                    asperiores tempora neque voluptate excepturi eveniet itaque ullam ad,
+                    corporis nihil facere fuga quod perferendis quidem!
+                </div>
             </div>
         </div>
         {/* content for displaying on the home page */}
