@@ -9,7 +9,8 @@ import Instagram from '../../../static/icons/instagram.svg';
 import Twitter from '../../../static/icons/twitter.svg';
 import Youtube from '../../../static/icons/youtube.svg';
 import {
-    FACEBOOK_PAGE, INSTAGRAM_PAGE, TWITTER_PAGE, YOUTUBE_PAGE
+    FACEBOOK_PAGE, INSTAGRAM_PAGE, TWITTER_PAGE, YOUTUBE_PAGE,
+    LOGO, FIRSTTITLE, SECONDTITLE, HOMETEXT, LOGINETXT
 } from '../constants';
 
 const { Title, Text } = Typography;
@@ -24,7 +25,7 @@ const LandingPage = () => (
             {/* the icon/logo for voteright */}
             <div className="homepage-wrapper__header__icon">
                 <Title level={1} className="icon">
-                    <span className="heading-logo --white --cursivefont">voteRight</span>
+                    <span className="heading-logo --white --cursivefont">{LOGO}</span>
                 </Title>
             </div>
             {/* the icon/logo for voteright */}
@@ -33,7 +34,7 @@ const LandingPage = () => (
             <div className="homepage-wrapper__header__options">
                 <NavLink to="/login">
                     <Text className="--white --mediumsized --boldfont" strong>
-                        Login
+                        {LOGINETXT}
                     </Text>
                 </NavLink>
             </div>
@@ -45,19 +46,16 @@ const LandingPage = () => (
         {/* content for displaying on the home page */}
         <div className="homepage-wrapper__content --white --boldfont --mediumsized">
             <div className="homepage-wrapper__content__side-bar">
-                <div className="item" id="one"></div>
-                <div className="item" id="two"></div>
-                <div className="item" id="three"></div>
-                <div className="item" id="four"></div>
+                <div className="item" id="one" />
+                <div className="item" id="two" />
+                <div className="item" id="three" />
+                <div className="item" id="four" />
             </div>
             <div className="homepage-wrapper__content--wrapper">
-                <div className="description">Worldclass</div>
-                <div className="description --bolder">Blockchain Solution</div>
+                <div className="description">{FIRSTTITLE}</div>
+                <div className="description --bolder">{SECONDTITLE}</div>
                 <div className="text">
-                    VoteRight aims to solve the challenge of voting in Nigeria. 
-                    Ever gone to vote and almost gotten shot, mugged?
-                    Or maybe you spent hours on the Queue all to spend less than 10 minutes actually voting
-                    VoteRight to the rescue!!!
+                    {HOMETEXT}
                 </div>
             </div>
         </div>
@@ -66,22 +64,21 @@ const LandingPage = () => (
         {/* footer for the homepage */}
         <div className="homepage-wrapper__footer">
 
-                <a  href={FACEBOOK_PAGE}>
-                    <img className="--small" src={Facebook} alt="Facebook" />
-                </a>
-                <a  href={INSTAGRAM_PAGE}>
-                    <img className="--small" src={Instagram} alt="Instagram" />
-                </a>
-                <a  href={TWITTER_PAGE}>
-                    <img className="--small" src={Twitter} alt="Twitter" />
-                </a>
-                <a  href={YOUTUBE_PAGE}>
-                    <img className="--small" src={Youtube} alt="Youtube" />
-                </a>
+            <a href={FACEBOOK_PAGE}>
+                <img className="--small" src={Facebook} alt="Facebook" />
+            </a>
+            <a href={INSTAGRAM_PAGE}>
+                <img className="--small" src={Instagram} alt="Instagram" />
+            </a>
+            <a href={TWITTER_PAGE}>
+                <img className="--small" src={Twitter} alt="Twitter" />
+            </a>
+            <a href={YOUTUBE_PAGE}>
+                <img className="--small" src={Youtube} alt="Youtube" />
+            </a>
         </div>
         {/* footer for the home page */}
     </div>
 );
-
 
 export default LandingPage;
