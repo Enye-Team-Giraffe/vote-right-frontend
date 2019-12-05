@@ -1,49 +1,36 @@
-import React from 'react'; import './DashboardLayout.css';
-import { Layout, Menu} from 'antd';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+/* eslint-disable max-lines-per-function */
+import React from 'react';
+import './DashboardLayout.css';
+import { Layout } from 'antd';
+import {
+    Route, Switch
+} from 'react-router-dom';
+import SideNav from './SideNav';
+import { LOGOUT } from '../constants';
 
 const {
-    Header, Content, Sider,
+    Header, Content,
 } = Layout;
 
 const DashboardLayout = () => (
     <Layout>
-        <Sider
-            className="sideNav"
-            breakpoint="lg"
-            collapsedWidth="0"
-            onBreakpoint={broken => {
-                console.log(broken);
-            }}
-            onCollapse={(collapsed, type) => {
-                console.log(collapsed, type);
-            }}
-        >
-            <div className="sideNav_top">
-                <span> Vote Right </span>
-            </div>
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']} className="menu">
-                <Menu.Item key="1" >
-                    <span className="nav-text">nav 1</span>
-                </Menu.Item>
-                <Menu.Item key="2">
-                    <span className="nav-text">nav 2</span>
-                </Menu.Item>
-                <Menu.Item key="3">
-                    <span className="nav-text">nav 3</span>
-                </Menu.Item>
-                <Menu.Item key="4">
-                    <span className="nav-text">nav 4</span>
-                </Menu.Item>
-            </Menu>
-        </Sider>
+        {/* Side navigation bar */}
+        <SideNav />
         <Layout>
+            {/* Start of header component */}
             <Header className="header">
-                Header
+                <span className="header__logout">{LOGOUT}</span>
             </Header>
+            {/* End of header component */}
+            {/* Start of main content */}
             <Content className="content">
-                <div>content</div>
+                {/* Routes to display different content */}
+                <Switch>
+                    <Route exact path="/dashboard" />
+                    <Route path="/dashboard/" />
+                </Switch>
             </Content>
+            {/* End of main content */}
         </Layout>
     </Layout>
 );

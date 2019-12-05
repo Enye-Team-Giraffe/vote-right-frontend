@@ -145,9 +145,9 @@ function Login() {
         dispatch(actions.loadingReducer(true));
         dispatch(actions.loginUser(countryphoneNumber));
     };
-    
+
     // a function to run uponclick down
-    const dummy = () => { window.down = 'ondown';};
+    const dummy = () => { window.down = 'ondown'; };
 
     /**
      * Go back to the NIN section
