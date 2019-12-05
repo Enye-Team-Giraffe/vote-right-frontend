@@ -1,0 +1,43 @@
+.sideNav {
+    height: 100vh;
+    background-color: var(--primary-color);
+}
+
+.sideNav_top{
+    height: 60px;
+    margin: 0;
+    border-bottom: 3px solid white;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+
+}
+
+.menu {
+    background-color: var(--primary-color);
+}
+
+.ant-menu-item ant-menu-item-active .ant-menu-item-selected {
+    background-color: #FFFFFF;
+    color: var(--primary-color);
+}
+
+.ant-layout-sider-zero-width-trigger {
+    top: 6px;
+    color: var(--primary-color);
+    background-color: #FFFFFF;
+}
+
+.ant-layout-sider-zero-width-trigger:hover{
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+
+.content {
+    background-color: #FFFFFF;   
+}
+
+.it {
+    color: #FFFFFF;
+}
