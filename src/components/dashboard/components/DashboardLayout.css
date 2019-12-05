@@ -34,6 +34,16 @@
     color: #FFFFFF;
 }
 
+.header {
+    background-color: #FFFFFF;
+    height: 57px;
+    box-shadow: 0px 3px 3px var(--primary-color);
+    line-height: 60px;
+    padding: 0;
+    padding-left: 40px;
+    margin-bottom: 5px;
+}
+
 .content {
     background-color: #FFFFFF;   
 }

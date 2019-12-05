@@ -38,6 +38,9 @@ const DashboardLayout = () => (
             </Menu>
         </Sider>
         <Layout>
+            <Header className="header">
+                Header
+            </Header>
             <Content className="content">
                 <div>content</div>
             </Content>
