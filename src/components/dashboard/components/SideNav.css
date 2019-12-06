@@ -1,0 +1,40 @@
+/* Entire side nav bar */
+.sideNav {
+    min-height: 100vh;
+    background-color: var(--primary-color);
+}
+
+/* Start of top section of side nav bar */
+.sideNav__top{
+    height: 60px;
+    margin: 0;
+    border-bottom: 3px solid white;
+    display: flex;
+    align-items: center;
+}
+
+/* Logo of top section of side nav bar */
+.sideNav__topLogo {
+    padding: 0 16px;
+    color: #CCC;
+    font-size: 1.6rem;
+}
+/* End of top section of side nav bar */
+
+/* Menu of side nav bar */
+.menu {
+    background-color: var(--primary-color);
+}
+
+/* Start side nav bar toggle element */
+.ant-layout-sider-zero-width-trigger {
+    top: 6px;
+    color: var(--primary-color);
+    background-color: #FFFFFF;
+}
+
+.ant-layout-sider-zero-width-trigger:hover{
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+/* End side nav bar toggle element */

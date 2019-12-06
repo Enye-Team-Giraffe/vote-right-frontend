@@ -9,6 +9,7 @@ import createSagaMiddleware from '@redux-saga/core';
 import { LandingPage } from './components/landingPage/components';
 import { components as LoginPage } from './components/login';
 import AdminLoginPage from './components/adminLoginPage/components';
+import { DashboardLayout as Dashboard } from './components/dashboard/components';
 
 // import the combinedSagas and the combinedReducers
 import rootSaga from './sagas';
@@ -44,6 +45,7 @@ const App = () => (
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/admin" component={AdminLoginPage} />
+                <Route path="/dashboard" component={Dashboard} />
             </Switch>
         </Router>
 

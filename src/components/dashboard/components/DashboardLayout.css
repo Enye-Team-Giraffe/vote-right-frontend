@@ -1,0 +1,22 @@
+/* Start of header */
+.header {
+    background-color: #FFFFFF;
+    height: 57px;
+    box-shadow: 0px 3px 3px var(--primary-color);
+    line-height: 57px;
+    padding: 0;
+    padding-left: 40px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header__logout {
+    color: var(--primary-color);
+    padding: 0 10px;
+}
+/* End of header */
+
+.content {
+    background-color: #FFFFFF;   
+}
