@@ -1,15 +1,12 @@
 // import the required libraries
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 // import the pages/components
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from '@redux-saga/core';
-import { LandingPage } from './components/landingPage/components';
-import { components as LoginPage } from './components/login';
-import AdminLoginPage from './components/adminLoginPage/components';
-import { DashboardLayout as Dashboard } from './components/dashboard/components';
+import Routes from './routes';
 
 // import the combinedSagas and the combinedReducers
 import rootSaga from './sagas';
@@ -39,16 +36,9 @@ sagaMiddleware.run(rootSaga);
 // the exported app
 const App = () => (
     <Provider store={store}>
-
         <Router>
-            <Switch>
-                <Route exact path="/" component={LandingPage} />
-                <Route exact path="/login" component={LoginPage} />
-                <Route exact path="/admin" component={AdminLoginPage} />
-                <Route path="/dashboard" component={Dashboard} />
-            </Switch>
+            <Routes />
         </Router>
-
     </Provider>
 );
 
