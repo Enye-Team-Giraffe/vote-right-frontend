@@ -1,7 +1,7 @@
-export const VOTERIGHT = 'Vote Right';
+export const VOTERIGHT = 'voteRight';
 export const MENU = {
-    CONCLUDED: 'Concluded Elections',
-    CREATE: 'Create Election',
-    ONGOING: 'Ongoing Elections',
+    a: 'Create Election',
+    b: 'Ongoing Elections',
+    c: 'Concluded Elections',
 };
 export const LOGOUT = 'Logout';
