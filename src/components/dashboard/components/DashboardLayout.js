@@ -2,15 +2,11 @@
 import React from 'react';
 import './DashboardLayout.css';
 import { Layout } from 'antd';
-import {
-    Route, Switch
-} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import SideNav from './SideNav';
 import { LOGOUT } from '../constants';
 
-const {
-    Header, Content,
-} = Layout;
+const { Header, Content } = Layout;
 
 const DashboardLayout = () => (
     <Layout>
