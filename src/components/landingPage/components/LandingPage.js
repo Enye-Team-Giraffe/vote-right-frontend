@@ -19,16 +19,7 @@ const LandingPage = () => {
     const [currentText, setCurrentText] = useState(MENUITEMS[1]);
     const [stateKey, setStateKey] = useState(0);
     const counter = useRef(currentText.index);
-
-    /**
-     * Responsible or attaching an eventlistener to  non-button item
-     * @function
-     * @param {event} index - the index of this element in the constant array
-     */
-    const dummy = () => {
-        window.dummy = 'active';
-    };
-
+    
     /**
      * Handles changing the current text on the screen and render the animation
      * @function
@@ -38,7 +29,10 @@ const LandingPage = () => {
         setCurrentText(MENUITEMS[index]);
         setStateKey(Math.random());
     };
-
+    
+    const dummy = () => {
+        window.dummy = 'active';
+    };
     // run the animation every four seconds
     useEffect(() => {
         setInterval(() => {
