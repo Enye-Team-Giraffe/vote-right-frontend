@@ -1,7 +1,6 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable max-len */
-import React, { useState,useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Typography } from 'antd';
 import './LandingPage.css';
@@ -19,8 +18,8 @@ const { Title, Text } = Typography;
 const LandingPage = () => {
     const [currentText, setCurrentText] = useState(MENUITEMS[1]);
     const [stateKey, setStateKey] = useState(0);
-    let counter=currentText.index;
-    
+    let counter = useRef(currentText.index);
+
     /**
      * Responsible or attaching an eventlistener to  non-button item
      * @function
@@ -37,15 +36,16 @@ const LandingPage = () => {
      */
     const changeCurrentText = index => {
         setCurrentText(MENUITEMS[index]);
-        setStateKey(Math.random())
+        setStateKey(Math.random());
     };
 
-    //run the animation every four seconds 
-    useEffect(()=>{
-        setInterval(()=>{
-            changeCurrentText(++counter%MENUITEMS.length)
-        },3500)
-    },[])
+    // run the animation every four seconds
+    useEffect(() => {
+        setInterval(() => {
+            counter.current += 1;
+            changeCurrentText(counter.current % MENUITEMS.length);
+        }, 3500);
+    }, []);
 
     return (
         <div className="homepage-wrapper">
