@@ -18,7 +18,7 @@ const { Title, Text } = Typography;
 const LandingPage = () => {
     const [currentText, setCurrentText] = useState(MENUITEMS[1]);
     const [stateKey, setStateKey] = useState(0);
-    let counter = useRef(currentText.index);
+    const counter = useRef(currentText.index);
 
     /**
      * Responsible or attaching an eventlistener to  non-button item
@@ -91,9 +91,9 @@ const LandingPage = () => {
                     }
                 </div>
                 <div className="homepage-wrapper__content--wrapper --animated" key={stateKey}>
-                    <div className="description">{currentText.FIRSTTITLE}</div>
-                    <div className="description --bolder">{currentText.SECONDTITLE}</div>
-                    <div className="text">
+                    <div className="homepage-wrapper__content__description">{currentText.FIRSTTITLE}</div>
+                    <div className="homepage-wrapper__content__description --bolder">{currentText.SECONDTITLE}</div>
+                    <div className="homepage-wrapper__content__text">
                         {currentText.HOMETEXT}
                     </div>
                 </div>
