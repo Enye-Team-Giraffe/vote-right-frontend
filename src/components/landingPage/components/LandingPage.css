@@ -97,13 +97,6 @@
     margin: 0;
 }
 
-
-.--cursivefont{
-}
-
-.--boldfont{
-    /* font-family: 'Sulphur Point', sans-serif; */
-}
 .--white{
     color: hsl(0, 0%, 100%);
 }
@@ -118,15 +111,6 @@
 
 .--small{
     height:35px;
-}
-
-@keyframes slideDown{
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
 }
 
 
