@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { NavLink } from 'react-router-dom';
 import { Typography } from 'antd';
 import './LandingPage.css';
@@ -17,7 +18,9 @@ const { Title, Text } = Typography;
 
 const LandingPage = () => {
     const [currentText, setCurrentText] = useState(MENUITEMS[1]);
-
+    const [stateKey, setStateKey] = useState(0);
+    let counter=currentText.index;
+    
     /**
      * Responsible or attaching an eventlistener to  non-button item
      * @function
@@ -28,13 +31,21 @@ const LandingPage = () => {
     };
 
     /**
-     * Handles changing the current text on the screen
+     * Handles changing the current text on the screen and render the animation
      * @function
      * @param {event} index - the index of this element in the constant array
      */
     const changeCurrentText = index => {
         setCurrentText(MENUITEMS[index]);
+        setStateKey(Math.random())
     };
+
+    //run the animation every four seconds 
+    useEffect(()=>{
+        setInterval(()=>{
+            changeCurrentText(++counter%MENUITEMS.length)
+        },3500)
+    },[])
 
     return (
         <div className="homepage-wrapper">
@@ -79,7 +90,7 @@ const LandingPage = () => {
                         ))
                     }
                 </div>
-                <div className="homepage-wrapper__content--wrapper">
+                <div className="homepage-wrapper__content--wrapper --animated" key={stateKey}>
                     <div className="description">{currentText.FIRSTTITLE}</div>
                     <div className="description --bolder">{currentText.SECONDTITLE}</div>
                     <div className="text">
