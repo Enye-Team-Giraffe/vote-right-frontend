@@ -1,63 +1,75 @@
 @import '~antd/dist/antd.css';
-@import url('https://fonts.googleapis.com/css?family=Satisfy|Sulphur+Point&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Candal|IBM+Plex+Serif&display=swap');
 .homepage-wrapper{
     background-image: linear-gradient( 
                         to right, 
                         black, 
-                        rgba(59, 47, 132,0) 80%) , 
+                        rgba(59, 47, 132,0) 100%) , 
                         url(../../../static/images/rising_sun.jpg
                         );
 
-    height: 100vh;
-    width: 100vw;
+    min-height: 99.99vh;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
+
 .homepage-wrapper__header{
     padding-left:30px;
     padding-right:50px;
     height: 94px;
-    width:100vw;
     background: rgba(34, 27, 78, 0.19);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 30px;
+    font-family: 'Candal', sans-serif;
 }
 
 .homepage-wrapper__content{
-    margin-top: -200px;
-    padding-left:70px;
-    width: 100vw !important;
-    height:calc( 100vh - 500px );
+    padding-left:60px;
     display: flex;
     flex-direction: row;
     justify-content:flex-start ;
     align-items:center ;
 }
 
-.text{    
+.homepage-wrapper__content__text{    
     width: 70%;
     max-width:550px;
+    line-height: 2;
+    font-family: 'IBM Plex Serif', serif;
 }
 
 .item{
     height: 20px;
     width:20px;
     border-radius: 50%;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     border: 3px solid #d8dfe3;
+    cursor: pointer;
+    transition: ease-in 200ms;
 }
 
-/* temporary style for highlighted space */
-#one{
-    background: hsl(202, 16%, 77%);
+.item:hover{
+    transform: scale(1.415);
 }
-/* temporary style for highlighted space */
+
+.item:active{
+    transform: scale(1.0);
+}
+
+.item:focus{
+    outline: none;
+}
+
+.active{
+    background: hsl(202, 16%, 77%);
+    transform: scale(1.4);
+}
 
 
 .homepage-wrapper__content--wrapper{
@@ -74,32 +86,28 @@
 }
 
 .homepage-wrapper__footer{
-    padding-right:30px;
-    margin-left: 75%;
-    width: 25%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding-bottom: 20px;
-}
-.description{
-    font-size: 4em;
+    text-align: right;
+    margin-top: 20vh;
+    padding-bottom: 30px;
 }
 
-
-.--cursivefont{
-    font-family: 'Satisfy', cursive;
+.homepage-wrapper__footer a{ 
+    margin: 0 2.5vw;
+}
+.homepage-wrapper__content__description{
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 42px;
+    padding: 0;
+    margin: 0;
 }
 
-.--boldfont{
-    font-family: 'Sulphur Point', sans-serif;
-}
 .--white{
     color: hsl(0, 0%, 100%);
 }
 
 .--mediumsized{
     font-size: 1.3em;
+    font-family: 'IBM Plex Serif', serif;
 }
 
 .--bolder{
@@ -107,5 +115,55 @@
 }
 
 .--small{
-    height:45px;
+    height:35px;
+}
+
+.--animated{
+    animation: fadein 1s ease-in;
+}
+
+
+@keyframes fadein{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@media (max-width: 500px) and (max-width: 1000px) {
+    .description{
+        font-size: 20px;
+    }    
+    .homepage-wrapper__content__text{
+        font-weight: 100;
+        font-size: 15px;
+        line-height: 1.5;  
+    }
+    .homepage-wrapper__content{
+        padding-left:30px;
+    }
+    .homepage-wrapper__content--wrapper{
+        margin-left: 40px;
+    }
+    .--bolder{
+        font-weight: bold;
+    }
+    .homepage-wrapper__header__options{
+        margin-left: 40px;
+    }
+
+    .heading-logo{
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 500px){
+    .description{
+        font-size: 25px;
+    }  
+    .homepage-wrapper__content__text{
+        font-size: 15px;
+    }
 }

@@ -1,3 +1,6 @@
+@import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css?family=Candal|IBM+Plex+Serif&display=swap');
+
 html {
     height: 100%;
 }
@@ -7,7 +10,7 @@ body {
 }
 
 :root{
-    --primary-color:#3B2F84;
+    --primary-color:#05052d;
     --secondary-color:#0D3578;
     --tetiary-color:#E31C79;
     --backup:#8E66DA;

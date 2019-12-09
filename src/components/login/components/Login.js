@@ -45,7 +45,7 @@ function Login() {
 
         // check if this iser is already authenticated
         dispatch(actions.isUserAuthenticated());
-    });
+    }, [dispatch]);
     // create a dispatch instance for our actions
 
     /**

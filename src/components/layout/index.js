@@ -1,10 +1,9 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
-import Particles from 'react-particles-js';
 import './layout.css';
 import { Typography } from 'antd';
 import { Link } from 'react-router-dom';
-import { particleParameters } from './constants';
+import { VOTERIGHT } from './constants';
 
 const { Title } = Typography;
 
@@ -23,19 +22,15 @@ const withLayout = (ComponentOne = 'div', ComponentTwo = 'div') => () => (
                 <div className="heading">
                     <Link to="/">
                         <Title level={1}>
-                            <span className="headingText">Vote-Right</span>
+                            <span className="headingText">{ VOTERIGHT }</span>
                         </Title>
                     </Link>
                 </div>
                 <ComponentOne />
             </div>
             <div className="blueSection -blue">
-                <div className="wrapper">
+                <div className="blueSection__wrapper">
                     <ComponentTwo />
-                    <Particles
-                        params={particleParameters}
-                        className="particle"
-                    />
                 </div>
             </div>
         </div>
