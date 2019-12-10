@@ -5,6 +5,10 @@ import {
 } from 'antd';
 import './CreateElection.css';
 
+import {
+    NAME, DESCRIPTION, STARTDATE, ENDDATE, CREATEELECTION
+} from '../constants';
+
 /**
  * Form for creating election
  *
@@ -67,29 +71,29 @@ const CreateElection = () => {
         <div className="createElection">
             <form className="createElectionForm" onSubmit={handleSubmit}>
                 <Card className="createElectionCard">
-                    <h1 className="createElectionForm__heading">Create Election</h1>
-                    <span>Name</span>
+                    <h1 className="createElectionForm__heading">{CREATEELECTION}</h1>
+                    <span>{NAME}</span>
                     <Input
                         className="createElectionForm__input"
                         name="name"
                         required
                         onChange={handleChangeText}
                     />
-                    <span>Description</span>
+                    <span>{DESCRIPTION}</span>
                     <Input.TextArea
                         className="createElectionForm__textArea"
                         name="description"
                         required
                         onChange={handleChangeText}
                     />
-                    <span className="-topMargin">Start date</span>
+                    <span className="-topMargin">{STARTDATE}</span>
                     <DatePicker
                         className="createElectionForm__datePicker"
                         placeholder="Select date"
                         required
                         onChange={handleStartDate}
                     />
-                    <span>End date</span>
+                    <span>{ENDDATE}</span>
                     <DatePicker
                         className="createElectionForm__datePicker"
                         placeholder="Select date"
@@ -100,7 +104,7 @@ const CreateElection = () => {
                         className="createElectionForm__button"
                         htmlType="submit"
                     >
-                        Create
+                        {CREATEELECTION}
                     </Button>
                 </Card>
             </form>
