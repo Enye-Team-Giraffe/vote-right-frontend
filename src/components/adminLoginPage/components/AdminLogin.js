@@ -28,7 +28,7 @@ function AdminLogin() {
     // upon load of page check if the user is authenticated
     useEffect(() => {
         dispatch(actions.isAdminAuthenticated());
-    },[dispatch]);
+    }, [dispatch]);
 
     /**
      * Handles input change

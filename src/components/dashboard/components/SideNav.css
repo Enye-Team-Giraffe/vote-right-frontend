@@ -8,7 +8,7 @@
 .sideNav__top{
     height: 60px;
     margin: 0;
-    border-bottom: 3px solid white;
+    border-bottom: 3px solid #F5F5F5;
     display: flex;
     align-items: center;
 }

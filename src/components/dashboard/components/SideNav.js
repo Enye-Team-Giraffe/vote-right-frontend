@@ -7,43 +7,40 @@ import { VOTERIGHT, MENU } from '../constants';
 
 const { Sider } = Layout;
 
+/**
+ * Component for showing side navigation
+ *
+ * @component
+ * @return {jsx} - left side navifation
+ */
 const SideNav = () => (
     <Sider
         className="sideNav"
         breakpoint="lg"
         collapsedWidth="0"
     >
-        {/* Start of Vote right logo section */}
         <div className="sideNav__top">
             <Link to="/">
                 <span className="sideNav__topLogo ">{VOTERIGHT}</span>
             </Link>
         </div>
-        {/* Start of Vote right logo section */}
-        {/* Start of menu */}
         <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={['0']}
+            defaultSelectedKeys={['']}
             className="menu"
         >
-            <Menu.Item key="1">
-                <Link to="/dashboard">
-                    <span className="nav-text">{MENU.CREATE}</span>
-                </Link>
-            </Menu.Item>
-            <Menu.Item key="2">
-                <Link to="/dashboard">
-                    <span className="nav-text">{MENU.ONGOING}</span>
-                </Link>
-            </Menu.Item>
-            <Menu.Item key="3">
-                <Link to="/dashboard">
-                    <span className="nav-text">{MENU.CONCLUDED}</span>
-                </Link>
-            </Menu.Item>
+            {Object.keys(MENU).map(key => {
+                const [name, route] = MENU[key];
+                return (
+                    <Menu.Item key={key}>
+                        <Link to={`/dashboard/${route}`}>
+                            <span className="nav-text">{name}</span>
+                        </Link>
+                    </Menu.Item>
+                );
+            })}
         </Menu>
-        {/* End of menu */}
     </Sider>
 );
 

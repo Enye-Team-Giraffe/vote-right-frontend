@@ -1,0 +1,73 @@
+.createElection {
+    display: flex;
+    justify-content: center;
+    min-height: 100%;
+    background-color: #F5F5F5;
+}
+
+.createElectionCard {
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 1px  #b0bec5;
+}
+
+.createElectionForm {
+    margin-top: 2rem;
+    width: 40%;
+}
+
+.createElectionForm__heading {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #373757
+}
+
+.createElectionForm__input {
+    padding: 0 5px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.-topMargin {
+    margin-top: 20px;
+    display: block;
+}
+
+.createElectionForm__textArea {
+    margin-bottom: 20px;
+}
+
+.createElectionForm__datePicker {
+    border-width: 0;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.createElectionForm__button {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #FFFFFF;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.createElectionForm__button:hover {
+    background-color: #FFFFFF;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+@media (max-width: 990px) {
+    .createElectionForm {
+        width: 60%;
+    }
+}
+
+@media (max-width: 500px) {
+    .createElectionForm {
+        width: 80%;
+    }
+}
+
+
+

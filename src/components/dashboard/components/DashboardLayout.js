@@ -5,28 +5,29 @@ import { Layout } from 'antd';
 import { Route, Switch } from 'react-router-dom';
 import SideNav from './SideNav';
 import { LOGOUT } from '../constants';
+import CreateElection from '../../createElection/components';
 
 const { Header, Content } = Layout;
 
+/**
+ *@Component for displaying dashboard layout
+ *
+ *@component
+ *@return {jsx} - dashboard layout
+*/
 const DashboardLayout = () => (
     <Layout>
-        {/* Side navigation bar */}
         <SideNav />
         <Layout>
-            {/* Start of header component */}
             <Header className="header">
                 <span className="header__logout">{LOGOUT}</span>
             </Header>
-            {/* End of header component */}
-            {/* Start of main content */}
             <Content className="content">
-                {/* Routes to display different content */}
                 <Switch>
                     <Route exact path="/dashboard" />
-                    <Route path="/dashboard/" />
+                    <Route path="/dashboard/create_election" component={CreateElection} />
                 </Switch>
             </Content>
-            {/* End of main content */}
         </Layout>
     </Layout>
 );
