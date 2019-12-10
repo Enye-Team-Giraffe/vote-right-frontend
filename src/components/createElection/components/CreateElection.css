@@ -7,6 +7,7 @@
 
 .createElectionCard {
     border-radius: 10px;
+    box-shadow: 3px 3px 3px 1px  #b0bec5;
 }
 
 .createElectionForm {
@@ -16,6 +17,9 @@
 
 .createElectionForm__heading {
     text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #373757
 }
 
 .createElectionForm__input {
