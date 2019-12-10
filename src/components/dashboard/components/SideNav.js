@@ -38,7 +38,7 @@ const SideNav = () => (
                             <span className="nav-text">{name}</span>
                         </Link>
                     </Menu.Item>
-                )
+                );
             })}
         </Menu>
     </Sider>

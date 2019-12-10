@@ -25,7 +25,7 @@ const DashboardLayout = () => (
             <Content className="content">
                 <Switch>
                     <Route exact path="/dashboard" />
-                    <Route path="/dashboard/create_election" component={CreateElection}/>
+                    <Route path="/dashboard/create_election" component={CreateElection} />
                 </Switch>
             </Content>
         </Layout>
