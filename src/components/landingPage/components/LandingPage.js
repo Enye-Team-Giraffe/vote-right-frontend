@@ -19,7 +19,7 @@ const LandingPage = () => {
     const [currentText, setCurrentText] = useState(MENUITEMS[1]);
     const [stateKey, setStateKey] = useState(0);
     const counter = useRef(currentText.index);
-    
+
     /**
      * Handles changing the current text on the screen and render the animation
      * @function
@@ -29,7 +29,7 @@ const LandingPage = () => {
         setCurrentText(MENUITEMS[index]);
         setStateKey(Math.random());
     };
-    
+
     const dummy = () => {
         window.dummy = 'active';
     };

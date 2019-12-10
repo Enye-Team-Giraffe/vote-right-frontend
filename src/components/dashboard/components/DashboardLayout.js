@@ -5,6 +5,7 @@ import { Layout } from 'antd';
 import { Route, Switch } from 'react-router-dom';
 import SideNav from './SideNav';
 import { LOGOUT } from '../constants';
+import CreateElection from '../../createElection/components';
 
 const { Header, Content } = Layout;
 
@@ -24,7 +25,7 @@ const DashboardLayout = () => (
             <Content className="content">
                 <Switch>
                     <Route exact path="/dashboard" />
-                    <Route path="/dashboard/" />
+                    <Route path="/dashboard/create_election" component={CreateElection}/>
                 </Switch>
             </Content>
         </Layout>

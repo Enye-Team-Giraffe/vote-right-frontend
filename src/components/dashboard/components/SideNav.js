@@ -30,13 +30,16 @@ const SideNav = () => (
             defaultSelectedKeys={['']}
             className="menu"
         >
-            {Object.keys(MENU).map(key => (
-                <Menu.Item key={key}>
-                    <Link to="/dashboard">
-                        <span className="nav-text">{MENU[key]}</span>
-                    </Link>
-                </Menu.Item>
-            ))}
+            {Object.keys(MENU).map(key => {
+                const [name, route] = MENU[key];
+                return (
+                    <Menu.Item key={key}>
+                        <Link to={`/dashboard/${route}`}>
+                            <span className="nav-text">{name}</span>
+                        </Link>
+                    </Menu.Item>
+                )
+            })}
         </Menu>
     </Sider>
 );
