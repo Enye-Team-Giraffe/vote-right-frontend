@@ -1,3 +1,3 @@
-import CreateElection from './CreateELection';
+import CreateElection from './CreateElection';
 
 export default CreateElection;

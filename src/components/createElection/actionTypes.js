@@ -1,0 +1,1 @@
+export const CREATE_ELECTION = 'CREATE_ELECTION';

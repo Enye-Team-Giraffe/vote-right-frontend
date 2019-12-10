@@ -1,10 +1,11 @@
 /* eslint-disable max-lines-per-function */
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
     Card, Input, DatePicker, Button
 } from 'antd';
 import './CreateElection.css';
-
+import actions from "../actions"
 import {
     NAME, DESCRIPTION, STARTDATE, ENDDATE, CREATEELECTION
 } from '../constants';
@@ -16,6 +17,7 @@ import {
  * @return {component} - Component for creating election
  */
 const CreateElection = () => {
+    const dispatch = useDispatch()
     const [name, updateName] = useState('');
     const [description, updateDescription] = useState('');
     const [startDate, updateStartDate] = useState('');
@@ -65,6 +67,7 @@ const CreateElection = () => {
         const payload = {
             description, endDate, name, startDate,
         };
+        dispatch(actions.createElection(payload))
     };
 
     return (
