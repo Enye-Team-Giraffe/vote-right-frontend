@@ -1,9 +1,37 @@
+import Facebook from '../../static/icons/facebook.svg';
+import Instagram from '../../static/icons/instagram.svg';
+import Twitter from '../../static/icons/twitter.svg';
+import Youtube from '../../static/icons/youtube.svg';
+
 export const FACEBOOK_PAGE = 'www.facebook.com';
 export const INSTAGRAM_PAGE = 'www.instagram.com';
 export const TWITTER_PAGE = 'www.twitter.com';
 export const YOUTUBE_PAGE = 'www.youtube.com';
 export const LOGO = 'voteRight';
 export const LOGINETXT = 'Login';
+
+const FACEBOOK = {
+    alt: 'Facebook',
+    href: FACEBOOK_PAGE,
+    src: Facebook,
+};
+const INSTAGRAM = {
+    alt: 'Instagram',
+    href: INSTAGRAM_PAGE,
+    src: Instagram,
+};
+const TWITTER = {
+    alt: 'Twitter',
+    href: TWITTER_PAGE,
+    src: Twitter,
+};
+const YOUTUBE = {
+    alt: 'youtube',
+    href: YOUTUBE_PAGE,
+    src: Youtube,
+};
+
+export const FOOTER_ITEMS = [FACEBOOK, INSTAGRAM, TWITTER, YOUTUBE];
 
 const HOME = {
     FIRSTTITLE: 'voteRight',
@@ -46,3 +74,4 @@ const SOLUTION = {
 export const MENUITEMS = [HOME, ABOUT, PROBLEM, SOLUTION];
 
 export const ANIMATION_DURATION = 5000;
+

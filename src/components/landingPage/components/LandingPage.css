@@ -88,7 +88,6 @@
 
 .homepage-wrapper__footer a{ 
     margin: 2vw 2.5vw;
-    /* margin: 0 2.5vw; */
 }
 .homepage-wrapper__content__description{
     font-family: 'IBM Plex Serif', serif;
@@ -131,7 +130,6 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: space-around;
-    /* margin: 17px 2.5vw; */
 }
 
 .homepage-wrapper__section{
@@ -182,11 +180,6 @@
         text-align: right;
         flex-direction: row;
         width: 50%;
-        /* margin-top: 50%; */
-        /* padding-bottom: 30px; */
-        /* flex-direction: row; */
-        /* width:20%; */
-        /* margin-left:60% */
     }
 }
 
