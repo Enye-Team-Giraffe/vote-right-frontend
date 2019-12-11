@@ -4,13 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Typography } from 'antd';
 import './LandingPage.css';
-import Facebook from '../../../static/icons/facebook.svg';
-import Instagram from '../../../static/icons/instagram.svg';
-import Twitter from '../../../static/icons/twitter.svg';
-import Youtube from '../../../static/icons/youtube.svg';
 import {
-    FACEBOOK_PAGE, INSTAGRAM_PAGE, TWITTER_PAGE, YOUTUBE_PAGE,
-    LOGO, LOGINETXT, MENUITEMS, ANIMATION_DURATION
+    LOGO, LOGINETXT, MENUITEMS, ANIMATION_DURATION, FOOTER_ITEMS
 } from '../constants';
 
 const { Title, Text } = Typography;
@@ -98,19 +93,19 @@ const LandingPage = () => {
 
                 {/* footer for the homepage */}
                 <div className="homepage-wrapper__footer">
+                    {
+                        FOOTER_ITEMS.map(footerItem => (
+                            <a href={footerItem.href} key={`${footerItem.alt}-${Math.random()}`}>
+                                <img
+                                    className="--small"
+                                    src={footerItem.src}
+                                    alt={footerItem.alt}
 
-                    <a href={FACEBOOK_PAGE}>
-                        <img className="--small" src={Facebook} alt="Facebook" />
-                    </a>
-                    <a href={INSTAGRAM_PAGE}>
-                        <img className="--small" src={Instagram} alt="Instagram" />
-                    </a>
-                    <a href={TWITTER_PAGE}>
-                        <img className="--small" src={Twitter} alt="Twitter" />
-                    </a>
-                    <a href={YOUTUBE_PAGE}>
-                        <img className="--small" src={Youtube} alt="Youtube" />
-                    </a>
+                                />
+                            </a>
+                        ))
+                    }
+
                 </div>
                 {/* footer for the home page */}
             </div>
