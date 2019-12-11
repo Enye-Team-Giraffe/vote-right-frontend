@@ -7,3 +7,6 @@ export const BASE_URL = 'https://us-central1-voteright-e8208.cloudfunctions.net/
 export const ERROR_STATUS = 'error';
 export const SUCCESS_STATUS = 'success';
 export const WAIT_TIME = 2.0;
+export const LARGE_GAS = 3000000;
+export const SMALL_GAS = 1000000;
+export const CREATE_ELECTION_SUCCESS = 'Election sucesfully created';
