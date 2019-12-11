@@ -56,6 +56,5 @@ function* createElection(action) {
 function* validateUserSaga() {
     yield takeLatest(CREATE_ELECTION, createElection);
 }
-
 // export this function
 export default validateUserSaga;
