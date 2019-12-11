@@ -7,11 +7,14 @@
                         rgba(59, 47, 132,0) 100%) , 
                         url(../../../static/images/rising_sun.jpg
                         );
+
     min-height: 99.99vh;
     background-size: cover;
     display: flex;
     flex-direction: column;
 }
+
+
 .homepage-wrapper__header{
     padding-left:30px;
     padding-right:50px;
@@ -24,6 +27,7 @@
     margin-bottom: 30px;
     font-family: 'Candal', sans-serif;
 }
+
 .homepage-wrapper__content{
     padding-left:60px;
     display: flex;
@@ -38,6 +42,7 @@
     line-height: 2;
     font-family: 'IBM Plex Serif', serif;
 }
+
 .item{
     height: 20px;
     width:20px;
@@ -47,22 +52,29 @@
     cursor: pointer;
     transition: ease-in 200ms;
 }
+
 .item:hover{
     transform: scale(1.415);
 }
+
 .item:active{
     transform: scale(1.0);
 }
+
 .item:focus{
     outline: none;
 }
+
 .active{
     background: hsl(202, 16%, 77%);
     transform: scale(1.4);
 }
+
+
 .homepage-wrapper__content--wrapper{
     margin-left: 6vw;
 }
+
 .homepage-wrapper__content__side-bar{
     justify-self: flex-end;
     display: flex;
@@ -71,6 +83,9 @@
     align-items: space-around;
     height: 45%;
 }
+
+
+
 .homepage-wrapper__footer a{ 
     margin: 2vw 2.5vw;
 }
@@ -80,34 +95,41 @@
     padding: 0;
     margin: 0;
 }
+
 .--white{
     color: hsl(0, 0%, 100%);
 }
+
 .--mediumsized{
     font-size: 1.3em;
     font-family: 'IBM Plex Serif', serif;
 }
+
 .--bolder{
     font-weight: bolder;
 }
+
 .--small{
     height:35px;
 }
+
 .--animated{
     animation: fadein 1s ease-in;
 }
+
 .--scale{
     transition:ease 1s;
 }
+
 .--scale:hover{
     transform: scale(2);
 }
+
 .homepage-wrapper__footer{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: space-around;
-    /* margin: 17px 2.5vw; */
 }
 
 .homepage-wrapper__section{
@@ -126,6 +148,7 @@
 .homepage-wrapper__header__options:active{
     transform: scale(1.05);
 }
+
 @keyframes fadein{
     from{
         opacity: 0;
@@ -134,6 +157,7 @@
         opacity: 1;
     }
 }
+
 @media (max-width : 1000px){
     .homepage-wrapper__content--wrapper{
         margin-left: 50px;
@@ -158,6 +182,8 @@
         width: 50%;
     }
 }
+
+
 @media (max-width: 500px) and (max-width: 1000px) {
     .description{
         font-size: 20px;
@@ -184,6 +210,7 @@
         font-size: 26px;
     }
 }
+
 @media (max-width: 500px){
     .description{
         font-size: 25px;
