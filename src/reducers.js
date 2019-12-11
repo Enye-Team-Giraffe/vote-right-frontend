@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducers as userReducer } from './components/login';
 import { reducers as adminReducer } from './components/adminLoginPage';
+import { reducers as createElectionReducer } from "./components/createElection";
 
 // combine all the reducers in the project into one reducer
 const allReducers = combineReducers({
@@ -9,6 +10,7 @@ const allReducers = combineReducers({
     confirmationCode: userReducer.confirmReducer,
     userAuthenticated: userReducer.authenticateUserReducer,
     userLoading: userReducer.loginLoandingReducer,
+    createElectionLoading: createElectionReducer.createUserLoading
 });
 
 // export this reducer
