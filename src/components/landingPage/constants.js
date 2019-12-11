@@ -44,3 +44,5 @@ const SOLUTION = {
 };
 
 export const MENUITEMS = [HOME, ABOUT, PROBLEM, SOLUTION];
+
+export const ANIMATION_DURATION = 5000;
