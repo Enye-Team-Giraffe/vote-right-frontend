@@ -56,6 +56,9 @@ const CreateElection = () => {
         updateEndDate(formattedDate);
     };
 
+    // function to convert a datetime string into a timestamp
+    const toTimestamp = dateString => (Date.parse(dateString) / 1000);
+
     /**
      * Handles submission of form data
      * @function
@@ -65,7 +68,10 @@ const CreateElection = () => {
         event.preventDefault();
         // eslint-disable-next-line no-unused-vars
         const payload = {
-            description, endDate, name, startDate,
+            description,
+            endDate: toTimestamp(endDate),
+            name,
+            startDate: toTimestamp(startDate),
         };
         dispatch(actions.loadingCreateUser(true));
         dispatch(actions.createElection(payload));
