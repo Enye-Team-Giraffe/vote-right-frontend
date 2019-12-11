@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    Card, Input, DatePicker, Button,Spin,Icon
+    Card, Input, DatePicker, Button, Spin, Icon
 } from 'antd';
 import './CreateElection.css';
 import actions from '../actions';
@@ -81,7 +81,7 @@ const CreateElection = () => {
                     indicator={antIcon}
                     spinning={createElectionLoading}
                     className="loader"
-                    tip={"loading...."}
+                    tip="loading...."
                 >
                     <Card className="createElectionCard">
                         <h1 className="createElectionForm__heading">{CREATEELECTION}</h1>

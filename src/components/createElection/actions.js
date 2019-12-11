@@ -22,8 +22,7 @@ const loadingCreateUser = truthyValue => ({
     type: LOADING_CREATE_USER,
 });
 
-
 export default {
     createElection,
-    loadingCreateUser
+    loadingCreateUser,
 };

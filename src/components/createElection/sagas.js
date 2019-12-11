@@ -8,7 +8,7 @@ import {
     BASE_URL, SUCCESS_STATUS,
     ERROR_STATUS, WAIT_TIME
 } from './constants';
-import actions from "./actions"
+import actions from './actions';
 
 /**
  * A function to check the content of a response and show a message accordingly
@@ -48,8 +48,7 @@ function* createElection(action) {
         .then(res => res.json())
         .then(res => res)
         .catch(() => { message.error('there was a server error', WAIT_TIME); });
-    alert("done")
-    yield put(actions.loadingCreateUser(false))
+    yield put(actions.loadingCreateUser(false));
     checkResponse(response);
 }
 
