@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/Enye-Team-Giraffe/vote-right-frontend/issues"
   },
-  "homepage": "https://github.com/Enye-Team-Giraffe/vote-right-frontend#readme",
+  "homepage": ".",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
