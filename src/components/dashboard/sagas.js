@@ -4,7 +4,6 @@ import { LOGOUT } from './actionTypes';
 import { app } from '../configuredFirebase';
 import { LOGOUT_SUCESSFULL, WAIT_TIME } from './constants';
 function* logout(action) {
-    // signout of firebase
     yield app.auth().signOut().then(() => {
         message.success(LOGOUT_SUCESSFULL, WAIT_TIME);
         action.payload.push('/');
