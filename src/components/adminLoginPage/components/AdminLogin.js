@@ -24,11 +24,16 @@ function AdminLogin() {
     // get a state variables for out input
     const [state, setState] = useState({});
     const dispatch = useDispatch();
+    
+    // get all state to tell us if the user is authenticated
+    const adminAuthenticated = useSelector(store => store.adminAuthenticated);
 
     // upon load of page check if the user is authenticated
     useEffect(() => {
-        dispatch(actions.isAdminAuthenticated());
-    }, [dispatch]);
+        if(!adminAuthenticated){
+            dispatch(actions.isAdminAuthenticated());
+        }
+    }, [dispatch,adminAuthenticated]);
 
     /**
      * Handles input change
@@ -55,8 +60,6 @@ function AdminLogin() {
 
     // get the state curresponding to if the admin is loading
     const adminLoading = useSelector(store => store.adminLoading);
-    // get all state to tell us if the user is authenticated
-    const adminAuthenticated = useSelector(store => store.adminAuthenticated);
     // constant for customising the loader
     const antIcon = <Icon type="loading" className="loader" spin />;
 

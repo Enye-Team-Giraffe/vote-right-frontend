@@ -15,7 +15,8 @@ import {
     ERROR_STATUS, SUCCESS_STATUS,
     BASE_URL, SERVER_ERROR_MESSAGE,
     UNKNOWN_ERROR, SUCCESSFULL_NIN,
-    WAIT_TIME, USER_ALREADY_LOGGED
+    WAIT_TIME, USER_ALREADY_LOGGED,
+    WRONG_CODE, CROSS_CHECK
 } from './constants';
 import actions from './actions';
 import { app } from '../configuredFirebase';
@@ -102,13 +103,13 @@ function* confirmUserCode(data) {
     const code = data.payload;
     const confirmation = yield window.confirmationResult.confirm(code).then(() => {
         // User signed in successfully.
-        message.success('Succesfully logged in, proceed to dashboard', WAIT_TIME);
+        message.success(USER_ALREADY_LOGGED, WAIT_TIME);
         return SUCCESS_STATUS;
         // ...
     }).catch(() => {
         // User couldn't sign in (bad verification code?)
         // ...
-        message.error('Invalid verification Code', WAIT_TIME);
+        message.error(WRONG_CODE, WAIT_TIME);
         return ERROR_STATUS;
     });
     yield put(actions.loadingReducer(false));
@@ -120,7 +121,7 @@ function* confirmUserCode(data) {
     } else {
         // if user entered the wrong number
         // go back to login page
-        message.success('Please cross-check your code', WAIT_TIME);
+        message.success(CROSS_CHECK, WAIT_TIME);
         //   go back to login page
     }
 }
