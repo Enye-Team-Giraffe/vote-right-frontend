@@ -30,10 +30,10 @@ const { Title } = Typography;
 function Login() {
     // initialise the doispatching instance
     const dispatch = useDispatch();
-    
+
     // fetching the state variable corresponding to user being authenticated
     const userAuthenticated = useSelector(state => state.userAuthenticated);
-    
+
     // initialise the states of the component and default them to an empty string
     const [nin, setNin] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -47,11 +47,11 @@ function Login() {
         });
         // if the user is not currently authenticated via state
         // check the cookies
-        if(!userAuthenticated){
+        if (!userAuthenticated) {
             // check if this iser is already authenticated
             dispatch(actions.isUserAuthenticated());
         }
-    }, [dispatch,userAuthenticated]);
+    }, [dispatch, userAuthenticated]);
     // create a dispatch instance for our actions
 
     /**

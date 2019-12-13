@@ -1,10 +1,11 @@
-import React,{ useEffect } from 'react';
+/* eslint-disable max-lines-per-function */
+import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADMIN, ADMIN_HOME ,USER_HOME} from "./constants";
-import { actions } from "../../adminLoginPage"
- 
+import { ADMIN, ADMIN_HOME, USER_HOME } from './constants';
+import { actions } from '../../adminLoginPage';
+
 /**
  * A wrapper for routers, which is used to limit which route users who have not signed in can use
  *
@@ -15,29 +16,28 @@ import { actions } from "../../adminLoginPage"
 export default function PrivateRoute({
     component: Component,
     authenticated,
-}) { 
+}) {
     // import the authentication status of both admin and user
-    const dispatch = useDispatch()
-    const isAdminAuthenticated = useSelector(state=>state.adminAuthenticated)
-    const isUserAuthenticated = useSelector(state=>state.userAuthenticated)
-    
+    const dispatch = useDispatch();
+    const isAdminAuthenticated = useSelector(state => state.adminAuthenticated);
+    const isUserAuthenticated = useSelector(state => state.userAuthenticated);
+
     // define the authenticated status depending on what was passed into the route
-    let userAuthenticated = (authenticated === ADMIN)?isAdminAuthenticated:isUserAuthenticated;
-    let homPage = (authenticated ===  ADMIN)?ADMIN_HOME:USER_HOME;
-    
+    const usrAuthenticated = (authenticated === ADMIN) ? isAdminAuthenticated : isUserAuthenticated;
+    const homPage = (authenticated === ADMIN) ? ADMIN_HOME : USER_HOME;
+
     // upon mount of this app, check if the user is authenticated in the state
     // otherwise check firebase if the user is authenticated via cookies
-    useEffect(()=>{
-
-        if(!userAuthenticated){
-            dispatch(actions.isAdminAuthenticated())
+    useEffect(() => {
+        if (!usrAuthenticated) {
+            dispatch(actions.isAdminAuthenticated());
         }
-    },[dispatch,userAuthenticated])
+    }, [dispatch, usrAuthenticated]);
 
     return (
         // if the user is logged in, let them proceed, otherwise redirect to login page
         <Route
-            render={() => (userAuthenticated === true ? (
+            render={() => (usrAuthenticated === true ? (
                 <Component />
             ) : (
                 <Redirect to={homPage} />

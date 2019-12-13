@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { ADMIN } from "./constants"
+import { ADMIN } from './constants';
 import { LandingPage } from './components/landingPage/components';
 import { components as LoginPage } from './components/login';
 import AdminLoginPage from './components/adminLoginPage/components';
@@ -15,6 +15,5 @@ const Routes = () => (
         <ProtectedRoute path="/dashboard" component={adminDashboard} authenticated={ADMIN} />
     </Switch>
 );
-
 
 export default Routes;
