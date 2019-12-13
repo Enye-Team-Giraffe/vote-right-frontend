@@ -21,7 +21,6 @@ const { Header, Content } = Layout;
 const DashboardLayout = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-
     // logout of the app
     const logout = () => {
         dispatch(actions.logoutUser(history));

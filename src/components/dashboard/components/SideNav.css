@@ -46,14 +46,12 @@
     font-size: 15px !important;
     font-weight: bolder;
 }
-/* End side nav bar toggle element */
 @media (max-width: 990px) {
     .sideNav__sideitem{
         font-size: 12px !important;
         font-weight: bold;
     } 
 }
-
 @media (min-width: 1000px) {
     .sideNav {
         min-width: 300px !important;
@@ -61,7 +59,7 @@
     }
 }
 .--font-style{
-    /* font-family: 'Candal', sans-serif; */
+    font-family: 'Candal', sans-serif;
     color:white;
 }
 

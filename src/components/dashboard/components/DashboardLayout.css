@@ -21,11 +21,9 @@
     outline: none;
     transition: 500ms;
 }
-
 .ant-layout-sider-zero-width-trigger {
     top: 18px !important;
 }
-
 .header__logout:hover{
     transform: scale(1.04);
 }
