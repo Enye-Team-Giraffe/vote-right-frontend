@@ -1,19 +1,33 @@
 /* Start of header */
 .header {
-    background-color: #FFFFFF;
-    height: 57px;
-    box-shadow: 0px 3px 3px var(--primary-color);
+    background-color: hsl(208, 100%, 98.5%);
+    height: 77px;
+    border-bottom: 2px solid var(--primary-color);
     line-height: 57px;
     padding: 0;
     padding-left: 40px;
     margin-bottom: 5px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .header__logout {
     color: var(--primary-color);
-    padding: 0 10px;
+    padding: 0 50px;
+    font-family: sans-serif;
+    font-size: 17px;
+    cursor: pointer;
+    outline: none;
+    transition: 500ms;
+}
+
+.ant-layout-sider-zero-width-trigger {
+    top: 18px !important;
+}
+
+.header__logout:hover{
+    transform: scale(1.04);
 }
 /* End of header */
 

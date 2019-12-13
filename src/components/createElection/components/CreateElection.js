@@ -1,13 +1,15 @@
 /* eslint-disable max-lines-per-function */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
     Card, Input, DatePicker, Button, Spin, Icon
 } from 'antd';
 import './CreateElection.css';
 import actions from '../actions';
 import {
-    NAME, DESCRIPTION, STARTDATE, ENDDATE, CREATEELECTION
+    NAME, DESCRIPTION, STARTDATE, ENDDATE, CREATEELECTION,
+    ROW_HEIGHT, BUTTON_TEXT
 } from '../constants';
 
 /**
@@ -18,6 +20,7 @@ import {
  */
 const CreateElection = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [name, updateName] = useState('');
     const [description, updateDescription] = useState('');
     const [startDate, updateStartDate] = useState('');
@@ -70,6 +73,7 @@ const CreateElection = () => {
         const payload = {
             description,
             endDate: toTimestamp(endDate),
+            history,
             name,
             startDate: toTimestamp(startDate),
         };
@@ -90,40 +94,54 @@ const CreateElection = () => {
                     tip="loading...."
                 >
                     <Card className="createElectionCard">
-                        <h1 className="createElectionForm__heading">{CREATEELECTION}</h1>
-                        <span>{NAME}</span>
-                        <Input
-                            className="createElectionForm__input"
-                            name="name"
-                            required
-                            onChange={handleChangeText}
-                        />
-                        <span>{DESCRIPTION}</span>
-                        <Input.TextArea
-                            className="createElectionForm__textArea"
-                            name="description"
-                            required
-                            onChange={handleChangeText}
-                        />
-                        <span className="-topMargin">{STARTDATE}</span>
-                        <DatePicker
-                            className="createElectionForm__datePicker"
-                            placeholder="Select date"
-                            required
-                            onChange={handleStartDate}
-                        />
-                        <span>{ENDDATE}</span>
-                        <DatePicker
-                            className="createElectionForm__datePicker"
-                            placeholder="Select date"
-                            required
-                            onChange={handleEndDate}
-                        />
+                        <div className="createElectionForm__heading">
+                            <h1 className="createElectionForm__heading_header">{CREATEELECTION}</h1>
+                            <p className="createElectionForm__heading_text">
+                                Enter in the details of the election you wish to create
+                            </p>
+                        </div>
+                        <div className="createElectionForm__group">
+                            <span>{NAME}</span>
+                            <Input
+                                className="createElectionForm__input --input-element"
+                                name="name"
+                                required
+                                onChange={handleChangeText}
+                            />
+                        </div>
+                        <div className="createElectionForm__group">
+                            <span>{DESCRIPTION}</span>
+                            <Input.TextArea
+                                rows={ROW_HEIGHT}
+                                className="createElectionForm__textArea --input-element"
+                                name="description"
+                                required
+                                onChange={handleChangeText}
+                            />
+                        </div>
+                        <div className="createElectionForm__group">
+                            <span className="-topMargin">{STARTDATE}</span>
+                            <DatePicker
+                                className="createElectionForm__datePicker --input-element"
+                                placeholder="Select date"
+                                required
+                                onChange={handleStartDate}
+                            />
+                        </div>
+                        <div className="createElectionForm__group">
+                            <span>{ENDDATE}</span>
+                            <DatePicker
+                                className="createElectionForm__datePicker --input-element"
+                                placeholder="Select date"
+                                required
+                                onChange={handleEndDate}
+                            />
+                        </div>
                         <Button
                             className="createElectionForm__button"
                             htmlType="submit"
                         >
-                            {CREATEELECTION}
+                            {BUTTON_TEXT}
                         </Button>
                     </Card>
                 </Spin>

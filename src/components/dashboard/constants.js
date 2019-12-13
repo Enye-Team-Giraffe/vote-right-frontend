@@ -6,3 +6,6 @@ export const MENU = {
 };
 
 export const LOGOUT = 'Logout';
+export const WAIT_TIME = 2;
+export const LOGOUT_SUCESSFULL = 'Your logout was sucessfull';
+export const LOGOUT_ERROR = 'There was an error logging you out';
