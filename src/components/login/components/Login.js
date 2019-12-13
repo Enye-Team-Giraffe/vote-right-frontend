@@ -174,7 +174,7 @@ function Login() {
 
     return (
         <div>
-            {userAuthenticated ? <Redirect to="/userdashboard" /> : <div />}
+            {userAuthenticated ? <Redirect to="/user" /> : <div />}
             <div ref={captchaRef}>
                 <div id="cap" />
             </div>

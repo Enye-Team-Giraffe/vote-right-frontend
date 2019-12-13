@@ -12,7 +12,7 @@ const Routes = () => (
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/admin" component={AdminLoginPage} />
-        <ProtectedRoute exact path="/admindashboard" component={adminDashboard} authenticated={ADMIN} />
+        <ProtectedRoute path="/dashboard" component={adminDashboard} authenticated={ADMIN} />
     </Switch>
 );
 

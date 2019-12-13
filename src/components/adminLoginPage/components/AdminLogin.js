@@ -65,7 +65,7 @@ function AdminLogin() {
 
     return (
         <div>
-            {adminAuthenticated ? <Redirect to="/admindashboard" /> : <div />}
+            {adminAuthenticated ? <Redirect to="/dashboard" /> : <div />}
             <form className="form" onSubmit={handleSubmit}>
                 <Spin
                     size="large"

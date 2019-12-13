@@ -2,7 +2,7 @@ import React,{ useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADMIN } from "./constants";
+import { ADMIN, ADMIN_HOME ,USER_HOME} from "./constants";
 import { actions } from "../../adminLoginPage"
  
 /**
@@ -23,10 +23,12 @@ export default function PrivateRoute({
     
     // define the authenticated status depending on what was passed into the route
     let userAuthenticated = (authenticated === ADMIN)?isAdminAuthenticated:isUserAuthenticated;
+    let homPage = (authenticated ===  ADMIN)?ADMIN_HOME:USER_HOME;
     
     // upon mount of this app, check if the user is authenticated in the state
     // otherwise check firebase if the user is authenticated via cookies
     useEffect(()=>{
+
         if(!userAuthenticated){
             dispatch(actions.isAdminAuthenticated())
         }
@@ -38,7 +40,7 @@ export default function PrivateRoute({
             render={() => (userAuthenticated === true ? (
                 <Component />
             ) : (
-                <Redirect to="/login" />
+                <Redirect to={homPage} />
             ))}
         />
     );
