@@ -8,6 +8,7 @@ import SideNav from './SideNav';
 import { LOGOUT } from '../constants';
 import CreateElection from '../../createElection/components';
 import { components as ViewElection } from '../../viewElection';
+import AddCandidate from '../../addCandidate/components';
 
 import actions from '../actions';
 
@@ -51,6 +52,7 @@ const DashboardLayout = () => {
                     <Switch>
                         <Route exact path="/dashboard" component={ViewElection} />
                         <Route path="/dashboard/create_election" component={CreateElection} />
+                        <Route path="/dashboard/add_candidate" component={AddCandidate} />
                     </Switch>
                 </Content>
             </Layout>
