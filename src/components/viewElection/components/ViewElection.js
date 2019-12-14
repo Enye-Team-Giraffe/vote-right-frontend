@@ -23,6 +23,7 @@ export default function ViewElection() {
     }, [dispatch]);
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
     return (
+        <div className="viewElectionLayout">
         <Spin
             size="large"
             indicator={antIcon}
@@ -49,7 +50,7 @@ export default function ViewElection() {
                                         </span>
                                     </div>,
                                     <div className="electionItem__subitem" key={election.name}>
-                                        <NavLink to="/real_time">
+                                        <NavLink to={"/dashboard/statistics/" + election.location }>
                                             <Icon type="link" key="link" />
                                             View Real Time Stats
                                         </NavLink>
@@ -68,5 +69,6 @@ export default function ViewElection() {
 
             </div>
         </Spin>
+        </div>
     );
 }

@@ -17,7 +17,7 @@
     justify-content: space-around;
 }
 
-.ant-spin-nested-loading {
+.viewElectionLayout .ant-spin-nested-loading {
     position: unset !important;
 }
 
