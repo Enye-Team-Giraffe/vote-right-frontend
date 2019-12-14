@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { Card } from 'antd';
-import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import actions from '../actions';
 import { OPTIONS } from '../constants';
 
@@ -30,6 +30,6 @@ export default function ViewStats({ match }) {
 // define the proptypes and their default values
 
 ViewStats.propTypes = {
-    match: PropTypes.InstanceOf(Array).isRequired,
+    match: ReactRouterPropTypes.match.isRequired,
 };
 
