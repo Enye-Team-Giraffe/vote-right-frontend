@@ -6,7 +6,8 @@ import {
 import './AddCandidate.css';
 
 import {
-    ADD_CANDIDATE, HEADING, NAME, DATE_OF_BIRTH, EDUCATION, PARTY, QUOTE, ROW_HEIGHT, BUTTON_TEXT
+    ADD_CANDIDATE, HEADING, NAME, DATE_OF_BIRTH, EDUCATION, PARTY, QUOTE, ROW_HEIGHT,
+    BUTTON_TEXT, UPLOAD_IMAGE
 } from '../constants';
 
 /**
@@ -23,8 +24,15 @@ const AddCandidate = () => {
     const [quote, updateQuote] = useState('');
     const [imageUrl, updateImageUrl] = useState(null);
 
-    const handleChangeImage = () => {
-
+    /**
+     * Handles change in image
+     * @function
+     * @param {event} - Event on upload field
+     */
+    const handleChangeImage = info => {
+        const reader = new FileReader();
+        reader.readAsDataURL(info.file.originFileObj);
+        reader.onload = () => updateImageUrl(reader.result);
     };
 
     /**
@@ -89,25 +97,28 @@ const AddCandidate = () => {
                             {HEADING}
                         </p>
                     </div>
-                    <div className="addCandidateForm__group">
-                        <Upload
-                            name="avatar"
-                            listType="picture-card"
-                            className="avatar-uploader"
-                            showUploadList={false}
-                            onChange={handleChangeImage}
-                        >
-                            {
-                                imageUrl
-                                    ? <img src={null} alt="avatar" style={{ width: '100%' }} />
-                                    : (
-                                        <div>
-                                            <Icon type="upload" />
-                                            <div className="ant-upload-text">Upload Image</div>
-                                        </div>
-                                    )
-                            }
-                        </Upload>
+                    <div className="addCandidateForm__image">
+                        <Card className="-card">
+                            <Upload
+                                name="avatar"
+                                className="avatar-uploader"
+                                showUploadList={false}
+                                onChange={handleChangeImage}
+                            >
+                                {
+                                    imageUrl
+                                        ? <img src={imageUrl} alt="avatar" />
+                                        : (
+                                            <Button>
+                                                <Icon type="upload" />
+                                                <span className="ant-upload-text">
+                                                    {UPLOAD_IMAGE}
+                                                </span>
+                                            </Button>
+                                        )
+                                }
+                            </Upload>
+                        </Card>
                     </div>
                     <div className="addCandidateForm__group">
                         <span>{NAME}</span>
