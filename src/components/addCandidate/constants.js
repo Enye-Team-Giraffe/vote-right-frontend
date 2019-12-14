@@ -1,0 +1,9 @@
+export const ADD_CANDIDATE = 'Register Candidate';
+export const HEADING = 'Enter in the details of the candidate you wish to register';
+export const NAME = 'Name';
+export const DATE_OF_BIRTH = 'Date of birth';
+export const QUOTE = 'Quote';
+export const PARTY = 'Political party';
+export const EDUCATION = 'Highest education';
+export const ROW_HEIGHT = 4;
+export const BUTTON_TEXT = 'Register';
