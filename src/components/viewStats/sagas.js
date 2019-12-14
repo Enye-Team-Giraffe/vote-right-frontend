@@ -8,7 +8,12 @@ import actions from './actions';
 
 // import custom items
 const getElectionInterface = require('../../web3/election');
-
+/**
+ * Watches for the {@link actionTypes.LOAD_VOTERS LOAD_VOTERS} action.
+ * Triggers an async operation to fetch voters from the blockchain
+ * @param {Object} body - the data to send to the endpoint payload:{blockchain address}}
+ * @return {void}
+ */
 function* loadVoters(action) {
     const indexes = [];
     const electionAddress = action.payload;
@@ -24,7 +29,12 @@ function* loadVoters(action) {
         message.error(err.message, WAIT_TIME);
     }
 }
-
+/**
+ * Watches for the {@link actionTypes.LOAD_CANDIDATES LOAD_CANDIDATES} action.
+ * Triggers an async operation to fetch votecandidates from the blockchain
+ * @param {Object} body - the data to send to the endpoint {payload:{blockchain address}}
+ * @return {void}
+ */
 function* loadCandidates(action) {
     const electionAddress = action.payload;
     const electionInterface = yield getElectionInterface(electionAddress);
