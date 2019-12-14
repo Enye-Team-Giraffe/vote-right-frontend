@@ -2,6 +2,7 @@ import {
     LOAD_VOTERS, PUSH_VOTERS,
     LOADING_VOTERS
 } from './actionTypes';
+
 const loadVoters = electionId => ({
     payload: electionId,
     type: LOAD_VOTERS,
