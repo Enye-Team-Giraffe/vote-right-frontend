@@ -4,7 +4,7 @@ import actions from "../actions";
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official';
 import { Card } from 'antd';
-import {OPTIONs} from "../constants"
+import {OPTIONS} from "../constants"
 import "./ViewStats.css";
 
 
@@ -23,7 +23,7 @@ export default function ViewStats({match}) {
             <Card className="chart">
                 <HighchartsReact
                     highcharts={Highcharts}
-                    options={OPTIONs}
+                    options={OPTIONS}
                 />
             </Card>
         </div>
