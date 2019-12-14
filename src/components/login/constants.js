@@ -15,6 +15,8 @@ export const WAIT_TIME = 2.0;
 export const CONFIRM = 'confirm code';
 export const CONFIRM_HEADER = 'Confirm the code Recieved on your phone';
 export const INVALID_CODE = 'Invalid verification Code';
-export const USER_ALREADY_LOGGED = 'You are already logged in, please proceed to user dashboard';
+export const USER_ALREADY_LOGGED = 'Please proceed to user dashboard';
 export const LOADING_MESSAGE = 'loading....';
+export const CROSS_CHECK = 'Please cross-check your code';
+export const WRONG_CODE = 'Invalid verification Code';
 

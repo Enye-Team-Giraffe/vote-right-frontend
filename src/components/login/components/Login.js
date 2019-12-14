@@ -31,6 +31,9 @@ function Login() {
     // initialise the doispatching instance
     const dispatch = useDispatch();
 
+    // fetching the state variable corresponding to user being authenticated
+    const userAuthenticated = useSelector(state => state.userAuthenticated);
+
     // initialise the states of the component and default them to an empty string
     const [nin, setNin] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -42,10 +45,13 @@ function Login() {
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('cap', {
             size: 'invisible',
         });
-
-        // check if this iser is already authenticated
-        dispatch(actions.isUserAuthenticated());
-    }, [dispatch]);
+        // if the user is not currently authenticated via state
+        // check the cookies
+        if (!userAuthenticated) {
+            // check if this iser is already authenticated
+            dispatch(actions.isUserAuthenticated());
+        }
+    }, [dispatch, userAuthenticated]);
     // create a dispatch instance for our actions
 
     /**
@@ -161,8 +167,6 @@ function Login() {
     };
     // fetching the state variable corresponding to loading
     const loading = useSelector(state => state.userLoading);
-    // fetching the state variable corresponding to user being authenticated
-    const userAuthenticated = useSelector(state => state.userAuthenticated);
     // the state as to weather to open the confirmation window
     const confirmationCodeInput = useSelector(state => state.confirmationCode);
     // item for customising the spinner
@@ -170,7 +174,7 @@ function Login() {
 
     return (
         <div>
-            {userAuthenticated ? <Redirect to="/userdashboard" /> : <div />}
+            {userAuthenticated ? <Redirect to="/user" /> : <div />}
             <div ref={captchaRef}>
                 <div id="cap" />
             </div>
