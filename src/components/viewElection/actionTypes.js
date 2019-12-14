@@ -1,0 +1,2 @@
+export const LOAD_ELECTIONS = "LOAD_ELECTIONS";
+export const PUSH_ELECTIONS = "PUSH_ELECTIONS";

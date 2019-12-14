@@ -1,0 +1,10 @@
+.viewElection{
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: hsl(208, 100%, 98.5%);
+}
+.electionItem{
+    width: 80%;
+}
+

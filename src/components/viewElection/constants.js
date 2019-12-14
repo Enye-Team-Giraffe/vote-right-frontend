@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://us-central1-voteright-e8208.cloudfunctions.net/voteright';
