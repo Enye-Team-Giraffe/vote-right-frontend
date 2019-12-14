@@ -13,8 +13,8 @@ export default function ViewElection() {
     const dispatch=useDispatch();
     // upon render of the page get all the elections
     useEffect(()=>{
-        dispatch()
-    })
+        dispatch(actions.loadElections())
+    },[dispatch])
 
 
     return (
