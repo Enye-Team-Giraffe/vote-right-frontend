@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React, { useState } from 'react';
 import {
-    Card, Input, DatePicker, Button
+    Card, Input, DatePicker, Button, Upload, Icon
 } from 'antd';
 import './AddCandidate.css';
 
@@ -21,6 +21,11 @@ const AddCandidate = () => {
     const [education, updateEducation] = useState('');
     const [party, updateParty] = useState('');
     const [quote, updateQuote] = useState('');
+    const [imageUrl, updateImageUrl] = useState(null);
+
+    const handleChangeImage = () => {
+
+    };
 
     /**
      * Handles change in input text field
@@ -83,6 +88,26 @@ const AddCandidate = () => {
                         <p className="addCandidateForm__heading_text">
                             {HEADING}
                         </p>
+                    </div>
+                    <div className="addCandidateForm__group">
+                        <Upload
+                            name="avatar"
+                            listType="picture-card"
+                            className="avatar-uploader"
+                            showUploadList={false}
+                            onChange={handleChangeImage}
+                        >
+                            {
+                                imageUrl
+                                    ? <img src={null} alt="avatar" style={{ width: '100%' }} />
+                                    : (
+                                        <div>
+                                            <Icon type="upload" />
+                                            <div className="ant-upload-text">Upload Image</div>
+                                        </div>
+                                    )
+                            }
+                        </Upload>
                     </div>
                     <div className="addCandidateForm__group">
                         <span>{NAME}</span>
