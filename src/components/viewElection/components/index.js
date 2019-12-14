@@ -1,3 +1,3 @@
-import ViewElection from "./ViewElection"
+import ViewElection from './ViewElection';
 
 export default ViewElection;

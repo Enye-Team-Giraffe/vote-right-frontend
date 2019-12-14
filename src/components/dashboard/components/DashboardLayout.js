@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import SideNav from './SideNav';
 import { LOGOUT } from '../constants';
 import CreateElection from '../../createElection/components';
-import {components as ViewElection} from "../../viewElection"
+import { components as ViewElection } from '../../viewElection';
 
 import actions from '../actions';
 
