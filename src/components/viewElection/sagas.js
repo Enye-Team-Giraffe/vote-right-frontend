@@ -12,6 +12,8 @@ import actions from './actions';
 // const web3 = require('../../web3/configuredWeb3');
 const electionFactory = require('../../web3/electionFactory');
 
+// function to get the total time passed since 1970
+const currentSeconds = ()=>(Date.now()/1000)
 /**
  * Watches for the {@link actionTypes.LOAD_ELECTIONS LOAD_ELECTIONS} action.
  * Posts election data to the server to create an election
@@ -27,7 +29,10 @@ function* loadElections(){
         const electionDetails = yield  Promise.all(electionsLength.map((_,index)=>{
             return electionFactory.methods.summaries(index).call()
         }))
-        yield put(actions.pushElections(electionDetails));
+        // by default get only running elections
+        let runningElectionDetails = electionDetails.filter(detail=>detail['enddate']>currentSeconds())        
+        yield put(actions.pushElections(runningElectionDetails));
+        yield put(actions.loadingElections(false))
 
     }
     catch (err){

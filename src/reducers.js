@@ -12,7 +12,8 @@ const allReducers = combineReducers({
     createElectionLoading: createElectionReducer.createUserLoading,
     userAuthenticated: userReducer.authenticateUserReducer,
     userLoading: userReducer.loginLoandingReducer,
-    elections:pushElectionReducer.pushElections
+    elections:pushElectionReducer.pushElections,
+    electionListLoading:pushElectionReducer.loadingElections
 });
 
 // export this reducer

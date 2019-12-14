@@ -1,4 +1,4 @@
-import { PUSH_ELECTIONS } from "./actionTypes"
+import { PUSH_ELECTIONS ,LOADING_ELECTION} from "./actionTypes"
 const pushElections = (state =[],action)=>{
     switch(action.type){
         case PUSH_ELECTIONS:
@@ -7,4 +7,12 @@ const pushElections = (state =[],action)=>{
             return state
     }
 }
-export default {pushElections}
+const loadingElections = (state=true,action)=>{
+    switch(action.type){
+        case LOADING_ELECTION:
+            return action.payload
+        default:
+            return state
+    }
+}
+export default {loadingElections,pushElections}
