@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import SideNav from './SideNav';
 import { LOGOUT } from '../constants';
 import CreateElection from '../../createElection/components';
+import { components as ViewElection } from '../../viewElection';
 
 import actions from '../actions';
 
@@ -48,7 +49,7 @@ const DashboardLayout = () => {
                 </Header>
                 <Content className="content">
                     <Switch>
-                        <Route exact path="/dashboard" />
+                        <Route exact path="/dashboard" component={ViewElection} />
                         <Route path="/dashboard/create_election" component={CreateElection} />
                     </Switch>
                 </Content>

@@ -1,0 +1,23 @@
+.viewElection{
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: hsl(208, 100%, 98.5%);
+}
+.electionItem{
+    width: 80%;
+    margin-bottom: 40px;
+}
+
+.electionItem__subitem{
+    display: flex;
+    padding: 0 10px;
+    justify-content: space-around;
+}
+
+.ant-spin-nested-loading {
+    position: unset !important;
+}
+

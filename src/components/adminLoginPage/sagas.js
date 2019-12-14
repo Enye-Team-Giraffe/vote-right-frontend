@@ -1,7 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { message } from 'antd';
 import { LOGIN_ADMIN, IS_ADMIN_LOGGEDIN } from './actionTypes';
-import { WAIT_TIME, ADMIN_ALREADY_LOGGED, SUCCESS_SIGNIN } from './constants';
+import { WAIT_TIME, ADMIN_ALREADY_LOGGED } from './constants';
 import { app } from '../configuredFirebase';
 import actions from './actions';
 
@@ -19,7 +19,7 @@ function* FirebaseLoginAdmin(data) {
             .auth()
             .signInWithEmailAndPassword(email, password);
         // if there was no error, then we can go ahead
-        message.success(SUCCESS_SIGNIN, WAIT_TIME);
+        // message.success(SUCCESS_SIGNIN, WAIT_TIME);
         // stop  the spinner
         yield put(actions.loadingAdmin(false));
         // set the state variable authenticated as true
