@@ -21,7 +21,7 @@ const SideNav = () => (
     >
         <div className="sideNav__top">
             <Link to="/">
-                <span className="sideNav__topLogo ">{VOTERIGHT}</span>
+                <span className="sideNav__topLogo --font-style">{VOTERIGHT}</span>
             </Link>
         </div>
         <Menu
@@ -33,7 +33,7 @@ const SideNav = () => (
             {Object.keys(MENU).map(key => {
                 const [name, route] = MENU[key];
                 return (
-                    <Menu.Item key={key}>
+                    <Menu.Item key={key} className="sideNav__sideitem">
                         <Link to={`/dashboard/${route}`}>
                             <span className="nav-text">{name}</span>
                         </Link>

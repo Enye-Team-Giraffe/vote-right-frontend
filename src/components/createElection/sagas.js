@@ -6,7 +6,7 @@ import { message } from 'antd';
 import { CREATE_ELECTION } from './actionTypes';
 import {
     WAIT_TIME, LARGE_GAS,
-    CREATE_ELECTION_SUCCESS
+    CREATE_ELECTION_SUCCESS, VIEW_ELECTIONS_PATH
 } from './constants';
 import actions from './actions';
 
@@ -21,7 +21,6 @@ const electionFactory = require('../../web3/electionFactory');
  * @return {void}
  */
 function* createElection(action) {
-    // get the payload we are working with
     const body = action.payload;
     try {
         // get the current account we are working with
@@ -33,8 +32,9 @@ function* createElection(action) {
         });
         // if no error was thrown then we alert that it was sucessful
         message.success(CREATE_ELECTION_SUCCESS, WAIT_TIME);
+        // redirect to the view all elecitons tab
+        body.history.push(VIEW_ELECTIONS_PATH);
     } catch (err) {
-        // otherwise alert us with the error of the message
         message.error(err.message, WAIT_TIME);
     }
     // all asynchronous operations are done stop the spinner

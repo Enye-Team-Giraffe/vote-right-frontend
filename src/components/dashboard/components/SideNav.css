@@ -2,13 +2,14 @@
 .sideNav {
     min-height: 100vh;
     background-color: var(--primary-color);
+    width: 300px !important;
+    flex: 0 0 300px !important;
 }
 
 /* Start of top section of side nav bar */
 .sideNav__top{
     height: 60px;
     margin: 0;
-    border-bottom: 3px solid #F5F5F5;
     display: flex;
     align-items: center;
 }
@@ -32,9 +33,31 @@
     color: var(--primary-color);
     background-color: #FFFFFF;
 }
-
 .ant-layout-sider-zero-width-trigger:hover{
     background-color: var(--primary-color);
     color: #FFFFFF;
 }
-/* End side nav bar toggle element */
+.sideNav__sideitem:first-of-type{
+    margin-top: 15px;
+}
+.sideNav__sideitem{
+    padding: 8px 14px !important;
+    height: 100% !important;
+    font-size: 15px !important;
+    font-weight: bolder;
+}
+@media (max-width: 990px) {
+    .sideNav__sideitem{
+        font-size: 12px !important;
+        font-weight: bold;
+    } 
+}
+@media (min-width: 1000px) {
+    .sideNav {
+        min-width: 300px !important;
+        flex: 0 0 300px !important;
+    }
+}
+
+
+

@@ -2,6 +2,7 @@ import { all } from 'redux-saga/effects';
 import { sagas as userLoginSaga } from './components/login';
 import { sagas as adminLoginSaga } from './components/adminLoginPage';
 import { sagas as createElectionSaga } from './components/createElection';
+import { sagas as dashboardSaga } from './components/dashboard';
 
 // export all of our sagas
 export default function* rootSaga() {
@@ -9,5 +10,6 @@ export default function* rootSaga() {
         userLoginSaga(), // the saga for login users
         adminLoginSaga(), // the saga for admin login
         createElectionSaga(), // the saga for creating elections
+        dashboardSaga(), // saga to logout
     ]);
 }

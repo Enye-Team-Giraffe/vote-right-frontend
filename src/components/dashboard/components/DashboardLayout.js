@@ -2,10 +2,13 @@
 import React from 'react';
 import './DashboardLayout.css';
 import { Layout } from 'antd';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import SideNav from './SideNav';
 import { LOGOUT } from '../constants';
 import CreateElection from '../../createElection/components';
+
+import actions from '../actions';
 
 const { Header, Content } = Layout;
 
@@ -15,21 +18,42 @@ const { Header, Content } = Layout;
  *@component
  *@return {jsx} - dashboard layout
 */
-const DashboardLayout = () => (
-    <Layout>
-        <SideNav />
+const DashboardLayout = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    // logout of the app
+    const logout = () => {
+        dispatch(actions.logoutUser(history));
+    };
+    // a function to be activated upon keydown
+    const dummy = () => {
+        window.dummy = 'dummy';
+    };
+    return (
         <Layout>
-            <Header className="header">
-                <span className="header__logout">{LOGOUT}</span>
-            </Header>
-            <Content className="content">
-                <Switch>
-                    <Route exact path="/dashboard" />
-                    <Route path="/dashboard/create_election" component={CreateElection} />
-                </Switch>
-            </Content>
+            <SideNav />
+            <Layout>
+                <Header className="header">
+                    <span
+                        aria-label="Mute volume"
+                        onClick={logout}
+                        onKeyDown={dummy}
+                        role="button"
+                        tabIndex="0"
+                        className="header__logout"
+                    >
+                        {LOGOUT}
+                    </span>
+                </Header>
+                <Content className="content">
+                    <Switch>
+                        <Route exact path="/dashboard" />
+                        <Route path="/dashboard/create_election" component={CreateElection} />
+                    </Switch>
+                </Content>
+            </Layout>
         </Layout>
-    </Layout>
-);
+    );
+};
 
 export default DashboardLayout;

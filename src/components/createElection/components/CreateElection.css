@@ -2,20 +2,33 @@
     display: flex;
     justify-content: center;
     min-height: 100%;
-    background-color: #F5F5F5;
+    background-color: hsl(208, 100%, 98.5%);
 }
 
 .createElectionCard {
-    border-radius: 10px;
-    box-shadow: 3px 3px 3px 1px  #b0bec5;
+    border: 2px dashed hsl(208, 100%, 90.5%);
 }
 
 .createElectionForm {
     margin-top: 2rem;
-    width: 40%;
+    width: 80%;
 }
 
-.createElectionForm__heading {
+.createElectionForm__group{
+    margin: auto;
+    width: 90%;
+    margin-bottom: 50px;
+}
+.createElectionForm__group span{
+    padding-left: 5px;
+    font-weight: 552;
+}
+.createElectionForm__group .--input-element{
+    margin-top: 5px;
+    min-height: 35px;
+}
+
+.createElectionForm__heading_header {
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
@@ -23,9 +36,10 @@
 }
 
 .createElectionForm__input {
-    padding: 0 5px;
+    padding: 0 15px;
     display: block;
     margin-bottom: 20px;
+
 }
 
 .-topMargin {
@@ -49,6 +63,20 @@
     color: #FFFFFF;
     padding-left: 20px;
     padding-right: 20px;
+    margin: 45px auto;
+    text-align: center;
+    width:150px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+
+}
+.createElectionForm__heading_text{
+    text-align: center;
+    font-weight: lighter;
+}
+.createElectionForm__heading{
+    margin-bottom: 60px;
 }
 
 .createElectionForm__button:hover {
@@ -59,13 +87,50 @@
 
 @media (max-width: 990px) {
     .createElectionForm {
-        width: 60%;
+        width: 80%;
+    }
+    .createElectionForm__group{
+        margin: auto;
+        width: 90%;
+        margin-bottom: 30px;
+    }
+    .createElectionForm__heading {
+        margin-bottom: 45px;
+    }
+    .createElectionForm__group .--input-element{
+        margin-top: 5px;
+        height: 35px;
+    }
+    .createElectionForm__button {
+        margin: 0px auto;
+    }
+    .createElectionForm__heading_header {
+        font-size: 1.2rem;
+    }
+    .createElectionForm__button {
+        height: 35px;
     }
 }
 
 @media (max-width: 500px) {
     .createElectionForm {
         width: 80%;
+    }
+}
+
+@media (min-width : 1500px){
+    .createElectionForm__group{
+        margin: auto;
+        width: 85%;
+        margin-bottom: 50px;
+    }
+    
+    .createElectionForm {
+        width: 60%;
+    }
+    .createElectionForm__group .--input-element{
+        margin-top: 5px;
+        min-height: 40px;
     }
 }
 
