@@ -1,0 +1,20 @@
+.statisticsLayout{
+    padding: 30px 50px;
+}
+
+.chart{
+    background: rgb(236, 235, 235);
+    margin: 20px;
+}
+
+@media (min-width : 1500px){
+    .chart{
+        width:45%
+    }
+    .statisticsLayout{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+}

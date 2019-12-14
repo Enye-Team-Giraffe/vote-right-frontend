@@ -9,6 +9,8 @@ import { reducers as pushVoterReducer } from './components/viewStats';
 const allReducers = combineReducers({
     adminAuthenticated: adminReducer.authenticateAdminReducer,
     adminLoading: adminReducer.loginAdminReducer,
+    candidates: pushVoterReducer.pushCandidates,
+    candidatesLoading: pushVoterReducer.loadingCandidates,
     confirmationCode: userReducer.confirmReducer,
     createElectionLoading: createElectionReducer.createUserLoading,
     electionListLoading: pushElectionReducer.loadingElections,
