@@ -30,7 +30,7 @@ function* loadElections() {
         );
         // by default get only running elections
         const runningElectionDetails = electionDetails
-            .filter(detail => detail.enddate > currentSeconds());
+            // .filter(detail => detail.enddate > currentSeconds());
         yield put(actions.pushElections(runningElectionDetails));
         yield put(actions.loadingElections(false));
     } catch (err) {

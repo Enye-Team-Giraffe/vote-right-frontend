@@ -6,7 +6,7 @@ import actions from "../actions";
 export default function ViewStats({match}) {
     const dispatch = useDispatch();
     useEffect(()=>{
-        dispatch(actions.loadVoters([1]))
+        dispatch(actions.loadVoters(match.params.electionId))
     })
     return (
         <div>
