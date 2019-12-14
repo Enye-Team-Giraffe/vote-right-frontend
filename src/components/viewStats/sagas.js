@@ -4,7 +4,7 @@ import { message } from 'antd';
 
 
 import { LOAD_VOTERS } from './actionTypes';
-import { WAIT_TIME,LARGE_GAS } from './constants';
+import { WAIT_TIME } from './constants';
 import actions from './actions';
 
 // import custom items

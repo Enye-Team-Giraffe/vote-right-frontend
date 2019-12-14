@@ -11,8 +11,6 @@ import actions from './actions';
 // const web3 = require('../../web3/configuredWeb3');
 const electionFactory = require('../../web3/electionFactory');
 
-// function to get the total time passed since 1970
-const currentSeconds = () => (Date.now() / 1000);
 /**
  * Watches for the {@link actionTypes.LOAD_ELECTIONS LOAD_ELECTIONS} action.
  * Posts election data to the server to create an election
