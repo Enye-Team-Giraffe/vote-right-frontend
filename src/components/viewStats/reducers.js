@@ -1,5 +1,5 @@
 import {
-     PUSH_VOTERS,
+    PUSH_VOTERS,
     LOADING_VOTERS
 } from './actionTypes';
 

@@ -10,10 +10,8 @@ const {
 const deploy = async () => {
     const accounts = await web3.eth.getAccounts();
 
-    const results=await new web3.eth.Contract(JSON.parse(compiledFactoryInterface))
+    await new web3.eth.Contract(JSON.parse(compiledFactoryInterface))
         .deploy({ data: `0x${compiledFactoryBytecode}` })
         .send({ from: accounts[0] });
-
-    console.log(results.options.address)
 };
 deploy();

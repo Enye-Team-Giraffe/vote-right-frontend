@@ -3,9 +3,9 @@ import {
     LOADING_VOTERS
 } from './actionTypes';
 
-const loadVoters = (electionId) => ({
+const loadVoters = electionId => ({
+    payload: electionId,
     type: LOAD_VOTERS,
-    payload:electionId
 });
 
 const pushVoters = votersArray => ({

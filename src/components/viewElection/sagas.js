@@ -27,8 +27,8 @@ function* loadElections() {
             electionsLength.map((_, index) => electionFactory.methods.summaries(index).call())
         );
         // by default get only running elections
-        const runningElectionDetails = electionDetails
-            // .filter(detail => detail.enddate > currentSeconds());
+        const runningElectionDetails = electionDetails;
+        // .filter(detail => detail.enddate > currentSeconds());
         yield put(actions.pushElections(runningElectionDetails));
         yield put(actions.loadingElections(false));
     } catch (err) {

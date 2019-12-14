@@ -19,7 +19,7 @@ fs.ensureDirSync(buildPath);// make sure the path exists, and recreate it if it 
 
 // for each contract, save it to a file
 for (const contract of keys) {
-    let name=contract.replace(':', '')
+    const name = contract.replace(':', '');
     fs.outputJSONSync(
         path.resolve(buildPath, `${name}.json`),
         output[contract]

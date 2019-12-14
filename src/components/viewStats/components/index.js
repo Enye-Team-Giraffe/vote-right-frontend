@@ -1,3 +1,3 @@
-import ViewStats from "./ViewStats"
+import ViewStats from './ViewStats';
 
 export default ViewStats;

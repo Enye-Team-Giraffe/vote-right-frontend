@@ -24,51 +24,62 @@ export default function ViewElection() {
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
     return (
         <div className="viewElectionLayout">
-        <Spin
-            size="large"
-            indicator={antIcon}
-            spinning={loadingElections}
-            className="loader"
-            tip={LOADING_MESSAGE}
-        >
-            <div className="viewElection">
-                {
-                    elections.map(election => (
-                        <div className="electionItem" key={election.location}>
-                            <Card
-                                actions={[
-                                    <div className="electionItem__subitem" key={election.startdate}>
-                                        <Icon type="calendar" key="calendar" />
-                                        <span className="electionItem__subitem__text">
-                                            {toDateString(election.startdate)}
-                                        </span>
-                                    </div>,
-                                    <div className="electionItem__subitem" key={election.enddate}>
-                                        <Icon type="calendar" key="calendar" />
-                                        <span className="electionItem__subitem__text">
-                                            {toDateString(election.enddate)}
-                                        </span>
-                                    </div>,
-                                    <div className="electionItem__subitem" key={election.name}>
-                                        <NavLink to={"/dashboard/statistics/" + election.location }>
-                                            <Icon type="link" key="link" />
+            <Spin
+                size="large"
+                indicator={antIcon}
+                spinning={loadingElections}
+                className="loader"
+                tip={LOADING_MESSAGE}
+            >
+                <div className="viewElection">
+                    {
+                        elections.map(election => (
+                            <div className="electionItem" key={election.location}>
+                                <Card
+                                    actions={[
+                                        <div
+                                            className="electionItem__subitem"
+                                            key={election.startdate}
+                                        >
+                                            <Icon type="calendar" key="calendar" />
+                                            <span className="electionItem__subitem__text">
+                                                {toDateString(election.startdate)}
+                                            </span>
+                                        </div>,
+                                        <div
+                                            className="electionItem__subitem"
+                                            key={election.enddate}
+                                        >
+                                            <Icon type="calendar" key="calendar" />
+                                            <span className="electionItem__subitem__text">
+                                                {toDateString(election.enddate)}
+                                            </span>
+                                        </div>,
+                                        <div
+                                            className="electionItem__subitem"
+                                            key={election.name}
+                                        >
+                                            <NavLink
+                                                to={`/dashboard/statistics/${election.location}`}
+                                            >
+                                                <Icon type="link" key="link" />
                                             View Real Time Stats
-                                        </NavLink>
-                                    </div>,
-                                ]}
-                            >
-                                <Meta
-                                    title={election.name}
-                                    description={election.description}
-                                />
-                            </Card>
-                        </div>
-                    ))
+                                            </NavLink>
+                                        </div>,
+                                    ]}
+                                >
+                                    <Meta
+                                        title={election.name}
+                                        description={election.description}
+                                    />
+                                </Card>
+                            </div>
+                        ))
 
-                }
+                    }
 
-            </div>
-        </Spin>
+                </div>
+            </Spin>
         </div>
     );
 }
