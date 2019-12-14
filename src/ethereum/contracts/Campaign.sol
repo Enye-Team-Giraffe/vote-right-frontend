@@ -174,5 +174,9 @@ contract Election {
     function getTime() public view returns (uint){
         return now;
     }
+    function getVotersLength() public view returns (uint){
+        return candidates.length;
+    }
+    
     
 }
