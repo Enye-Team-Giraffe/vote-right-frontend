@@ -7,3 +7,4 @@ export const PARTY = 'Political party';
 export const EDUCATION = 'Highest education';
 export const ROW_HEIGHT = 4;
 export const BUTTON_TEXT = 'Register';
+export const UPLOAD_IMAGE = 'Upload Image';

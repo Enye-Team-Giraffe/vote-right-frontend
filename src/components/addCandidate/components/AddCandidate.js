@@ -1,12 +1,13 @@
 /* eslint-disable max-lines-per-function */
 import React, { useState } from 'react';
 import {
-    Card, Input, DatePicker, Button
+    Card, Input, DatePicker, Button, Upload, Icon
 } from 'antd';
 import './AddCandidate.css';
 
 import {
-    ADD_CANDIDATE, HEADING, NAME, DATE_OF_BIRTH, EDUCATION, PARTY, QUOTE, ROW_HEIGHT, BUTTON_TEXT
+    ADD_CANDIDATE, HEADING, NAME, DATE_OF_BIRTH, EDUCATION, PARTY, QUOTE, ROW_HEIGHT,
+    BUTTON_TEXT, UPLOAD_IMAGE
 } from '../constants';
 
 /**
@@ -21,6 +22,18 @@ const AddCandidate = () => {
     const [education, updateEducation] = useState('');
     const [party, updateParty] = useState('');
     const [quote, updateQuote] = useState('');
+    const [imageUrl, updateImageUrl] = useState(null);
+
+    /**
+     * Handles change in image
+     * @function
+     * @param {event} - Event on upload field
+     */
+    const handleChangeImage = info => {
+        const reader = new FileReader();
+        reader.readAsDataURL(info.file.originFileObj);
+        reader.onload = () => updateImageUrl(reader.result);
+    };
 
     /**
      * Handles change in input text field
@@ -83,6 +96,29 @@ const AddCandidate = () => {
                         <p className="addCandidateForm__heading_text">
                             {HEADING}
                         </p>
+                    </div>
+                    <div className="addCandidateForm__image">
+                        <Card className="-card">
+                            <Upload
+                                name="avatar"
+                                className="avatar-uploader"
+                                showUploadList={false}
+                                onChange={handleChangeImage}
+                            >
+                                {
+                                    imageUrl
+                                        ? <img src={imageUrl} alt="avatar" />
+                                        : (
+                                            <Button>
+                                                <Icon type="upload" />
+                                                <span className="ant-upload-text">
+                                                    {UPLOAD_IMAGE}
+                                                </span>
+                                            </Button>
+                                        )
+                                }
+                            </Upload>
+                        </Card>
                     </div>
                     <div className="addCandidateForm__group">
                         <span>{NAME}</span>
