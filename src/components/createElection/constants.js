@@ -13,4 +13,4 @@ export const SMALL_GAS = 1000000;
 export const ROW_HEIGHT = 4;
 export const CREATE_ELECTION_SUCCESS = 'Election sucesfully created';
 export const BUTTON_TEXT = 'Create';
-export const VIEW_ELECTIONS_PATH = '/admindashboard/viewELections';
+export const VIEW_ELECTIONS_PATH = '/dashboard/';
