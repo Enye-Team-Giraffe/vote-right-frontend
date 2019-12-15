@@ -8,6 +8,9 @@ export const BAR_OPTIONS = {
         data: [107, 150],
         name: 'gender',
     }],
+    subtitle: {
+        text: 'A bar chart of all the votes by gender',
+    },
     title: {
         text: 'Male vs Female participation',
     },
@@ -17,7 +20,6 @@ export const BAR_OPTIONS = {
     yAxis: {
         min: 0,
         title: {
-            align: 'high',
             text: 'Votes',
         },
     },
@@ -49,10 +51,77 @@ export const PIE_OPTIONS = {
         ],
         name: 'Candidates',
     }],
+    subtitle: {
+        text: 'The ccandidates and the number of votes they currently have',
+    },
     title: {
         text: 'Candidates and number of votes',
     },
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+        pointFormat: '{series.name}: <b>{point.y}</b>',
     },
 };
+
+export const AGE_OPTIONS = {
+    chart: {
+        type: 'column',
+    },
+    series: [{
+        data: [29.9, 71.5, 106.4, 129.2],
+        name: 'Age of voter',
+    }],
+    subtitle: {
+        text: 'The Distribution of the age of people who voted',
+    },
+    title: {
+        text: 'Age distribution of voters.',
+    },
+    xAxis: {
+        categories: ['Female', 'Male'],
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Age',
+        },
+    },
+};
+export const AGE_GROUP = {
+    chart: {
+        type: 'column',
+    },
+    series: [{
+        data: [0, 0],
+        name: 'Male',
+
+    }, {
+        data: [0, 0],
+        name: 'Female',
+
+    }],
+    subtitle: {
+        text: 'The count of the choice of each gender',
+    },
+    title: {
+        text: 'Choice of Genders',
+    },
+    tooltip: {
+        footerFormat: '</table>',
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>'
+            + '<td style="padding:0"><b>{point.y:.1f} votes</b></td></tr>',
+        shared: true,
+        useHTML: true,
+    },
+    xAxis: {
+        categories: ['Names of candidates1', 'Name of candidate2'],
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Votes',
+        },
+    },
+};
+export const NAME = 'VOTES';
+export const AGE = 'AGE';
