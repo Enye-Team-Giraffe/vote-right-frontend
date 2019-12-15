@@ -59,6 +59,11 @@
         min-width: 300px !important;
         flex: 0 0 300px !important;
     }
+    .ant-layout-sider-children {
+        position: fixed;
+        width: 300px;
+    }
+    
 }
 .--font-style{
     font-family: 'Candal', sans-serif;

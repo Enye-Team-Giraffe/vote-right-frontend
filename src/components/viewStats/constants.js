@@ -17,7 +17,6 @@ export const BAR_OPTIONS = {
     yAxis: {
         min: 0,
         title: {
-            align: 'high',
             text: 'Votes',
         },
     },
@@ -53,6 +52,31 @@ export const PIE_OPTIONS = {
         text: 'Candidates and number of votes',
     },
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+        pointFormat: '{series.name}: <b>{point.y}</b>',
     },
 };
+
+export const AGE_OPTIONS ={
+    chart: {
+        type: 'column',
+    },
+    title: {
+        text: 'Age distribution of voters.'
+    },
+    xAxis: {
+        categories: ['Female', 'Male'],
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Age',
+        },
+    },
+    series: [{
+        name:"Age of voter",
+        data: [29.9, 71.5, 106.4, 129.2]
+    }]
+}
+
+export const NAME = "VOTES"
+export const AGE = "AGE"
