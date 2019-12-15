@@ -86,7 +86,7 @@ export const AGE_OPTIONS = {
         },
     },
 };
-export const AGE_GROUP = {
+export const GENDER_GROUP = {
     chart: {
         type: 'column',
     },
@@ -123,5 +123,64 @@ export const AGE_GROUP = {
         },
     },
 };
+export const AGE_GROUP = {
+    chart: {
+        type: 'column',
+    },
+    plotOptions: {
+        column: {
+            borderWidth: 0,
+            pointPadding: 0.2,
+        },
+    },
+    series: [{
+        data: [49.9, 71.5],
+        name: '18-25',
+
+    }, {
+        data: [83.6, 78.8],
+        name: '26-40',
+
+    }, {
+        data: [48.9, 38.8],
+        name: '41-60',
+
+    }, {
+        data: [42.4, 33.2],
+        name: '61+',
+
+    }],
+    subtitle: {
+        text: 'The age group responsible for the votes of each candidate',
+    },
+    title: {
+        text: 'Age group choice',
+    },
+    tooltip: {
+        footerFormat: '</table>',
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>'
+            + '<td style="padding:0"><b>{point.y:.1f} votes</b></td></tr>',
+        shared: true,
+        useHTML: true,
+    },
+    xAxis: {
+        categories: [
+            'Name of candidate 1',
+            'Name of candidate 2',
+        ],
+        crosshair: true,
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Votes',
+        },
+    },
+
+};
 export const NAME = 'VOTES';
 export const AGE = 'AGE';
+export const GENDERS = ['male', 'female'];
+export const AGE_BRACKETS = ['18-25', '26-40', '41-60', '60+'];
+
