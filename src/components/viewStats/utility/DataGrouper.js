@@ -1,15 +1,17 @@
+/* eslint-disable */
+// disabling eslint for this file because it is an auxilarry file
+// copied from the net an dsimply meant to be a package to import and use
 // an auxilarry function use to group an object by multiple keys
-const _=require("underscore");
-var DataGrouper = (function() {
-    var has = function(obj, target) {
-        return _.any(obj, function(value) {
-            return _.isEqual(value, target);
-        });
+const _ = require('underscore');
+
+const DataGrouper = (function () {
+    const has = function (obj, target) {
+        return _.any(obj, value => _.isEqual(value, target));
     };
 
-    var keys = function(data, names) {
-        return _.reduce(data, function(memo, item) {
-            var key = _.pick(item, names);
+    const keys = function (data, names) {
+        return _.reduce(data, (memo, item) => {
+            const key = _.pick(item, names);
             if (!has(memo, key)) {
                 memo.push(key);
             }
@@ -17,20 +19,16 @@ var DataGrouper = (function() {
         }, []);
     };
 
-    var group = function(data, names) {
-        var stems = keys(data, names);
-        return _.map(stems, function(stem) {
-            return {
-                key: stem,
-                vals:_.map(_.where(data, stem), function(item) {
-                    return _.omit(item, names);
-                })
-            };
-        });
+    const group = function (data, names) {
+        const stems = keys(data, names);
+        return _.map(stems, stem => ({
+            key: stem,
+            vals: _.map(_.where(data, stem), item => _.omit(item, names)),
+        }));
     };
 
-    group.register = function(name, converter) {
-        return group[name] = function(data, names) {
+    group.register = function (name, converter) {
+        return group[name] = function (data, names) {
             return _.map(group(data, names), converter);
         };
     };
@@ -38,11 +36,8 @@ var DataGrouper = (function() {
     return group;
 }());
 
-DataGrouper.register("count", function(item) {
-  return _.extend({}, item.key, {Value: _.reduce(item.vals, function(memo, node) {
-      return memo + 1;
-  }, 0)});
-});
-
+DataGrouper.register('count', item => _.extend({}, item.key, {
+    Value: _.reduce(item.vals, (memo, node) => memo + 1, 0),
+}));
 
 export default DataGrouper;
