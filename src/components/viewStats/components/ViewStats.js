@@ -3,17 +3,20 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import highchartsMap from 'highcharts/modules/map';
+import proj4 from 'proj4';
 import { Card } from 'antd';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import actions from '../actions';
 import {
     BAR_OPTIONS, PIE_OPTIONS, AGE_OPTIONS, NAME, AGE, GENDER_GROUP, AGE_GROUP,
-    GENDERS, AGE_BRACKETS
+    GENDERS, AGE_BRACKETS, MAP_OPTIONS
 } from '../constants';
 import DataGrouper from '../utility/DataGrouper';
 
 import './ViewStats.css';
 
+highchartsMap(Highcharts);
 // reducer function used to get the count of males and females from the data
 const countGender = (oldCount, person) => {
     const newCount = oldCount;
@@ -152,21 +155,31 @@ export default function ViewStats({ match }) {
         },
     };
     // define them as an array for mappint
-    const chartOptions = [newBarOptions, newPieOptions, newAgeOptions, newGenderGroupOptions];
+    const chartOptions = [
+        newBarOptions, newPieOptions, newAgeOptions,
+        newGenderGroupOptions, newAgeGroupOptions,
+    ];
     // upon start of the app, load the voters and the candidates
     useEffect(() => {
         dispatch(actions.loadVoters(match.params.electionId));
         dispatch(actions.loadCandidates(match.params.electionId));
+
+        // initialise proj4
+        if (typeof window !== 'undefined') {
+            window.proj4 = window.proj4 || proj4;
+        }
     }, [dispatch, match.params.electionId]);
 
     return (
         <div className="statisticsLayout">
             <Card className="chart" key={Math.random()}>
                 <HighchartsReact
+                    constructorType="mapChart"
                     highcharts={Highcharts}
-                    options={newAgeGroupOptions}
+                    options={MAP_OPTIONS}
                 />
             </Card>
+
             {
                 chartOptions.map(option => (
                     <Card className="chart" key={Math.random()}>

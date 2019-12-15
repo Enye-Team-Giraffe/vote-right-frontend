@@ -1,3 +1,5 @@
+import mapDataIE from '@highcharts/map-collection/countries/ie/ie-all.geo.json';
+
 export const WAIT_TIME = 2.0;
 export const LARGE_GAS = 3000000;
 export const BAR_OPTIONS = {
@@ -179,6 +181,54 @@ export const AGE_GROUP = {
     },
 
 };
+
+export const MAP_OPTIONS = {
+    chart: {
+        map: 'countries/ie/ie-all',
+    },
+    credits: {
+        enabled: false,
+    },
+    mapNavigation: {
+        enabled: true,
+    },
+    series: [{
+        // Use the gb-all map with no data as a basemap
+        borderColor: '#A0A0A0',
+        mapData: mapDataIE,
+        name: 'Basemap',
+        nullColor: 'rgba(200, 200, 200, 0.3)',
+        showInLegend: false,
+    }, {
+        // Specify points using lat/lon
+        color: '#4169E1',
+        cursor: 'pointer',
+        data: [{
+            keyword: 'Galway', lat: 53.27, lon: -9.25, z: 10,
+        },
+        {
+            keyword: 'Dublin', lat: 53.27, lon: -6.25, z: 4,
+        }],
+        name: 'Cities',
+        point: {
+            events: {
+                click() {
+
+                },
+            },
+        },
+        type: 'mapbubble',
+    }],
+    title: {
+        text: 'Map of NNigeria and Votes',
+    },
+    tooltip: {
+        headerFormat: '',
+        pointFormat: `<b>{point.freq}</b><br><b>{point.keyword}</b>                      
+        <br>lat: {point.lat}, lon: {point.lon}`,
+    },
+};
+
 export const NAME = 'VOTES';
 export const AGE = 'AGE';
 export const GENDERS = ['male', 'female'];
