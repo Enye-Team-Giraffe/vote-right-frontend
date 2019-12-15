@@ -6,6 +6,7 @@ import {
 import './AddCandidate.css';
 
 import { useDispatch, useSelector } from 'react-redux';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import {
     ADD_CANDIDATE, HEADING, NAME, DATE_OF_BIRTH, EDUCATION, PARTY, QUOTE, ROW_HEIGHT,
     BUTTON_TEXT, UPLOAD_IMAGE
@@ -18,7 +19,7 @@ import actions from '../actions';
  * @component
  * @return {component} - Component for creating election
  */
-const AddCandidate = () => {
+const AddCandidate = ({ match }) => {
     const [name, updateName] = useState('');
     const [dateOfBirth, updateDateOfBirth] = useState('');
     const [education, updateEducation] = useState('');
@@ -89,6 +90,8 @@ const AddCandidate = () => {
         };
         // start spinning the loader
         dispatch(actions.loadingaddCandidate(true));
+        // add teh candidates synchronously
+        dispatch(actions.addCandidate(payload, match.params.electionId));
     };
     const antIcon = <Icon type="loading" className="loader" spin />;
     const addCandidateLoading = useSelector(store => store.addCandidateLoading);
@@ -196,3 +199,8 @@ const AddCandidate = () => {
 };
 
 export default AddCandidate;
+// define the proptypes and their default values
+
+AddCandidate.propTypes = {
+    match: ReactRouterPropTypes.match.isRequired,
+};

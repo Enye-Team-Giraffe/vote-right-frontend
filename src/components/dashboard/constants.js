@@ -1,10 +1,9 @@
 export const VOTERIGHT = 'voteRight';
 export const MENU = {
-    a: ['Ongoing Elections', ''],
-    b: ['Pending Elections', 'pending_election'],
-    c: ['Concluded Elections', 'concluded_election'],
-    d: ['Create Election', 'create_election'],
-    e: ['Add Candidate', 'add_candidate'],
+    a: ['Create Election', 'create_election'],
+    b: ['Ongoing Elections', ''],
+    c: ['Pending Elections', 'pending_election'],
+    d: ['Concluded Elections', 'concluded_election'],
 };
 export const LOGOUT = 'Logout';
 export const WAIT_TIME = 2;

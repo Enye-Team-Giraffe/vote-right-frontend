@@ -60,10 +60,10 @@ export default function ViewElection() {
                                             key={election.name}
                                         >
                                             <NavLink
-                                                to={`/dashboard/statistics/${election.location}`}
+                                                to={`/dashboard/add_candidate/${election.location}`}
                                             >
                                                 <Icon type="link" key="link" />
-                                            View Real Time Stats
+                                            Add Candidate
                                             </NavLink>
                                         </div>,
                                     ]}
