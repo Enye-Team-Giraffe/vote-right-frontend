@@ -10,6 +10,7 @@ import CreateElection from '../../createElection/components';
 import { components as ViewElection } from '../../viewElection';
 import { components as ViewStats } from '../../viewStats';
 import AddCandidate from '../../addCandidate/components';
+import {component as PendingEleciton} from "../../pendingElection"
 
 import actions from '../actions';
 
@@ -55,6 +56,7 @@ const DashboardLayout = () => {
                         <Route exact path="/dashboard/create_election" component={CreateElection} />
                         <Route path="/dashboard/statistics/:electionId" component={ViewStats} />
                         <Route path="/dashboard/add_candidate" component={AddCandidate} />
+                        <Route path="/dashboard/pending_election" component={PendingEleciton}></Route>
                     </Switch>
                 </Content>
             </Layout>
