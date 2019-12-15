@@ -1,13 +1,13 @@
 // import the required modules from npm
-import { takeLatest, put } from 'redux-saga/effects';
-import { message } from 'antd';
+import { takeLatest } from 'redux-saga/effects';
+// import { message } from 'antd';
 
 // import personal modules
-import { ADD_CANDIDATE, LOADING_ADD_CANDIDATE } from './actionTypes';
+import { ADD_CANDIDATE } from './actionTypes';
 
 // import web3 dependencies
-const web3 = require('../../web3/configuredWeb3');
-const electionFactory = require('../../web3/electionFactory');
+// const web3 = require('../../web3/configuredWeb3');
+// const electionFactory = require('../../web3/electionFactory');
 
 /**
  * Watches for the {@link actionTypes.ADD_CANDIDATE ADD_CANDIDATE} action.
@@ -17,7 +17,7 @@ const electionFactory = require('../../web3/electionFactory');
 
 function* addCandidate(action) {
     const body = action.payload;
-    alert('working');
+    yield body;
 }
 
 // map the sagas to their respective actionTypes
