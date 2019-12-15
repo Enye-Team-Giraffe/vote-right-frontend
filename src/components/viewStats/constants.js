@@ -1,4 +1,4 @@
-import mapDataIE from '@highcharts/map-collection/countries/ie/ie-all.geo.json';
+import mapDataIE from '@highcharts/map-collection/countries/ng/ng-all.geo.json';
 
 export const WAIT_TIME = 2.0;
 export const LARGE_GAS = 3000000;
@@ -204,10 +204,10 @@ export const MAP_OPTIONS = {
         color: '#4169E1',
         cursor: 'pointer',
         data: [{
-            keyword: 'Galway', lat: 53.27, lon: -9.25, z: 10,
+            keyword: 'Lagos', lat: 8.678779, lon: 7.526700, z: 10,
         },
         {
-            keyword: 'Dublin', lat: 53.27, lon: -6.25, z: 4,
+            keyword: 'Lagos', lat: 6.588217, lon: 5.418247, z: 4,
         }],
         name: 'Cities',
         point: {

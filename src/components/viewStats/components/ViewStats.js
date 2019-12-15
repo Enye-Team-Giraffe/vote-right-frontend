@@ -156,7 +156,7 @@ export default function ViewStats({ match }) {
     };
     // define them as an array for mappint
     const chartOptions = [
-        newBarOptions, newPieOptions, newAgeOptions,
+        newPieOptions, newBarOptions, newAgeOptions,
         newGenderGroupOptions, newAgeGroupOptions,
     ];
     // upon start of the app, load the voters and the candidates
