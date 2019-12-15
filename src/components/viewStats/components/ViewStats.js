@@ -3,31 +3,35 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import highchartsMap from 'highcharts/modules/map';
+import proj4 from 'proj4';
 import { Card } from 'antd';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import actions from '../actions';
 import {
-    BAR_OPTIONS, PIE_OPTIONS, AGE_OPTIONS, NAME, AGE, AGE_GROUP
+    BAR_OPTIONS, PIE_OPTIONS, AGE_OPTIONS, NAME, AGE, GENDER_GROUP, AGE_GROUP,
+    GENDERS, AGE_BRACKETS, MAP_OPTIONS
 } from '../constants';
 import DataGrouper from '../utility/DataGrouper';
 
 import './ViewStats.css';
 
+highchartsMap(Highcharts);
 // reducer function used to get the count of males and females from the data
 const countGender = (oldCount, person) => {
     const newCount = oldCount;
-    newCount[0] += (person.gender === 'female');
-    newCount[1] += (person.gender === 'male');
+    newCount[0] += (person.gender === GENDERS[1]);
+    newCount[1] += (person.gender === GENDERS[0]);
     return newCount;
 };
 
 // reducer function used to group the candidiates by age
 const countAge = (oldCount, person) => {
     const newCount = oldCount;
-    newCount['18-25'] += (person.age >= 18 && person.age < 26);
-    newCount['26-40'] += (person.age >= 26 && person.age < 40);
-    newCount['40-60'] += (person.age >= 40 && person.age < 60);
-    newCount['60+'] += (person.age > 60);
+    newCount[AGE_BRACKETS[0]] += (person.age >= 18 && person.age < 26);
+    newCount[AGE_BRACKETS[1]] += (person.age >= 26 && person.age < 40);
+    newCount[AGE_BRACKETS[2]] += (person.age >= 40 && person.age < 60);
+    newCount[AGE_BRACKETS[3]] += (person.age > 60);
     return newCount;
 };
 // function to transfor candidates from their id to their name
@@ -38,7 +42,21 @@ const transformCandidates = candidates => {
     });
     return nameMap;
 };
-
+// a function to bucket the age of a candidate into age group
+const bucketAge = age => {
+    if (age >= 18 && age < 26) {
+        return AGE_BRACKETS[0];
+    } if (age >= 26 && age < 41) {
+        return AGE_BRACKETS[1];
+    } if (age >= 41 && age < 61) {
+        return AGE_BRACKETS[2];
+    }
+    return AGE_BRACKETS[3];
+};
+// a function to make a series object
+const makeSeries = (keys, data) => keys.map((key, index) => ({
+    data: data[index], name: key,
+}));
 export default function ViewStats({ match }) {
     const dispatch = useDispatch();
     // get the data from state
@@ -50,7 +68,7 @@ export default function ViewStats({ match }) {
     const genderCount = voters.reduce(countGender, [0, 0]);
     // get the number of each age group vote
     const voterAgeDist = voters.reduce(countAge, {
-        '18-25': 0, '26-40': 0, '40-60': 0, '60+': 0,
+        '18-25': 0, '26-40': 0, '41-60': 0, '60+': 0,
     });
     // get the name of each candidate and current votecount for piechart
     const candidatesMapped = candidates.map(candidate => ({
@@ -62,16 +80,34 @@ export default function ViewStats({ match }) {
     const group = DataGrouper.count(voters, ['gender', 'votedCandidate']);
     // turn the list of candidates into {candidateId:candidateVote}
     const getCandidatesNameById = transformCandidates(candidates);
-    // get the total number of male votes for each candidate
-    const maleVote = Object.keys(getCandidatesNameById).map(id => group
-        .filter(newGroup => newGroup.gender === 'male' && newGroup.votedCandidate === id)
-        .map(newGroup => newGroup.Value)
-        .reduce((current, previous) => current + previous, 0));
-    // get the total number of female votes for each candidate
-    const femaleVote = Object.keys(getCandidatesNameById).map(id => group
-        .filter(newGroup => newGroup.gender === 'female' && newGroup.votedCandidate === id)
-        .map(newGroup => newGroup.Value)
-        .reduce((current, previous) => current + previous, 0));
+    // define the genders we have
+    const genders = GENDERS.slice();
+    // for each gender and candidate find the number of votes
+    const candidateByGender = genders.map(gender => Object.keys(getCandidatesNameById)
+        .map(id => group
+            .filter(newGroup => newGroup.gender === gender && newGroup.votedCandidate === id)
+            .map(newGroup => newGroup.Value)
+            .reduce((current, previous) => current + previous, 0)));
+    const genderGroupSeries = makeSeries(genders, candidateByGender);
+
+    // firstly get the age group of each client
+    const votersWithAgeGroup = voters.map(voter => ({
+        ...voter,
+        ageBracket: bucketAge(voter.age),
+    }));
+    // group the voters by age group
+    const ageGroup = DataGrouper.count(votersWithAgeGroup, ['ageBracket', 'votedCandidate']);
+    // define the age groups
+    const ageBrackets = AGE_BRACKETS.slice();
+    // for each age group and candidate get the total votes allocated to them
+    const candidateByAge = ageBrackets.map(ageBracket => Object.keys(getCandidatesNameById)
+        .map(id => ageGroup
+            .filter(newGroup => (
+                newGroup.ageBracket === ageBracket && newGroup.votedCandidate === id))
+            .map(newGroup => newGroup.Value)
+            .reduce((current, previous) => current + previous, 0)));
+    const ageGroupSeries = makeSeries(ageBrackets, candidateByAge);
+
     // redefine new instances from the chart options, to include data from our state
     const newBarOptions = {
         ...BAR_OPTIONS,
@@ -102,31 +138,48 @@ export default function ViewStats({ match }) {
 
     };
 
-    const newAgeGroupOptions = {
-        ...AGE_GROUP,
-        series: [{
-            data: maleVote,
-            name: 'Male',
-
-        }, {
-            data: femaleVote,
-            name: 'Female',
-
-        }],
+    const newGenderGroupOptions = {
+        ...GENDER_GROUP,
+        series: genderGroupSeries,
         xAxis: {
             categories: Object.values(getCandidatesNameById),
         },
     };
+
+    const newAgeGroupOptions = {
+        ...AGE_GROUP,
+        series: ageGroupSeries,
+        xAxis: {
+            categories: Object.values(getCandidatesNameById),
+            crosshair: true,
+        },
+    };
     // define them as an array for mappint
-    const chartOptions = [newBarOptions, newPieOptions, newAgeOptions, newAgeGroupOptions];
+    const chartOptions = [
+        newPieOptions, newBarOptions, newAgeOptions,
+        newGenderGroupOptions, newAgeGroupOptions,
+    ];
     // upon start of the app, load the voters and the candidates
     useEffect(() => {
         dispatch(actions.loadVoters(match.params.electionId));
         dispatch(actions.loadCandidates(match.params.electionId));
+
+        // initialise proj4
+        if (typeof window !== 'undefined') {
+            window.proj4 = window.proj4 || proj4;
+        }
     }, [dispatch, match.params.electionId]);
 
     return (
         <div className="statisticsLayout">
+            <Card className="chart" key={Math.random()}>
+                <HighchartsReact
+                    constructorType="mapChart"
+                    highcharts={Highcharts}
+                    options={MAP_OPTIONS}
+                />
+            </Card>
+
             {
                 chartOptions.map(option => (
                     <Card className="chart" key={Math.random()}>
