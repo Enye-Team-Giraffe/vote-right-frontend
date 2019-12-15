@@ -12,7 +12,8 @@ const createElection = electionDetails => ({
 });
 
 /**
- * Triggers request a spinner to indicate that the server is currently loading a create user request
+ * Triggers request a spinner
+ * to indicate that the server is currently loading a create election request
  *
  * @function
  * @return {Object} The {@link actionTypes.CREATE_ELECTION CREATE_ELECTION} action.

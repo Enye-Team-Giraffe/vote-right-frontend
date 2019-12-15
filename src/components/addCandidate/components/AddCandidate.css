@@ -3,6 +3,7 @@
     justify-content: center;
     min-height: 100%;
     background-color: hsl(208, 100%, 98.5%);
+    margin-bottom: 40px;
 }
 
 .addCandidateCard {
