@@ -8,3 +8,5 @@ export const EDUCATION = 'Highest education';
 export const ROW_HEIGHT = 4;
 export const BUTTON_TEXT = 'Register';
 export const UPLOAD_IMAGE = 'Upload Image';
+export const LARGE_GAS = 3000000;
+export const SMALL_GAS = 1000000;
