@@ -6,7 +6,8 @@ import { ADD_CANDIDATE, LOADING_ADD_CANDIDATE } from './actionTypes';
  * @function
  * @return {Object} The {@link actionTypes.CREATE_ELECTION CREATE_ELECTION} action.
  */
-const addCandidate = candidateDetails => ({
+const addCandidate = (candidateDetails, electionId) => ({
+    electionId,
     payload: candidateDetails,
     type: ADD_CANDIDATE,
 });
