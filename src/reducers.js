@@ -8,7 +8,7 @@ import { reducers as addCandidateReducer } from './components/addCandidate';
 
 // combine all the reducers in the project into one reducer
 const allReducers = combineReducers({
-    addCandidateLoading:addCandidateReducer.addCandidateLoading,
+    addCandidateLoading: addCandidateReducer.addCandidateLoading,
     adminAuthenticated: adminReducer.authenticateAdminReducer,
     adminLoading: adminReducer.loginAdminReducer,
     candidates: pushVoterReducer.pushCandidates,

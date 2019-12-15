@@ -1,16 +1,16 @@
 /* eslint-disable max-lines-per-function */
-import React, { useState,useEffect}  from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Card, Input, DatePicker, Button, Upload, Icon, Spin
 } from 'antd';
 import './AddCandidate.css';
 
+import { useDispatch, useSelector } from 'react-redux';
 import {
     ADD_CANDIDATE, HEADING, NAME, DATE_OF_BIRTH, EDUCATION, PARTY, QUOTE, ROW_HEIGHT,
     BUTTON_TEXT, UPLOAD_IMAGE
 } from '../constants';
-import {useDispatch, useSelector} from "react-redux";
-import actions from "../actions";
+import actions from '../actions';
 
 /**
  * Form for creating election
@@ -88,13 +88,13 @@ const AddCandidate = () => {
             dateOfBirth, education, name, party, quote,
         };
         // start spinning the loader
-        dispatch(actions.loadingaddCandidate(true))
+        dispatch(actions.loadingaddCandidate(true));
     };
     const antIcon = <Icon type="loading" className="loader" spin />;
     const addCandidateLoading = useSelector(store => store.addCandidateLoading);
 
-    useEffect(()=>{
-    })
+    useEffect(() => {
+    });
 
     return (
         <div className="addCandidate">
