@@ -42,8 +42,14 @@ export default function ViewElection() {
                                             key={election.startdate}
                                         >
                                             <div>
-                                                <Icon className="electionItem__subitem__icon" type="calendar" key="calendar" />
-                                                <span className="electionItem__subitem__text">
+                                                <Icon
+                                                    className="electionItem__subitem__icon"
+                                                    type="calendar"
+                                                    key="calendar"
+                                                />
+                                                <span
+                                                    className="electionItem__subitem__text"
+                                                >
                                                     {toDateString(election.startdate)}
                                                 </span>
                                             </div>
@@ -53,8 +59,14 @@ export default function ViewElection() {
                                             key={election.enddate}
                                         >
                                             <div>
-                                                <Icon className="electionItem__subitem__icon" type="calendar" key="calendar" />
-                                                <span className="electionItem__subitem__text">
+                                                <Icon
+                                                    className="electionItem__subitem__icon"
+                                                    type="calendar"
+                                                    key="calendar"
+                                                />
+                                                <span
+                                                    className="electionItem__subitem__text"
+                                                >
                                                     {toDateString(election.enddate)}
                                                 </span>
                                             </div>
@@ -66,7 +78,11 @@ export default function ViewElection() {
                                             <NavLink
                                                 to={`/dashboard/statistics/${election.location}`}
                                             >
-                                                <Icon className="electionItem__subitem__icon" type="link" key="link" />
+                                                <Icon
+                                                    className="electionItem__subitem__icon"
+                                                    type="link"
+                                                    key="link"
+                                                />
                                             View Real Time Stats
                                             </NavLink>
                                         </div>,

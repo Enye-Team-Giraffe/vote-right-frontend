@@ -6,6 +6,9 @@ import '../../viewElection/components/ViewElection';
 import { Card, Icon, Spin } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
+import {
+    VIEW_CANDIDATE_ROUTE, ADD_CANDIDATE_ROUTE, VIEW_CANDIDATE, ADD_CANDIDATE
+} from '../constants';
 
 import actions from '../../viewElection/actions';
 
@@ -42,7 +45,11 @@ export default function ViewElection() {
                                             key={election.startdate}
                                         >
                                             <div>
-                                                <Icon className="electionItem__subitem__icon" type="calendar" key="calendar" />
+                                                <Icon
+                                                    className="electionItem__subitem__icon"
+                                                    type="calendar"
+                                                    key="calendar"
+                                                />
                                                 <span className="electionItem__subitem__text">
                                                     {toDateString(election.startdate)}
                                                 </span>
@@ -53,7 +60,11 @@ export default function ViewElection() {
                                             key={election.enddate}
                                         >
                                             <div>
-                                                <Icon className="electionItem__subitem__icon" type="calendar" key="calendar" />
+                                                <Icon
+                                                    className="electionItem__subitem__icon"
+                                                    type="calendar"
+                                                    key="calendar"
+                                                />
                                                 <span className="electionItem__subitem__text">
                                                     {toDateString(election.enddate)}
                                                 </span>
@@ -64,10 +75,14 @@ export default function ViewElection() {
                                             key={election.name}
                                         >
                                             <NavLink
-                                                to={`/dashboard/add_candidate/${election.location}`}
+                                                to={`${ADD_CANDIDATE_ROUTE}${election.location}`}
                                             >
-                                                <Icon className="electionItem__subitem__icon" type="link" key="link" />
-                                            Add Candidate
+                                                <Icon
+                                                    className="electionItem__subitem__icon"
+                                                    type="link"
+                                                    key="link"
+                                                />
+                                                {ADD_CANDIDATE}
                                             </NavLink>
                                         </div>,
                                         <div
@@ -75,10 +90,14 @@ export default function ViewElection() {
                                             key={Math.random()}
                                         >
                                             <NavLink
-                                                to={`/dashboard/view_candidates/${election.location}`}
+                                                to={`${VIEW_CANDIDATE_ROUTE}${election.location}`}
                                             >
-                                                <Icon className="electionItem__subitem__icon" type="link" key="link" />
-                                            VIew Candidates
+                                                <Icon
+                                                    className="electionItem__subitem__icon"
+                                                    type="link"
+                                                    key="link"
+                                                />
+                                                {VIEW_CANDIDATE}
                                             </NavLink>
                                         </div>,
                                     ]}

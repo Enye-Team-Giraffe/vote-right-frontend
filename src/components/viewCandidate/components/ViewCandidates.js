@@ -1,37 +1,39 @@
-import React,{useEffect} from 'react';
-import "./ViewCandidates.css";
-import {actions} from "../../viewStats";
-
-import { useDispatch,useSelector } from "react-redux";
+/* eslint-disable max-lines-per-function */
+import React, { useEffect } from 'react';
+import './ViewCandidates.css';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { Card, Icon } from 'antd';
+import { actions } from '../../viewStats';
+
 const { Meta } = Card;
 
-export default function ViewCandidates({match}) {
-    // dispatch the loadCandidates saga 
+export default function ViewCandidates({ match }) {
+    // dispatch the loadCandidates saga
     // which has been defined in the viewstats component
     const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(actions.loadCandidates(match.params.electionId))
-    },[dispatch,match.params.electionId])
+    useEffect(() => {
+        dispatch(actions.loadCandidates(match.params.electionId));
+    }, [dispatch, match.params.electionId]);
 
-    const candidates = useSelector(state=>state.candidates)
+    const candidates = useSelector(state => state.candidates);
     return (
         <div className="viewCandidates">
             {
-                candidates.map(candidate=>(
+                candidates.map(candidate => (
                     <Card
                         key={candidate.id}
                         className="viewCandidates__card"
-                        cover={
-                        <img
-                            alt="example"
-                            src="https://i.pravatar.cc/500"
-                        />
-                        }
+                        cover={(
+                            <img
+                                alt="example"
+                                src="https://i.pravatar.cc/500"
+                            />
+                        )}
                         actions={[
-                        <Icon type="setting" key="setting" />,
-                        <Icon type="edit" key="edit" />,
-                        <Icon type="ellipsis" key="ellipsis" />,
+                            <Icon type="setting" key="setting" />,
+                            <Icon type="edit" key="edit" />,
+                            <Icon type="ellipsis" key="ellipsis" />,
                         ]}
                     >
                         <Meta
@@ -58,5 +60,9 @@ export default function ViewCandidates({match}) {
                 ))
             }
         </div>
-    )
+    );
 }
+
+ViewCandidates.propTypes = {
+    match: ReactRouterPropTypes.match.isRequired,
+};

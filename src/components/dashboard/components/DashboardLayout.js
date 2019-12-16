@@ -14,12 +14,11 @@ import { component as PendingEleciton } from '../../pendingElection';
 import { component as FinishedElection } from '../../finishedElection';
 import { components as ViewCandidate } from '../../viewCandidate';
 
-
 import actions from '../actions';
 
 const { Header, Content } = Layout;
 
-/**FinishedElection
+/** FinishedElection
  *@Component for displaying dashboard layout
  *
  *@component

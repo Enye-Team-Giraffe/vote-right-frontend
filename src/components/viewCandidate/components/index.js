@@ -1,3 +1,3 @@
-import ViewCandidates from "./ViewCandidates";
+import ViewCandidates from './ViewCandidates';
 
 export default ViewCandidates;
