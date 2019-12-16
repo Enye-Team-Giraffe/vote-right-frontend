@@ -1,11 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React, { useState, useEffect } from 'react';
 import {
-<<<<<<< HEAD
-    Card, Input, DatePicker, Button, Upload, Icon, Spin
-=======
-    Card, Input, DatePicker, Button, Upload, Icon, message
->>>>>>> Add validation checks for image
+    Card, Input, DatePicker, Button, Upload, Icon, message, Spin
 } from 'antd';
 import './AddCandidate.css';
 
@@ -29,7 +25,7 @@ const AddCandidate = ({ match }) => {
     const [education, updateEducation] = useState('');
     const [party, updateParty] = useState('');
     const [quote, updateQuote] = useState('');
-    const [imageUrl, updateImageUrl] = useState(null);
+    const [image, updateImage] = useState(null);
     const dispatch = useDispatch();
 
 
@@ -37,15 +33,16 @@ const AddCandidate = ({ match }) => {
      * Get 64Base url for image
      * @function
      * @param {file} - file to be read
-     * @param {function} - callback to set imageUrl
-     * @return {boolean}
+     * @param {function} - callback to set image
+     * @return {void}
      */
     const getBase64 = (file, setUrl) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => setUrl(reader.result);
     };
-/**
+
+    /**
      * Checkes whether image is valid for uploading with warning
      * @function
      * @param {file} - file to be uploaded
@@ -57,9 +54,9 @@ const AddCandidate = ({ match }) => {
         if (!isJpgOrPng) {
             message.error('You can only upload JPG/PNG file!');
         }
-        const fileSize = file.size / 1024 / 1024 < 2;
+        const fileSize = file.size / 1024 / 1024 < 1;
         if (!fileSize) {
-            message.error('Image must not be larger than 2MB!');
+            message.error('Image must not be larger than 1MB!');
         }
         return isJpgOrPng && fileSize;
     };
@@ -87,7 +84,8 @@ const AddCandidate = ({ match }) => {
         if (!isValidImageWithoutWarning(info.file)) {
             return;
         }
-        getBase64(info.file.originFileObj, updateImageUrl);
+        getBase64(info.file.originFileObj, updateImage);
+        dispatch(actions.uploadPicture(info.file.originFileObj));
     };
 
     /**
@@ -137,7 +135,7 @@ const AddCandidate = ({ match }) => {
         event.preventDefault();
         // eslint-disable-next-line no-unused-vars
         const payload = {
-            dateOfBirth, education, name, party, quote,
+            dateOfBirth, education, name, party, quote, image,
         };
         // start spinning the loader
         dispatch(actions.loadingaddCandidate(true));
@@ -145,7 +143,7 @@ const AddCandidate = ({ match }) => {
         dispatch(actions.addCandidate(payload, match.params.electionId));
     };
     const antIcon = <Icon type="loading" className="loader" spin />;
-    const addCandidateLoading = useSelector(store => store.addCandidateLoading);
+    const addCandidateLoading = useSelector(store => store.addCandidateLoading.candidate);
 
     useEffect(() => {
     });
@@ -153,7 +151,6 @@ const AddCandidate = ({ match }) => {
     return (
         <div className="addCandidate">
             <form className="addCandidateForm" onSubmit={handleSubmit}>
-<<<<<<< HEAD
                 <Spin
                     size="large"
                     indicator={antIcon}
@@ -174,11 +171,12 @@ const AddCandidate = ({ match }) => {
                                     name="avatar"
                                     className="avatar-uploader"
                                     showUploadList={false}
+                                    beforeUpload={isValidImage}
                                     onChange={handleChangeImage}
                                 >
                                     {
-                                        imageUrl
-                                            ? <img src={imageUrl} alt="avatar" />
+                                        image
+                                            ? <img src={image} alt="avatar" />
                                             : (
                                                 <Button>
                                                     <Icon type="upload" />
@@ -245,94 +243,6 @@ const AddCandidate = ({ match }) => {
                         </Button>
                     </Card>
                 </Spin>
-=======
-
-                <Card className="addCandidateCard">
-                    <div className="addCandidateForm__heading">
-                        <h1 className="addCandidateForm__heading_header">{ADD_CANDIDATE}</h1>
-                        <p className="addCandidateForm__heading_text">
-                            {HEADING}
-                        </p>
-                    </div>
-                    <div className="addCandidateForm__image">
-                        <Card className="-card">
-                            <Upload
-                                name="avatar"
-                                className="avatar-uploader"
-                                showUploadList={false}
-                                beforeUpload={isValidImage}
-                                onChange={handleChangeImage}
-                            >
-                                {
-                                    imageUrl
-                                        ? <img src={imageUrl} alt="avatar" />
-                                        : (
-                                            <Button>
-                                                <Icon type="upload" />
-                                                <span className="ant-upload-text">
-                                                    {UPLOAD_IMAGE}
-                                                </span>
-                                            </Button>
-                                        )
-                                }
-                            </Upload>
-                        </Card>
-                    </div>
-                    <div className="addCandidateForm__group">
-                        <span>{NAME}</span>
-                        <Input
-                            className="addCandidateForm__input --input-element"
-                            name="name"
-                            required
-                            onChange={handleChangeText}
-                        />
-                    </div>
-                    <div className="addCandidateForm__group">
-                        <span className="-topMargin">{DATE_OF_BIRTH}</span>
-                        <DatePicker
-                            className="addCandidateForm__datePicker --input-element"
-                            placeholder="Select date"
-                            required
-                            onChange={handleDateOfBirth}
-                        />
-                    </div>
-                    <div className="addCandidateForm__group">
-                        <span>{EDUCATION}</span>
-                        <Input
-                            className="addCandidateForm__input --input-element"
-                            name="education"
-                            required
-                            onChange={handleChangeText}
-                        />
-                    </div>
-                    <div className="addCandidateForm__group">
-                        <span>{PARTY}</span>
-                        <Input
-                            className="addCandidateForm__input --input-element"
-                            name="party"
-                            required
-                            onChange={handleChangeText}
-                        />
-                    </div>
-                    <div className="addCandidateForm__group">
-                        <span>{QUOTE}</span>
-                        <Input.TextArea
-                            rows={ROW_HEIGHT}
-                            className="addCandidateForm__textArea --input-element"
-                            name="quote"
-                            required
-                            onChange={handleChangeText}
-                        />
-                    </div>
-                    <Button
-                        className="addCandidateForm__button"
-                        htmlType="submit"
-                    >
-                        {BUTTON_TEXT}
-                    </Button>
-                </Card>
-
->>>>>>> Add validation checks for image
             </form>
         </div>
     );
