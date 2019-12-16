@@ -1,0 +1,42 @@
+.viewCandidates {
+    padding: 50px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    height:300px;
+}
+.viewCandidates__card{
+    max-width: 550px;
+    margin: 20px;
+}
+.viewCandidates__card__meta{
+    padding-bottom: 8px;
+}
+.--party .ant-card-meta-title{
+    font-weight: 100;
+    font-size: 15px;
+}
+.--education .ant-card-meta-title{
+    font-size: 15px;
+    font-weight: 100;
+}
+.--name .ant-card-meta-title{
+    font-weight: 900;
+    font-size: 130%;
+}
+.--quote{
+    padding-top: 5px;
+}
+
+
+@media ( min-width:1000px ){
+    .viewCandidates {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+}

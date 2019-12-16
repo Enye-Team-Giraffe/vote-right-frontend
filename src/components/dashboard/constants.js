@@ -1,8 +1,8 @@
 export const VOTERIGHT = 'voteRight';
 export const MENU = {
     a: ['Create Election', 'create_election'],
-    b: ['Ongoing Elections', ''],
-    c: ['Pending Elections', 'pending_election'],
+    b: ['Pending Elections', 'pending_election'],
+    c: ['Ongoing Elections', ''],
     d: ['Concluded Elections', 'concluded_election'],
 };
 export const LOGOUT = 'Logout';
