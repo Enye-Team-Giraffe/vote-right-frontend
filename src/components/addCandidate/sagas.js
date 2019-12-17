@@ -74,11 +74,13 @@ function* addCandidate(action) {
     /*
     *await ajax request to upload images and return a link
     */
-    const pictureLink = yield call(() => getPictureLink(picture));
-    if (!body.dateOfBirth) {
-        message.error(INCOMPLETE_FIELDS, WAIT_TIME);
-        return;
+   if (!body.dateOfBirth || !picture) {
+       message.error(INCOMPLETE_FIELDS, WAIT_TIME);
+       yield put(actions.loadingaddCandidate(false));
+       return;
     }
+    // get the lint of the picture
+    const pictureLink = yield call(() => getPictureLink(picture));
     // assign the payload to the body of newcandidate
     newCandidate.id = uuidv4();
     newCandidate.name = body.name;

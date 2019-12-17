@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import {
     ADD_CANDIDATE, HEADING, NAME, DATE_OF_BIRTH, EDUCATION, PARTY, QUOTE, ROW_HEIGHT,
-    BUTTON_TEXT, UPLOAD_IMAGE
+    BUTTON_TEXT, UPLOAD_IMAGE, DATE_ERROR, WAIT_TIME
 } from '../constants';
 import actions from '../actions';
 
@@ -121,8 +121,13 @@ const AddCandidate = ({ match }) => {
      * @param {date} - selected date
      */
     const handleDateOfBirth = date => {
-        const formattedDate = date.format('L');
-        updateDateOfBirth(formattedDate);
+        try{
+            const formattedDate = date.format('L');
+            updateDateOfBirth(formattedDate);
+        }
+        catch(err){
+            message.error(DATE_ERROR,WAIT_TIME);
+        }
     };
 
     /**
@@ -140,6 +145,7 @@ const AddCandidate = ({ match }) => {
         dispatch(actions.loadingaddCandidate(true));
         // add teh candidates synchronously
         dispatch(actions.addCandidate(payload, match.params.electionId));
+
     };
     const antIcon = <Icon type="loading" className="loader" spin />;
     const addCandidateLoading = useSelector(store => store.addCandidateLoading.candidate);
