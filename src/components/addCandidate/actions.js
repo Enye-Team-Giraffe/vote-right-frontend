@@ -1,4 +1,6 @@
-import { ADD_CANDIDATE, LOADING_ADD_CANDIDATE } from './actionTypes';
+import {
+    ADD_CANDIDATE, LOADING_ADD_CANDIDATE, UPLOAD_PICTURE
+} from './actionTypes';
 
 /**
  * Triggers request to send details to an API to create an election
@@ -23,7 +25,19 @@ const loadingaddCandidate = truthyValue => ({
     type: LOADING_ADD_CANDIDATE,
 });
 
+/**
+ * Triggers request to upload picture
+ *
+ * @function
+ * @return {Object} The {@link actionTypes.UPLOAD_PICTURE UPLOAD_PICTURE} action.
+ */
+const uploadPicture = file => ({
+    payload: file,
+    type: UPLOAD_PICTURE,
+});
+
 export default {
     addCandidate,
     loadingaddCandidate,
+    uploadPicture,
 };

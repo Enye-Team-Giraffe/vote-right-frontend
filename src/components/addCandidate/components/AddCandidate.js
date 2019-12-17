@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React, { useState, useEffect } from 'react';
 import {
-    Card, Input, DatePicker, Button, Upload, Icon, Spin
+    Card, Input, DatePicker, Button, Upload, Icon, message, Spin
 } from 'antd';
 import './AddCandidate.css';
 
@@ -25,8 +25,54 @@ const AddCandidate = ({ match }) => {
     const [education, updateEducation] = useState('');
     const [party, updateParty] = useState('');
     const [quote, updateQuote] = useState('');
-    const [imageUrl, updateImageUrl] = useState(null);
+    const [image, updateImage] = useState(null);
     const dispatch = useDispatch();
+
+    /**
+     * Get 64Base url for image
+     * @function
+     * @param {file} - file to be read
+     * @param {function} - callback to set image
+     * @return {void}
+     */
+    const getBase64 = (file, setUrl) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => setUrl(reader.result);
+    };
+
+    /**
+     * Checkes whether image is valid for uploading with warning
+     * @function
+     * @param {file} - file to be uploaded
+     * @return {boolean}
+     */
+    const isValidImage = file => {
+        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/jpg'
+            || file.type === 'image/png';
+        if (!isJpgOrPng) {
+            message.error('You can only upload JPG/PNG file!');
+        }
+        const fileSize = file.size / 1024 / 1024 < 1;
+        if (!fileSize) {
+            message.error('Image must not be larger than 1MB!');
+        }
+        return isJpgOrPng && fileSize;
+    };
+
+    /**
+     * Checkes whether image is valid for uploading without
+     * displaying warning
+     * @function
+     * @param {file} - file to be uploaded
+     * @return {boolean}
+     */
+    const isValidImageWithoutWarning = file => {
+        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/jpg'
+            || file.type === 'image/png';
+        const fileSize = file.size / 1024 / 1024 < 2;
+        return isJpgOrPng && fileSize;
+    };
 
     /**
      * Handles change in image
@@ -34,9 +80,11 @@ const AddCandidate = ({ match }) => {
      * @param {event} - Event on upload field
      */
     const handleChangeImage = info => {
-        const reader = new FileReader();
-        reader.readAsDataURL(info.file.originFileObj);
-        reader.onload = () => updateImageUrl(reader.result);
+        if (!isValidImageWithoutWarning(info.file)) {
+            return;
+        }
+        getBase64(info.file.originFileObj, updateImage);
+        dispatch(actions.uploadPicture(info.file.originFileObj));
     };
 
     /**
@@ -86,7 +134,7 @@ const AddCandidate = ({ match }) => {
         event.preventDefault();
         // eslint-disable-next-line no-unused-vars
         const payload = {
-            dateOfBirth, education, name, party, quote,
+            dateOfBirth, education, image, name, party, quote,
         };
         // start spinning the loader
         dispatch(actions.loadingaddCandidate(true));
@@ -94,7 +142,7 @@ const AddCandidate = ({ match }) => {
         dispatch(actions.addCandidate(payload, match.params.electionId));
     };
     const antIcon = <Icon type="loading" className="loader" spin />;
-    const addCandidateLoading = useSelector(store => store.addCandidateLoading);
+    const addCandidateLoading = useSelector(store => store.addCandidateLoading.candidate);
 
     useEffect(() => {
     });
@@ -122,11 +170,12 @@ const AddCandidate = ({ match }) => {
                                     name="avatar"
                                     className="avatar-uploader"
                                     showUploadList={false}
+                                    beforeUpload={isValidImage}
                                     onChange={handleChangeImage}
                                 >
                                     {
-                                        imageUrl
-                                            ? <img src={imageUrl} alt="avatar" />
+                                        image
+                                            ? <img src={image} alt="avatar" />
                                             : (
                                                 <Button>
                                                     <Icon type="upload" />
