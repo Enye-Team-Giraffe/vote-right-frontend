@@ -6,6 +6,9 @@ import '../../viewElection/components/ViewElection';
 import { Card, Icon, Spin } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
+import {
+    VIEW_CANDIDATE_ROUTE, ADD_CANDIDATE_ROUTE, VIEW_CANDIDATE, ADD_CANDIDATE
+} from '../constants';
 
 import actions from '../../viewElection/actions';
 
@@ -41,29 +44,60 @@ export default function ViewElection() {
                                             className="electionItem__subitem"
                                             key={election.startdate}
                                         >
-                                            <Icon type="calendar" key="calendar" />
-                                            <span className="electionItem__subitem__text">
-                                                {toDateString(election.startdate)}
-                                            </span>
+                                            <div>
+                                                <Icon
+                                                    className="electionItem__subitem__icon"
+                                                    type="calendar"
+                                                    key="calendar"
+                                                />
+                                                <span className="electionItem__subitem__text">
+                                                    {toDateString(election.startdate)}
+                                                </span>
+                                            </div>
                                         </div>,
                                         <div
                                             className="electionItem__subitem"
                                             key={election.enddate}
                                         >
-                                            <Icon type="calendar" key="calendar" />
-                                            <span className="electionItem__subitem__text">
-                                                {toDateString(election.enddate)}
-                                            </span>
+                                            <div>
+                                                <Icon
+                                                    className="electionItem__subitem__icon"
+                                                    type="calendar"
+                                                    key="calendar"
+                                                />
+                                                <span className="electionItem__subitem__text">
+                                                    {toDateString(election.enddate)}
+                                                </span>
+                                            </div>
                                         </div>,
                                         <div
                                             className="electionItem__subitem"
                                             key={election.name}
                                         >
                                             <NavLink
-                                                to={`/dashboard/add_candidate/${election.location}`}
+                                                to={`${ADD_CANDIDATE_ROUTE}${election.location}`}
                                             >
-                                                <Icon type="link" key="link" />
-                                            Add Candidate
+                                                <Icon
+                                                    className="electionItem__subitem__icon"
+                                                    type="link"
+                                                    key="link"
+                                                />
+                                                {ADD_CANDIDATE}
+                                            </NavLink>
+                                        </div>,
+                                        <div
+                                            className="electionItem__subitem"
+                                            key={Math.random()}
+                                        >
+                                            <NavLink
+                                                to={`${VIEW_CANDIDATE_ROUTE}${election.location}`}
+                                            >
+                                                <Icon
+                                                    className="electionItem__subitem__icon"
+                                                    type="link"
+                                                    key="link"
+                                                />
+                                                {VIEW_CANDIDATE}
                                             </NavLink>
                                         </div>,
                                     ]}

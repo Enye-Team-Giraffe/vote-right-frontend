@@ -12,12 +12,13 @@ import { components as ViewStats } from '../../viewStats';
 import AddCandidate from '../../addCandidate/components';
 import { component as PendingEleciton } from '../../pendingElection';
 import { component as FinishedElection } from '../../finishedElection';
+import { components as ViewCandidate } from '../../viewCandidate';
 
 import actions from '../actions';
 
 const { Header, Content } = Layout;
 
-/**
+/** FinishedElection
  *@Component for displaying dashboard layout
  *
  *@component
@@ -27,7 +28,7 @@ const DashboardLayout = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // logout of the app
+    // logout of the FinishedElection
     const logout = () => {
         dispatch(actions.logoutUser(history));
     };
@@ -78,6 +79,10 @@ const DashboardLayout = () => {
                         <Route
                             path="/dashboard/concluded_election"
                             component={FinishedElection}
+                        />
+                        <Route
+                            path="/dashboard/view_candidates/:electionId"
+                            component={ViewCandidate}
                         />
                     </Switch>
                 </Content>

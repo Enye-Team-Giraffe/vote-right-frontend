@@ -21,3 +21,6 @@
     position: unset !important;
 }
 
+.electionItem__subitem__icon{
+    margin-right: 13px;
+}
