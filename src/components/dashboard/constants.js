@@ -4,7 +4,6 @@ export const MENU = {
     b: ['Ongoing Elections', ''],
     c: ['Pending Elections', 'pending_election'],
     d: ['Concluded Elections', 'concluded_election'],
-    e: ['Add Candidate', 'add_candidate'],
 };
 export const LOGOUT = 'Logout';
 export const WAIT_TIME = 2;
