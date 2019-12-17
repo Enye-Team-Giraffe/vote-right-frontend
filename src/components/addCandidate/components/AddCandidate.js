@@ -121,8 +121,13 @@ const AddCandidate = ({ match }) => {
      * @param {date} - selected date
      */
     const handleDateOfBirth = date => {
-        const formattedDate = date.format('L');
-        updateDateOfBirth(formattedDate);
+        try{
+            const formattedDate = date.format('L');
+            updateDateOfBirth(formattedDate);
+        }
+        catch(err){
+
+        }
     };
 
     /**
@@ -140,6 +145,7 @@ const AddCandidate = ({ match }) => {
         dispatch(actions.loadingaddCandidate(true));
         // add teh candidates synchronously
         dispatch(actions.addCandidate(payload, match.params.electionId));
+
     };
     const antIcon = <Icon type="loading" className="loader" spin />;
     const addCandidateLoading = useSelector(store => store.addCandidateLoading.candidate);
