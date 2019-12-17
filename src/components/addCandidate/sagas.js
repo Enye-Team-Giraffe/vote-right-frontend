@@ -28,7 +28,6 @@ const isMissingField = check => {
     return false;
 };
 
-
 /**
  * Posts candidates picture to server
  * function

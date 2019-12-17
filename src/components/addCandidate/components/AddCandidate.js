@@ -28,7 +28,6 @@ const AddCandidate = ({ match }) => {
     const [image, updateImage] = useState(null);
     const dispatch = useDispatch();
 
-
     /**
      * Get 64Base url for image
      * @function
@@ -135,7 +134,7 @@ const AddCandidate = ({ match }) => {
         event.preventDefault();
         // eslint-disable-next-line no-unused-vars
         const payload = {
-            dateOfBirth, education, name, party, quote, image,
+            dateOfBirth, education, image, name, party, quote,
         };
         // start spinning the loader
         dispatch(actions.loadingaddCandidate(true));
