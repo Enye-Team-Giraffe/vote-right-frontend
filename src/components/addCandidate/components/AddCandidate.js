@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import {
     ADD_CANDIDATE, HEADING, NAME, DATE_OF_BIRTH, EDUCATION, PARTY, QUOTE, ROW_HEIGHT,
-    BUTTON_TEXT, UPLOAD_IMAGE
+    BUTTON_TEXT, UPLOAD_IMAGE, DATE_ERROR, WAIT_TIME
 } from '../constants';
 import actions from '../actions';
 
@@ -126,7 +126,7 @@ const AddCandidate = ({ match }) => {
             updateDateOfBirth(formattedDate);
         }
         catch(err){
-
+            message.error(DATE_ERROR,WAIT_TIME);
         }
     };
 
