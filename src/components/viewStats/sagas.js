@@ -25,8 +25,11 @@ function* loadVoters(action) {
             indexes.map((_, index) => (electionInterface.methods.voters(index).call()))
         );
         yield put(actions.pushVoters(voterDetails));
+        // stop the spinner
+        yield put(actions.loadingVoters(false));
     } catch (err) {
         message.error(err.message, WAIT_TIME);
+        yield put(actions.loadingVoters(false));
     }
 }
 /**
@@ -49,8 +52,11 @@ function* loadCandidates(action) {
         );
         // add this candidate to the array
         yield put(actions.pushCandidates(candidateDetails));
+        // stop the spinner
+        yield put(actions.loadingCandidates(false));
     } catch (err) {
         message.error(err.message, WAIT_TIME);
+        yield put(actions.loadingCandidates(false));
     }
 }
 

@@ -5,12 +5,12 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import highchartsMap from 'highcharts/modules/map';
 import proj4 from 'proj4';
-import { Card } from 'antd';
+import { Card, Spin, Icon } from 'antd';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import actions from '../actions';
 import {
     BAR_OPTIONS, PIE_OPTIONS, AGE_OPTIONS, NAME, AGE, GENDER_GROUP, AGE_GROUP,
-    GENDERS, AGE_BRACKETS, MAP_OPTIONS
+    GENDERS, AGE_BRACKETS, MAP_OPTIONS,LOADING_MESSAGE
 } from '../constants';
 import DataGrouper from '../utility/DataGrouper';
 
@@ -63,6 +63,13 @@ export default function ViewStats({ match }) {
     const voters = useSelector(state => state.voters);
     const candidates = useSelector(state => state.candidates);
 
+    const votersLoading = useSelector(state=>state.candidatesLoading);
+    const candidatesLoading = useSelector(state=>state.votersListLoading);
+
+    const loading = votersLoading && candidatesLoading
+    console.log(loading)
+    // item for customising the spinner
+    const antIcon = <Icon type="loading" className="loader" spin />;
     // create mappings to transform our data to  use for the charts
     // get the number of each gender vote
     const genderCount = voters.reduce(countGender, [0, 0]);
@@ -161,6 +168,15 @@ export default function ViewStats({ match }) {
     ];
     // upon start of the app, load the voters and the candidates
     useEffect(() => {
+        // clear the current voters state
+        dispatch(actions.pushVoters([]));
+        dispatch(actions.pushCandidates([]));
+
+        // start spinning the loaders
+        dispatch(actions.loadingVoters(true));
+        dispatch(actions.loadingCandidates(true));
+        
+        // load the voters and candidates
         dispatch(actions.loadVoters(match.params.electionId));
         dispatch(actions.loadCandidates(match.params.electionId));
 
@@ -172,24 +188,32 @@ export default function ViewStats({ match }) {
 
     return (
         <div className="statisticsLayout">
-            <Card className="chart" key={Math.random()}>
-                <HighchartsReact
-                    constructorType="mapChart"
-                    highcharts={Highcharts}
-                    options={MAP_OPTIONS}
-                />
-            </Card>
+            <Spin
+                size="large"
+                indicator={antIcon}
+                spinning={loading}
+                className="loader"
+                tip={LOADING_MESSAGE}
+            >
+                <Card className="chart" key={Math.random()}>
+                    <HighchartsReact
+                        constructorType="mapChart"
+                        highcharts={Highcharts}
+                        options={MAP_OPTIONS}
+                    />
+                </Card>
 
-            {
-                chartOptions.map(option => (
-                    <Card className="chart" key={Math.random()}>
-                        <HighchartsReact
-                            highcharts={Highcharts}
-                            options={option}
-                        />
-                    </Card>
-                ))
-            }
+                {
+                    chartOptions.map(option => (
+                        <Card className="chart" key={Math.random()}>
+                            <HighchartsReact
+                                highcharts={Highcharts}
+                                options={option}
+                            />
+                        </Card>
+                    ))
+                }
+            </Spin>
         </div>
     );
 }

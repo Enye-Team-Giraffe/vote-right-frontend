@@ -6,11 +6,15 @@
     align-items: center;
 }
 
+.no_candidate_text{
+    font-size: 25px;
+}
+
 img{
     height:300px;
 }
 .viewCandidates__card{
-    max-width: 550px;
+    width: 500px;
     margin: 20px;
 }
 .viewCandidates__card__meta{
