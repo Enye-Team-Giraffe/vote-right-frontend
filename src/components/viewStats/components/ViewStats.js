@@ -10,7 +10,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import actions from '../actions';
 import {
     BAR_OPTIONS, PIE_OPTIONS, AGE_OPTIONS, NAME, AGE, GENDER_GROUP, AGE_GROUP,
-    GENDERS, AGE_BRACKETS, MAP_OPTIONS,LOADING_MESSAGE
+    GENDERS, AGE_BRACKETS, MAP_OPTIONS, LOADING_MESSAGE
 } from '../constants';
 import DataGrouper from '../utility/DataGrouper';
 
@@ -63,11 +63,10 @@ export default function ViewStats({ match }) {
     const voters = useSelector(state => state.voters);
     const candidates = useSelector(state => state.candidates);
 
-    const votersLoading = useSelector(state=>state.candidatesLoading);
-    const candidatesLoading = useSelector(state=>state.votersListLoading);
+    const votersLoading = useSelector(state => state.candidatesLoading);
+    const candidatesLoading = useSelector(state => state.votersListLoading);
 
-    const loading = votersLoading && candidatesLoading
-    console.log(loading)
+    const loading = votersLoading && candidatesLoading;
     // item for customising the spinner
     const antIcon = <Icon type="loading" className="loader" spin />;
     // create mappings to transform our data to  use for the charts
@@ -175,7 +174,7 @@ export default function ViewStats({ match }) {
         // start spinning the loaders
         dispatch(actions.loadingVoters(true));
         dispatch(actions.loadingCandidates(true));
-        
+
         // load the voters and candidates
         dispatch(actions.loadVoters(match.params.electionId));
         dispatch(actions.loadCandidates(match.params.electionId));

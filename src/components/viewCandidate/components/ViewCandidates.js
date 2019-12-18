@@ -5,7 +5,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Icon, Spin } from 'antd';
 import { actions } from '../../viewStats';
-import {LOADING_MESSAGE,NO_CANDIDATE} from "../constants"
+import { LOADING_MESSAGE, NO_CANDIDATE } from '../constants';
 
 const { Meta } = Card;
 
@@ -14,17 +14,15 @@ export default function ViewCandidates({ match }) {
     // which has been defined in the viewstats component
     const dispatch = useDispatch();
     useEffect(() => {
-
         dispatch(actions.pushCandidates([]));
         dispatch(actions.loadingCandidates(true));
         dispatch(actions.loadCandidates(match.params.electionId));
-        
     }, [dispatch, match.params.electionId]);
 
     // item for customising the spinner
     const antIcon = <Icon type="loading" className="loader" spin />;
     const candidates = useSelector(state => state.candidates);
-    const loading = useSelector(state=>state.candidatesLoading)
+    const loading = useSelector(state => state.candidatesLoading);
     return (
         <div className="viewCandidates">
             <Spin
@@ -75,8 +73,12 @@ export default function ViewCandidates({ match }) {
                     ))
                 }
                 {
-                    //if there is no candidate and we are not loading any then show that there is none.
-                    (candidates.length===0 && !loading)?<div className="no_candidate_text">{NO_CANDIDATE}</div>:''
+                    // if there is no candidateloading  then show that there is none.
+                    (candidates.length === 0 && !loading) ? (
+                        <div className="no_candidate">
+                            {NO_CANDIDATE}
+                        </div>
+                    ) : ''
                 }
             </Spin>
         </div>

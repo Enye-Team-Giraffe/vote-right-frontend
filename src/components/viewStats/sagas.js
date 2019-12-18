@@ -50,9 +50,8 @@ function* loadCandidates(action) {
         const candidateDetails = yield Promise.all(
             indexes.map((_, index) => electionInterface.methods.candidates(index).call())
         );
-        // add this candidate to the array
+        // add this candidate to the array and stop the spinner
         yield put(actions.pushCandidates(candidateDetails));
-        // stop the spinner
         yield put(actions.loadingCandidates(false));
     } catch (err) {
         message.error(err.message, WAIT_TIME);
