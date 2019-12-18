@@ -15,4 +15,4 @@ export const ELECTION_STARTED_ERROR = 'This election has alredy started';
 export const SUCCESS = 'Sucesfully added candidate to election';
 export const INCOMPLETE_FIELDS = 'Please fill in all fields';
 export const FIELDS = ['name', 'age', 'party', 'quote', 'pictureLink', 'education'];
-export const DATE_ERROR = "Invalid date"
+export const DATE_ERROR = 'Invalid date';
