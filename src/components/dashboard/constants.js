@@ -8,3 +8,13 @@ export const MENU = {
 export const LOGOUT = 'Logout';
 export const WAIT_TIME = 2;
 export const LOGOUT_SUCESSFULL = 'Your logout was sucessfull';
+
+export const BREADCRUMB_NAME_MAP = {
+    '/dashboard': 'Dashboard',
+    '/dashboard/add_candidate': 'Add Candidate',
+    '/dashboard/concluded_election': 'Concluded Election',
+    '/dashboard/create_election': 'Create Election',
+    '/dashboard/pending_election': 'Pending Election',
+    '/dashboard/statistics': 'statistics',
+    '/dashboard/view_candidates': 'View Candidates',
+};

@@ -74,10 +74,10 @@ function* addCandidate(action) {
     /*
     *await ajax request to upload images and return a link
     */
-   if (!body.dateOfBirth || !picture) {
-       message.error(INCOMPLETE_FIELDS, WAIT_TIME);
-       yield put(actions.loadingaddCandidate(false));
-       return;
+    if (!body.dateOfBirth || !picture) {
+        message.error(INCOMPLETE_FIELDS, WAIT_TIME);
+        yield put(actions.loadingaddCandidate(false));
+        return;
     }
     // get the lint of the picture
     const pictureLink = yield call(() => getPictureLink(picture));

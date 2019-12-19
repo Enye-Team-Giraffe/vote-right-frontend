@@ -2,6 +2,7 @@ import mapDataIE from '@highcharts/map-collection/countries/ng/ng-all.geo.json';
 
 export const WAIT_TIME = 2.0;
 export const LARGE_GAS = 3000000;
+export const LOADING_MESSAGE = 'Loading...';
 export const BAR_OPTIONS = {
     chart: {
         type: 'column',
@@ -220,7 +221,7 @@ export const MAP_OPTIONS = {
         type: 'mapbubble',
     }],
     title: {
-        text: 'Map of NNigeria and Votes',
+        text: 'Map of Nigeria and Votes',
     },
     tooltip: {
         headerFormat: '',
