@@ -6,6 +6,7 @@ import { components as LoginPage } from './components/login';
 import AdminLoginPage from './components/adminLoginPage/components';
 import { DashboardLayout as adminDashboard } from './components/dashboard/components';
 import { protectedRoute as ProtectedRoute } from './components/protectedRoute/components';
+import { components as VoterLayout } from './components/voterLayout';
 
 const Routes = () => (
     <Switch>
@@ -13,6 +14,7 @@ const Routes = () => (
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/admin" component={AdminLoginPage} />
         <ProtectedRoute path="/dashboard" component={adminDashboard} authenticated={ADMIN} />
+        <Route path="/voter" component={VoterLayout} />
     </Switch>
 );
 
