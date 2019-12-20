@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './TopNav.css';
@@ -7,7 +8,12 @@ import { VOTERIGHT, MENU, LOGOUT } from '../constants';
 
 const { Header } = Layout;
 
-// eslint-disable-next-line max-lines-per-function
+/**
+ * Navbar for voterLayout
+ *
+ * @component
+ * @return {component} - Navbar for voterLayout
+ */
 const TopNav = () => (
     <Header className="topNav">
         <div className="topNav__logo">

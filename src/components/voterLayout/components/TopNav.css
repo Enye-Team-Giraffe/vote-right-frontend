@@ -47,6 +47,16 @@
     color: #FFFFFF;
 }
 
+.topNav__logout:focus {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+
+.topNav__logout:active {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+
 @media (max-width: 767px){
     .topNav {
         flex-direction: column;
