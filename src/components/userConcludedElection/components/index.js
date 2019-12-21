@@ -1,3 +1,3 @@
-import UserViewConcluded from "./userConcludedElections";
+import UserViewConcluded from './userConcludedElections';
 
-export default UserViewConcluded
+export default UserViewConcluded;

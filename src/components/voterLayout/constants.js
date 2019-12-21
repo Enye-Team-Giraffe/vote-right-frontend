@@ -25,6 +25,6 @@ export const BREADCRUMB_NAME_MAP = {
     '/user': 'Home',
     '/user/concluded-elections': 'Concluded Elections',
     '/user/ongoing-elections': 'Ongoing Elections',
-    "/user/results":"Election Results",
-    "/user/vote":"Vote"
+    '/user/results': 'Election Results',
+    '/user/vote': 'Vote',
 };

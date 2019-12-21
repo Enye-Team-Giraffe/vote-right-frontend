@@ -1,3 +1,3 @@
-import ViewResults from "./viewResults";
+import ViewResults from './viewResults';
 
 export default ViewResults;

@@ -8,8 +8,8 @@ import MainContent from './MainContent';
 import TopNav from './TopNav';
 import { BREADCRUMB_NAME_MAP } from '../constants';
 import { components as UserViewOngoing } from '../../userOngoingElection';
-import {components as UserViewConcluded} from "../../userConcludedElection";
-import {components as ViewResults} from "../../userViewResults"
+import { components as UserViewConcluded } from '../../userConcludedElection';
+import { components as ViewResults } from '../../userViewResults';
 
 const { Content } = Layout;
 

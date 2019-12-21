@@ -31,57 +31,56 @@ export default function ViewCandidates({ match }) {
                 spinning={loading}
                 className="loader"
                 tip={LOADING_MESSAGE}
-            >
-            </Spin>
+            />
 
-                {
-                    candidates.map(candidate => (
-                        <Card
-                            key={candidate.id}
-                            className="viewCandidates__card"
-                            cover={(
-                                <img
-                                    alt="example"
-                                    src="https://i.pravatar.cc/500"
-                                />
-                            )}
-                            actions={[
-                                <Icon type="setting" key="setting" />,
-                                <Icon type="edit" key="edit" />,
-                                <Icon type="ellipsis" key="ellipsis" />,
-                            ]}
-                        >
-                            <Meta
-                                className="viewCandidates__card__meta --name"
-                                title={candidate.name}
+            {
+                candidates.map(candidate => (
+                    <Card
+                        key={candidate.id}
+                        className="viewCandidates__card"
+                        cover={(
+                            <img
+                                alt="example"
+                                src="https://i.pravatar.cc/500"
                             />
-                            <Meta
-                                className="viewCandidates__card__meta --party"
-                                title={`${candidate.age} years of age`}
-                            />
-                            <Meta
-                                className="viewCandidates__card__meta --party"
-                                title={`Member of ${candidate.party}`}
-                            />
-                            <Meta
-                                className="viewCandidates__card__meta --education"
-                                title={`Last studied at ${candidate.education}`}
-                            />
-                            <Meta
-                                className="viewCandidates__card__meta --quote"
-                                description={`'${candidate.quote}'`}
-                            />
-                        </Card>
-                    ))
-                }
-                {
-                    // if there is no candidateloading  then show that there is none.
-                    (candidates.length === 0 && !loading) ? (
-                        <div className="no_candidate">
-                            {NO_CANDIDATE}
-                        </div>
-                    ) : ''
-                }
+                        )}
+                        actions={[
+                            <Icon type="setting" key="setting" />,
+                            <Icon type="edit" key="edit" />,
+                            <Icon type="ellipsis" key="ellipsis" />,
+                        ]}
+                    >
+                        <Meta
+                            className="viewCandidates__card__meta --name"
+                            title={candidate.name}
+                        />
+                        <Meta
+                            className="viewCandidates__card__meta --party"
+                            title={`${candidate.age} years of age`}
+                        />
+                        <Meta
+                            className="viewCandidates__card__meta --party"
+                            title={`Member of ${candidate.party}`}
+                        />
+                        <Meta
+                            className="viewCandidates__card__meta --education"
+                            title={`Last studied at ${candidate.education}`}
+                        />
+                        <Meta
+                            className="viewCandidates__card__meta --quote"
+                            description={`'${candidate.quote}'`}
+                        />
+                    </Card>
+                ))
+            }
+            {
+                // if there is no candidateloading  then show that there is none.
+                (candidates.length === 0 && !loading) ? (
+                    <div className="no_candidate">
+                        {NO_CANDIDATE}
+                    </div>
+                ) : ''
+            }
         </div>
     );
 }
