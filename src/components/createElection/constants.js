@@ -14,3 +14,9 @@ export const ROW_HEIGHT = 4;
 export const CREATE_ELECTION_SUCCESS = 'Election sucesfully created';
 export const BUTTON_TEXT = 'Create';
 export const VIEW_ELECTIONS_PATH = '/dashboard/';
+export const ELECTION_NAME_OPTIONS = [
+    { key: '1', text: 'Presidential', value: 'presidential' },
+    { key: '2', text: 'Gubernatorial', value: 'gubernatorial' },
+    { key: '3', text: 'Senatorial', value: 'senatorial' },
+    { key: '4', text: 'House of Representatives', value: 'representative' },
+];

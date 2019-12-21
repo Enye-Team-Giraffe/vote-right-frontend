@@ -18,7 +18,7 @@ export default function ViewElection() {
     const antIcon = <Icon type="loading" className="loader" spin />;
     // upon render of the page get all the elections
     useEffect(() => {
-        dispatch(actions.pushElections([]))
+        dispatch(actions.pushElections([]));
         dispatch(actions.loadElections());
     }, [dispatch]);
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
