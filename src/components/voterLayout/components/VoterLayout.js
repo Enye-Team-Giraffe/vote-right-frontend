@@ -47,7 +47,7 @@ const VoterLayout = withRouter(props => {
     return (
         <Layout>
             <TopNav />
-            <Content className="content">
+            <Content className="content --voterLayout">
                 <div className="content__breadcrumb --voterLayout">
                     <Breadcrumb>{breadcrumbItems}</Breadcrumb>
                 </div>
