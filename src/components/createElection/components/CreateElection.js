@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
-    Card, Input, DatePicker, Button, Spin, Icon
+    Card, Input, DatePicker, Button, Spin, Icon, Select
 } from 'antd';
 import './CreateElection.css';
 import actions from '../actions';
 import {
     NAME, DESCRIPTION, STARTDATE, ENDDATE, CREATEELECTION,
-    ROW_HEIGHT, BUTTON_TEXT
+    ROW_HEIGHT, BUTTON_TEXT, ELECTION_NAME_OPTIONS
 } from '../constants';
 
 /**
@@ -27,16 +27,21 @@ const CreateElection = () => {
     const [endDate, updateEndDate] = useState('');
 
     /**
+     * Handles change in select field
+     * @function
+     * @param {value} - value of selected option
+     */
+    const handleChangeSelect = value => {
+        updateName(value);
+    };
+
+    /**
      * Handles change in input text field
      * @function
      * @param {event} - Event on input field
      */
     const handleChangeText = ({ target }) => {
-        if (target.name === 'name') {
-            updateName(target.value);
-        } else {
-            updateDescription(target.value);
-        }
+        updateDescription(target.value);
     };
 
     /**
@@ -102,12 +107,20 @@ const CreateElection = () => {
                         </div>
                         <div className="createElectionForm__group">
                             <span>{NAME}</span>
-                            <Input
-                                className="createElectionForm__input --input-element"
-                                name="name"
-                                required
-                                onChange={handleChangeText}
-                            />
+                            <Select
+                                placeholder="Select election"
+                                onChange={handleChangeSelect}
+                            >
+                                {ELECTION_NAME_OPTIONS.map(option => (
+                                    <Select.Option
+                                        key={option.key}
+                                        value={option.value}
+                                    >
+                                        {option.text}
+                                    </Select.Option>
+                                ))}
+                            </Select>
+
                         </div>
                         <div className="createElectionForm__group">
                             <span>{DESCRIPTION}</span>
