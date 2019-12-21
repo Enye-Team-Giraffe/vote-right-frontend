@@ -1,0 +1,9 @@
+.content{
+    margin-top: 75px;
+}
+
+
+.content__breadcrumb.--voterLayout{
+    padding-top:10px;
+    border-bottom: 1.3px solid var(--primary-color);
+}
