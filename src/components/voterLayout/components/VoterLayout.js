@@ -7,8 +7,9 @@ import { Layout, Breadcrumb } from 'antd';
 import MainContent from './MainContent';
 import TopNav from './TopNav';
 import { BREADCRUMB_NAME_MAP } from '../constants';
-import { components as userViewOngoing } from '../../userOngoingElection';
-import {components as userViewConcluded} from "../../userConcludedElection"
+import { components as UserViewOngoing } from '../../userOngoingElection';
+import {components as UserViewConcluded} from "../../userConcludedElection";
+import {components as ViewResults} from "../../userViewResults"
 
 const { Content } = Layout;
 
@@ -60,12 +61,17 @@ const VoterLayout = withRouter(props => {
                     <Route
                         exact
                         path="/user/ongoing-elections"
-                        component={userViewOngoing}
+                        component={UserViewOngoing}
                     />
                     <Route
                         exact
                         path="/user/concluded-elections"
-                        component={userViewConcluded}
+                        component={UserViewConcluded}
+                    />
+                    <Route
+                        exact
+                        path="/user/results/:electionId"
+                        component={ViewResults}
                     />
                 </Switch>
             </Content>

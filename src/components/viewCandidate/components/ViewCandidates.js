@@ -32,6 +32,8 @@ export default function ViewCandidates({ match }) {
                 className="loader"
                 tip={LOADING_MESSAGE}
             >
+            </Spin>
+
                 {
                     candidates.map(candidate => (
                         <Card
@@ -80,7 +82,6 @@ export default function ViewCandidates({ match }) {
                         </div>
                     ) : ''
                 }
-            </Spin>
         </div>
     );
 }
