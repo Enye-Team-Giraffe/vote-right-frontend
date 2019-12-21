@@ -165,6 +165,7 @@ export default function ViewStats({ match }) {
         newPieOptions, newBarOptions, newAgeOptions,
         newGenderGroupOptions, newAgeGroupOptions,
     ];
+
     // upon start of the app, load the voters and the candidates
     useEffect(() => {
         // clear the current voters state
@@ -185,6 +186,7 @@ export default function ViewStats({ match }) {
         }
     }, [dispatch, match.params.electionId]);
 
+    const hideUntilLoaded = () => ((loading) ? '--hidden' : '');
     return (
         <div className="statisticsLayout">
             <Spin
@@ -193,26 +195,24 @@ export default function ViewStats({ match }) {
                 spinning={loading}
                 className="loader"
                 tip={LOADING_MESSAGE}
-            >
-                <Card className="chart" key={Math.random()}>
-                    <HighchartsReact
-                        constructorType="mapChart"
-                        highcharts={Highcharts}
-                        options={MAP_OPTIONS}
-                    />
-                </Card>
-
-                {
-                    chartOptions.map(option => (
-                        <Card className="chart" key={Math.random()}>
-                            <HighchartsReact
-                                highcharts={Highcharts}
-                                options={option}
-                            />
-                        </Card>
-                    ))
-                }
-            </Spin>
+            />
+            <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
+                <HighchartsReact
+                    constructorType="mapChart"
+                    highcharts={Highcharts}
+                    options={MAP_OPTIONS}
+                />
+            </Card>
+            {
+                chartOptions.map(option => (
+                    <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
+                        <HighchartsReact
+                            highcharts={Highcharts}
+                            options={option}
+                        />
+                    </Card>
+                ))
+            }
         </div>
     );
 }

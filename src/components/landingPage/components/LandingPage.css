@@ -91,7 +91,7 @@
 }
 .homepage-wrapper__content__description{
     font-family: 'IBM Plex Serif', serif;
-    font-size: 42px;
+    font-size: 40px;
     padding: 0;
     margin: 0;
 }
@@ -211,11 +211,14 @@
     }
 }
 
-@media (max-width: 500px){
+@media (max-width: 700px){
     .description{
-        font-size: 25px;
+        font-size: 20px;
     }  
     .homepage-wrapper__content__text{
         font-size: 15px;
+    }
+    .homepage-wrapper__content__description{
+        font-size: 28px;
     }
 }

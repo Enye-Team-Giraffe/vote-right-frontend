@@ -1,3 +1,3 @@
 import VoterLayout from './VoterLayout';
 
-export default VoterLayout; 
+export default VoterLayout;

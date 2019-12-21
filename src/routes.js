@@ -14,7 +14,7 @@ const Routes = () => (
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/admin" component={AdminLoginPage} />
         <ProtectedRoute path="/dashboard" component={adminDashboard} authenticated={ADMIN} />
-        <Route path="/voter" component={VoterLayout} />
+        <Route path="/user" component={VoterLayout} />
     </Switch>
 );
 

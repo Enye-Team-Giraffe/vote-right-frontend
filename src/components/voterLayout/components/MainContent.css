@@ -1,0 +1,111 @@
+.voterLayout{
+    margin-top: 250px;
+    margin-bottom: 20px;
+    min-height: calc( 100vh - 270px);
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 100px;
+}
+.voterLayout__concluded-election{
+    margin-top: 200px;
+}
+.voterLayout__election__tab{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: white;
+    padding: 25px 90px 39px 100px;
+    border-radius: 15px;
+    transition: 100ms;
+}
+.voterLayout__election__tab:hover{
+    transform: scale(1.01);
+    box-shadow: 0.1px 0.1px 3px black;;
+}
+.voterLayout__election__tab__image{
+    height: 180px;
+}
+.voterLayout__election__tab__text{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 30px;
+    padding-left: 30px;
+}
+@media (min-width: 1300px) and (max-width: 1900px) {
+    .voterLayout{
+        margin-top: 140px;
+        min-height: calc( 100vh - 190px);
+        margin-bottom: 50px;
+    }
+    .voterLayout__election__tab__image{
+        height: 100px;
+    }
+    .voterLayout__election__tab{
+        padding: 25px 50px 39px 50px;
+    }
+}
+@media (min-width : 1000px) and (max-width: 1300px){
+    .voterLayout{
+        margin-top: 150px;
+        min-height: calc( 100vh - 170px);
+    }
+    .voterLayout__election__tab{
+        padding: 20px 50px 40px 40px;
+    }
+    .voterLayout__election__tab__image{
+        height: 60px;
+    }
+    .voterLayout__election__tab__text{
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .voterLayout{
+        padding: 0px 100px;
+    }
+}
+@media (min-width: 500px) and  (max-width: 1000px){
+    .voterLayout{
+        margin-top: 200px;
+        min-height: calc( 100vh - 220px );
+        padding: 0px 100px;
+    }
+    .voterLayout__election__tab{
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 20px 20px 20px;
+    }
+    .voterLayout__election__tab__image{
+        height: 100px;
+    }
+    .voterLayout__election__tab__text{
+        font-size: 20px;
+        margin-bottom: 10px;
+        padding-left: 0px;
+    }
+    .voterLayout__concluded-election{
+        margin-top: 260px;
+    }
+}
+
+@media (max-width: 500px){
+    .voterLayout{
+        margin-top: 100px;
+        min-height: calc( 100vh - 120px);
+        padding: 0px 20px;
+    }
+    .voterLayout__election__tab{
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 30px 10px 30px;
+    }
+    .voterLayout__election__tab__image{
+        height: 60px;
+    }
+    .voterLayout__election__tab__text{
+        font-size: 10px;
+        text-align: center;
+        margin-top: 15px;
+        padding-left: 0px;
+    }
+}
