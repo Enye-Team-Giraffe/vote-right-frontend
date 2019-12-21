@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { ADMIN,USER } from './constants';
+import { ADMIN, USER } from './constants';
 import { LandingPage } from './components/landingPage/components';
 import { components as LoginPage } from './components/login';
 import AdminLoginPage from './components/adminLoginPage/components';
@@ -14,7 +14,7 @@ const Routes = () => (
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/admin" component={AdminLoginPage} />
         <ProtectedRoute path="/dashboard" component={adminDashboard} authenticated={ADMIN} />
-        <ProtectedRoute path="/user" component={VoterLayout} authenticated={USER}/>
+        <ProtectedRoute path="/user" component={VoterLayout} authenticated={USER} />
     </Switch>
 );
 

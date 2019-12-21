@@ -6,6 +6,7 @@ import { Layout, Button } from 'antd';
 import { useDispatch } from 'react-redux';
 import { actions } from '../../dashboard';
 import { VOTERIGHT, LOGOUT } from '../constants';
+
 const { Header } = Layout;
 /**
  * Navbar for voterLayout

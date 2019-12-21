@@ -1,7 +1,7 @@
 .voterLayout{
     margin-top: 250px;
     margin-bottom: 20px;
-    min-height: calc( 100vh - 270px);
+    min-height: calc( 100vh - 320px);
     display: flex;
     justify-content: space-between;
     padding: 0px 100px;
@@ -31,11 +31,12 @@
     text-align: center;
     margin-top: 30px;
     padding-left: 30px;
+    color: #262525;
 }
 @media (min-width: 1300px) and (max-width: 1900px) {
     .voterLayout{
         margin-top: 140px;
-        min-height: calc( 100vh - 190px);
+        min-height: calc( 100vh - 240px);
         margin-bottom: 50px;
     }
     .voterLayout__election__tab__image{
@@ -48,7 +49,7 @@
 @media (min-width : 1000px) and (max-width: 1300px){
     .voterLayout{
         margin-top: 150px;
-        min-height: calc( 100vh - 170px);
+        min-height: calc( 100vh - 220px);
     }
     .voterLayout__election__tab{
         padding: 20px 50px 40px 40px;
@@ -67,7 +68,7 @@
 @media (min-width: 500px) and  (max-width: 1000px){
     .voterLayout{
         margin-top: 200px;
-        min-height: calc( 100vh - 220px );
+        min-height: calc( 100vh - 270px );
         padding: 0px 100px;
     }
     .voterLayout__election__tab{
@@ -91,7 +92,7 @@
 @media (max-width: 500px){
     .voterLayout{
         margin-top: 100px;
-        min-height: calc( 100vh - 120px);
+        min-height: calc( 100vh - 170px);
         padding: 0px 20px;
     }
     .voterLayout__election__tab{
