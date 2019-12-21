@@ -17,11 +17,12 @@
     background: white;
     padding: 25px 90px 39px 100px;
     border-radius: 15px;
-    transition: 100ms;
+    transition: 500ms;
 }
 .voterLayout__election__tab:hover{
     transform: scale(1.01);
-    box-shadow: 0.1px 0.1px 3px black;;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0.1px 0.1px 3px black;
 }
 .voterLayout__election__tab__image{
     height: 180px;
