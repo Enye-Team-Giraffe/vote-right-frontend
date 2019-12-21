@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Card, Icon, Spin } from 'antd';
 
-import './userViewOngoing.css';
+import './userConcludedElections.css';
 import { LOADING_MESSAGE } from '../constants';
 import { actions } from '../../viewElection';
 
@@ -14,6 +14,8 @@ export default function ViewElection() {
     const dispatch = useDispatch();
     const elections = useSelector(state => state.elections);
     const loadingElections = useSelector(state => state.electionListLoading);
+    // filter the elections and only select the ones
+    // with dates less than today
 
     const antIcon = <Icon type="loading" className="loader" spin />;
     // upon render of the page get all the elections
@@ -22,6 +24,7 @@ export default function ViewElection() {
         dispatch(actions.loadingElections(true));
         dispatch(actions.loadElections());
     }, [dispatch]);
+
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
     return (
         <div className="viewElectionLayout">
@@ -69,14 +72,14 @@ export default function ViewElection() {
                                             key={election.name}
                                         >
                                             <NavLink
-                                                to={`/user/vote/${election.location}`}
+                                                to={`/user/results/${election.location}`}
                                             >
                                                 <Icon
                                                     className="electionItem__subitem__icon"
                                                     type="link"
                                                     key="link"
                                                 />
-                                                Vote in this election
+                                                View Results
                                             </NavLink>
                                         </div>,
                                     ]}
