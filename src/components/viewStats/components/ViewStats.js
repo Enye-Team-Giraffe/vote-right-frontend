@@ -185,10 +185,9 @@ export default function ViewStats({ match }) {
             window.proj4 = window.proj4 || proj4;
         }
     }, [dispatch, match.params.electionId]);
-    
+
     //  a function to hide the map content while it is loading
-    const hideUntilLoaded = ()=> (loading) ? "--hidden":""
-    
+    const hideUntilLoaded = () => ((loading) ? '--hidden' : '');
 
     return (
         <div className="statisticsLayout">
@@ -198,10 +197,9 @@ export default function ViewStats({ match }) {
                 spinning={loading}
                 className="loader"
                 tip={LOADING_MESSAGE}
-            >
-            </Spin>
-             
-            <Card className={"chart " + hideUntilLoaded() } key={Math.random()}>
+            />
+
+            <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
                 <HighchartsReact
                     constructorType="mapChart"
                     highcharts={Highcharts}
@@ -211,7 +209,7 @@ export default function ViewStats({ match }) {
 
             {
                 chartOptions.map(option => (
-                    <Card className={"chart " + hideUntilLoaded()} key={Math.random()}>
+                    <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
                         <HighchartsReact
                             highcharts={Highcharts}
                             options={option}

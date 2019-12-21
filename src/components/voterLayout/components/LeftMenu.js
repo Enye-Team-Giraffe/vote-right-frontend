@@ -1,7 +1,9 @@
 /* eslint-disable max-lines-per-function */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Drawer, Icon, Menu } from 'antd';
+import {
+    Button, Drawer, Icon, Menu
+} from 'antd';
 import './LeftMenu.css';
 import { MENU, LOGOUT } from '../constants';
 
