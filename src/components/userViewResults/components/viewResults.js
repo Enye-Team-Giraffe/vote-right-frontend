@@ -1,18 +1,33 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect } from 'react';
-import './ViewCandidates.css';
+import './viewResults.css';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Icon, Spin } from 'antd';
+import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
 import { LOADING_MESSAGE, NO_CANDIDATE } from '../constants';
 
 const { Meta } = Card;
 
-export default function ViewCandidates({ match }) {
+const IconText = ({ type, text }) => (
+    <span>
+        <Icon type={type} style={{ marginRight: 8 }} />
+        {text}
+    </span>
+);
+
+export default function ViewResults({ match }) {
+    // get the state variables
+    const candidates = useSelector(state => state.candidates);
+    const loading = useSelector(state => state.candidatesLoading);
     // dispatch the loadCandidates saga
     // which has been defined in the viewstats component
     const dispatch = useDispatch();
+    const totalVotes = candidates.reduce((previous, next) => previous + Number(next.voteCount), 0);
+    const calcPercentage = (num, total) => ((Number(num) / total).toFixed(2) * 100);
+    const sortedCandidate = candidates.sort((a, b) => b.voteCount - a.voteCount);
+
     useEffect(() => {
         dispatch(actions.pushCandidates([]));
         dispatch(actions.loadingCandidates(true));
@@ -21,10 +36,8 @@ export default function ViewCandidates({ match }) {
 
     // item for customising the spinner
     const antIcon = <Icon type="loading" className="loader" spin />;
-    const candidates = useSelector(state => state.candidates);
-    const loading = useSelector(state => state.candidatesLoading);
     return (
-        <div className="viewCandidates">
+        <div className="viewCandidates --results">
             <Spin
                 size="large"
                 indicator={antIcon}
@@ -32,9 +45,8 @@ export default function ViewCandidates({ match }) {
                 className="loader"
                 tip={LOADING_MESSAGE}
             />
-
             {
-                candidates.map(candidate => (
+                sortedCandidate.map(candidate => (
                     <Card
                         key={candidate.id}
                         className="viewCandidates__card"
@@ -45,9 +57,16 @@ export default function ViewCandidates({ match }) {
                             />
                         )}
                         actions={[
-                            <Icon type="setting" key="setting" />,
-                            <Icon type="edit" key="edit" />,
-                            <Icon type="ellipsis" key="ellipsis" />,
+                            <IconText
+                                type="check"
+                                text={candidate.voteCount}
+                                key="list-vertical-like-o"
+                            />,
+                            <IconText
+                                type="arrow-up"
+                                text={`${calcPercentage(candidate.voteCount, totalVotes)}%`}
+                                key="list-vertical-message"
+                            />,
                         ]}
                     >
                         <Meta
@@ -85,6 +104,12 @@ export default function ViewCandidates({ match }) {
     );
 }
 
-ViewCandidates.propTypes = {
+ViewResults.propTypes = {
     match: ReactRouterPropTypes.match.isRequired,
 };
+
+IconText.propTypes = {
+    text: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+};
+

@@ -5,7 +5,9 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import highchartsMap from 'highcharts/modules/map';
 import proj4 from 'proj4';
-import { Card, Spin, Icon } from 'antd';
+import {
+    Card, Spin, Icon, Statistic
+} from 'antd';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import actions from '../actions';
 import {
@@ -162,9 +164,15 @@ export default function ViewStats({ match }) {
     };
     // define them as an array for mappint
     const chartOptions = [
-        newPieOptions, newBarOptions, newAgeOptions,
-        newGenderGroupOptions, newAgeGroupOptions,
+        { options: newPieOptions, size: '' },
+        { options: newAgeOptions, size: ' --large' },
+        { options: newBarOptions, size: '' },
+        { options: newGenderGroupOptions, size: '' },
+        { options: newAgeGroupOptions, size: ' --large' },
     ];
+
+    // get the total number of people who have voted
+    const totalVotes = candidates.reduce((previous, next) => previous + Number(next.voteCount), 0);
 
     // upon start of the app, load the voters and the candidates
     useEffect(() => {
@@ -196,6 +204,19 @@ export default function ViewStats({ match }) {
                 className="loader"
                 tip={LOADING_MESSAGE}
             />
+
+            <div className={`statisticsLayout__statistic ${hideUntilLoaded()}`}>
+                <Card className="statisticsLayout__statistic__card">
+                    <Statistic
+                        title="Number of Voters"
+                        value={totalVotes}
+                        precision={2}
+                        valueStyle={{ color: '#3f8600' }}
+                        prefix={<Icon type="arrow-up" />}
+                        suffix="+"
+                    />
+                </Card>
+            </div>
             <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
                 <HighchartsReact
                     constructorType="mapChart"
@@ -205,10 +226,13 @@ export default function ViewStats({ match }) {
             </Card>
             {
                 chartOptions.map(option => (
-                    <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
+                    <Card
+                        className={`chart ${hideUntilLoaded()} ${option.size}`}
+                        key={Math.random()}
+                    >
                         <HighchartsReact
                             highcharts={Highcharts}
-                            options={option}
+                            options={option.options}
                         />
                     </Card>
                 ))

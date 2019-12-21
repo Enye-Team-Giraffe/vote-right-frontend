@@ -1,5 +1,6 @@
 .statisticsLayout{
     padding: 30px 50px;
+    background-color: #f7fbff;
 }
 
 .chart{
@@ -13,6 +14,25 @@
     width: 100%;
 }
 
+.statisticsLayout__statistic{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.statisticsLayout__statistic__card{
+    width:200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.--large{
+    width: 95%;
+}
+
 .--hidden{
     display: none;
 }
@@ -21,6 +41,11 @@
     .chart{
         width:45%
     }
+
+    .--large{
+        width: 90%;
+    }
+
     .statisticsLayout{
         display: flex;
         flex-wrap: wrap;
