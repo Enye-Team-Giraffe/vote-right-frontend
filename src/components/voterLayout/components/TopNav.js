@@ -16,7 +16,6 @@ const { Header } = Layout;
 const TopNav = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    // a function to logout the user
     const logoutUser = () => {
         dispatch(actions.logoutUser(history));
     };
