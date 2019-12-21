@@ -186,9 +186,7 @@ export default function ViewStats({ match }) {
         }
     }, [dispatch, match.params.electionId]);
 
-    //  a function to hide the map content while it is loading
     const hideUntilLoaded = () => ((loading) ? '--hidden' : '');
-
     return (
         <div className="statisticsLayout">
             <Spin
@@ -198,7 +196,6 @@ export default function ViewStats({ match }) {
                 className="loader"
                 tip={LOADING_MESSAGE}
             />
-
             <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
                 <HighchartsReact
                     constructorType="mapChart"
@@ -206,7 +203,6 @@ export default function ViewStats({ match }) {
                     options={MAP_OPTIONS}
                 />
             </Card>
-
             {
                 chartOptions.map(option => (
                     <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
