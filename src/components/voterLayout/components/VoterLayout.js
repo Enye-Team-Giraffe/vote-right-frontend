@@ -8,6 +8,7 @@ import MainContent from './MainContent';
 import TopNav from './TopNav';
 import { BREADCRUMB_NAME_MAP } from '../constants';
 import { components as userViewOngoing } from '../../userOngoingElection';
+import {components as userViewConcluded} from "../../userConcludedElection"
 
 const { Content } = Layout;
 
@@ -60,6 +61,11 @@ const VoterLayout = withRouter(props => {
                         exact
                         path="/user/ongoing-elections"
                         component={userViewOngoing}
+                    />
+                    <Route
+                        exact
+                        path="/user/concluded-elections"
+                        component={userViewConcluded}
                     />
                 </Switch>
             </Content>
