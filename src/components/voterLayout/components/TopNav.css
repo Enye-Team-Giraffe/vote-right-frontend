@@ -64,7 +64,6 @@
     align-items: center;
     padding:0 15px;
 }
-
 @media (max-width: 767px){
     .topNav {
         flex-direction: column;

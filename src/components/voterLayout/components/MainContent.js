@@ -4,7 +4,6 @@ import './MainContent.css';
 import { Layout } from 'antd';
 
 import { BODY_CONTENT } from '../constants';
-
 const { Content } = Layout;
 
 const MainContent = () => (

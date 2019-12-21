@@ -4,7 +4,6 @@
     min-height: calc( 100vh - 270px);
     display: flex;
     justify-content: space-between;
-    overflow: hidden;
     padding: 0px 100px;
 }
 .voterLayout__concluded-election{
@@ -70,7 +69,6 @@
         margin-top: 200px;
         min-height: calc( 100vh - 220px );
         padding: 0px 100px;
-
     }
     .voterLayout__election__tab{
         flex-direction: column;
@@ -95,7 +93,6 @@
         margin-top: 100px;
         min-height: calc( 100vh - 120px);
         padding: 0px 20px;
-        overflow: visible;
     }
     .voterLayout__election__tab{
         flex-direction: column;
