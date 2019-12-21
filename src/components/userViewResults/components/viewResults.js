@@ -7,6 +7,7 @@ import { Card, Icon, Spin } from 'antd';
 import { actions } from '../../viewStats';
 import { LOADING_MESSAGE, NO_CANDIDATE } from '../constants';
 
+
 const { Meta } = Card;
 
 

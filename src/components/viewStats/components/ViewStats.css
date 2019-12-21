@@ -13,6 +13,10 @@
     width: 100%;
 }
 
+.--large{
+    width: calc( 100% + 40px );
+}
+
 .--hidden{
     display: none;
 }
@@ -21,6 +25,11 @@
     .chart{
         width:45%
     }
+
+    .--large{
+        width: 90%;
+    }
+
     .statisticsLayout{
         display: flex;
         flex-wrap: wrap;

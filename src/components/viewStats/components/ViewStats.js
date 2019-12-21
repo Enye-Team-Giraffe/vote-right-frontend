@@ -162,8 +162,11 @@ export default function ViewStats({ match }) {
     };
     // define them as an array for mappint
     const chartOptions = [
-        newPieOptions, newBarOptions, newAgeOptions,
-        newGenderGroupOptions, newAgeGroupOptions,
+        {options:newPieOptions,size:""}, 
+        {options:newAgeOptions,size:" --large"},
+        {options:newBarOptions,size:""}, 
+        {options:newGenderGroupOptions,size:""},
+        {options:newAgeGroupOptions,size:" --large"},
     ];
 
     // upon start of the app, load the voters and the candidates
@@ -196,6 +199,8 @@ export default function ViewStats({ match }) {
                 className="loader"
                 tip={LOADING_MESSAGE}
             />
+
+            
             <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
                 <HighchartsReact
                     constructorType="mapChart"
@@ -205,10 +210,10 @@ export default function ViewStats({ match }) {
             </Card>
             {
                 chartOptions.map(option => (
-                    <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
+                    <Card className={`chart ${hideUntilLoaded()} ${option.size}`} key={Math.random()}>
                         <HighchartsReact
                             highcharts={Highcharts}
-                            options={option}
+                            options={option.options}
                         />
                     </Card>
                 ))
