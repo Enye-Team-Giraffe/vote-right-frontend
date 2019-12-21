@@ -165,6 +165,7 @@ export default function ViewStats({ match }) {
         newPieOptions, newBarOptions, newAgeOptions,
         newGenderGroupOptions, newAgeGroupOptions,
     ];
+
     // upon start of the app, load the voters and the candidates
     useEffect(() => {
         // clear the current voters state
@@ -184,6 +185,10 @@ export default function ViewStats({ match }) {
             window.proj4 = window.proj4 || proj4;
         }
     }, [dispatch, match.params.electionId]);
+    
+    //  a function to hide the map content while it is loading
+    const hideUntilLoaded = ()=> (loading) ? "--hidden":""
+    
 
     return (
         <div className="statisticsLayout">
@@ -194,25 +199,26 @@ export default function ViewStats({ match }) {
                 className="loader"
                 tip={LOADING_MESSAGE}
             >
-                <Card className="chart" key={Math.random()}>
-                    <HighchartsReact
-                        constructorType="mapChart"
-                        highcharts={Highcharts}
-                        options={MAP_OPTIONS}
-                    />
-                </Card>
-
-                {
-                    chartOptions.map(option => (
-                        <Card className="chart" key={Math.random()}>
-                            <HighchartsReact
-                                highcharts={Highcharts}
-                                options={option}
-                            />
-                        </Card>
-                    ))
-                }
             </Spin>
+             
+            <Card className={"chart " + hideUntilLoaded() } key={Math.random()}>
+                <HighchartsReact
+                    constructorType="mapChart"
+                    highcharts={Highcharts}
+                    options={MAP_OPTIONS}
+                />
+            </Card>
+
+            {
+                chartOptions.map(option => (
+                    <Card className={"chart " + hideUntilLoaded()} key={Math.random()}>
+                        <HighchartsReact
+                            highcharts={Highcharts}
+                            options={option}
+                        />
+                    </Card>
+                ))
+            }
         </div>
     );
 }
