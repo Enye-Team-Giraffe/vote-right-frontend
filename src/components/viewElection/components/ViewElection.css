@@ -24,6 +24,7 @@
     padding: 0 10px;
     justify-content: space-around;
     flex-wrap: wrap;
+    overflow: hidden;
 }
 
 .electionItem__subitem.--text{

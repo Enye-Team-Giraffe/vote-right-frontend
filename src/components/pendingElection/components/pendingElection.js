@@ -9,7 +9,8 @@ import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
     VIEW_CANDIDATE_ROUTE, ADD_CANDIDATE_ROUTE, VIEW_CANDIDATE, ADD_CANDIDATE
 } from '../constants';
-
+import { Statistic } from 'antd';
+import { Button} from 'antd';
 import actions from '../../viewElection/actions';
 
 const { Meta } = Card;
@@ -34,14 +35,17 @@ export default function ViewElection() {
                 className="loader"
                 tip={LOADING_MESSAGE}
             >
+            </Spin>
+
                 <div className="viewElection">
                     {
                         elections.map(election => (
                             <div className="electionItem" key={election.location}>
                                 <Card
+                                    title={"The " + election.name}
                                     actions={[
                                         <div
-                                            className="electionItem__subitem"
+                                            className="electionItem__subitem --text"
                                             key={election.startdate}
                                         >
                                             <div>
@@ -50,13 +54,11 @@ export default function ViewElection() {
                                                     type="calendar"
                                                     key="calendar"
                                                 />
-                                                <span className="electionItem__subitem__text">
-                                                    {toDateString(election.startdate)}
-                                                </span>
+                                                {toDateString(election.startdate)}
                                             </div>
                                         </div>,
                                         <div
-                                            className="electionItem__subitem"
+                                            className="electionItem__subitem --text"
                                             key={election.enddate}
                                         >
                                             <div>
@@ -65,47 +67,60 @@ export default function ViewElection() {
                                                     type="calendar"
                                                     key="calendar"
                                                 />
-                                                <span className="electionItem__subitem__text">
-                                                    {toDateString(election.enddate)}
-                                                </span>
+                                                {toDateString(election.enddate)}
                                             </div>
                                         </div>,
-                                        <div
-                                            className="electionItem__subitem"
+                                        <Button
+                                            type="primary"
+                                            className="electionItem__subitem --button"
                                             key={election.name}
-                                        >
-                                            <NavLink
-                                                to={`${ADD_CANDIDATE_ROUTE}${election.location}`}
-                                            >
-                                                <Icon
-                                                    className="electionItem__subitem__icon"
-                                                    type="link"
-                                                    key="link"
-                                                />
-                                                {ADD_CANDIDATE}
-                                            </NavLink>
-                                        </div>,
-                                        <div
-                                            className="electionItem__subitem"
+                                         >
+                                             <NavLink
+                                                 to={`${ADD_CANDIDATE_ROUTE}${election.location}`}
+                                             >
+                                                 <Icon
+                                                     className="electionItem__subitem__icon"
+                                                     type="plus"
+                                                     key="link"
+                                                 />
+                                                 {ADD_CANDIDATE}
+                                             </NavLink>
+                                        </Button>,
+                                        <Button
+                                            type="primary"
+                                            className="electionItem__subitem --button"
                                             key={Math.random()}
-                                        >
-                                            <NavLink
-                                                to={`${VIEW_CANDIDATE_ROUTE}${election.location}`}
-                                            >
-                                                <Icon
-                                                    className="electionItem__subitem__icon"
-                                                    type="link"
-                                                    key="link"
-                                                />
-                                                {VIEW_CANDIDATE}
-                                            </NavLink>
-                                        </div>,
+                                         >
+                                             <NavLink
+                                                 to={`${VIEW_CANDIDATE_ROUTE}${election.location}`}
+                                             >
+                                                 <Icon
+                                                     className="electionItem__subitem__icon"
+                                                     type="eye"
+                                                     key="link"
+                                                 />
+                                                 {VIEW_CANDIDATE}
+                                             </NavLink>
+                                        </Button>,
                                     ]}
                                 >
                                     <Meta
-                                        title={election.name}
                                         description={election.description}
                                     />
+                                    <p></p>
+                                    <div className="electionItem__statistics">
+                                        <Statistic
+                                            title="Candidates"
+                                            value={3}
+                                            precision={0}
+                                            valueStyle={{ color: '#3f8600' }}
+                                        />
+                                        <Statistic
+                                            title="Days till start"
+                                            value={20}
+                                            valueStyle={{ color: '#3f8600' }}
+                                        />
+                                    </div>
                                 </Card>
                             </div>
                         ))
@@ -113,7 +128,6 @@ export default function ViewElection() {
                     }
 
                 </div>
-            </Spin>
         </div>
     );
 }
