@@ -3,11 +3,9 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import './ViewElection.css';
-import { Card, Icon, Spin } from 'antd';
+import { Card, Icon, Spin, Statistic ,Button} from 'antd';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../constants';
-import { Statistic } from 'antd';
-import { Button} from 'antd';
 
 
 import actions from '../actions';
@@ -101,8 +99,9 @@ export default function ViewElection() {
                                             valueStyle={{ color: '#3f8600' }}
                                         />
                                         <Statistic
-                                            title="Votes"
+                                            title="Votes Count"
                                             value={111221}
+                                            prefix={<Icon type="arrow-up" />}
                                             valueStyle={{ color: '#3f8600' }}
                                         />
                                         <Statistic

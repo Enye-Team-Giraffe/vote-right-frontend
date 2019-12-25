@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import '../../viewElection/components/ViewElection';
-import { Card, Icon, Spin } from 'antd';
+import { Card, Icon, Spin, Button,Statistic } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 
@@ -31,14 +31,17 @@ export default function ViewElection() {
                 className="loader"
                 tip={LOADING_MESSAGE}
             >
+            </Spin>
+
                 <div className="viewElection">
                     {
                         elections.map(election => (
                             <div className="electionItem" key={election.location}>
                                 <Card
+                                    title={"The " + election.name}
                                     actions={[
                                         <div
-                                            className="electionItem__subitem"
+                                            className="electionItem__subitem --text"
                                             key={election.startdate}
                                         >
                                             <div>
@@ -47,15 +50,11 @@ export default function ViewElection() {
                                                     type="calendar"
                                                     key="calendar"
                                                 />
-                                                <span
-                                                    className="electionItem__subitem__text"
-                                                >
-                                                    {toDateString(election.startdate)}
-                                                </span>
+                                                {toDateString(election.startdate)}
                                             </div>
                                         </div>,
                                         <div
-                                            className="electionItem__subitem"
+                                            className="electionItem__subitem --text"
                                             key={election.enddate}
                                         >
                                             <div>
@@ -64,15 +63,12 @@ export default function ViewElection() {
                                                     type="calendar"
                                                     key="calendar"
                                                 />
-                                                <span
-                                                    className="electionItem__subitem__text"
-                                                >
-                                                    {toDateString(election.enddate)}
-                                                </span>
+                                                {toDateString(election.enddate)}
                                             </div>
                                         </div>,
-                                        <div
-                                            className="electionItem__subitem"
+                                        <Button
+                                            type="primary"
+                                            className="electionItem__subitem --button"
                                             key={election.name}
                                         >
                                             <NavLink
@@ -83,15 +79,36 @@ export default function ViewElection() {
                                                     type="link"
                                                     key="link"
                                                 />
-                                            View Real Time Stats
+                                                Stats
                                             </NavLink>
-                                        </div>,
+                                        </Button>,
                                     ]}
                                 >
                                     <Meta
-                                        title={election.name}
                                         description={election.description}
                                     />
+                                    <p></p>
+
+                                    <div className="electionItem__statistics">
+                                        <Statistic
+                                            title="Candidates"
+                                            value={3}
+                                            precision={0}
+                                            valueStyle={{ color: '#3f8600' }}
+                                        />
+                                        <Statistic
+                                            title="Total Votes"
+                                            value={111221}
+                                            valueStyle={{ color: '#3f8600' }}
+                                        />
+                                        <Statistic
+                                            className="--hide-on-very-small"
+                                            title="Alexander"
+                                            value={111}
+                                            valueStyle={{ color: '#3f8600' }}
+                                            suffix="Votes"
+                                        />
+                                    </div>
                                 </Card>
                             </div>
                         ))
@@ -99,7 +116,6 @@ export default function ViewElection() {
                     }
 
                 </div>
-            </Spin>
         </div>
     );
 }
