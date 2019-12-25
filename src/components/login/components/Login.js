@@ -173,7 +173,7 @@ function Login() {
     const antIcon = <Icon type="loading" className="loader" spin />;
 
     return (
-        <div>
+        <div className="loginlayout">
             {userAuthenticated ? <Redirect to="/user" /> : <div />}
             <div ref={captchaRef}>
                 <div id="cap" />
