@@ -5,7 +5,7 @@
     background-color: hsl(208, 100%, 98.5%);
 }
 .createElectionForm {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     width: 80%;
 }
 .createElectionForm__heading_header {
@@ -19,7 +19,6 @@
 .createElectionForm__datePicker {
     border-width: 0;
     display: block;
-    margin-bottom: 20px;
 }
 .createElectionForm__heading{
     margin-bottom: 35px;
@@ -31,11 +30,9 @@
 }
 .create-election-card{
     padding: 0;
-    padding-top: 5px;
-}
-.divider{
-    height:5px;
-    background: red;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 10px;
 }
 .create-election-card .ant-card-body{
     padding: 2px 0;
@@ -45,16 +42,16 @@
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    padding: 21px;
+    padding: 50px 25px;
     padding-top: 30px;
     align-items: center;
 }
 .create-election-card__section__content__formelement{
-    width: 50%;
+    width: 60%;
 }
 .create-election-card__section__content__text{
     font-weight: 552;
-    font-size: 20px;
+    font-size: 17.6px;
 }
 .create-election-card__section__content__text span{
     padding-left: 20px;
@@ -71,7 +68,7 @@
     background: #F7FBFF;
 }
 .create-election-card__section__content__text .--blue{
-    color: var(--secondary-color);
+    color: #4F90FF;
 }
 .create-election-card__section__content__formelement textarea{
     background: #F7FBFF;
@@ -87,21 +84,21 @@
     color: #FFFFFF;
     padding-left: 20px;
     padding-right: 20px;
-    margin: 45px 0;
+    margin: 50px 0;
     text-align: center;
     width:250px;
     height: 42px;
     display: flex;
     justify-content: center;
 }
-@media (max-width : 912px){
+@media (max-width : 1158px){
     .create-election-card__section__content{
         flex-wrap: wrap;
         align-self: unset;
         justify-content: unset ;
     }
     .create-election-card__section__content__formelement{
-        margin-top: 10px;
+        margin-top: 25px;
         width: 100%;
     }
     .create-election-card__section__content__text{
@@ -113,17 +110,13 @@
     .createElectionForm {
         width: 80%;
     }
-    .createElectionForm__group{
-        margin: auto;
-        width: 90%;
-        margin-bottom: 30px;
-    }
+
     .createElectionForm__heading {
         margin-bottom: 35px;
     }
 
     .createElectionForm__button {
-        margin: 25px auto;
+        margin:40px auto;
         height: 42px;
 
     }
@@ -144,6 +137,6 @@
 }
 @media (min-width : 1500px){
     .createElectionForm {
-        width: 60%;
+        width: 70%;
     }
 }

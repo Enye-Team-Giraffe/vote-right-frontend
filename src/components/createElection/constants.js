@@ -20,6 +20,6 @@ export const ELECTION_NAME_OPTIONS = [
     { key: '3', text: 'Senatorial', value: 'senatorial' },
     { key: '4', text: 'House of Representatives', value: 'representative' },
 ];
-export const ELECTION_WARNING =`Enter in the details of the election you wish to create
+export const ELECTION_WARNING = `Enter in the details of the election you wish to create
 These cannot be changed once finalised
 `;
