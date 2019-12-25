@@ -3,10 +3,11 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import './ViewElection.css';
-import { Card, Icon, Spin, Statistic ,Button} from 'antd';
+import {
+    Card, Icon, Spin, Statistic, Button
+} from 'antd';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../constants';
-
 
 import actions from '../actions';
 
@@ -31,96 +32,95 @@ export default function ViewElection() {
                 spinning={loadingElections}
                 className="loader"
                 tip={LOADING_MESSAGE}
-            >
-            </Spin>
+            />
 
-                <div className="viewElection">
-                    {
-                        elections.map(election => (
-                            <div className="electionItem" key={election.location}>
-                                <Card
-                                    title={"The " + election.name}
-                                    actions={[
-                                        <div
-                                            className="electionItem__subitem --text"
-                                            key={election.startdate}
+            <div className="viewElection">
+                {
+                    elections.map(election => (
+                        <div className="electionItem" key={election.location}>
+                            <Card
+                                title={`The ${election.name}`}
+                                actions={[
+                                    <div
+                                        className="electionItem__subitem --text"
+                                        key={election.startdate}
+                                    >
+                                        <div>
+                                            <Icon
+                                                className="electionItem__subitem__icon"
+                                                type="calendar"
+                                                key="calendar"
+                                            />
+                                            {toDateString(election.startdate)}
+                                        </div>
+                                    </div>,
+                                    <div
+                                        className="electionItem__subitem --text"
+                                        key={election.enddate}
+                                    >
+                                        <div>
+                                            <Icon
+                                                className="electionItem__subitem__icon"
+                                                type="calendar"
+                                                key="calendar"
+                                            />
+                                            {toDateString(election.enddate)}
+                                        </div>
+                                    </div>,
+                                    <Button
+                                        type="primary"
+                                        className="electionItem__subitem --button"
+                                        key={election.name}
+                                    >
+                                        <NavLink
+                                            to={`/dashboard/statistics/${election.location}`}
                                         >
-                                            <div>
-                                                <Icon
-                                                    className="electionItem__subitem__icon"
-                                                    type="calendar"
-                                                    key="calendar"
-                                                />
-                                                {toDateString(election.startdate)}
-                                            </div>
-                                        </div>,
-                                        <div
-                                            className="electionItem__subitem --text"
-                                            key={election.enddate}
-                                        >
-                                            <div>
-                                                <Icon
-                                                    className="electionItem__subitem__icon"
-                                                    type="calendar"
-                                                    key="calendar"
-                                                />
-                                                {toDateString(election.enddate)}
-                                            </div>
-                                        </div>,
-                                        <Button
-                                            type="primary"
-                                            className="electionItem__subitem --button"
-                                            key={election.name}
-                                        >
-                                            <NavLink
-                                                to={`/dashboard/statistics/${election.location}`}
-                                            >
-                                                <Icon
-                                                    className="electionItem__subitem__icon"
-                                                    type="link"
-                                                    key="link"
-                                                />
+                                            <Icon
+                                                className="electionItem__subitem__icon"
+                                                type="link"
+                                                key="link"
+                                            />
                                                 Stats
-                                            </NavLink>
-                                        </Button>,
-                                    ]}
-                                >
-                                    <Meta
-                                        description={election.description}
+                                        </NavLink>
+                                    </Button>,
+                                ]}
+                            >
+                                <Meta
+                                    description={election.description}
+                                />
+                                <p />
+                                <p>Ade is leading with 50 votes</p>
+
+                                <div className="electionItem__statistics">
+                                    <Statistic
+                                        title="Candidates"
+                                        value={3}
+                                        precision={0}
+                                        valueStyle={{ color: '#3f8600' }}
                                     />
-                                    <p></p>
-                                    <p>Ade is leading with 50 votes</p>
+                                    <Statistic
+                                        title="Votes Count"
+                                        value={111221}
+                                        prefix={<Icon type="arrow-up" />}
+                                        valueStyle={{ color: '#3f8600' }}
+                                    />
+                                    <Statistic
+                                        className="--hide-on-very-small"
+                                        title="Activity"
+                                        value={11.28}
+                                        precision={2}
+                                        valueStyle={{ color: '#3f8600' }}
+                                        prefix={<Icon type="arrow-up" />}
+                                        suffix="%"
+                                    />
+                                </div>
+                            </Card>
+                        </div>
+                    ))
 
-                                    <div className="electionItem__statistics">
-                                        <Statistic
-                                            title="Candidates"
-                                            value={3}
-                                            precision={0}
-                                            valueStyle={{ color: '#3f8600' }}
-                                        />
-                                        <Statistic
-                                            title="Votes Count"
-                                            value={111221}
-                                            prefix={<Icon type="arrow-up" />}
-                                            valueStyle={{ color: '#3f8600' }}
-                                        />
-                                        <Statistic
-                                            className="--hide-on-very-small"
-                                            title="Activity"
-                                            value={11.28}
-                                            precision={2}
-                                            valueStyle={{ color: '#3f8600' }}
-                                            prefix={<Icon type="arrow-up" />}
-                                            suffix="%"
-                                        />
-                                    </div>
-                                </Card>
-                            </div>
-                        ))
+                }
 
-                    }
-
-                </div>
+            </div>
         </div>
     );
 }

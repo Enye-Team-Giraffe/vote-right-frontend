@@ -22,7 +22,8 @@ const SideNav = () => (
         <div className="sideNav__top">
             <Link to="/">
                 <span className="sideNav__topLogo --font-style">
-                    <Icon className="sideNav__top_icon" type="dashboard" />{VOTERIGHT}
+                    <Icon className="sideNav__top_icon" type="dashboard" />
+                    {VOTERIGHT}
                 </span>
             </Link>
         </div>
@@ -37,7 +38,10 @@ const SideNav = () => (
                 return (
                     <Menu.Item key={key} className="sideNav__sideitem">
                         <Link to={`/dashboard/${route}`}>
-                            <span className="nav-text"><Icon className="sideNav__top_icon" type={type} />{name}</span>
+                            <span className="nav-text">
+                                <Icon className="sideNav__top_icon" type={type} />
+                                {name}
+                            </span>
                         </Link>
                     </Menu.Item>
                 );

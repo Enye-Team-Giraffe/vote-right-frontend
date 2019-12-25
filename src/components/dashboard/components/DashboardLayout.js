@@ -21,15 +21,13 @@ import actions from '../actions';
 
 const { Header, Content } = Layout;
 
-
-
 /** FinishedElection
  *@Component for displaying dashboard layout
  *
  *@component
  *@return {jsx} - dashboard layout
 */
-const DashboardLayout = withRouter(props => {
+const DashboardLayout = withRouter(() => {
     const dispatch = useDispatch();
     const history = useHistory();
 
