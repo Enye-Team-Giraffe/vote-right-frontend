@@ -1,20 +1,33 @@
 .viewElection{
     padding-top: 30px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     background-color: hsl(208, 100%, 98.5%);
 }
 .electionItem{
     width: 80%;
-    margin-bottom: 40px;
+    max-width: 700px;
+    /* margin-bottom: 40px; */
+    margin: 0px 20px 40px 20px;
+}
+
+.viewElectionLayout  div.ant-spin.ant-spin-lg.ant-spin-spinning.ant-spin-show-text.loader{
+    width:100%
 }
 
 .electionItem__subitem{
     display: flex;
+    width: 90%;
     padding: 0 10px;
     justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.electionItem__subitem.--text{
+    padding-top: 5px;
 }
 
 .viewElectionLayout .ant-spin-nested-loading {
@@ -23,4 +36,24 @@
 
 .electionItem__subitem__icon{
     margin-right: 13px;
+}
+
+.electionItem__statistics{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.--button{
+    margin-left: 6px;
+}
+
+@media (max-width:376px){
+    .--button{
+        margin-top: 20%;
+    }
+
+    .--hide-on-very-small{
+        display: none;
+    }
 }

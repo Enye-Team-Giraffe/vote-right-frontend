@@ -1,14 +1,14 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
 import './DashboardLayout.css';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout } from 'antd';
 import {
-    Route, Switch, useHistory, Link, withRouter
+    Route, Switch, useHistory, withRouter
 } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import SideNav from './SideNav';
-import { LOGOUT, BREADCRUMB_NAME_MAP } from '../constants';
+import { LOGOUT } from '../constants';
 import CreateElection from '../../createElection/components';
 import { components as ViewElection } from '../../viewElection';
 import { components as ViewStats } from '../../viewStats';
@@ -21,20 +21,7 @@ import actions from '../actions';
 
 const { Header, Content } = Layout;
 
-/** FinishedElection
- *a function for filtering the links to create a breadcrumb
- *
- *@Params string
- *@return {string} -
-*/
-const mapRouteName = name => {
-    const split = name.split('/');
-    if (split.length < 4) {
-        return BREADCRUMB_NAME_MAP[name];
-    }
-    const newSplit = split.slice(0, 3).join('/');
-    return BREADCRUMB_NAME_MAP[newSplit];
-};
+
 
 /** FinishedElection
  *@Component for displaying dashboard layout
@@ -47,21 +34,6 @@ const DashboardLayout = withRouter(props => {
     const history = useHistory();
 
     // define the bread crumb variables
-
-    const { location } = props;
-    const pathSnippets = location.pathname.split('/').filter(i => i);
-    const extraBreadcrumbItems = pathSnippets.map((_, index) => {
-        const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
-        return (
-            <Breadcrumb.Item key={url}>
-                <Link to={url}>{mapRouteName(url)}</Link>
-            </Breadcrumb.Item>
-        );
-    });
-    if (extraBreadcrumbItems.length > 2) {
-        extraBreadcrumbItems.splice(1, 1);
-    }
-    const breadcrumbItems = [].concat(extraBreadcrumbItems);
 
     // logout of the FinishedElection
     const logout = () => {
@@ -90,9 +62,6 @@ const DashboardLayout = withRouter(props => {
                     </span>
                 </Header>
                 <Content className="content">
-                    <div className="content__breadcrumb">
-                        <Breadcrumb>{breadcrumbItems}</Breadcrumb>
-                    </div>
                     <Switch>
                         <Route
                             exact

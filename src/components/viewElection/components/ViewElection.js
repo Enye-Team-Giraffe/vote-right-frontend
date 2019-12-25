@@ -6,6 +6,9 @@ import './ViewElection.css';
 import { Card, Icon, Spin } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../constants';
+import { Statistic } from 'antd';
+import { Button} from 'antd';
+
 
 import actions from '../actions';
 
@@ -31,14 +34,17 @@ export default function ViewElection() {
                 className="loader"
                 tip={LOADING_MESSAGE}
             >
+            </Spin>
+
                 <div className="viewElection">
                     {
                         elections.map(election => (
                             <div className="electionItem" key={election.location}>
                                 <Card
+                                    title={"The " + election.name}
                                     actions={[
                                         <div
-                                            className="electionItem__subitem"
+                                            className="electionItem__subitem --text"
                                             key={election.startdate}
                                         >
                                             <div>
@@ -51,7 +57,7 @@ export default function ViewElection() {
                                             </div>
                                         </div>,
                                         <div
-                                            className="electionItem__subitem"
+                                            className="electionItem__subitem --text"
                                             key={election.enddate}
                                         >
                                             <div>
@@ -63,8 +69,9 @@ export default function ViewElection() {
                                                 {toDateString(election.enddate)}
                                             </div>
                                         </div>,
-                                        <div
-                                            className="electionItem__subitem"
+                                        <Button
+                                            type="primary"
+                                            className="electionItem__subitem --button"
                                             key={election.name}
                                         >
                                             <NavLink
@@ -75,15 +82,40 @@ export default function ViewElection() {
                                                     type="link"
                                                     key="link"
                                                 />
-                                                View Real Time Stats
+                                                Stats
                                             </NavLink>
-                                        </div>,
+                                        </Button>,
                                     ]}
                                 >
                                     <Meta
-                                        title={election.name}
                                         description={election.description}
                                     />
+                                    
+                                    <p></p>
+                                    <p>Ade is leading with 50 votes</p>
+
+                                    <div className="electionItem__statistics">
+                                        <Statistic
+                                            title="Candidates"
+                                            value={3}
+                                            precision={0}
+                                            valueStyle={{ color: '#3f8600' }}
+                                        />
+                                        <Statistic
+                                            title="Votes"
+                                            value={111221}
+                                            valueStyle={{ color: '#3f8600' }}
+                                        />
+                                        <Statistic
+                                            className="--hide-on-very-small"
+                                            title="Activity"
+                                            value={11.28}
+                                            precision={2}
+                                            valueStyle={{ color: '#3f8600' }}
+                                            prefix={<Icon type="arrow-up" />}
+                                            suffix="%"
+                                        />
+                                    </div>
                                 </Card>
                             </div>
                         ))
@@ -91,7 +123,6 @@ export default function ViewElection() {
                     }
 
                 </div>
-            </Spin>
         </div>
     );
 }
