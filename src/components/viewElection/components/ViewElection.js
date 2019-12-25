@@ -90,7 +90,6 @@ export default function ViewElection() {
                                     <Meta
                                         description={election.description}
                                     />
-                                    
                                     <p></p>
                                     <p>Ade is leading with 50 votes</p>
 
