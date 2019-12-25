@@ -81,6 +81,10 @@
    
     }
 
+    .headingText{
+        font-size:30px;
+    }
+
     .layout {
         flex-direction: column;
         height: fit-content;
@@ -88,16 +92,18 @@
 
     .whiteSection {
         width: 100%; 
-        padding-top: 130px;
+        padding-top: 60px;
         margin-left: 0px;
         margin-top: 80px;
         background-image: linear-gradient( 
             to right, 
             black, 
             rgba(59, 47, 132,0) 100%) , 
-            url(../../static/images/small_screen_bg.jpg
+            url(../../static/images/rising_sun.jpg
             );
             height: calc( 100vh - 80px );
+            min-height:500px;
+            min-width:320px;
             background-size: cover;
     }
 
