@@ -8,17 +8,19 @@
 
 /* Start of top section of side nav bar */
 .sideNav__top{
-    height: 60px;
+    height: 76px;
     margin: 0;
     display: flex;
     align-items: center;
+    border-bottom: 2px solid white;
+    margin-bottom: 4px;
 }
 
 /* Logo of top section of side nav bar */
 .sideNav__topLogo {
     padding: 0 16px;
     color: #CCC;
-    font-size: 1.6rem;
+    font-size: 1.34rem;
 }
 /* End of top section of side nav bar */
 
@@ -47,11 +49,13 @@
     font-weight: bolder;
 }
 /* End side nav bar toggle element */
-@media (max-width: 990px) {
+
+
+@media (max-width: 999px) {
     .sideNav__sideitem{
-        font-size: 12px !important;
+        font-size: 13.8px !important;
         font-weight: bold;
-    } 
+    }
 }
 
 @media (min-width: 1000px) {
@@ -63,11 +67,21 @@
         position: fixed;
         width: 300px;
     }
-    
+    .sideNav__topLogo {
+        font-size: 1.6rem ;
+    }
+    .sideNav__top_icon{
+        margin-right: 20px;
+    }
+
 }
 .--font-style{
     font-family: 'Candal', sans-serif;
     color:white;
+}
+
+.sideNav__top_icon{
+    margin-right: 10px;
 }
 
 

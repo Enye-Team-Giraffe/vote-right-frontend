@@ -33,6 +33,7 @@
     align-items: center;
 }
 
+
 .blueSection {
     width: 65%;
     height:100%;
@@ -87,7 +88,17 @@
 
     .whiteSection {
         width: 100%; 
+        padding-top: 130px;
         margin-left: 0px;
+        margin-top: 80px;
+        background-image: linear-gradient( 
+            to right, 
+            black, 
+            rgba(59, 47, 132,0) 100%) , 
+            url(../../static/images/small_screen_bg.jpg
+            );
+            height: calc( 100vh - 80px );
+            background-size: cover;
     }
 
     .blueSection {
