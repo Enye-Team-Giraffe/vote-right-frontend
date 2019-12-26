@@ -7,8 +7,8 @@ import { LOAD_ELECTIONS } from './actionTypes';
 import { WAIT_TIME } from './constants';
 import actions from './actions';
 
-// import web3 dependencies
-// const web3 = require('../../web3/configuredWeb3');
+// import custom items
+const getElectionInterface = require('../../web3/election');
 const electionFactory = require('../../web3/electionFactory');
 
 /**
@@ -29,6 +29,23 @@ function* loadElections() {
         // by default get only running elections
         const runningElectionDetails = electionDetails;
         // .filter(detail => detail.enddate > currentSeconds());
+        const electionAdresses = runningElectionDetails.map(election=>election.location);
+        // get the minimal stats for all the elections elections
+        const statistics = yield Promise.all(
+            electionAdresses.map(async (address)=>{
+                const electionInterface = await getElectionInterface(address);
+                const statistic = await electionInterface.methods.getStats().call()
+                return statistic
+            })
+        );
+        // map the election ID's to their stats for easy retrieval from the state
+        const addressToStatsMap=electionAdresses
+            .reduce((previousDictionary,currentAdress,currentIndex)=>{
+            previousDictionary[currentAdress]=statistics[currentIndex]
+            return previousDictionary
+        },{})
+        // yield the actions to be made
+        yield put(actions.pushStatistics(addressToStatsMap));
         yield put(actions.pushElections(runningElectionDetails));
         yield put(actions.loadingElections(false));
     } catch (err) {

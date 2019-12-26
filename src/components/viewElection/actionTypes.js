@@ -16,3 +16,9 @@ export const PUSH_ELECTIONS = 'PUSH_ELECTIONS';
  * @type {String}
  */
 export const LOADING_ELECTION = 'LOADING_ELECTION';
+/**
+ * Fired by the {@link actions.pushStatistics pushStatistics}
+ * action creator.
+ * @type {String}
+ */
+export const PUSH_STATISTICS = 'PUSH_STATISTICS';
