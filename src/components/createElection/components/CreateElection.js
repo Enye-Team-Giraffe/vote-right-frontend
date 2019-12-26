@@ -195,7 +195,7 @@ const CreateElection = () => {
                                     <span>{ENDDATE}</span>
                                 </div>
                                 <div
-                                    className="create-election-card__section__content__formelement"
+                                    className="create-election-card__section__content__formelement" 
                                 >
                                     <DatePicker
                                         className="createElectionForm__datePicker --input-element"
