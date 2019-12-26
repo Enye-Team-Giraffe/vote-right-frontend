@@ -144,7 +144,9 @@ const AddCandidate = ({ match }) => {
         // start spinning the loader
         dispatch(actions.loadingaddCandidate(true));
         // add teh candidates synchronously
-        dispatch(actions.addCandidate(payload, match.params.electionId), setKey);
+        dispatch(actions.addCandidate(payload, match.params.electionId));
+        setKey(`hiddenmessage${Math.random()}`);
+        updateImage(null);
     };
     const antIcon = <Icon type="loading" className="loader" spin />;
     const addCandidateLoading = useSelector(store => store.addCandidateLoading.candidate);

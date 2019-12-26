@@ -8,10 +8,9 @@ import {
  * @function
  * @return {Object} The {@link actionTypes.CREATE_ELECTION CREATE_ELECTION} action.
  */
-const addCandidate = (candidateDetails, electionId, setkey) => ({
+const addCandidate = (candidateDetails, electionId) => ({
     electionId,
     payload: candidateDetails,
-    setkey,
     type: ADD_CANDIDATE,
 });
 
