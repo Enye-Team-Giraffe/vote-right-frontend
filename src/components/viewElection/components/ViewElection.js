@@ -7,7 +7,7 @@ import {
     Card, Icon, Spin, Statistic, Button
 } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { LOADING_MESSAGE } from '../constants';
+import { LOADING_MESSAGE, NO_RUNNING_ELECTION } from '../constants';
 
 import actions from '../actions';
 
@@ -118,6 +118,13 @@ export default function ViewElection() {
                         </div>
                     ))
 
+                }
+                {
+                    (elections.length === 0 && !loadingElections) ? (
+                        <div className="no_candidate">
+                            {NO_RUNNING_ELECTION}
+                        </div>
+                    ) : ''
                 }
 
             </div>

@@ -213,17 +213,22 @@ contract Election {
     // function to get all the stats of an election
     function getStats() public view returns(uint,uint,string,int){
         uint localNumCandidate=candidates.length;
-        uint leadingCandidate=0;
-        for (uint i=1;i<candidates.length;i++){
-            if(candidates[i].voteCount>candidates[leadingCandidate].voteCount){
-                leadingCandidate=i;
+        if(localNumCandidate>0){
+            uint leadingCandidate=0;
+            for (uint i=1;i<candidates.length;i++){
+                if(candidates[i].voteCount>candidates[leadingCandidate].voteCount){
+                    leadingCandidate=i;
+                }
             }
+    
+            int localLeadingCandidateVote = candidates[leadingCandidate].voteCount;
+            string storage localLeadingCandidateName = candidates[leadingCandidate].name;
+    
+            return (localNumCandidate,totalVoteCount,localLeadingCandidateName,localLeadingCandidateVote);
         }
-
-        int localLeadingCandidateVote = candidates[leadingCandidate].voteCount;
-        string storage localLeadingCandidateName = candidates[leadingCandidate].name;
-
-        return (localNumCandidate,totalVoteCount,localLeadingCandidateName,localLeadingCandidateVote);
+        else{
+            return (0,0,"",0);
+        }
         
     }
     

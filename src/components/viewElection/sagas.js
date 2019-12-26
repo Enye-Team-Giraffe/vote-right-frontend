@@ -49,7 +49,7 @@ function* loadElections() {
         yield put(actions.pushElections(runningElectionDetails));
         yield put(actions.loadingElections(false));
     } catch (err) {
-        message.success(err.message, WAIT_TIME);
+        message.error(err.message, WAIT_TIME);
     }
 }
 function* validateLoaderSaga() {

@@ -8,15 +8,20 @@ import {
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
-    VIEW_CANDIDATE_ROUTE, ADD_CANDIDATE_ROUTE, VIEW_CANDIDATE, ADD_CANDIDATE
+    VIEW_CANDIDATE_ROUTE, ADD_CANDIDATE_ROUTE, VIEW_CANDIDATE, ADD_CANDIDATE,
+    NO_PENDING_ELECTION
 } from '../constants';
 import actions from '../../viewElection/actions';
 
 const { Meta } = Card;
 
+const dateDiffFromToday = (dateone) =>{
+    return Math.round(Math.abs(Date.now() - (Number(dateone)*1000)) / (1000*60*60*24),0);
+}
 export default function ViewElection() {
     const dispatch = useDispatch();
     const elections = useSelector(state => state.elections);
+    const statistics = useSelector(state => state.statistics);
     const loadingElections = useSelector(state => state.electionListLoading);
 
     const antIcon = <Icon type="loading" className="loader" spin />;
@@ -92,18 +97,20 @@ export default function ViewElection() {
                                 <Meta
                                     description={election.description}
                                 />
+                                
                                 <p />
                                 <div className="electionItem__statistics">
                                     <Statistic
                                         title="Candidates"
-                                        value={3}
+                                        value={statistics[election.location][0]}
                                         precision={0}
                                         valueStyle={{ color: '#3f8600' }}
                                     />
                                     <Statistic
                                         title="Days till start"
-                                        value={20}
+                                        value={dateDiffFromToday(election.startdate)}
                                         valueStyle={{ color: '#3f8600' }}
+                                        prefix={<Icon type="arrow-down" />}
                                     />
                                 </div>
                             </Card>
@@ -111,7 +118,13 @@ export default function ViewElection() {
                     ))
 
                 }
-
+                {
+                    (elections.length === 0 && !loadingElections) ? (
+                        <div className="no_candidate">
+                            {NO_PENDING_ELECTION}
+                        </div>
+                    ) : ''
+                }
             </div>
         </div>
     );

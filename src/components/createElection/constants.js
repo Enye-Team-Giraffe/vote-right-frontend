@@ -13,7 +13,7 @@ export const SMALL_GAS = 1000000;
 export const ROW_HEIGHT = 5;
 export const CREATE_ELECTION_SUCCESS = 'Election sucesfully created';
 export const BUTTON_TEXT = 'Create new election';
-export const VIEW_ELECTIONS_PATH = '/dashboard/';
+export const VIEW_ELECTIONS_PATH = '/dashboard/pending_election';
 export const ELECTION_NAME_OPTIONS = [
     { key: '1', text: 'Presidential', value: 'presidential' },
     { key: '2', text: 'Gubernatorial', value: 'gubernatorial' },

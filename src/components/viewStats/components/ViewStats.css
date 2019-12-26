@@ -6,7 +6,7 @@
 .chart{
     /* background: rgb(236, 235, 235); */
     border-radius: 20px;
-    border: 2px solid var(--primary-color);
+    border: 1px solid #4f90ff;
     margin: 20px;
 }
 
@@ -17,7 +17,7 @@
 .statisticsLayout__statistic{
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
