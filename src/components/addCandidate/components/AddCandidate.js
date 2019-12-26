@@ -26,6 +26,7 @@ const AddCandidate = ({ match }) => {
     const [party, updateParty] = useState('');
     const [quote, updateQuote] = useState('');
     const [image, updateImage] = useState(null);
+    const [key,setKey]=useState("hiddenkey")
     const dispatch = useDispatch();
 
     /**
@@ -143,7 +144,7 @@ const AddCandidate = ({ match }) => {
         // start spinning the loader
         dispatch(actions.loadingaddCandidate(true));
         // add teh candidates synchronously
-        dispatch(actions.addCandidate(payload, match.params.electionId));
+        dispatch(actions.addCandidate(payload, match.params.electionId), setKey);
     };
     const antIcon = <Icon type="loading" className="loader" spin />;
     const addCandidateLoading = useSelector(store => store.addCandidateLoading.candidate);
@@ -152,7 +153,7 @@ const AddCandidate = ({ match }) => {
     });
 
     return (
-        <div className="addCandidate">
+        <div className="addCandidate" key={key}>
             <form className="addCandidateForm" onSubmit={handleSubmit}>
                 <Spin
                     size="large"

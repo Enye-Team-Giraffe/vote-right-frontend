@@ -112,6 +112,7 @@ function* addCandidate(action) {
         message.error(ELECTION_STARTED_ERROR, WAIT_TIME);
     } finally {
         yield put(actions.loadingaddCandidate(false));
+        action.setkey(`hiddenkey${Math.random()}`)
     }
 }
 
