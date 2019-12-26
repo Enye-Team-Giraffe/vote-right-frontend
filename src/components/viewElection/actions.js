@@ -34,16 +34,14 @@ const loadingElections = truthyValue => ({
  * @function
  * @return {Object} The {@link actionTypes.PUSH_STATISTICS PUSH_STATISTICS} action.
  */
-const pushStatistics = statisticsArray =>{
-    return{
-        payload:statisticsArray,
-        type:PUSH_STATISTICS
-    }
-}
+const pushStatistics = statisticsArray => ({
+    payload: statisticsArray,
+    type: PUSH_STATISTICS,
+});
 
 export default {
     loadElections,
     loadingElections,
     pushElections,
-    pushStatistics
+    pushStatistics,
 };

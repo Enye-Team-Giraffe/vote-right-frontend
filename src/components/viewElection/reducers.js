@@ -1,4 +1,4 @@
-import { PUSH_ELECTIONS, LOADING_ELECTION , PUSH_STATISTICS } from './actionTypes';
+import { PUSH_ELECTIONS, LOADING_ELECTION, PUSH_STATISTICS } from './actionTypes';
 /**
  * Triggers an operation to push the gotten elections to state
  * @function
@@ -32,10 +32,10 @@ const loadingElections = (state = true, action) => {
  */
 const pushStatistics = (state = {}, action) => {
     switch (action.type) {
-        case PUSH_STATISTICS:
-            return action.payload;
-        default:
-            return state;
+    case PUSH_STATISTICS:
+        return action.payload;
+    default:
+        return state;
     }
 };
 export default { loadingElections, pushElections, pushStatistics };

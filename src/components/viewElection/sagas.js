@@ -1,3 +1,5 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable no-param-reassign */
 // import the required modules from npm
 import { takeLatest, put } from 'redux-saga/effects';
 import { message } from 'antd';
@@ -29,21 +31,21 @@ function* loadElections() {
         // by default get only running elections
         const runningElectionDetails = electionDetails;
         // .filter(detail => detail.enddate > currentSeconds());
-        const electionAdresses = runningElectionDetails.map(election=>election.location);
+        const electionAdresses = runningElectionDetails.map(election => election.location);
         // get the minimal stats for all the elections elections
         const statistics = yield Promise.all(
-            electionAdresses.map(async (address)=>{
+            electionAdresses.map(async address => {
                 const electionInterface = await getElectionInterface(address);
-                const statistic = await electionInterface.methods.getStats().call()
-                return statistic
+                const statistic = await electionInterface.methods.getStats().call();
+                return statistic;
             })
         );
         // map the election ID's to their stats for easy retrieval from the state
-        const addressToStatsMap=electionAdresses
-            .reduce((previousDictionary,currentAdress,currentIndex)=>{
-            previousDictionary[currentAdress]=statistics[currentIndex]
-            return previousDictionary
-        },{})
+        const addressToStatsMap = electionAdresses
+            .reduce((previousDictionary, currentAdress, currentIndex) => {
+                previousDictionary[currentAdress] = statistics[currentIndex];
+                return previousDictionary;
+            }, {});
         // yield the actions to be made
         yield put(actions.pushStatistics(addressToStatsMap));
         yield put(actions.pushElections(runningElectionDetails));

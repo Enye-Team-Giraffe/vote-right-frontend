@@ -26,7 +26,7 @@ const AddCandidate = ({ match }) => {
     const [party, updateParty] = useState('');
     const [quote, updateQuote] = useState('');
     const [image, updateImage] = useState(null);
-    const [key,setKey]=useState("hiddenkey")
+    const [key, setKey] = useState('hiddenkey');
     const dispatch = useDispatch();
 
     /**

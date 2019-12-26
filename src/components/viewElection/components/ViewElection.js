@@ -18,7 +18,7 @@ export default function ViewElection() {
     const elections = useSelector(state => state.elections);
     const loadingElections = useSelector(state => state.electionListLoading);
     const statistics = useSelector(state => state.statistics);
-    
+
     const antIcon = <Icon type="loading" className="loader" spin />;
     // upon render of the page get all the elections
     useEffect(() => {
@@ -90,7 +90,6 @@ export default function ViewElection() {
                                     description={election.description}
                                 />
                                 <p />
-
 
                                 <div className="electionItem__statistics">
                                     <Statistic

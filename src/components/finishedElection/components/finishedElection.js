@@ -8,7 +8,7 @@ import {
 } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
-import {NO_FINISHED_ELECTION} from "../constants"
+import { NO_FINISHED_ELECTION } from '../constants';
 
 import actions from '../../viewElection/actions';
 
@@ -123,7 +123,6 @@ export default function ViewElection() {
                         </div>
                     ) : ''
                 }
-
 
             </div>
         </div>

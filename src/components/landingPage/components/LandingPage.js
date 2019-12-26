@@ -29,10 +29,10 @@ const LandingPage = () => {
      * @function
      * @param {event} index - the index of this element in the constant array
      */
-    const manualChange = index =>{
+    const manualChange = index => {
         counter.current = index;
-        changeCurrentText(index)
-    }
+        changeCurrentText(index);
+    };
 
     const dummy = () => {
         window.dummy = 'active';

@@ -15,9 +15,12 @@ import actions from '../../viewElection/actions';
 
 const { Meta } = Card;
 
-const dateDiffFromToday = (dateone) =>{
-    return Math.round(Math.abs(Date.now() - (Number(dateone)*1000)) / (1000*60*60*24),0);
-}
+//  a function to get the difference in date between two time stamps
+const dateDiffFromToday = dateone => {
+    const diff = Math.abs(Date.now() - (Number(dateone) * 1000)) / (1000 * 60 * 60 * 24);
+    return Math.round(diff, 0);
+};
+
 export default function ViewElection() {
     const dispatch = useDispatch();
     const elections = useSelector(state => state.elections);
@@ -97,7 +100,7 @@ export default function ViewElection() {
                                 <Meta
                                     description={election.description}
                                 />
-                                
+
                                 <p />
                                 <div className="electionItem__statistics">
                                     <Statistic
