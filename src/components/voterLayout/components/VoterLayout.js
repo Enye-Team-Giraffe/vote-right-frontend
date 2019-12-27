@@ -1,82 +1,79 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
 import {
-    Route, Switch, Link, withRouter
+    Route, Switch,useHistory
+
 } from 'react-router-dom';
-import { Layout, Breadcrumb } from 'antd';
-import MainContent from './MainContent';
-import TopNav from './TopNav';
-import { BREADCRUMB_NAME_MAP } from '../constants';
+import { Layout } from 'antd';
+// import MainContent from './MainContent';
 import { components as UserViewOngoing } from '../../userOngoingElection';
 import { components as UserViewConcluded } from '../../userConcludedElection';
 import { components as ViewResults } from '../../userViewResults';
+import { useDispatch } from 'react-redux';
+import SideNav from './SideNav';
+import {actions} from "../../dashboard"
 
-const { Content } = Layout;
+const { Header, Content } = Layout;
 
-/** FinishedElection
- *a function for filtering the links to create a breadcrumb
- *
- *@Params string
- *@return {string} -
-*/
-const mapRouteName = name => {
-    const split = name.split('/');
-    if (split.length < 4) {
-        return BREADCRUMB_NAME_MAP[name];
-    }
-    const newSplit = split.slice(0, 3).join('/');
-    return BREADCRUMB_NAME_MAP[newSplit];
-};
+const VoterLayout = () => {
+    
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-const VoterLayout = withRouter(props => {
     // define the bread crumb variables
-    const { location } = props;
-    const pathSnippets = location.pathname.split('/').filter(i => i);
-    const extraBreadcrumbItems = pathSnippets.map((_, index) => {
-        const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
-        return (
-            <Breadcrumb.Item key={url}>
-                <Link to={url}>{mapRouteName(url)}</Link>
-            </Breadcrumb.Item>
-        );
-    });
-    if (extraBreadcrumbItems.length > 2) {
-        extraBreadcrumbItems.splice(1, 1);
-    }
-    const breadcrumbItems = [].concat(extraBreadcrumbItems);
+
+    // logout of the FinishedElection
+    const logout = () => {
+        dispatch(actions.logoutUser(history));
+    };
+
+    // a function to be activated upon keydown
+    const dummy = () => {
+        window.dummy = 'dummy';
+    };
 
     return (
         <Layout>
-            <TopNav />
-            <Content className="content --voterLayout">
-                <div className="content__breadcrumb --voterLayout">
-                    <Breadcrumb>{breadcrumbItems}</Breadcrumb>
-                </div>
-                <Switch>
-                    <Route
-                        exact
-                        path="/user/"
-                        component={MainContent}
-                    />
-                    <Route
-                        exact
-                        path="/user/ongoing-elections"
-                        component={UserViewOngoing}
-                    />
-                    <Route
-                        exact
-                        path="/user/concluded-elections"
-                        component={UserViewConcluded}
-                    />
-                    <Route
-                        exact
-                        path="/user/results/:electionId"
-                        component={ViewResults}
-                    />
-                </Switch>
-            </Content>
+            <SideNav />
+            <Layout>
+                <Header className="header">
+                    <span
+                        aria-label="Mute volume"
+                        onClick={logout}
+                        onKeyDown={dummy}
+                        role="button"
+                        tabIndex="0"
+                        className="header__logout"
+                    >
+                       logout {/* {LOGOUT} */}
+                    </span>
+                </Header>
+                <Content className="content">
+                    <Switch>
+                        <Route
+                            exact
+                            path="/user/"
+                            component={UserViewOngoing}
+                        />
+                        <Route
+                            exact
+                            path="/user/concluded-elections"
+                            component={UserViewConcluded}
+                        />
+                        <Route
+                            exact
+                            path="/user/ongoing-elections"
+                            component={UserViewOngoing}
+                        />
+                        <Route
+                            exact
+                            path="/user/results/:electionId"
+                            component={ViewResults}
+                        />
+                    </Switch>
+                </Content>
+            </Layout>
         </Layout>
     );
-});
-
+};
 export default VoterLayout;

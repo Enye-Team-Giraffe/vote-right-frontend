@@ -1,37 +1,82 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
-import './MainContent.css';
-import { Link } from 'react-router-dom';
-
 import { Layout } from 'antd';
+import {
+    Route, Switch, useHistory, withRouter
+} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+// import MainContent from './MainContent';
+import SideNav from './SideNav';
+import { LOGOUT } from '../constants';
+import { components as UserViewOngoing } from '../../userOngoingElection';
+import { components as UserViewConcluded } from '../../userConcludedElection';
+import { components as ViewResults } from '../../userViewResults';
 
-import { BODY_CONTENT } from '../constants';
+import {actions} from '../../dashboard';
 
-const { Content } = Layout;
+const { Header, Content } = Layout;
 
-const MainContent = () => (
-    <Content className="voterLayout">
-        {
-            BODY_CONTENT.map(contentItem => (
-                <Link to={`/user/${contentItem.link}`} key={contentItem.header + contentItem.text}>
-                    <div className={contentItem.header}>
-                        <div className="voterLayout__election__tab">
-                            <div className="voterLayout__election__tab__image">
-                                <img
-                                    className="voterLayout__election__tab__image"
-                                    src={contentItem.src}
-                                    alt={contentItem.header}
-                                />
-                            </div>
-                            <div className="voterLayout__election__tab__text">
-                                {contentItem.text}
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-            ))
-        }
-    </Content>
-);
+/** FinishedElection
+ *@Component for displaying dashboard layout
+ *
+ *@component
+ *@return {jsx} - dashboard layout
+*/
+const DashboardLayout = withRouter(() => {
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-export default MainContent;
+    // define the bread crumb variables
+
+    // logout of the FinishedElection
+    const logout = () => {
+        dispatch(actions.logoutUser(history));
+    };
+
+    // a function to be activated upon keydown
+    const dummy = () => {
+        window.dummy = 'dummy';
+    };
+
+    return (
+        <Layout>
+            <SideNav />
+            <Layout>
+                <Header className="header">
+                    <span
+                        aria-label="Mute volume"
+                        onClick={logout}
+                        onKeyDown={dummy}
+                        role="button"
+                        tabIndex="0"
+                        className="header__logout"
+                    >
+                        {LOGOUT}
+                    </span>
+                </Header>
+                <Content className="content">
+                    <Switch>
+
+                        <Route
+                            exact
+                            path="/user/ongoing-elections"
+                            component={UserViewOngoing}
+                        />
+                        <Route
+                            exact
+                            path="/user/concluded-elections"
+                            component={UserViewConcluded}
+                        />
+                        <Route
+                            exact
+                            path="/user/results/:electionId"
+                            component={ViewResults}
+                        />
+                    </Switch>
+                </Content>
+            </Layout>
+        </Layout>
+    );
+});
+
+export default DashboardLayout;

@@ -3,7 +3,7 @@ import React from 'react';
 import './DashboardLayout.css';
 import { Layout } from 'antd';
 import {
-    Route, Switch, useHistory, withRouter
+    Route, Switch, useHistory
 } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
@@ -27,7 +27,7 @@ const { Header, Content } = Layout;
  *@component
  *@return {jsx} - dashboard layout
 */
-const DashboardLayout = withRouter(() => {
+const DashboardLayout = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -96,6 +96,6 @@ const DashboardLayout = withRouter(() => {
             </Layout>
         </Layout>
     );
-});
+};
 
 export default DashboardLayout;
