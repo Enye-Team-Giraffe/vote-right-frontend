@@ -212,8 +212,18 @@ export default function ViewStats({ match }) {
                         value={totalVotes}
                         precision={2}
                         valueStyle={{ color: '#3f8600' }}
-                        prefix={<Icon type="arrow-up" />}
+                        prefix={<Icon type="inbox" />}
                         suffix="+"
+                    />
+                </Card>
+                <Card className="statisticsLayout__statistic__card">
+                    <Statistic
+                        title="Activity"
+                        value={totalVotes}
+                        precision={2}
+                        valueStyle={{ color: '#3f8600' }}
+                        prefix={<Icon type="arrow-up" />}
+                        suffix="%"
                     />
                 </Card>
             </div>

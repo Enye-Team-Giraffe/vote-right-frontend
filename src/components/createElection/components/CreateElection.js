@@ -9,7 +9,7 @@ import './CreateElection.css';
 import actions from '../actions';
 import {
     NAME, DESCRIPTION, STARTDATE, ENDDATE, CREATEELECTION,
-    ROW_HEIGHT, BUTTON_TEXT, ELECTION_NAME_OPTIONS
+    ROW_HEIGHT, BUTTON_TEXT, ELECTION_NAME_OPTIONS, ELECTION_WARNING
 } from '../constants';
 
 /**
@@ -98,65 +98,124 @@ const CreateElection = () => {
                     className="loader"
                     tip="loading...."
                 >
-                    <Card className="createElectionCard">
-                        <div className="createElectionForm__heading">
-                            <h1 className="createElectionForm__heading_header">{CREATEELECTION}</h1>
-                            <p className="createElectionForm__heading_text">
-                                Enter in the details of the election you wish to create
-                            </p>
-                        </div>
-                        <div className="createElectionForm__group">
-                            <span>{NAME}</span>
-                            <Select
-                                placeholder="Select election"
-                                onChange={handleChangeSelect}
-                            >
-                                {ELECTION_NAME_OPTIONS.map(option => (
-                                    <Select.Option
-                                        key={option.key}
-                                        value={option.value}
+                    <div className="createElectionForm__heading">
+                        <h1 className="createElectionForm__heading_header">{CREATEELECTION}</h1>
+                        <p className="createElectionForm__heading_text">
+                            {ELECTION_WARNING}
+                        </p>
+                    </div>
+                    <Card className="create-election-card">
+
+                        <div className="create-election-card__section">
+
+                            <div className="create-election-card__section__content">
+                                <div className="create-election-card__section__content__text">
+                                    <Icon className="--blue" theme="filled" type="right-circle" />
+                                    <span>{NAME}</span>
+                                </div>
+                                <div
+                                    className="create-election-card__section__content__formelement"
+                                >
+                                    <Select
+                                        placeholder="Select election"
+                                        onChange={handleChangeSelect}
                                     >
-                                        {option.text}
-                                    </Select.Option>
-                                ))}
-                            </Select>
+                                        {ELECTION_NAME_OPTIONS.map(option => (
+                                            <Select.Option
+                                                key={option.key}
+                                                value={option.value}
+                                            >
+                                                {option.text}
+                                            </Select.Option>
+                                        ))}
+                                    </Select>
+                                </div>
+
+                            </div>
 
                         </div>
-                        <div className="createElectionForm__group">
-                            <span>{DESCRIPTION}</span>
-                            <Input.TextArea
-                                rows={ROW_HEIGHT}
-                                className="createElectionForm__textArea --input-element"
-                                name="description"
-                                required
-                                onChange={handleChangeText}
-                            />
+
+                        <hr />
+
+                        <div className="create-election-card__section">
+
+                            <div className="create-election-card__section__content">
+
+                                <div className="create-election-card__section__content__text">
+                                    <Icon className="--blue" type="right-circle" />
+                                    <span>{DESCRIPTION}</span>
+                                </div>
+                                <div
+                                    className="create-election-card__section__content__formelement"
+                                >
+                                    <Input.TextArea
+                                        placeholder="Detailed description of this election"
+                                        rows={ROW_HEIGHT}
+                                        className="createElectionForm__textArea --input-element"
+                                        name="description"
+                                        required
+                                        onChange={handleChangeText}
+                                    />
+                                </div>
+                            </div>
+
                         </div>
-                        <div className="createElectionForm__group">
-                            <span className="-topMargin">{STARTDATE}</span>
-                            <DatePicker
-                                className="createElectionForm__datePicker --input-element"
-                                placeholder="Select date"
-                                required
-                                onChange={handleStartDate}
-                            />
+
+                        <hr />
+
+                        <div className="create-election-card__section">
+                            <div className="create-election-card__section__content">
+                                <div className="create-election-card__section__content__text">
+                                    <Icon
+                                        className="--blue"
+                                        theme="filled"
+                                        type="calendar"
+                                    />
+                                    <span>{STARTDATE}</span>
+                                </div>
+                                <div
+                                    className="create-election-card__section__content__formelement"
+                                >
+                                    <DatePicker
+                                        className="createElectionForm__datePicker --input-element"
+                                        placeholder="Select date"
+                                        required
+                                        onChange={handleStartDate}
+                                    />
+                                </div>
+                            </div>
                         </div>
-                        <div className="createElectionForm__group">
-                            <span>{ENDDATE}</span>
-                            <DatePicker
-                                className="createElectionForm__datePicker --input-element"
-                                placeholder="Select date"
-                                required
-                                onChange={handleEndDate}
-                            />
+
+                        <hr />
+
+                        <div className="create-election-card__section">
+                            <div className="create-election-card__section__content">
+                                <div className="create-election-card__section__content__text">
+                                    <Icon className="--blue" type="calendar" />
+                                    <span>{ENDDATE}</span>
+                                </div>
+                                <div
+                                    className="create-election-card__section__content__formelement"
+                                >
+                                    <DatePicker
+                                        className="createElectionForm__datePicker --input-element"
+                                        placeholder="Select date"
+                                        required
+                                        onChange={handleEndDate}
+                                    />
+                                </div>
+                            </div>
                         </div>
+                    </Card>
+                    <div className="createElection__submit-button">
                         <Button
                             className="createElectionForm__button"
                             htmlType="submit"
                         >
                             {BUTTON_TEXT}
                         </Button>
-                    </Card>
+                    </div>
+
                 </Spin>
             </form>
         </div>

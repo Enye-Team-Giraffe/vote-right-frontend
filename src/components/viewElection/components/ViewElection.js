@@ -101,7 +101,7 @@ export default function ViewElection() {
                                     <Statistic
                                         title="Votes Count"
                                         value={111221}
-                                        prefix={<Icon type="arrow-up" />}
+                                        prefix={<Icon type="inbox" />}
                                         valueStyle={{ color: '#3f8600' }}
                                     />
                                     <Statistic

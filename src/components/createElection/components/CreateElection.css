@@ -4,135 +4,139 @@
     min-height: 100%;
     background-color: hsl(208, 100%, 98.5%);
 }
-
-.createElectionCard {
-    border: 2px dashed hsl(208, 100%, 90.5%);
-}
-
 .createElectionForm {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     width: 80%;
 }
-
-.createElectionForm__group{
-    margin: auto;
-    width: 90%;
-    margin-bottom: 50px;
-}
-.createElectionForm__group span{
-    padding-left: 5px;
-    font-weight: 552;
-}
-.createElectionForm__group .--input-element{
-    margin-top: 5px;
-    min-height: 35px;
-}
-
 .createElectionForm__heading_header {
-    text-align: center;
     font-size: 2rem;
     font-weight: bold;
     color: #373757
 }
-
-.createElectionForm__input {
-    padding: 0 15px;
-    display: block;
-    margin-bottom: 20px;
-
+.createElectionForm__heading_text{
+    font-weight: lighter;
 }
-
-.-topMargin {
-    margin-top: 20px;
-    display: block;
-}
-
-.createElectionForm__textArea {
-    margin-bottom: 20px;
-}
-
 .createElectionForm__datePicker {
     border-width: 0;
     display: block;
-    margin-bottom: 20px;
 }
-
+.createElectionForm__heading{
+    margin-bottom: 35px;
+}
+.createElectionForm__button:hover {
+    background-color: #FFFFFF;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+.create-election-card{
+    padding: 0;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 10px;
+}
+.create-election-card .ant-card-body{
+    padding: 2px 0;
+}
+.create-election-card__section__content{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding: 50px 25px;
+    padding-top: 30px;
+    align-items: center;
+}
+.create-election-card__section__content__formelement{
+    width: 60%;
+}
+.create-election-card__section__content__text{
+    font-weight: 552;
+    font-size: 17.6px;
+}
+.create-election-card__section__content__text span{
+    padding-left: 20px;
+}
+.create-election-card__section__content__formelement .ant-select-selection--single {
+    position: relative;
+    height: 52px;
+    padding-top: 10px;
+    cursor: pointer;
+    background: #F7FBFF;
+}
+.create-election-card__section__content__formelement .ant-calendar-picker-input.ant-input{
+    height:52px;
+    background: #F7FBFF;
+}
+.create-election-card__section__content__text .--blue{
+    color: #4F90FF;
+}
+.create-election-card__section__content__formelement textarea{
+    background: #F7FBFF;
+}
+.createElection__submit-button{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
 .createElectionForm__button {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     color: #FFFFFF;
     padding-left: 20px;
     padding-right: 20px;
-    margin: 45px auto;
+    margin: 50px 0;
     text-align: center;
-    width:150px;
+    width:250px;
     height: 42px;
     display: flex;
     justify-content: center;
-
 }
-.createElectionForm__heading_text{
-    text-align: center;
-    font-weight: lighter;
+@media (max-width : 1158px){
+    .create-election-card__section__content{
+        flex-wrap: wrap;
+        align-self: unset;
+        justify-content: unset ;
+    }
+    .create-election-card__section__content__formelement{
+        margin-top: 25px;
+        width: 100%;
+    }
+    .create-election-card__section__content__text{
+        font-weight: 600;
+        font-size: 15px;
+    }
 }
-.createElectionForm__heading{
-    margin-bottom: 60px;
-}
-
-.createElectionForm__button:hover {
-    background-color: #FFFFFF;
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-}
-
 @media (max-width: 990px) {
     .createElectionForm {
         width: 80%;
     }
-    .createElectionForm__group{
-        margin: auto;
-        width: 90%;
-        margin-bottom: 30px;
-    }
+
     .createElectionForm__heading {
-        margin-bottom: 45px;
+        margin-bottom: 35px;
     }
-    .createElectionForm__group .--input-element{
-        margin-top: 5px;
-        height: 35px;
-    }
+
     .createElectionForm__button {
-        margin: 0px auto;
+        margin:40px auto;
+        height: 42px;
+
     }
     .createElectionForm__heading_header {
         font-size: 1.2rem;
     }
-    .createElectionForm__button {
-        height: 35px;
-    }
 }
-
 @media (max-width: 500px) {
     .createElectionForm {
         width: 80%;
     }
+    .createElectionForm__heading_header {
+        text-align: center;
+     }
+    .createElectionForm__heading_text{
+        text-align: center;
+    }
 }
-
 @media (min-width : 1500px){
-    .createElectionForm__group{
-        margin: auto;
-        width: 85%;
-        margin-bottom: 50px;
-    }
-    
     .createElectionForm {
-        width: 60%;
-    }
-    .createElectionForm__group .--input-element{
-        margin-top: 5px;
-        min-height: 40px;
+        width: 70%;
     }
 }
-
-
-

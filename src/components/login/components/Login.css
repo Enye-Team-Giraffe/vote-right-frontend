@@ -86,10 +86,12 @@
 
     .form .form__heading {
         color: white;
+        padding-top: 10px;
+        font-size: 20px;
     }
     .form {
-        padding: 40px;
-        background: hsla(0, 0%, 100%,.085);
+        padding:10px 15px;
+        background: hsla(0, 0%, 100%,.1);
         border-radius: 25px;
     }
     
