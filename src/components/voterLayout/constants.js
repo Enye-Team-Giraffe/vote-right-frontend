@@ -4,13 +4,6 @@ export const CONCLUDED_ELECTIONS = 'Concluded Elections';
 
 export const LOGOUT = 'Logout';
 
-export const BREADCRUMB_NAME_MAP = {
-    '/user': 'Home',
-    '/user/concluded-elections': 'Concluded Elections',
-    '/user/ongoing-elections': 'Ongoing Elections',
-    '/user/results': 'Election Results',
-    '/user/vote': 'Vote',
-};
 export const MENU = {
     b: ['Upcoming Elections', 'concluded-elections', 'clock-circle'],
     c: ['Ongoing Elections', 'ongoing-elections', 'eye'],

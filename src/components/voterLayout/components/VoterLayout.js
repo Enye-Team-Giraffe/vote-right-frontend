@@ -1,22 +1,21 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
 import {
-    Route, Switch,useHistory
+    Route, Switch, useHistory
 
 } from 'react-router-dom';
 import { Layout } from 'antd';
 // import MainContent from './MainContent';
+import { useDispatch } from 'react-redux';
 import { components as UserViewOngoing } from '../../userOngoingElection';
 import { components as UserViewConcluded } from '../../userConcludedElection';
 import { components as ViewResults } from '../../userViewResults';
-import { useDispatch } from 'react-redux';
 import SideNav from './SideNav';
-import {actions} from "../../dashboard"
+import { actions } from '../../dashboard';
 
 const { Header, Content } = Layout;
 
 const VoterLayout = () => {
-    
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -45,7 +44,9 @@ const VoterLayout = () => {
                         tabIndex="0"
                         className="header__logout"
                     >
-                       logout {/* {LOGOUT} */}
+                       logout
+                        {' '}
+                        {/* {LOGOUT} */}
                     </span>
                 </Header>
                 <Content className="content">

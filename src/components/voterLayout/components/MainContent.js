@@ -12,7 +12,7 @@ import { components as UserViewOngoing } from '../../userOngoingElection';
 import { components as UserViewConcluded } from '../../userConcludedElection';
 import { components as ViewResults } from '../../userViewResults';
 
-import {actions} from '../../dashboard';
+import { actions } from '../../dashboard';
 
 const { Header, Content } = Layout;
 
