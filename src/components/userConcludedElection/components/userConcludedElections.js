@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Card, Icon, Spin } from 'antd';
+import { Card, Icon, Spin, Button, Statistic } from 'antd';
 
 import './userConcludedElections.css';
 import { LOADING_MESSAGE } from '../constants';
@@ -14,14 +14,13 @@ export default function ViewElection() {
     const dispatch = useDispatch();
     const elections = useSelector(state => state.elections);
     const loadingElections = useSelector(state => state.electionListLoading);
+    const statistics = useSelector(state => state.statistics);
     // filter the elections and only select the ones
     // with dates less than today
 
     const antIcon = <Icon type="loading" className="loader" spin />;
     // upon render of the page get all the elections
     useEffect(() => {
-        dispatch(actions.pushElections([]));
-        dispatch(actions.loadingElections(true));
         dispatch(actions.loadElections());
     }, [dispatch]);
 
@@ -40,6 +39,7 @@ export default function ViewElection() {
                         elections.map(election => (
                             <div className="electionItem" key={election.location}>
                                 <Card
+                                    title={`The ${election.name}`}
                                     actions={[
                                         <div
                                             className="electionItem__subitem"
@@ -67,8 +67,9 @@ export default function ViewElection() {
                                                 {toDateString(election.enddate)}
                                             </div>
                                         </div>,
-                                        <div
-                                            className="electionItem__subitem"
+                                        <Button
+                                            type="primary"
+                                            className="electionItem__subitem --button"
                                             key={election.name}
                                         >
                                             <NavLink
@@ -81,13 +82,33 @@ export default function ViewElection() {
                                                 />
                                                 View Results
                                             </NavLink>
-                                        </div>,
+                                        </Button>,
                                     ]}
                                 >
                                     <Meta
                                         title={election.name}
                                         description={election.description}
                                     />
+                                    <p/>
+                                    <div className="electionItem__statistics">
+                                        <Statistic
+                                            title="Candidates"
+                                            value={statistics[election.location][0]}
+                                            valueStyle={{ color: '#3f8600' }}
+                                        />
+                                        <Statistic
+                                            title="Total Votes"
+                                            value={statistics[election.location][1]}
+                                            valueStyle={{ color: '#3f8600' }}
+                                        />
+                                        <Statistic
+                                            className="--hide-on-very-small"
+                                            title={statistics[election.location][2]}
+                                            value={statistics[election.location][3]}
+                                            valueStyle={{ color: '#3f8600' }}
+                                            suffix="Votes"
+                                        />
+                                    </div>
                                 </Card>
                             </div>
                         ))

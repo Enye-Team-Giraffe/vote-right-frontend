@@ -3,12 +3,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../../viewElection/components/ViewElection';
 import {
-    Card, Icon, Spin, Button, Statistic
+    Card, Icon, Spin, Statistic
 } from 'antd';
-import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
-    VIEW_CANDIDATE_ROUTE, ADD_CANDIDATE_ROUTE, VIEW_CANDIDATE, ADD_CANDIDATE,
     NO_PENDING_ELECTION
 } from '../constants';
 import actions from '../../viewElection/actions';
@@ -60,41 +58,9 @@ export default function ViewElection() {
                                                 type="calendar"
                                                 key="calendar"
                                             />
-                                            {toDateString(election.enddate)}
+                                            {`Ends on ${toDateString(election.enddate)}`}
                                         </div>
                                     </div>,
-                                    <Button
-                                        type="primary"
-                                        className="electionItem__subitem --button"
-                                        key={election.name}
-                                    >
-                                        <NavLink
-                                            to={`${ADD_CANDIDATE_ROUTE}${election.location}`}
-                                        >
-                                            <Icon
-                                                className="electionItem__subitem__icon"
-                                                type="plus"
-                                                key="link"
-                                            />
-                                            {ADD_CANDIDATE}
-                                        </NavLink>
-                                    </Button>,
-                                    <Button
-                                        type="primary"
-                                        className="electionItem__subitem --button"
-                                        key={Math.random()}
-                                    >
-                                        <NavLink
-                                            to={`${VIEW_CANDIDATE_ROUTE}${election.location}`}
-                                        >
-                                            <Icon
-                                                className="electionItem__subitem__icon"
-                                                type="eye"
-                                                key="link"
-                                            />
-                                            {VIEW_CANDIDATE}
-                                        </NavLink>
-                                    </Button>,
                                 ]}
                             >
                                 <Meta

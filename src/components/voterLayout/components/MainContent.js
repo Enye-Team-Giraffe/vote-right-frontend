@@ -69,9 +69,14 @@ const DashboardLayout = withRouter(() => {
                         />
                         <Route
                             exact
+                            path="/user/pending-elections"
+                            component={UserViewPending}
+                        />
+                        <Route
+                            exact
                             path="/user/results/:electionId"
                             component={ViewResults}
-                        />
+                        />                        
                     </Switch>
                 </Content>
             </Layout>
