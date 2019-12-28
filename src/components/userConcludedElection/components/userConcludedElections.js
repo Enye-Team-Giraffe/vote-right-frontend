@@ -2,7 +2,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Card, Icon, Spin, Button, Statistic } from 'antd';
+import {
+    Card, Icon, Spin, Button, Statistic
+} from 'antd';
 
 import './userConcludedElections.css';
 import { LOADING_MESSAGE } from '../constants';
@@ -89,7 +91,7 @@ export default function ViewElection() {
                                         title={election.name}
                                         description={election.description}
                                     />
-                                    <p/>
+                                    <p />
                                     <div className="electionItem__statistics">
                                         <Statistic
                                             title="Candidates"

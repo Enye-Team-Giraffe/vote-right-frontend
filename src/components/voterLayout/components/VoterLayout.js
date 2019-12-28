@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { components as UserViewOngoing } from '../../userOngoingElection';
 import { components as UserViewConcluded } from '../../userConcludedElection';
 import { components as ViewResults } from '../../userViewResults';
-import {component as UserViewPending} from "../../userPendingElection";
+import { component as UserViewPending } from '../../userPendingElection';
 import SideNav from './SideNav';
 import { actions } from '../../dashboard';
 
