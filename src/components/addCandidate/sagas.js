@@ -108,6 +108,7 @@ function* addCandidate(action) {
         )
             .send({ from: account, gas: LARGE_GAS });
         message.success(SUCCESS, WAIT_TIME);
+        // use this to clear the field after we are done
     } catch (err) {
         message.error(ELECTION_STARTED_ERROR, WAIT_TIME);
     } finally {

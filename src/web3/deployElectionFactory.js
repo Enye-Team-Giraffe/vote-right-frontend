@@ -1,5 +1,4 @@
 const web3 = require('./configuredWeb3');
-
 const {
     interface: compiledFactoryInterface,
     bytecode: compiledFactoryBytecode,

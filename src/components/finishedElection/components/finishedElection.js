@@ -8,6 +8,7 @@ import {
 } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
+import { NO_FINISHED_ELECTION } from '../constants';
 
 import actions from '../../viewElection/actions';
 
@@ -17,6 +18,7 @@ export default function ViewElection() {
     const dispatch = useDispatch();
     const elections = useSelector(state => state.elections);
     const loadingElections = useSelector(state => state.electionListLoading);
+    const statistics = useSelector(state => state.statistics);
 
     const antIcon = <Icon type="loading" className="loader" spin />;
     // upon render of the page get all the elections
@@ -93,19 +95,18 @@ export default function ViewElection() {
                                 <div className="electionItem__statistics">
                                     <Statistic
                                         title="Candidates"
-                                        value={3}
-                                        precision={0}
+                                        value={statistics[election.location][0]}
                                         valueStyle={{ color: '#3f8600' }}
                                     />
                                     <Statistic
                                         title="Total Votes"
-                                        value={111221}
+                                        value={statistics[election.location][1]}
                                         valueStyle={{ color: '#3f8600' }}
                                     />
                                     <Statistic
                                         className="--hide-on-very-small"
-                                        title="Alexander"
-                                        value={111}
+                                        title={statistics[election.location][2]}
+                                        value={statistics[election.location][3]}
                                         valueStyle={{ color: '#3f8600' }}
                                         suffix="Votes"
                                     />
@@ -114,6 +115,13 @@ export default function ViewElection() {
                         </div>
                     ))
 
+                }
+                {
+                    (elections.length === 0 && !loadingElections) ? (
+                        <div className="no_candidate">
+                            {NO_FINISHED_ELECTION}
+                        </div>
+                    ) : ''
                 }
 
             </div>

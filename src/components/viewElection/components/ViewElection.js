@@ -7,7 +7,7 @@ import {
     Card, Icon, Spin, Statistic, Button
 } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { LOADING_MESSAGE } from '../constants';
+import { LOADING_MESSAGE, NO_RUNNING_ELECTION } from '../constants';
 
 import actions from '../actions';
 
@@ -17,6 +17,7 @@ export default function ViewElection() {
     const dispatch = useDispatch();
     const elections = useSelector(state => state.elections);
     const loadingElections = useSelector(state => state.electionListLoading);
+    const statistics = useSelector(state => state.statistics);
 
     const antIcon = <Icon type="loading" className="loader" spin />;
     // upon render of the page get all the elections
@@ -89,35 +90,40 @@ export default function ViewElection() {
                                     description={election.description}
                                 />
                                 <p />
-                                <p>Ade is leading with 50 votes</p>
 
                                 <div className="electionItem__statistics">
                                     <Statistic
                                         title="Candidates"
-                                        value={3}
+                                        value={statistics[election.location][0]}
                                         precision={0}
                                         valueStyle={{ color: '#3f8600' }}
                                     />
                                     <Statistic
                                         title="Votes Count"
-                                        value={111221}
+                                        value={statistics[election.location][1]}
                                         prefix={<Icon type="inbox" />}
                                         valueStyle={{ color: '#3f8600' }}
                                     />
                                     <Statistic
                                         className="--hide-on-very-small"
-                                        title="Activity"
-                                        value={11.28}
-                                        precision={2}
+                                        title={statistics[election.location][2]}
+                                        value={statistics[election.location][3]}
                                         valueStyle={{ color: '#3f8600' }}
                                         prefix={<Icon type="arrow-up" />}
-                                        suffix="%"
+                                        suffix="votes"
                                     />
                                 </div>
                             </Card>
                         </div>
                     ))
 
+                }
+                {
+                    (elections.length === 0 && !loadingElections) ? (
+                        <div className="no_candidate">
+                            {NO_RUNNING_ELECTION}
+                        </div>
+                    ) : ''
                 }
 
             </div>

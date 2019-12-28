@@ -1,6 +1,6 @@
 import {
     LOAD_ELECTIONS, PUSH_ELECTIONS,
-    LOADING_ELECTION
+    LOADING_ELECTION, PUSH_STATISTICS
 } from './actionTypes';
 
 /**
@@ -29,9 +29,19 @@ const loadingElections = truthyValue => ({
     payload: truthyValue,
     type: LOADING_ELECTION,
 });
+/**
+ * Triggers to push the statistics of all the elections into the state
+ * @function
+ * @return {Object} The {@link actionTypes.PUSH_STATISTICS PUSH_STATISTICS} action.
+ */
+const pushStatistics = statisticsArray => ({
+    payload: statisticsArray,
+    type: PUSH_STATISTICS,
+});
 
 export default {
     loadElections,
     loadingElections,
     pushElections,
+    pushStatistics,
 };

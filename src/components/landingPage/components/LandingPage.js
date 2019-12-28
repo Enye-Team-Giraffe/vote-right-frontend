@@ -24,6 +24,15 @@ const LandingPage = () => {
         setCurrentText(MENUITEMS[index]);
         setStateKey(Math.random());
     };
+    /**
+     * Handles manual changing the current text on the screen and render the animation
+     * @function
+     * @param {event} index - the index of this element in the constant array
+     */
+    const manualChange = index => {
+        counter.current = index;
+        changeCurrentText(index);
+    };
 
     const dummy = () => {
         window.dummy = 'active';
@@ -71,7 +80,7 @@ const LandingPage = () => {
                             MENUITEMS.map(menuitem => (
                                 <div
                                     aria-label="Mute volume"
-                                    onClick={() => changeCurrentText(menuitem.index)}
+                                    onClick={() => manualChange(menuitem.index)}
                                     className={`item ${(menuitem.index === currentText.index) ? 'active' : ''}`}
                                     key={`${menuitem.FIRSTTITLE}-${menuitem.index}`}
                                     onKeyDown={dummy}

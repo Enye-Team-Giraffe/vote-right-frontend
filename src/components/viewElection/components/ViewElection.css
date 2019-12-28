@@ -5,12 +5,13 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
+    background:linear-gradient(to bottom right, hsl(208, 100%, 98.5%) 40%, white);
     background-color: hsl(208, 100%, 98.5%);
 }
 .electionItem{
     width: 45%;
     max-width: 700px;
-    min-width: 550px;
+    min-width: 500px;
     margin: 0px 20px 70px 20px;
 }
 
@@ -57,5 +58,11 @@
 
     .--hide-on-very-small{
         display: none;
+    }
+}
+@media (max-width:1380px){
+    .electionItem{
+        width: 90%;
+        min-width: 300px;
     }
 }
