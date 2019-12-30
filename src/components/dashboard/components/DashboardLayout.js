@@ -63,32 +63,32 @@ const DashboardLayout = () => {
                     <Switch>
                         <Route
                             exact
-                            path="/dashboard"
+                            path="/dashboard/elections/ongoing"
                             component={ViewElection}
                         />
                         <Route
                             exact
-                            path="/dashboard/create_election"
+                            path="/dashboard/elections"
                             component={CreateElection}
                         />
                         <Route
-                            path="/dashboard/statistics/:electionId"
+                            path="/dashboard/elections/:electionId/statistics"
                             component={ViewStats}
                         />
                         <Route
-                            path="/dashboard/add_candidate/:electionId"
+                            path="/dashboard/elections/:electionId/register-candidate"
                             component={AddCandidate}
                         />
                         <Route
-                            path="/dashboard/pending_election"
+                            path="/dashboard/elections/pending"
                             component={PendingEleciton}
                         />
                         <Route
-                            path="/dashboard/concluded_election"
+                            path="/dashboard/elections/concluded"
                             component={FinishedElection}
                         />
                         <Route
-                            path="/dashboard/view_candidates/:electionId"
+                            path="/dashboard/elections/:electionId/candidates"
                             component={ViewCandidate}
                         />
                     </Switch>

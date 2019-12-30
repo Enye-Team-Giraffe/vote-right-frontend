@@ -30,7 +30,7 @@ const SideNav = () => (
         <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={['']}
+            defaultSelectedKeys={['c']}
             className="menu"
         >
             {Object.keys(MENU).map(key => {
