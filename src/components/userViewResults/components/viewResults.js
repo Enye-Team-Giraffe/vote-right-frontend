@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Card, Icon, Spin } from 'antd';
 import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
-import { LOADING_MESSAGE, NO_CANDIDATE } from '../constants';
+import { LOADING_MESSAGE, NO_CANDIDATE, TOLERANCE } from '../constants';
 
 const { Meta } = Card;
 
@@ -25,7 +25,7 @@ export default function ViewResults({ match }) {
     // which has been defined in the viewstats component
     const dispatch = useDispatch();
     const totalVotes = candidates.reduce((previous, next) => previous + Number(next.voteCount), 0);
-    const calcPercentage = (num, total) => ((Number(num) / total).toFixed(2) * 100);
+    const calcPercentage = (num, total) => ((Number(num) / (total + TOLERANCE)).toFixed(2) * 100);
     const sortedCandidate = candidates.sort((a, b) => b.voteCount - a.voteCount);
 
     useEffect(() => {

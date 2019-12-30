@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { components as UserViewOngoing } from '../../userOngoingElection';
 import { components as UserViewConcluded } from '../../userConcludedElection';
 import { components as ViewResults } from '../../userViewResults';
+import { component as UserViewPending } from '../../userPendingElection';
 import SideNav from './SideNav';
 import { actions } from '../../dashboard';
 
@@ -65,6 +66,11 @@ const VoterLayout = () => {
                             exact
                             path="/user/ongoing-elections"
                             component={UserViewOngoing}
+                        />
+                        <Route
+                            exact
+                            path="/user/pending-elections"
+                            component={UserViewPending}
                         />
                         <Route
                             exact

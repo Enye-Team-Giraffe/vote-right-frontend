@@ -5,7 +5,7 @@ export const CONCLUDED_ELECTIONS = 'Concluded Elections';
 export const LOGOUT = 'Logout';
 
 export const MENU = {
-    b: ['Upcoming Elections', 'concluded-elections', 'clock-circle'],
+    b: ['Upcoming Elections', 'pending-elections', 'clock-circle'],
     c: ['Ongoing Elections', 'ongoing-elections', 'eye'],
     d: ['Concluded Elections', 'concluded-elections', 'carry-out'],
 };
