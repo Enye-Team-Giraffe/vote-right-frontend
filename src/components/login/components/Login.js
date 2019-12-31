@@ -174,7 +174,7 @@ function Login() {
 
     return (
         <div className="loginlayout">
-            {userAuthenticated ? <Redirect to="/user" /> : <div />}
+            {userAuthenticated ? <Redirect to="/user/elections/ongoing" /> : <div />}
             <div ref={captchaRef}>
                 <div id="cap" />
             </div>
@@ -242,7 +242,7 @@ function Login() {
                                 {/* Phone number input field */}
                                 <Input
                                     className="form__input"
-                                    placeholder="Conformation Code"
+                                    placeholder="Confirmation Code"
                                     minLength={6}
                                     maxLength={6}
                                     value={confirmationCode}

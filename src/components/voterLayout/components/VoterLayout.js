@@ -54,22 +54,22 @@ const VoterLayout = () => {
                     <Switch>
                         <Route
                             exact
-                            path="/user/"
+                            path="/user/elections/ongoing"
                             component={UserViewOngoing}
                         />
                         <Route
                             exact
-                            path="/user/concluded-elections"
+                            path="/user/elections/concluded"
                             component={UserViewConcluded}
                         />
                         <Route
                             exact
-                            path="/user/ongoing-elections"
+                            path="/user/elections/ongoing"
                             component={UserViewOngoing}
                         />
                         <Route
                             exact
-                            path="/user/pending-elections"
+                            path="/user/elections/pending"
                             component={UserViewPending}
                         />
                         <Route

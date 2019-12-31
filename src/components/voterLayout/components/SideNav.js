@@ -29,14 +29,14 @@ const SideNav = () => (
         <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={['']}
+            defaultSelectedKeys={['b']}
             className="menu"
         >
             {Object.keys(MENU).map(key => {
                 const [name, route, type] = MENU[key];
                 return (
                     <Menu.Item key={key} className="sideNav__sideitem">
-                        <Link to={`/user/${route}`}>
+                        <Link to={`/user/elections/${route}`}>
                             <span className="nav-text">
                                 <Icon className="sideNav__top_icon" type={type} />
                                 {name}

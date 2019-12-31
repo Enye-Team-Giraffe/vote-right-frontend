@@ -8,8 +8,7 @@ import {
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
-    VIEW_CANDIDATE_ROUTE, ADD_CANDIDATE_ROUTE, VIEW_CANDIDATE, ADD_CANDIDATE,
-    NO_PENDING_ELECTION
+    VIEW_CANDIDATE, ADD_CANDIDATE, NO_PENDING_ELECTION
 } from '../constants';
 import actions from '../../viewElection/actions';
 
@@ -69,7 +68,8 @@ export default function ViewElection() {
                                         key={election.name}
                                     >
                                         <NavLink
-                                            to={`${ADD_CANDIDATE_ROUTE}${election.location}`}
+                                            to={'/dashboard/elections/'
+                                                + `${election.location}/register-candidate`}
                                         >
                                             <Icon
                                                 className="electionItem__subitem__icon"
@@ -85,7 +85,8 @@ export default function ViewElection() {
                                         key={Math.random()}
                                     >
                                         <NavLink
-                                            to={`${VIEW_CANDIDATE_ROUTE}${election.location}`}
+                                            to={'/dashboard/elections/'
+                                                + `${election.location}/candidates`}
                                         >
                                             <Icon
                                                 className="electionItem__subitem__icon"
