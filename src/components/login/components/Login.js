@@ -174,7 +174,7 @@ function Login() {
 
     return (
         <div className="loginlayout">
-            {userAuthenticated ? <Redirect to="/user" /> : <div />}
+            {userAuthenticated ? <Redirect to="/user/elections/ongoing" /> : <div />}
             <div ref={captchaRef}>
                 <div id="cap" />
             </div>

@@ -5,9 +5,9 @@ export const CONCLUDED_ELECTIONS = 'Concluded Elections';
 export const LOGOUT = 'Logout';
 
 export const MENU = {
-    b: ['Upcoming Elections', 'pending-elections', 'clock-circle'],
-    c: ['Ongoing Elections', 'ongoing-elections', 'eye'],
-    d: ['Concluded Elections', 'concluded-elections', 'carry-out'],
+    a: ['Upcoming Elections', 'pending', 'clock-circle'],
+    b: ['Ongoing Elections', 'ongoing', 'eye'],
+    c: ['Concluded Elections', 'concluded', 'carry-out'],
 };
 export const WAIT_TIME = 2;
 export const LOGOUT_SUCESSFULL = 'Your logout was sucessfull';
