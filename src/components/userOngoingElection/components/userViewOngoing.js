@@ -72,7 +72,8 @@ export default function ViewElection() {
                                             key={election.name}
                                         >
                                             <NavLink
-                                                to={`/user/elections/ongoin/${election.location}/vote`}
+                                                to={'/user/elections/ongoin/'
+                                                    + `${election.location}/vote`}
                                             >
                                                 <Icon
                                                     className="electionItem__subitem__icon"

@@ -74,7 +74,8 @@ export default function ViewElection() {
                                         key={election.name}
                                     >
                                         <NavLink
-                                            to={`/dashboard/elections/${election.location}/statistics`}
+                                            to={'/dashboard/elections/'
+                                                + `${election.location}/statistics`}
                                         >
                                             <Icon
                                                 className="electionItem__subitem__icon"

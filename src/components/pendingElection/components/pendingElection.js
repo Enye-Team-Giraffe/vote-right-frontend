@@ -68,7 +68,8 @@ export default function ViewElection() {
                                         key={election.name}
                                     >
                                         <NavLink
-                                            to={`/dashboard/elections/${election.location}/register-candidate`}
+                                            to={'/dashboard/elections/'
+                                                + `${election.location}/register-candidate`}
                                         >
                                             <Icon
                                                 className="electionItem__subitem__icon"
@@ -84,7 +85,8 @@ export default function ViewElection() {
                                         key={Math.random()}
                                     >
                                         <NavLink
-                                            to={`/dashboard/elections/${election.location}/candidates`}
+                                            to={'/dashboard/elections/'
+                                                + `${election.location}/candidates`}
                                         >
                                             <Icon
                                                 className="electionItem__subitem__icon"
