@@ -242,7 +242,7 @@ function Login() {
                                 {/* Phone number input field */}
                                 <Input
                                     className="form__input"
-                                    placeholder="Conformation Code"
+                                    placeholder="Confirmation Code"
                                     minLength={6}
                                     maxLength={6}
                                     value={confirmationCode}

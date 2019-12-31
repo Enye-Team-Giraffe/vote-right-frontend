@@ -13,7 +13,7 @@ export const SUCCESSFULL_NIN = `Your NIN was succesfully validated,
                                 please proceed to validate your phone number`;
 export const WAIT_TIME = 2.0;
 export const CONFIRM = 'confirm code';
-export const CONFIRM_HEADER = 'Confirm the code Recieved on your phone';
+export const CONFIRM_HEADER = 'Confirm the code recieved on your phone';
 export const INVALID_CODE = 'Invalid verification Code';
 export const USER_ALREADY_LOGGED = 'Please proceed to user dashboard';
 export const LOADING_MESSAGE = 'loading....';
