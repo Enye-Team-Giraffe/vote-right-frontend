@@ -1,0 +1,39 @@
+.candidateView {
+    margin-top: 3rem;
+
+}
+
+.candidateCard {
+    margin: 20px auto;
+    max-width: 500px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #e8eaf6;
+}
+
+.candidateCard .ant-card-body {
+    padding: 15px;
+}
+
+.candidateCard__label {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.-bold {
+    font-weight: bold;
+}
+
+.-fontBig {
+    font-size: 1.5rem;
+}
+
+.candidateCard__vote {
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
