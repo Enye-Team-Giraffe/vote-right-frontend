@@ -1,14 +1,12 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect } from 'react';
 import './viewResults.css';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Icon, Spin } from 'antd';
+import { Icon, Spin, Table, Avatar } from 'antd';
 import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
-import { LOADING_MESSAGE, NO_CANDIDATE, TOLERANCE } from '../constants';
+import { LOADING_MESSAGE, NO_CANDIDATE } from '../constants';
 
-const { Meta } = Card;
 
 const IconText = ({ type, text }) => (
     <span>
@@ -17,6 +15,38 @@ const IconText = ({ type, text }) => (
     </span>
 );
 
+
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    render: (text,record) => {
+        return  <div className="tableNameCol">
+                    <Avatar 
+                        src={record.pictureLink} 
+                        className="--paddingleft"
+                    />
+                    <div className="tableNameCol__text">
+                        {text}
+                    </div>
+                </div>
+    }
+  },
+  {
+    title: 'Party',
+    dataIndex: 'party',
+    ellipsis:true,
+  },
+  {
+    title:"Age",
+    dataIndex:"age",
+  },
+  {
+    title: 'Vote Count',
+    dataIndex: 'voteCount',
+  },
+];
+
 export default function ViewResults({address}) {
     // get the state variables
     const candidates = useSelector(state => state.candidates);
@@ -24,8 +54,6 @@ export default function ViewResults({address}) {
     // dispatch the loadCandidates saga
     // which has been defined in the viewstats component
     const dispatch = useDispatch();
-    const totalVotes = candidates.reduce((previous, next) => previous + Number(next.voteCount), 0);
-    const calcPercentage = (num, total) => ((Number(num) / (total + TOLERANCE)).toFixed(2) * 100);
     const sortedCandidate = candidates.sort((a, b) => b.voteCount - a.voteCount);
 
     useEffect(() => {
@@ -37,7 +65,7 @@ export default function ViewResults({address}) {
     // item for customising the spinner
     const antIcon = <Icon type="loading" className="loader" spin />;
     return (
-        <div className="viewCandidates --results">
+        <div className="viewCandidates --noPadding">
             <Spin
                 size="large"
                 indicator={antIcon}
@@ -46,70 +74,37 @@ export default function ViewResults({address}) {
                 tip={LOADING_MESSAGE}
             />
             {
-                sortedCandidate.map(candidate => (
-                    <Card
-                        key={candidate.id}
-                        className="viewCandidates__card"
-                        cover={(
-                            <img
-                                alt="example"
-                                src="https://i.pravatar.cc/500"
-                            />
-                        )}
-                        actions={[
-                            <IconText
-                                type="check"
-                                text={candidate.voteCount}
-                                key="list-vertical-like-o"
-                            />,
-                            <IconText
-                                type="arrow-up"
-                                text={`${calcPercentage(candidate.voteCount, totalVotes)}%`}
-                                key="list-vertical-message"
-                            />,
-                        ]}
-                    >
-                        <Meta
-                            className="viewCandidates__card__meta --name"
-                            title={candidate.name}
-                        />
-                        <Meta
-                            className="viewCandidates__card__meta --party"
-                            title={`${candidate.age} years of age`}
-                        />
-                        <Meta
-                            className="viewCandidates__card__meta --party"
-                            title={`Member of ${candidate.party}`}
-                        />
-                        <Meta
-                            className="viewCandidates__card__meta --education"
-                            title={`Last studied at ${candidate.education}`}
-                        />
-                        <Meta
-                            className="viewCandidates__card__meta --quote"
-                            description={`'${candidate.quote}'`}
-                        />
-                    </Card>
-                ))
-            }
-            {
                 // if there is no candidateloading  then show that there is none.
                 (candidates.length === 0 && !loading) ? (
                     <div className="no_candidate">
                         {NO_CANDIDATE}
                     </div>
-                ) : ''
+                )            
+                :""
+            }
+            {
+                (!loading && candidates.length > 0 )?(
+                    <Table 
+                        rowKey="id" 
+                        columns={columns} 
+                        dataSource={sortedCandidate} 
+                        expandedRowRender={record => {
+                            return <i>{`'${record.quote}'`}</i>
+                            }
+                        }
+                    />
+                ):""
             }
         </div>
     );
 }
 
-// ViewResults.propTypes = {
-//     match: ReactRouterPropTypes.match.isRequired,
-// };
+ViewResults.propTypes = {
+    address: PropTypes.string.isRequired,
+};
 
-// IconText.propTypes = {
-//     text: PropTypes.string.isRequired,
-//     type: PropTypes.string.isRequired,
-// };
+IconText.propTypes = {
+    text: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+};
 

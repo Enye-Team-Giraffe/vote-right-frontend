@@ -1,7 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import {components as ViewResults} from "../../userViewResults"
 import {
     Card, Icon, Spin, Button, Statistic, Modal
@@ -47,17 +46,16 @@ export default function ViewElection() {
                 className="loader"
                 tip={LOADING_MESSAGE}
             >
-            <Modal
+                <div className="viewElection">
+                <Modal
             key={electionAddress}
             visible={visible}
             title="Results of elections"
             onCancel={handleCancel}
-
             footer={[]}
             >
                 <ViewResults address={electionAddress}/>
             </Modal>
-                <div className="viewElection">
                     {
                         elections.map(election => (
                             <div className="electionItem" key={election.location}>
