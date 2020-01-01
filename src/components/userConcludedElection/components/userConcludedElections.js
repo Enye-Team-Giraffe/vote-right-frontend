@@ -7,7 +7,7 @@ import {
 import { components as ViewResults } from '../../userViewResults';
 
 import './userConcludedElections.css';
-import { LOADING_MESSAGE } from '../constants';
+import { LOADING_MESSAGE, MODAL_TITLE, VIEW_RESULT } from '../constants';
 import { actions } from '../../viewElection';
 
 const { Meta } = Card;
@@ -50,7 +50,7 @@ export default function ViewElection() {
                     <Modal
                         key={electionAddress}
                         visible={visible}
-                        title="Results of elections"
+                        title={MODAL_TITLE}
                         onCancel={handleCancel}
                         footer={[]}
                     >
@@ -94,18 +94,14 @@ export default function ViewElection() {
                                             key={election.name}
                                             onClick={() => { showModal(election.location); }}
                                         >
-                                            {/* <NavLink
-                                                to={`/user/results/${election.location}`}
-                                            > */}
                                             <div>
                                                 <Icon
                                                     className="electionItem__subitem__icon"
                                                     type="link"
                                                     key="link"
                                                 />
-                                                View Results
+                                                {VIEW_RESULT}
                                             </div>
-                                            {/* </NavLink> */}
                                         </Button>,
                                     ]}
                                 >

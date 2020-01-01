@@ -1,12 +1,6 @@
 .viewResultsLayout{
     padding:45px 50px;
 }
-.--paddingleft{
-    margin-right: 10px;
-}
-.--noPadding{
-    padding: 0;
-}
 .ant-modal{
     width: 70% !important;
     top: 50px;
@@ -20,14 +14,34 @@
     letter-spacing: 0.8px;
     font-size: 20px;
 }
+.ant-modal-content {
+    min-width: 330px;
+}
 .tableNameCol__text{
     text-align:left;
     display: inline;
 }
+
+
+
 .ant-modal-header {
     padding: 26px 24px;
 }
+.--paddingleft{
+    margin: 10px;
+}
+.--noPadding{
+    padding: 0;
+}
 
+@media ( max-width:500px ){
+    tr.ant-table-row.ant-table-row-level-0 {
+        font-size: 10px;
+    }
+    .ant-table-thead{
+        font-size: 10px;
+    }
+}
 
 @media ( min-width:991px ){
     .ant-modal{

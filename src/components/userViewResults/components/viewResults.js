@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import './viewResults.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    Icon, Spin, Table, Avatar
+    Icon, Spin, Table, Avatar, Tag
 } from 'antd';
 import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
@@ -19,7 +19,7 @@ const IconText = ({ type, text }) => (
 const columns = [
     {
         dataIndex: 'name',
-        render(text, record) {
+        render(text, record, index) {
             return (
                 <div className="tableNameCol">
                     <Avatar
@@ -29,6 +29,16 @@ const columns = [
                     <div className="tableNameCol__text">
                         {text}
                     </div>
+                    {
+                        (index === 0) ? (
+                            <Tag
+                                color="geekblue"
+                                className="--paddingleft"
+                            >
+                                        winner
+                            </Tag>
+                        ) : ''
+                    }
                 </div>
             );
         },
