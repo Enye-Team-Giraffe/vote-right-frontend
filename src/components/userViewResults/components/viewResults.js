@@ -2,11 +2,12 @@
 import React, { useEffect } from 'react';
 import './viewResults.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { Icon, Spin, Table, Avatar } from 'antd';
+import {
+    Icon, Spin, Table, Avatar
+} from 'antd';
 import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
 import { LOADING_MESSAGE, NO_CANDIDATE } from '../constants';
-
 
 const IconText = ({ type, text }) => (
     <span>
@@ -15,39 +16,40 @@ const IconText = ({ type, text }) => (
     </span>
 );
 
-
 const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    render: (text,record) => {
-        return  <div className="tableNameCol">
-                    <Avatar 
-                        src={record.pictureLink} 
+    {
+        dataIndex: 'name',
+        render(text, record) {
+            return (
+                <div className="tableNameCol">
+                    <Avatar
+                        src={record.pictureLink}
                         className="--paddingleft"
                     />
                     <div className="tableNameCol__text">
                         {text}
                     </div>
                 </div>
-    }
-  },
-  {
-    title: 'Party',
-    dataIndex: 'party',
-    ellipsis:true,
-  },
-  {
-    title:"Age",
-    dataIndex:"age",
-  },
-  {
-    title: 'Vote Count',
-    dataIndex: 'voteCount',
-  },
+            );
+        },
+        title: 'Name',
+    },
+    {
+        dataIndex: 'party',
+        ellipsis: true,
+        title: 'Party',
+    },
+    {
+        dataIndex: 'age',
+        title: 'Age',
+    },
+    {
+        dataIndex: 'voteCount',
+        title: 'Vote Count',
+    },
 ];
 
-export default function ViewResults({address}) {
+export default function ViewResults({ address }) {
     // get the state variables
     const candidates = useSelector(state => state.candidates);
     const loading = useSelector(state => state.candidatesLoading);
@@ -79,21 +81,18 @@ export default function ViewResults({address}) {
                     <div className="no_candidate">
                         {NO_CANDIDATE}
                     </div>
-                )            
-                :""
+                )
+                    : ''
             }
             {
-                (!loading && candidates.length > 0 )?(
-                    <Table 
-                        rowKey="id" 
-                        columns={columns} 
-                        dataSource={sortedCandidate} 
-                        expandedRowRender={record => {
-                            return <i>{`'${record.quote}'`}</i>
-                            }
-                        }
+                (!loading && candidates.length > 0) ? (
+                    <Table
+                        rowKey="id"
+                        columns={columns}
+                        dataSource={sortedCandidate}
+                        expandedRowRender={record => <i>{`'${record.quote}'`}</i>}
                     />
-                ):""
+                ) : ''
             }
         </div>
     );
