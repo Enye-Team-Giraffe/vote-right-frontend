@@ -13,6 +13,7 @@ import { components as ViewResults } from '../../userViewResults';
 import { component as UserViewPending } from '../../userPendingElection';
 import SideNav from './SideNav';
 import { actions } from '../../dashboard';
+import {actions as userActions} from "../../login"
 
 const { Header, Content } = Layout;
 
@@ -25,6 +26,7 @@ const VoterLayout = () => {
     // logout of the FinishedElection
     const logout = () => {
         dispatch(actions.logoutUser(history));
+        dispatch(userActions.authenticateUserStatus(false));
     };
 
     // a function to be activated upon keydown

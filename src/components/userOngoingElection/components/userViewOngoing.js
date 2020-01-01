@@ -80,7 +80,7 @@ export default function ViewElection() {
                                                     type="link"
                                                     key="link"
                                                 />
-                                                Vote in this election
+                                                Vote
                                             </NavLink>
                                         </Button>,
                                     ]}
