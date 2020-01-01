@@ -17,7 +17,7 @@ const IconText = ({ type, text }) => (
     </span>
 );
 
-export default function ViewResults({ match }) {
+export default function ViewResults({address}) {
     // get the state variables
     const candidates = useSelector(state => state.candidates);
     const loading = useSelector(state => state.candidatesLoading);
@@ -31,8 +31,8 @@ export default function ViewResults({ match }) {
     useEffect(() => {
         dispatch(actions.pushCandidates([]));
         dispatch(actions.loadingCandidates(true));
-        dispatch(actions.loadCandidates(match.params.electionId));
-    }, [dispatch, match.params.electionId]);
+        dispatch(actions.loadCandidates(address));
+    }, [dispatch, address]);
 
     // item for customising the spinner
     const antIcon = <Icon type="loading" className="loader" spin />;
@@ -104,12 +104,12 @@ export default function ViewResults({ match }) {
     );
 }
 
-ViewResults.propTypes = {
-    match: ReactRouterPropTypes.match.isRequired,
-};
+// ViewResults.propTypes = {
+//     match: ReactRouterPropTypes.match.isRequired,
+// };
 
-IconText.propTypes = {
-    text: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-};
+// IconText.propTypes = {
+//     text: PropTypes.string.isRequired,
+//     type: PropTypes.string.isRequired,
+// };
 

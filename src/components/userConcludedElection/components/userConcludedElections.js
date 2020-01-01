@@ -1,9 +1,10 @@
 /* eslint-disable max-lines-per-function */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import {components as ViewResults} from "../../userViewResults"
 import {
-    Card, Icon, Spin, Button, Statistic
+    Card, Icon, Spin, Button, Statistic, Modal
 } from 'antd';
 
 import './userConcludedElections.css';
@@ -13,6 +14,10 @@ import { actions } from '../../viewElection';
 const { Meta } = Card;
 
 export default function ViewElection() {
+    // create a state variable to keep track of if the election modal is open
+    const [visible,setVisibility] = useState(false)
+    const [electionAddress,setElectionAddress] = useState("");
+
     const dispatch = useDispatch();
     const elections = useSelector(state => state.elections);
     const loadingElections = useSelector(state => state.electionListLoading);
@@ -21,6 +26,12 @@ export default function ViewElection() {
     // with dates less than today
 
     const antIcon = <Icon type="loading" className="loader" spin />;
+    const showModal = (electionAddress) =>{
+        setElectionAddress(electionAddress);
+        setVisibility(true);
+    };
+    const handleCancel = ()=>{setVisibility(false);}
+
     // upon render of the page get all the elections
     useEffect(() => {
         dispatch(actions.loadElections());
@@ -36,6 +47,16 @@ export default function ViewElection() {
                 className="loader"
                 tip={LOADING_MESSAGE}
             >
+            <Modal
+            key={electionAddress}
+            visible={visible}
+            title="Results of elections"
+            onCancel={handleCancel}
+
+            footer={[]}
+            >
+                <ViewResults address={electionAddress}/>
+            </Modal>
                 <div className="viewElection">
                     {
                         elections.map(election => (
@@ -73,17 +94,20 @@ export default function ViewElection() {
                                             type="primary"
                                             className="electionItem__subitem --button"
                                             key={election.name}
+                                            onClick={()=>{showModal(election.location)}}
                                         >
-                                            <NavLink
+                                            {/* <NavLink
                                                 to={`/user/results/${election.location}`}
-                                            >
+                                            > */}
+                                            <div>
                                                 <Icon
                                                     className="electionItem__subitem__icon"
                                                     type="link"
                                                     key="link"
                                                 />
                                                 View Results
-                                            </NavLink>
+                                            </div>
+                                            {/* </NavLink> */}
                                         </Button>,
                                     ]}
                                 >
