@@ -7,7 +7,9 @@ import {
 } from 'antd';
 import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
-import { LOADING_MESSAGE, NO_CANDIDATE } from '../constants';
+import {
+    LOADING_MESSAGE, NO_CANDIDATE, WINNER
+} from '../constants';
 
 const IconText = ({ type, text }) => (
     <span>
@@ -35,7 +37,7 @@ const columns = [
                                 color="geekblue"
                                 className="--paddingleft"
                             >
-                                        winner
+                                {WINNER}
                             </Tag>
                         ) : ''
                     }
@@ -66,14 +68,13 @@ export default function ViewResults({ address }) {
     // dispatch the loadCandidates saga
     // which has been defined in the viewstats component
     const dispatch = useDispatch();
+    // sort the candidates by votecount
     const sortedCandidate = candidates.sort((a, b) => b.voteCount - a.voteCount);
-
     useEffect(() => {
         dispatch(actions.pushCandidates([]));
         dispatch(actions.loadingCandidates(true));
         dispatch(actions.loadCandidates(address));
     }, [dispatch, address]);
-
     // item for customising the spinner
     const antIcon = <Icon type="loading" className="loader" spin />;
     return (
@@ -95,6 +96,8 @@ export default function ViewResults({ address }) {
                     : ''
             }
             {
+                // if there is at least one candidate and we are done loading
+                // then show the table
                 (!loading && candidates.length > 0) ? (
                     <Table
                         rowKey="id"

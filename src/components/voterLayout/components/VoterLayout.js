@@ -13,7 +13,7 @@ import { components as ViewResults } from '../../userViewResults';
 import { component as UserViewPending } from '../../userPendingElection';
 import SideNav from './SideNav';
 import { actions } from '../../dashboard';
-import {actions as userActions} from "../../login"
+import { actions as userActions } from '../../login';
 
 const { Header, Content } = Layout;
 
