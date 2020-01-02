@@ -11,11 +11,17 @@ import { AGE_LABEL, VOTE } from '../constants';
  * @return {component} - Component that displays candidates
  */
 const ViewCandidates = () => (
-    <div>
-        <div className="candidateView">
+    <div className="candidateView">
+        <div className="candidateList">
             <Card
                 className="candidateCard"
-                cover={<img src="https://i.pravatar.cc" alt="candidate_picture" />}
+                cover={(
+                    <img
+                        className="candidateCard__image"
+                        src="https://i.pravatar.cc"
+                        alt="candidate_picture"
+                    />
+                )}
             >
                 <p className="candidateCard__label -bold -fontBig">Abraham Chang Jamal</p>
                 <p className="candidateCard__label">{`45 ${AGE_LABEL}`}</p>
@@ -26,6 +32,7 @@ const ViewCandidates = () => (
                     {VOTE}
                 </Button>
             </Card>
+
         </div>
     </div>
 );

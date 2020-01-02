@@ -1,13 +1,22 @@
 .candidateView {
-    margin-top: 3rem;
+    
 
 }
 
+.candidateList {
+    margin: 3rem auto;
+    width: 90%;
+}
+
 .candidateCard {
-    margin: 20px auto;
-    max-width: 500px;
-    border-radius: 5px;
+    margin: 40px auto;
+    max-width: 400px;
+    border-radius: 10px;
     box-shadow: 3px 3px 3px #e8eaf6;
+}
+
+.candidateCard__image {
+    height: 250px;
 }
 
 .candidateCard .ant-card-body {
@@ -35,5 +44,23 @@
     font-weight: bold;
     font-size: 18px;
 }
+
+@media (min-width: 896px){
+    .candidateList {
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+
+    }
+
+    .candidateCard {
+        margin: 20px auto;
+        max-width: 400px;
+    }
+
+}
+
 
 
