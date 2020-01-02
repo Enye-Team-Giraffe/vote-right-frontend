@@ -50,12 +50,12 @@
 
 .alt.--animate.-slow{
     opacity: 0;
-    animation: fadein 500ms 7s ease-in forwards;
+    animation: fadein 500ms 10s ease-in forwards;
 }
 
 .alt.--animate.-fast{
     opacity: 0;
-    animation: fadein 500ms 5s ease-in forwards;
+    animation: fadein 500ms 8s ease-in forwards;
 }
 
 .alt__text{

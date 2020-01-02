@@ -118,11 +118,11 @@ function* confirmUserCode(data) {
         // if the authentication goes thru
         // then change the state variable indicating this user is authenticated
         yield put(actions.authenticateUserStatus(true));
+        yield put(actions.confirmationCodeSection(false));
     } else {
         // if user entered the wrong number
         // go back to login page
         message.success(CROSS_CHECK, WAIT_TIME);
-        //   go back to login page
     }
 }
 
