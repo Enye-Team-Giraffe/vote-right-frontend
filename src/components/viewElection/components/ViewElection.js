@@ -62,7 +62,7 @@ export default function ViewElection() {
                                         <div>
                                             <Icon
                                                 className="electionItem__subitem__icon"
-                                                type="calendar"
+                                                type="carry-out"
                                                 key="calendar"
                                             />
                                             {toDateString(election.enddate)}
