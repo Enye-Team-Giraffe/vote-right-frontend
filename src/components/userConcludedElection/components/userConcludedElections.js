@@ -37,7 +37,7 @@ export default function ViewElection() {
         setElectionAddress(electionAddressParam);
         setVisibility(true);
     };
-    
+
     // this function hides the modal
     const handleCancel = () => { setVisibility(false); };
 
