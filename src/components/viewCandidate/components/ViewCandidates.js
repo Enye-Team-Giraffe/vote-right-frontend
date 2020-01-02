@@ -40,6 +40,7 @@ export default function ViewCandidates({ match }) {
                         className="viewCandidates__card"
                         cover={(
                             <img
+                                className="viewCandidates__cardImage"
                                 alt="example"
                                 src="https://i.pravatar.cc/500"
                             />

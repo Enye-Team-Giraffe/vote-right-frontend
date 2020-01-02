@@ -1,22 +1,26 @@
 .viewCandidates {
-    padding: 50px 50px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    margin: 3rem auto;
+    width: 90%;
 }
 
 .no_candidate{
     font-size: 25px;
 }
 
-img{
-    height:300px;
+.viewCandidates__cardImage{
+    height: 200px;
 }
 .viewCandidates__card{
-    width: 500px;
-    margin: 20px;
+    margin: 40px auto;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px #e8eaf6;
 }
+
+.viewCandidates__card .ant-card-body {
+    padding: 5px;
+}
+
 .viewCandidates__card__meta{
     padding-bottom: 8px;
 }
@@ -36,11 +40,37 @@ img{
     padding-top: 5px;
 }
 
-
-@media ( min-width:1000px ){
+@media ( min-width:1024px ){
     .viewCandidates {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+    }
+
+    .viewCandidates__card{
+        margin: 20px auto;
+        max-width: 350px;
+        border-radius: 10px;
+        box-shadow: 3px 3px 3px #e8eaf6;
     }
 }
+
+@media ( min-width:1300px ){
+    .viewCandidates {
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+    }
+
+    .viewCandidates__card{
+        margin: 20px auto;
+        max-width: 300px;
+        border-radius: 10px;
+        box-shadow: 3px 3px 3px #e8eaf6;
+    }
+}
+
