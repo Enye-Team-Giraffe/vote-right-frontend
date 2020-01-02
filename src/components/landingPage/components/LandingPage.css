@@ -125,6 +125,11 @@
     transform: scale(2);
 }
 
+.--greyscale{
+    -webkit-filter: grayscale(65%);
+    filter: grayscale(65%);
+}
+
 .homepage-wrapper__footer{
     display: flex;
     flex-direction: column;

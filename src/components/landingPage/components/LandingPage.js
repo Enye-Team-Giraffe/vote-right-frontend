@@ -106,7 +106,7 @@ const LandingPage = () => {
                         FOOTER_ITEMS.map(footerItem => (
                             <a href={footerItem.href} key={`${footerItem.alt}-${Math.random()}`}>
                                 <img
-                                    className="--small"
+                                    className="--small --greyscale"
                                     src={footerItem.src}
                                     alt={footerItem.alt}
 
