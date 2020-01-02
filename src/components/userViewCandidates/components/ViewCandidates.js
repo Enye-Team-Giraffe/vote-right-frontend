@@ -1,21 +1,20 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
- Card, Button, Icon, Spin 
-} from 'antd';
+import { Icon, Spin } from 'antd';
 import './ViewCandidates.css';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import {
- AGE_LABEL, PARTY_LABEL, VOTE, LOADING_MESSAGE 
-} from '../constants';
+import Candidate from './Candidate';
+import { LOADING_MESSAGE } from '../constants';
 import { actions as viewStatsActions } from '../../viewStats';
 
 /**
  * Display candidates view
  *
  * @component
- * @return {component} - Component that displays candidates
+ *
+ * @param {object} - props
+ * @return {component} - List of candidate component
  */
 const ViewCandidates = ({ match }) => {
     // dispatch the loadCandidates saga
@@ -32,12 +31,16 @@ const ViewCandidates = ({ match }) => {
     const candidates = useSelector(state => state.candidates);
     const loading = useSelector(state => state.candidatesLoading);
 
-    const handleVote = id => {
-        console.log(id);
-        const voterDetails = {
-            candidateId: id,
-            electionId: match.params.electionId,
-        };
+    /**
+     * Handles click event to vote a candidate
+     *
+     * @function
+     *
+     * @param {string} -
+     * @return {void}
+     */
+    // eslint-disable-next-line no-unused-vars
+    const handleVote = candidateId => {
     };
 
     return (
@@ -52,28 +55,15 @@ const ViewCandidates = ({ match }) => {
                 />
                 {
                     candidates.map(candidate => (
-                        <Card
+                        <Candidate
                             key={candidate.id}
-                            className="candidateCard"
-                            cover={(
-                                <img
-                                    className="candidateCard__image"
-                                    src="https://i.pravatar.cc"
-                                    alt="candidate_picture"
-                                />
-                            )}
-                        >
-                            <p className="candidateCard__label -bold -fontBig">{candidate.name}</p>
-                            <p className="candidateCard__label">{`${candidate.age} ${AGE_LABEL}`}</p>
-                            <p className="candidateCard__label">{`${PARTY_LABEL} ${candidate.party}`}</p>
-                            <Button
-                                type="primary"
-                                className="candidateCard__vote"
-                                onClick={() => handleVote(candidate.id)}
-                            >
-                                {VOTE}
-                            </Button>
-                        </Card>
+                            id={candidate.id}
+                            name={candidate.name}
+                            age={candidate.age}
+                            pictureUrl="vvgvgvg"
+                            party={candidate.party}
+                            handleVote={handleVote}
+                        />
                     ))
                 }
             </div>
