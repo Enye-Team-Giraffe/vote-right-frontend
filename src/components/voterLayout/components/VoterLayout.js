@@ -11,6 +11,7 @@ import { components as UserViewOngoing } from '../../userOngoingElection';
 import { components as UserViewConcluded } from '../../userConcludedElection';
 import { components as ViewResults } from '../../userViewResults';
 import { component as UserViewPending } from '../../userPendingElection';
+import { components as UserViewCandidates } from '../../userViewCandidates';
 import SideNav from './SideNav';
 import { actions } from '../../dashboard';
 import { actions as userActions } from '../../login';
@@ -73,6 +74,11 @@ const VoterLayout = () => {
                             exact
                             path="/user/elections/pending"
                             component={UserViewPending}
+                        />
+                        <Route
+                            exact
+                            path="/user/elections/ongoing/:electionId/vote"
+                            component={UserViewCandidates}
                         />
                         <Route
                             exact
