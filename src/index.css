@@ -1,6 +1,5 @@
 @import '~antd/dist/antd.css';
-@import url('https://fonts.googleapis.com/css?family=Candal|IBM+Plex+Serif&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca|Red+Hat+Text&display=swap');
 html {
     height: 100%;
 }
@@ -14,4 +13,6 @@ body {
     --secondary-color:#0D3578;
     --tetiary-color:#E31C79;
     --backup:#8E66DA;
+    --secondary-font:'Red Hat Text', sans-serif;
+    --primary-font:'Lexend Deca', sans-serif;
 }

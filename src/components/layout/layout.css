@@ -21,7 +21,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    font-family: 'Candal', sans-serif;
+    font-family: var(--primary-font);
 }
 
 
@@ -31,6 +31,7 @@
     flex-direction: column;    
     margin-top: 250px;
     align-items: center;
+    font-family: var(--secondary-font);
 }
 
 
@@ -70,7 +71,7 @@
     height: 100%;
     width: 100%;
     background-size: cover;
-    font-family: 'IBM Plex Serif', serif;
+    font-family: var(--secondary-font);
 }
 
 

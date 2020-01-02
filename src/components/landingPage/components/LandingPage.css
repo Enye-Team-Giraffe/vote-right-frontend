@@ -25,7 +25,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    font-family: 'Candal', sans-serif;
+    font-family: var(--primary-font);
 }
 
 .homepage-wrapper__content{
@@ -40,7 +40,7 @@
     width: 80%;
     max-width:550px;
     line-height: 2;
-    font-family: 'IBM Plex Serif', serif;
+    font-family: var(--secondary-font);
 }
 
 .item{
@@ -90,7 +90,7 @@
     margin: 2vw 2.5vw;
 }
 .homepage-wrapper__content__description{
-    font-family: 'IBM Plex Serif', serif;
+    font-family: var(--secondary-font);
     font-size: 40px;
     padding: 0;
     margin: 0;
@@ -102,7 +102,7 @@
 
 .--mediumsized{
     font-size: 1.3em;
-    font-family: 'IBM Plex Serif', serif;
+    font-family: var(--secondary-font);
 }
 
 .--bolder{

@@ -20,7 +20,10 @@
 .sideNav__topLogo {
     padding: 0 16px;
     color: #CCC;
-    font-size: 1.34rem;
+    font-family: var(--primary-font);
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.23;
 }
 /* End of top section of side nav bar */
 
@@ -68,7 +71,7 @@
         width: 300px;
     }
     .sideNav__topLogo {
-        font-size: 1.6rem ;
+        font-size: 2rem ;
     }
     .sideNav__top_icon{
         margin-right: 20px;
@@ -76,7 +79,6 @@
 
 }
 .--font-style{
-    font-family: 'Candal', sans-serif;
     color:white;
 }
 
