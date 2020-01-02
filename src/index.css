@@ -16,3 +16,20 @@ body {
     --secondary-font:'Red Hat Text', sans-serif;
     --primary-font:'Lexend Deca', sans-serif;
 }
+
+.ant-card-body {
+    font-family: var(--secondary-font);
+}
+.ant-card-head-title {
+    font-family: var(--primary-font);
+}
+.ant-card-actions {
+    font-family: var(--secondary-font);
+    font-weight: 600;
+}
+.ant-menu-item > a {
+    font-family: var(--primary-font);
+}
+tspan {
+    font-family: var(--primary-font);
+}
