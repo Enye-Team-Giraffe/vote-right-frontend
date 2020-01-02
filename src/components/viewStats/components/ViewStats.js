@@ -166,8 +166,8 @@ export default function ViewStats({ match }) {
     const chartOptions = [
         { options: newPieOptions, size: '' },
         { options: newAgeOptions, size: ' --large' },
-        { options: newBarOptions, size: '' },
-        { options: newGenderGroupOptions, size: '' },
+        { options: newBarOptions, size: '--large' },
+        { options: newGenderGroupOptions, size: '--large' },
         { options: newAgeGroupOptions, size: ' --large' },
     ];
 

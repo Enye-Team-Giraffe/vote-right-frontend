@@ -2,6 +2,7 @@ export const SIGNIN = 'Sign In';
 export const SIGNINWITHACCOUNT = 'Sign in to your account';
 export const WHYWENEED = 'Why do we request for your NIN?';
 export const WHYNIN = `We only use your NIN for identity verification purposes, 
+                        To participate in voting ensure you have a Valid NIN.
                         Be rest assured that all you data is confidential and secure. Vote Right!`;
 export const ERROR_STATUS = 'error';
 export const SUCCESS_STATUS = 'success';

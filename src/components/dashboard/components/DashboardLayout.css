@@ -15,7 +15,7 @@
 .header__logout {
     color: var(--primary-color);
     padding: 0 50px;
-    font-family: sans-serif;
+    font-family: var(--secondary-font);
     font-size: 17px;
     cursor: pointer;
     outline: none;

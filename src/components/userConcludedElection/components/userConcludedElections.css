@@ -7,3 +7,12 @@
     padding-top:10px;
     border-bottom: 1.3px solid var(--primary-color);
 }
+
+button.electionItem__subitem:hover > a{
+    color: rgb(64, 73, 90) !important;
+}
+
+.ant-card-actions > li > span:hover{
+    color: rgb(146, 149, 155);
+    cursor: default;
+}

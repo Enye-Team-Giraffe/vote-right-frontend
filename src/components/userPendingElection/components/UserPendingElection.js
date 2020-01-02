@@ -55,8 +55,7 @@ export default function ViewElection() {
                                         <div>
                                             <Icon
                                                 className="electionItem__subitem__icon"
-                                                type="calendar"
-                                                key="calendar"
+                                                type="carry-out"
                                             />
                                             {`Ends on ${toDateString(election.enddate)}`}
                                         </div>

@@ -60,7 +60,7 @@ export default function ViewElection() {
                                             <div>
                                                 <Icon
                                                     className="electionItem__subitem__icon"
-                                                    type="calendar"
+                                                    type="carry-out"
                                                     key="calendar"
                                                 />
                                                 {toDateString(election.enddate)}
@@ -96,14 +96,14 @@ export default function ViewElection() {
                                             valueStyle={{ color: '#3f8600' }}
                                         />
                                         <Statistic
-                                            title="Votes Count"
+                                            title="Total Vote Count"
                                             value={statistics[election.location][1]}
                                             prefix={<Icon type="inbox" />}
                                             valueStyle={{ color: '#3f8600' }}
                                         />
                                         <Statistic
                                             className="--hide-on-very-small"
-                                            title={statistics[election.location][2]}
+                                            title={`Leading : ${statistics[election.location][2]}`}
                                             value={statistics[election.location][3]}
                                             valueStyle={{ color: '#3f8600' }}
                                             prefix={<Icon type="arrow-up" />}

@@ -25,10 +25,20 @@ export default function ViewElection() {
     // with dates less than today
 
     const antIcon = <Icon type="loading" className="loader" spin />;
+
+    /* This function rshows a modal which contains the results of an election
+    * it recieves the adress of an election as a string,
+    * This election is then what is shown on the modal
+    * it also sets the modal to be visible by setting the state responsible for such
+    * @param {String} electionAddressParam - A string which is an address of the election
+    * @return {void}
+    */
     const showModal = electionAddressParam => {
         setElectionAddress(electionAddressParam);
         setVisibility(true);
     };
+
+    // this function hides the modal
     const handleCancel = () => { setVisibility(false); };
 
     // upon render of the page get all the elections
@@ -82,7 +92,7 @@ export default function ViewElection() {
                                             <div>
                                                 <Icon
                                                     className="electionItem__subitem__icon"
-                                                    type="calendar"
+                                                    type="carry-out"
                                                     key="calendar"
                                                 />
                                                 {toDateString(election.enddate)}

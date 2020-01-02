@@ -101,17 +101,13 @@ function* firebaseUserLogin(data) {
  */
 function* confirmUserCode(data) {
     const code = data.payload;
-    const confirmation = yield window.confirmationResult.confirm(code).then(() => {
-        // User signed in successfully.
-        message.success(USER_ALREADY_LOGGED, WAIT_TIME);
-        return SUCCESS_STATUS;
-        // ...
-    }).catch(() => {
+    const confirmation = yield window.confirmationResult.confirm(code).then(() => SUCCESS_STATUS)
+        .catch(() => {
         // User couldn't sign in (bad verification code?)
         // ...
-        message.error(WRONG_CODE, WAIT_TIME);
-        return ERROR_STATUS;
-    });
+            message.error(WRONG_CODE, WAIT_TIME);
+            return ERROR_STATUS;
+        });
     yield put(actions.loadingReducer(false));
 
     if (confirmation === SUCCESS_STATUS) {
