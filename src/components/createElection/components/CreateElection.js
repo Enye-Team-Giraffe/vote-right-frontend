@@ -1,9 +1,10 @@
 /* eslint-disable max-lines-per-function */
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
-    Icon, Form, Card, Input, Button, Select, DatePicker,
+    Icon, Spin, Form, Card, Input, Button, Select, DatePicker
 } from 'antd';
 import './CreateElection.css';
 import actions from '../actions';
@@ -21,48 +22,6 @@ import {
 const CreateElection = ({ form }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [name, updateName] = useState('');
-    const [description, updateDescription] = useState('');
-    const [startDate, updateStartDate] = useState('');
-    const [endDate, updateEndDate] = useState('');
-
-    /**
-     * Handles change in select field
-     * @function
-     * @param {value} - value of selected option
-     */
-    const handleChangeSelect = value => {
-        updateName(value);
-    };
-
-    /**
-     * Handles change in input text field
-     * @function
-     * @param {event} - Event on input field
-     */
-    const handleChangeText = ({ target }) => {
-        updateDescription(target.value);
-    };
-
-    /**
-     * Handles change in start date datepicker
-     * @function
-     * @param {date} - selected date
-     */
-    const handleStartDate = date => {
-        const formattedDate = date.format('L');
-        updateStartDate(formattedDate);
-    };
-
-    /**
-     * Handles change end date datepicker
-     * @function
-     * @param {date} - selected date
-     */
-    const handleEndDate = date => {
-        const formattedDate = date.format('L');
-        updateEndDate(formattedDate);
-    };
 
     // function to convert a datetime string into a timestamp
     const toTimestamp = dateString => (Date.parse(dateString) / 1000);
@@ -76,38 +35,42 @@ const CreateElection = ({ form }) => {
         event.preventDefault();
         form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                const payload = {
+                    description: values.description,
+                    electionType: values.electionType,
+                    endDate: toTimestamp(values.endDate),
+                    history,
+                    name: values.name,
+                    startDate: toTimestamp(values.startDate),
+                };
+                dispatch(actions.loadingCreateUser(true));
+                dispatch(actions.createElection(payload));
             }
         });
-
-        /*
-        const payload = {
-            description,
-            endDate: toTimestamp(endDate),
-            history,
-            name,
-            startDate: toTimestamp(startDate),
-        };
-        dispatch(actions.loadingCreateUser(true));
-        dispatch(actions.createElection(payload));
-        */
     };
+
     const createElectionLoading = useSelector(store => store.createElectionLoading);
     const antIcon = <Icon type="loading" className="loader" spin />;
 
     const { getFieldDecorator } = form;
 
     return (
-        <div className="addCandidate">
-            <Form className="addCandidateForm" onSubmit={handleSubmit}>
-                {/* <Spin
+        <div className="createElection">
+            <Form className="createElectionForm" onSubmit={handleSubmit}>
+                <Spin
                     size="large"
                     indicator={antIcon}
                     spinning={createElectionLoading}
                     className="loader"
                     tip="loading...."
-                > */}
-                    <Card className="addCandidateCard">
+                >
+                    <Card className="createElectionFormCard">
+                        <div className="createElectionForm__heading">
+                            <h1 className="createElectionForm__heading_header">{CREATEELECTION}</h1>
+                            <p className="createElectionForm__heading_text">
+                                {ELECTION_WARNING}
+                            </p>
+                        </div>
                         <Form.Item label={NAME}>
                             {getFieldDecorator('name', {
                                 rules: [
@@ -120,28 +83,28 @@ const CreateElection = ({ form }) => {
                         </Form.Item>
 
                         <Form.Item label={ELECTION_TYPE}>
-                            {getFieldDecorator('gender', {
+                            {getFieldDecorator('electionType', {
                                 rules: [
-                                    { 
+                                    {
                                         message: 'This field can not be empty!',
                                         required: true,
-                                    }
+                                    },
                                 ],
                             })(
                                 <Select
-                                placeholder="Select election type"
+                                    placeholder="Select election type"
                                 >
                                     {
-                                        ELECTION_TYPE_OPTIONS.map(type =>(
+                                        ELECTION_TYPE_OPTIONS.map(type => (
                                             <Select.Option
                                                 key={type.key}
                                                 value={type.value}
                                             >
                                                 {type.text}
                                             </Select.Option>
-                                        ) )
+                                        ))
                                     }
-                                </Select>,
+                                </Select>
                             )}
                         </Form.Item>
 
@@ -164,7 +127,7 @@ const CreateElection = ({ form }) => {
                                         required: true,
                                     },
                                 ],
-                            })(<DatePicker className="-fullWidth"  />)}
+                            })(<DatePicker className="-fullWidth" />)}
                         </Form.Item>
 
                         <Form.Item label={ENDDATE}>
@@ -186,7 +149,7 @@ const CreateElection = ({ form }) => {
                             </Form.Item>
                         </div>
                     </Card>
-                {/* </Spin> */}
+                </Spin>
             </Form>
         </div>
     );
@@ -194,3 +157,8 @@ const CreateElection = ({ form }) => {
 
 const WrappedCreateElection = Form.create({ name: 'register' })(CreateElection);
 export default WrappedCreateElection;
+
+CreateElection.propTypes = {
+    form: PropTypes.func.isRequired,
+};
+

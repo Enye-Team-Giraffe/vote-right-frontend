@@ -9,8 +9,8 @@ import { VOTE_CANDIDATE_REQUEST } from './actionTypes';
 const voteCandidateRequest = payload => ({
     payload,
     type: VOTE_CANDIDATE_REQUEST,
-})
+});
 
-export default { 
-    voteCandidateRequest 
+export default {
+    voteCandidateRequest,
 };

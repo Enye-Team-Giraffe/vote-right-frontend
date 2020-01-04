@@ -1,3 +1,31 @@
+.createElection {
+    display: flex;
+    justify-content: center;
+    min-height: 100%;
+    background-color: hsl(208, 100%, 98.5%);
+}
+
+.createElectionFormCard {
+    border: 2px dashed hsl(208, 100%, 90.5%);
+}
+
+.createElectionForm {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    width: 80%;
+}
+.createElectionForm__heading_header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #373757
+}
+.createElectionForm__heading_text{
+    font-weight: lighter;
+}
+.createElectionForm__heading{
+    margin-bottom: 35px;
+    text-align: center;
+}
 .-fullWidth {
     width: 100%;
 }
@@ -12,13 +40,25 @@
     color: #FFFFFF;
     padding-left: 20px;
     padding-right: 20px;
-    margin: 50px 0;
-    text-align: center;
     width:250px;
     height: 42px;
-    display: flex;
-    justify-content: center;
 }
+.createElectionForm__button:hover {
+    background-color: #FFFFFF;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+.createElectionForm__button:focus {
+    background-color: #FFFFFF;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+.createElectionForm__button:active {
+    background-color: #FFFFFF;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
 @media (max-width : 1158px){
     .create-election-card__section__content{
         flex-wrap: wrap;

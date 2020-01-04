@@ -1,10 +1,8 @@
-import { takeLatest, put, call } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 import { VOTE_CANDIDATE_REQUEST } from './actionTypes';
 
-import actions from './actions';
-
+// eslint-disable-next-line no-unused-vars
 function vote(payload) {
-    console.log(payload.candidateId);
 }
 
 /**
@@ -12,7 +10,7 @@ function vote(payload) {
  * Request for user to vote a candidate
  * @return {void}
  */
-function* voteCandidateRequestSaga({payload}) {
+function* voteCandidateRequestSaga({ payload }) {
     yield vote(payload);
 }
 
