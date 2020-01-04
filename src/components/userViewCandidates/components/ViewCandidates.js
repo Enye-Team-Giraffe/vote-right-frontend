@@ -7,6 +7,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import Candidate from './Candidate';
 import { LOADING_MESSAGE } from '../constants';
 import { actions as viewStatsActions } from '../../viewStats';
+import actions from '../actions';
 
 /**
  * Display candidates view
@@ -40,6 +41,7 @@ const ViewCandidates = ({ match }) => {
      * @return {void}
      */
     const handleVote = candidateId => {
+        dispatch(actions.voteCandidateRequest({ candidateId }));
     };
 
     return (
