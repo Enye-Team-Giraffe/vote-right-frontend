@@ -39,7 +39,6 @@ const ViewCandidates = ({ match }) => {
      * @param {string} -
      * @return {void}
      */
-    // eslint-disable-next-line no-unused-vars
     const handleVote = candidateId => {
     };
 
@@ -60,7 +59,7 @@ const ViewCandidates = ({ match }) => {
                             id={candidate.id}
                             name={candidate.name}
                             age={candidate.age}
-                            pictureUrl="vvgvgvg"
+                            pictureUrl="https://i.pravatar.cc/500"
                             party={candidate.party}
                             handleVote={handleVote}
                         />
