@@ -1,15 +1,16 @@
 /* eslint-disable max-lines-per-function */
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
-    Card, Input, DatePicker, Button, Spin, Icon, Select
+    Icon, Spin, Form, Card, Input, Button, Select, DatePicker
 } from 'antd';
 import './CreateElection.css';
 import actions from '../actions';
 import {
-    NAME, DESCRIPTION, STARTDATE, ENDDATE, CREATEELECTION,
-    ROW_HEIGHT, BUTTON_TEXT, ELECTION_NAME_OPTIONS, ELECTION_WARNING
+    NAME, DESCRIPTION, STARTDATE, ENDDATE, CREATEELECTION, ELECTION_TYPE,
+    ROW_HEIGHT, BUTTON_TEXT, ELECTION_TYPE_OPTIONS, ELECTION_WARNING
 } from '../constants';
 
 /**
@@ -18,51 +19,9 @@ import {
  * @component
  * @return {component} - Component for creating election
  */
-const CreateElection = () => {
+const CreateElection = ({ form }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [name, updateName] = useState('');
-    const [description, updateDescription] = useState('');
-    const [startDate, updateStartDate] = useState('');
-    const [endDate, updateEndDate] = useState('');
-
-    /**
-     * Handles change in select field
-     * @function
-     * @param {value} - value of selected option
-     */
-    const handleChangeSelect = value => {
-        updateName(value);
-    };
-
-    /**
-     * Handles change in input text field
-     * @function
-     * @param {event} - Event on input field
-     */
-    const handleChangeText = ({ target }) => {
-        updateDescription(target.value);
-    };
-
-    /**
-     * Handles change in start date datepicker
-     * @function
-     * @param {date} - selected date
-     */
-    const handleStartDate = date => {
-        const formattedDate = date.format('L');
-        updateStartDate(formattedDate);
-    };
-
-    /**
-     * Handles change end date datepicker
-     * @function
-     * @param {date} - selected date
-     */
-    const handleEndDate = date => {
-        const formattedDate = date.format('L');
-        updateEndDate(formattedDate);
-    };
 
     // function to convert a datetime string into a timestamp
     const toTimestamp = dateString => (Date.parse(dateString) / 1000);
@@ -74,23 +33,30 @@ const CreateElection = () => {
      */
     const handleSubmit = event => {
         event.preventDefault();
-        // eslint-disable-next-line no-unused-vars
-        const payload = {
-            description,
-            endDate: toTimestamp(endDate),
-            history,
-            name,
-            startDate: toTimestamp(startDate),
-        };
-        dispatch(actions.loadingCreateUser(true));
-        dispatch(actions.createElection(payload));
+        form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                const payload = {
+                    description: values.description,
+                    electionType: values.electionType,
+                    endDate: toTimestamp(values.endDate),
+                    history,
+                    name: values.name,
+                    startDate: toTimestamp(values.startDate),
+                };
+                dispatch(actions.loadingCreateUser(true));
+                dispatch(actions.createElection(payload));
+            }
+        });
     };
+
     const createElectionLoading = useSelector(store => store.createElectionLoading);
     const antIcon = <Icon type="loading" className="loader" spin />;
 
+    const { getFieldDecorator } = form;
+
     return (
         <div className="createElection">
-            <form className="createElectionForm" onSubmit={handleSubmit}>
+            <Form className="createElectionForm" onSubmit={handleSubmit}>
                 <Spin
                     size="large"
                     indicator={antIcon}
@@ -98,128 +64,101 @@ const CreateElection = () => {
                     className="loader"
                     tip="loading...."
                 >
-                    <div className="createElectionForm__heading">
-                        <h1 className="createElectionForm__heading_header">{CREATEELECTION}</h1>
-                        <p className="createElectionForm__heading_text">
-                            {ELECTION_WARNING}
-                        </p>
-                    </div>
-                    <Card className="create-election-card">
+                    <Card className="createElectionFormCard">
+                        <div className="createElectionForm__heading">
+                            <h1 className="createElectionForm__heading_header">{CREATEELECTION}</h1>
+                            <p className="createElectionForm__heading_text">
+                                {ELECTION_WARNING}
+                            </p>
+                        </div>
+                        <Form.Item label={NAME}>
+                            {getFieldDecorator('name', {
+                                rules: [
+                                    {
+                                        message: 'This field can not be empty!',
+                                        required: true,
+                                    },
+                                ],
+                            })(<Input />)}
+                        </Form.Item>
 
-                        <div className="create-election-card__section">
-
-                            <div className="create-election-card__section__content">
-                                <div className="create-election-card__section__content__text">
-                                    <Icon className="--blue" theme="filled" type="right-circle" />
-                                    <span>{NAME}</span>
-                                </div>
-                                <div
-                                    className="create-election-card__section__content__formelement"
+                        <Form.Item label={ELECTION_TYPE}>
+                            {getFieldDecorator('electionType', {
+                                rules: [
+                                    {
+                                        message: 'This field can not be empty!',
+                                        required: true,
+                                    },
+                                ],
+                            })(
+                                <Select
+                                    placeholder="Select election type"
                                 >
-                                    <Select
-                                        placeholder="Select election"
-                                        onChange={handleChangeSelect}
-                                    >
-                                        {ELECTION_NAME_OPTIONS.map(option => (
+                                    {
+                                        ELECTION_TYPE_OPTIONS.map(type => (
                                             <Select.Option
-                                                key={option.key}
-                                                value={option.value}
+                                                key={type.key}
+                                                value={type.value}
                                             >
-                                                {option.text}
+                                                {type.text}
                                             </Select.Option>
-                                        ))}
-                                    </Select>
-                                </div>
+                                        ))
+                                    }
+                                </Select>
+                            )}
+                        </Form.Item>
 
-                            </div>
+                        <Form.Item label={DESCRIPTION}>
+                            {getFieldDecorator('description', {
+                                rules: [
+                                    {
+                                        message: 'This field can not be empty!',
+                                        required: true,
+                                    },
+                                ],
+                            })(<Input.TextArea rows={ROW_HEIGHT} />)}
+                        </Form.Item>
 
-                        </div>
+                        <Form.Item label={STARTDATE}>
+                            {getFieldDecorator('startDate', {
+                                rules: [
+                                    {
+                                        message: 'This field can not be empty!',
+                                        required: true,
+                                    },
+                                ],
+                            })(<DatePicker className="-fullWidth" />)}
+                        </Form.Item>
 
-                        <hr />
+                        <Form.Item label={ENDDATE}>
+                            {getFieldDecorator('endDate', {
+                                rules: [
+                                    {
+                                        message: 'This field can not be empty!',
+                                        required: true,
+                                    },
+                                ],
+                            })(<DatePicker className="-fullWidth" />)}
+                        </Form.Item>
 
-                        <div className="create-election-card__section">
-
-                            <div className="create-election-card__section__content">
-
-                                <div className="create-election-card__section__content__text">
-                                    <Icon className="--blue" type="right-circle" />
-                                    <span>{DESCRIPTION}</span>
-                                </div>
-                                <div
-                                    className="create-election-card__section__content__formelement"
-                                >
-                                    <Input.TextArea
-                                        placeholder="Detailed description of this election"
-                                        rows={ROW_HEIGHT}
-                                        className="createElectionForm__textArea --input-element"
-                                        name="description"
-                                        required
-                                        onChange={handleChangeText}
-                                    />
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <hr />
-
-                        <div className="create-election-card__section">
-                            <div className="create-election-card__section__content">
-                                <div className="create-election-card__section__content__text">
-                                    <Icon
-                                        className="--blue"
-                                        theme="filled"
-                                        type="calendar"
-                                    />
-                                    <span>{STARTDATE}</span>
-                                </div>
-                                <div
-                                    className="create-election-card__section__content__formelement"
-                                >
-                                    <DatePicker
-                                        className="createElectionForm__datePicker --input-element"
-                                        placeholder="Select date"
-                                        required
-                                        onChange={handleStartDate}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <hr />
-
-                        <div className="create-election-card__section">
-                            <div className="create-election-card__section__content">
-                                <div className="create-election-card__section__content__text">
-                                    <Icon className="--blue" type="calendar" />
-                                    <span>{ENDDATE}</span>
-                                </div>
-                                <div
-                                    className="create-election-card__section__content__formelement"
-                                >
-                                    <DatePicker
-                                        className="createElectionForm__datePicker --input-element"
-                                        placeholder="Select date"
-                                        required
-                                        onChange={handleEndDate}
-                                    />
-                                </div>
-                            </div>
+                        <div className="createElection__submit-button">
+                            <Form.Item>
+                                <Button className="createElectionForm__button" htmlType="submit">
+                                    {BUTTON_TEXT}
+                                </Button>
+                            </Form.Item>
                         </div>
                     </Card>
-                    <div className="createElection__submit-button">
-                        <Button
-                            className="createElectionForm__button"
-                            htmlType="submit"
-                        >
-                            {BUTTON_TEXT}
-                        </Button>
-                    </div>
-
                 </Spin>
-            </form>
+            </Form>
         </div>
     );
 };
 
-export default CreateElection;
+const WrappedCreateElection = Form.create({ name: 'register' })(CreateElection);
+export default WrappedCreateElection;
+
+CreateElection.propTypes = {
+    form: PropTypes.func.isRequired,
+};
+

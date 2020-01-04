@@ -6,6 +6,7 @@ import { sagas as dashboardSaga } from './components/dashboard';
 import { sagas as viewElectionSaga } from './components/viewElection';
 import { sagas as loadVotersSaga } from './components/viewStats';
 import { sagas as addCandidateSaga } from './components/addCandidate';
+import { sagas as voteCandidateSaga } from './components/userViewCandidates';
 
 // export all of our sagass
 export default function* rootSaga() {
@@ -17,5 +18,6 @@ export default function* rootSaga() {
         viewElectionSaga(), // the saga which helps to load data about the elections from the server
         loadVotersSaga(), // saga for loading voters from API
         addCandidateSaga(), // saga to get candidates
+        voteCandidateSaga(), // saga to view candidates
     ]);
 }

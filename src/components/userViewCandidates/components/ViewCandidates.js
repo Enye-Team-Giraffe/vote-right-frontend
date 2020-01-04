@@ -7,6 +7,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import Candidate from './Candidate';
 import { LOADING_MESSAGE } from '../constants';
 import { actions as viewStatsActions } from '../../viewStats';
+import actions from '../actions';
 
 /**
  * Display candidates view
@@ -39,8 +40,8 @@ const ViewCandidates = ({ match }) => {
      * @param {string} -
      * @return {void}
      */
-    // eslint-disable-next-line no-unused-vars
     const handleVote = candidateId => {
+        dispatch(actions.voteCandidateRequest({ candidateId }));
     };
 
     return (
@@ -60,7 +61,7 @@ const ViewCandidates = ({ match }) => {
                             id={candidate.id}
                             name={candidate.name}
                             age={candidate.age}
-                            pictureUrl="vvgvgvg"
+                            pictureUrl="https://i.pravatar.cc/500"
                             party={candidate.party}
                             handleVote={handleVote}
                         />
