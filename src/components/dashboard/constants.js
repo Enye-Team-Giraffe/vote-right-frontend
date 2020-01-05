@@ -5,7 +5,7 @@ export const MENU = {
     c: ['Ongoing Elections', 'elections/ongoing', 'eye'],
     d: ['Concluded Elections', 'elections/concluded', 'carry-out'],
 };
-export const LOGOUT = 'Logout';
+export const LOGOUT = 'logout';
 export const WAIT_TIME = 2;
 export const LOGOUT_SUCESSFULL = 'Your logout was sucessfull';
 

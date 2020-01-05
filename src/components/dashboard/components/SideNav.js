@@ -22,7 +22,6 @@ const SideNav = () => (
         <div className="sideNav__top">
             <Link to="/">
                 <span className="sideNav__topLogo --font-style">
-                    <Icon className="sideNav__top_icon" type="dashboard" />
                     {VOTERIGHT}
                 </span>
             </Link>

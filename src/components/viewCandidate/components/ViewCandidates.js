@@ -16,7 +16,7 @@ export default function ViewCandidates({ match }) {
     useEffect(() => {
         dispatch(actions.pushCandidates([]));
         dispatch(actions.loadingCandidates(true));
-        dispatch(actions.loadCandidates(match.params.electionId));
+        // dispatch(actions.loadCandidates(match.params.electionId));
     }, [dispatch, match.params.electionId]);
 
     // item for customising the spinner
@@ -24,7 +24,7 @@ export default function ViewCandidates({ match }) {
     const candidates = useSelector(state => state.candidates);
     const loading = useSelector(state => state.candidatesLoading);
     return (
-        <div className="viewCandidates">
+        <div className="viewCandidates --grid">
             <Spin
                 size="large"
                 indicator={antIcon}

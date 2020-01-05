@@ -33,3 +33,6 @@ body {
 tspan {
     font-family: var(--primary-font);
 }
+.ant-spin.ant-spin-lg.ant-spin-spinning.ant-spin-show-text.loader{
+    width: 100%;
+}
