@@ -33,7 +33,7 @@ export default function ViewCandidates({ match }) {
                 className="loader"
                 tip={LOADING_MESSAGE}
             />
-            
+
             <div className="viewCandidates --grid">
                 {
                     candidates.map(candidate => (
