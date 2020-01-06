@@ -24,7 +24,8 @@ export default function ViewCandidates({ match }) {
     const candidates = useSelector(state => state.candidates);
     const loading = useSelector(state => state.candidatesLoading);
     return (
-        <div className="viewCandidates">
+        <div>
+
             <Spin
                 size="large"
                 indicator={antIcon}
@@ -33,55 +34,58 @@ export default function ViewCandidates({ match }) {
                 tip={LOADING_MESSAGE}
             />
 
-            {
-                candidates.map(candidate => (
-                    <Card
-                        key={candidate.id}
-                        className="viewCandidates__card"
-                        cover={(
-                            <img
-                                className="viewCandidates__cardImage"
-                                alt="example"
-                                src="https://i.pravatar.cc/500"
+            <div className="viewCandidates --grid">
+                {
+                    candidates.map(candidate => (
+                        <Card
+                            key={candidate.id}
+                            className="viewCandidates__card"
+                            cover={(
+                                <img
+                                    className="viewCandidates__cardImage"
+                                    alt="example"
+                                    src="https://i.pravatar.cc/500"
+                                />
+                            )}
+                            actions={[
+                                <Icon type="setting" key="setting" />,
+                                <Icon type="edit" key="edit" />,
+                                <Icon type="ellipsis" key="ellipsis" />,
+                            ]}
+                        >
+                            <Meta
+                                className="viewCandidates__card__meta --name"
+                                title={candidate.name}
                             />
-                        )}
-                        actions={[
-                            <Icon type="setting" key="setting" />,
-                            <Icon type="edit" key="edit" />,
-                            <Icon type="ellipsis" key="ellipsis" />,
-                        ]}
-                    >
-                        <Meta
-                            className="viewCandidates__card__meta --name"
-                            title={candidate.name}
-                        />
-                        <Meta
-                            className="viewCandidates__card__meta --party"
-                            title={`${candidate.age} years of age`}
-                        />
-                        <Meta
-                            className="viewCandidates__card__meta --party"
-                            title={`Member of ${candidate.party}`}
-                        />
-                        <Meta
-                            className="viewCandidates__card__meta --education"
-                            title={`Last studied at ${candidate.education}`}
-                        />
-                        <Meta
-                            className="viewCandidates__card__meta --quote"
-                            description={`'${candidate.quote}'`}
-                        />
-                    </Card>
-                ))
-            }
-            {
-                // if there is no candidateloading  then show that there is none.
-                (candidates.length === 0 && !loading) ? (
-                    <div className="no_candidate">
-                        {NO_CANDIDATE}
-                    </div>
-                ) : ''
-            }
+                            <Meta
+                                className="viewCandidates__card__meta --party"
+                                title={`${candidate.age} years of age`}
+                            />
+                            <Meta
+                                className="viewCandidates__card__meta --party"
+                                title={`Member of ${candidate.party}`}
+                            />
+                            <Meta
+                                className="viewCandidates__card__meta --education"
+                                title={`Last studied at ${candidate.education}`}
+                            />
+                            <Meta
+                                className="viewCandidates__card__meta --quote"
+                                description={`'${candidate.quote}'`}
+                            />
+                        </Card>
+                    ))
+                }
+                {
+                    // if there is no candidateloading  then show that there is none.
+                    (candidates.length === 0 && !loading) ? (
+                        <div className="no_candidate">
+                            {NO_CANDIDATE}
+                        </div>
+                    ) : ''
+                }
+            </div>
+
         </div>
     );
 }

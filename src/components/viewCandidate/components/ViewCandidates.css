@@ -1,4 +1,4 @@
-.viewCandidates {
+.viewCandidates.--grid {
     margin: 3rem auto;
     width: 90%;
 }
@@ -41,7 +41,7 @@
 }
 
 @media ( min-width:1024px ){
-    .viewCandidates {
+    .viewCandidates.--grid {
         width: 90%;
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -58,7 +58,7 @@
 }
 
 @media ( min-width:1300px ){
-    .viewCandidates {
+    .viewCandidates.--grid {
         width: 90%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
