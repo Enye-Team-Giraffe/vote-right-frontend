@@ -1,14 +1,13 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Icon, Spin, message } from 'antd';
+import { Icon, Spin } from 'antd';
 import './ViewCandidates.css';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Candidate from './Candidate';
 import { LOADING_MESSAGE } from '../constants';
 import { actions as viewStatsActions } from '../../viewStats';
 import actions from '../actions';
-import { WAIT_TIME } from '../../viewStats/constants';
 
 /**
  * Display candidates view

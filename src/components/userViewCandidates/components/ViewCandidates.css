@@ -3,12 +3,6 @@
     width: 90%;
 }
 
-@media (min-width: 896px){
-    .candidateList {
-
-
-    }
-}
 
 .candidateView.--voters .ant-spin-container{
     display: flex;

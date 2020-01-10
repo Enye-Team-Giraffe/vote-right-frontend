@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Candidate.css';
-import { Card, Button } from 'antd';
+import { Card, Button, Icon } from 'antd';
 import './ViewCandidates.css';
 import {
     AGE_LABEL, PARTY_LABEL, VOTE
@@ -43,11 +43,17 @@ const Candidate = ({
             <p className="candidateCard__label --fontBig">{name}</p>
             <p className="candidateCard__label">{`${age} ${AGE_LABEL}`}</p>
             <p className="candidateCard__label">{`${PARTY_LABEL} ${party}`}</p>
+            <p className="candidateCard__label">{`${PARTY_LABEL} ${party}`}</p>
             <Button
                 type="primary"
                 className="candidateCard__vote"
                 onClick={handleClick}
             >
+                <Icon
+                    className="electionItem__subitem__icon"
+                    type="check"
+                    key="check"
+                />
                 {VOTE}
             </Button>
         </Card>
