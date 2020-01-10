@@ -79,8 +79,8 @@ export default function ViewElection() {
                                             <div>
                                                 <Icon
                                                     className="electionItem__subitem__icon"
-                                                    type="calendar"
-                                                    key="calendar"
+                                                    type="play-circle"
+                                                    key="play-circle"
                                                 />
                                                 {toDateString(election.startdate)}
                                             </div>
@@ -92,7 +92,7 @@ export default function ViewElection() {
                                             <div>
                                                 <Icon
                                                     className="electionItem__subitem__icon"
-                                                    type="carry-out"
+                                                    type="pause-circle"
                                                     key="calendar"
                                                 />
                                                 {toDateString(election.enddate)}
@@ -122,6 +122,13 @@ export default function ViewElection() {
                                     <p />
                                     <div className="electionItem__statistics">
                                         <Statistic
+                                            className="--hide-on-very-small"
+                                            title={`Winner:${statistics[election.location][2]}`}
+                                            value={statistics[election.location][3]}
+                                            valueStyle={{ color: '#3f8600' }}
+                                            suffix="Votes"
+                                        />
+                                        <Statistic
                                             title="Candidates"
                                             value={statistics[election.location][0]}
                                             valueStyle={{ color: '#3f8600' }}
@@ -130,13 +137,6 @@ export default function ViewElection() {
                                             title="Total Votes"
                                             value={statistics[election.location][1]}
                                             valueStyle={{ color: '#3f8600' }}
-                                        />
-                                        <Statistic
-                                            className="--hide-on-very-small"
-                                            title={statistics[election.location][2]}
-                                            value={statistics[election.location][3]}
-                                            valueStyle={{ color: '#3f8600' }}
-                                            suffix="Votes"
                                         />
                                     </div>
                                 </Card>

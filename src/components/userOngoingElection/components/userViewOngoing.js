@@ -47,8 +47,8 @@ export default function ViewElection() {
                                             <div>
                                                 <Icon
                                                     className="electionItem__subitem__icon"
-                                                    type="calendar"
-                                                    key="calendar"
+                                                    type="play-circle"
+                                                    key="play-circle"
                                                 />
                                                 {toDateString(election.startdate)}
                                             </div>
@@ -60,8 +60,8 @@ export default function ViewElection() {
                                             <div>
                                                 <Icon
                                                     className="electionItem__subitem__icon"
-                                                    type="carry-out"
-                                                    key="calendar"
+                                                    type="pause-circle"
+                                                    key="pause-circle"
                                                 />
                                                 {toDateString(election.enddate)}
                                             </div>
@@ -90,6 +90,14 @@ export default function ViewElection() {
                                     />
                                     <div className="electionItem__statistics">
                                         <Statistic
+                                            className="--hide-on-very-small"
+                                            title={`Leading : ${statistics[election.location][2]}`}
+                                            value={statistics[election.location][3]}
+                                            valueStyle={{ color: '#3f8600' }}
+                                            prefix={<Icon type="arrow-up" />}
+                                            suffix="votes"
+                                        />
+                                        <Statistic
                                             title="Candidates"
                                             value={statistics[election.location][0]}
                                             precision={0}
@@ -100,14 +108,6 @@ export default function ViewElection() {
                                             value={statistics[election.location][1]}
                                             prefix={<Icon type="inbox" />}
                                             valueStyle={{ color: '#3f8600' }}
-                                        />
-                                        <Statistic
-                                            className="--hide-on-very-small"
-                                            title={`Leading : ${statistics[election.location][2]}`}
-                                            value={statistics[election.location][3]}
-                                            valueStyle={{ color: '#3f8600' }}
-                                            prefix={<Icon type="arrow-up" />}
-                                            suffix="votes"
                                         />
                                     </div>
                                 </Card>

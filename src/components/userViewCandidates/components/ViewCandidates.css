@@ -2,17 +2,19 @@
     margin: 3rem auto;
     width: 90%;
 }
+.candidateView.--voters .ant-spin-container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 
-@media (min-width: 896px){
-    .candidateList {
-        width: 90%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 20px;
-        grid-row-gap: 20px;
-
-    }
 }
-
-
-
+.candidateView.--voters .ant-card-cover {
+    overflow: hidden;
+    height: 330px;
+    width: 400px;
+    max-height: 330px;
+}
+.no_candidate{
+    font-family: var(--primary-font);
+    text-align: center;
+}
