@@ -41,13 +41,7 @@
 }
 
 @media ( min-width:1024px ){
-    .viewCandidates.--grid {
-        width: 90%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 20px;
-        grid-row-gap: 20px;
-    }
+
 
     .viewCandidates__card{
         margin: 20px auto;
@@ -58,13 +52,7 @@
 }
 
 @media ( min-width:1300px ){
-    .viewCandidates.--grid {
-        width: 90%;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-column-gap: 20px;
-        grid-row-gap: 20px;
-    }
+
 
     .viewCandidates__card{
         margin: 20px auto;

@@ -40,7 +40,7 @@ const Candidate = ({
                 />
             )}
         >
-            <p className="candidateCard__label -bold -fontBig">{name}</p>
+            <p className="candidateCard__label --fontBig">{name}</p>
             <p className="candidateCard__label">{`${age} ${AGE_LABEL}`}</p>
             <p className="candidateCard__label">{`${PARTY_LABEL} ${party}`}</p>
             <Button

@@ -5,14 +5,18 @@
 
 @media (min-width: 896px){
     .candidateList {
-        width: 90%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 20px;
-        grid-row-gap: 20px;
+
 
     }
 }
+
+.candidateView.--voters .ant-spin-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+
 
 
 

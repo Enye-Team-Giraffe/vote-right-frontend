@@ -21,13 +21,13 @@ import { WAIT_TIME } from '../../viewStats/constants';
 const ViewCandidates = ({ match }) => {
     // dispatch the loadCandidates saga
     // which has been defined in the viewstats component
-    const [latlong,setlatlong]=useState("");
+    const [latlong, setlatlong] = useState('');
     const dispatch = useDispatch();
 
     function successFunction(position) {
-        var lat = position.coords.latitude;
-        var long = position.coords.longitude;
-        setlatlong(`${lat}${long}`)
+        const lat = position.coords.latitude;
+        const long = position.coords.longitude;
+        setlatlong(`${lat}${long}`);
     }
     useEffect(() => {
         dispatch(viewStatsActions.pushCandidates([]));
@@ -41,7 +41,8 @@ const ViewCandidates = ({ match }) => {
     // item for customising the spinner
     const antIcon = <Icon type="loading" className="loader" spin />;
     const candidates = useSelector(state => state.candidates);
-    const loading = useSelector(state => state.candidatesLoading);
+    const candidateLoading = useSelector(state => state.candidatesLoading);
+    const votingLoading = useSelector(state => state.votingLoading);
 
     /**
      * Handles click event to vote a candidate
@@ -51,42 +52,43 @@ const ViewCandidates = ({ match }) => {
      * @param {string} -
      * @return {void}
      */
-    const genders=["male","female"]
+    const genders = ['male', 'female'];
     const handleVote = candidateId => {
-        dispatch(actions.voteCandidateRequest({ 
-                candidateId : candidateId,
-                electionId:match.params.electionId,
-                age:Math.floor(Math.random()*100),
-                gender:genders[Math.round(Math.random()*1)],
-                latlong:latlong,
-                phoneNumber:`${Math.floor(Math.random()*1000)}`
-            })
-        );
+        dispatch(actions.votingLoading(true));
+        dispatch(actions.voteCandidateRequest({
+            age: Math.floor(Math.random() * 100),
+            candidateId,
+            electionId: match.params.electionId,
+            gender: genders[Math.round(Math.random() * 1)],
+            latlong,
+            phoneNumber: `${Math.floor(Math.random() * 1000)}`,
+        }));
     };
 
     return (
-        <div className="candidateView">
+        <div className="candidateView --voters">
             <div className="candidateList">
                 <Spin
                     size="large"
                     indicator={antIcon}
-                    spinning={loading}
+                    spinning={votingLoading || candidateLoading}
                     className="loader"
                     tip={LOADING_MESSAGE}
-                />
-                {
-                    candidates.map(candidate => (
-                        <Candidate
-                            key={candidate.id}
-                            id={candidate.id}
-                            name={candidate.name}
-                            age={candidate.age}
-                            pictureUrl={candidate.pictureLink}
-                            party={candidate.party}
-                            handleVote={handleVote}
-                        />
-                    ))
-                }
+                >
+                    {
+                        candidates.map(candidate => (
+                            <Candidate
+                                key={candidate.id}
+                                id={candidate.id}
+                                name={candidate.name}
+                                age={candidate.age}
+                                pictureUrl={candidate.pictureLink}
+                                party={candidate.party}
+                                handleVote={handleVote}
+                            />
+                        ))
+                    }
+                </Spin>
             </div>
         </div>
     );

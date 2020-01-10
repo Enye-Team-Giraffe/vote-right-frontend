@@ -1,15 +1,20 @@
-import { takeLatest,put } from 'redux-saga/effects';
+/* eslint-disable max-lines-per-function */
+
+import { takeLatest, put } from 'redux-saga/effects';
+import { message } from 'antd';
 import { VOTE_CANDIDATE_REQUEST } from './actionTypes';
-import {message} from "antd"
+import actions from './actions';
+import {
+    SUCCESS_MESSAGE, WAIT_TIME, ERROR_MESSAGE,
+    LARGE_GAS
+} from './constants';
+
 // import web3 dependencies
-const uuidv4 = require('uuid/v4');
 const web3 = require('../../web3/configuredWeb3');
 const getElectionInterface = require('../../web3/election');
 
-
 // eslint-disable-next-line no-unused-vars
 function* vote(payload) {
-    console.log(payload)
     // get the interface to the election
     const electionInterface = yield getElectionInterface(payload.electionId);
     // get the address of the account to use
@@ -17,21 +22,19 @@ function* vote(payload) {
     // make the transaction to the blockchain
     try {
         yield electionInterface.methods.vote(
-            payload.candidateId,payload.age,
-            payload.gender,payload.latlong,
+            payload.candidateId, payload.age,
+            payload.gender, payload.latlong,
             payload.phoneNumber
 
         )
-            .send({ from: account, gas: 3000000 });
-        message.success("SUCCESS", 2.0);
+            .send({ from: account, gas: LARGE_GAS });
+        message.success(SUCCESS_MESSAGE, WAIT_TIME);
         // use this to clear the field after we are done
     } catch (err) {
-        console.log(err)
-        message.error(err.msg, 2.0);
+        message.error(err.msg || ERROR_MESSAGE, WAIT_TIME);
     } finally {
-        // yield put(actions.loadingaddCandidate(false));
+        yield put(actions.votingLoading(false));
     }
-
 }
 
 /**
