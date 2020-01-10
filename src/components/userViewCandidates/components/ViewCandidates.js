@@ -42,7 +42,7 @@ const ViewCandidates = ({ match }) => {
     const candidates = useSelector(state => state.candidates);
     const candidateLoading = useSelector(state => state.candidatesLoading);
     const votingLoading = useSelector(state => state.votingLoading);
-
+    const user = useSelector(state => state.user);
     /**
      * Handles click event to vote a candidate
      *
@@ -60,7 +60,7 @@ const ViewCandidates = ({ match }) => {
             electionId: match.params.electionId,
             gender: genders[Math.round(Math.random() * 1)],
             latlong,
-            phoneNumber: `${Math.floor(Math.random() * 1000)}`,
+            phoneNumber: user.phoneNumber,
         }));
     };
 
