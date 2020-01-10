@@ -54,6 +54,10 @@ const columns = [
         dataIndex: 'age',
         title: 'Age',
     },
+    {
+        dataIndex: 'education',
+        title: 'Education',
+    },
 
 ];
 

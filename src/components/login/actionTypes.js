@@ -53,3 +53,11 @@ export const AUTHENTICATE_USER_STATUS = 'AUTHENTICATE_USER_STATUS';
  * @type {String}
  */
 export const IS_USER_LOGGEDIN = 'IS_USER_LOGGEDIN';
+
+/**
+ * Fired by the {@link actions.pushUserPhoneNumber pushUserPhoneNumber}
+ * action creator.
+ *
+ * @type {String}
+ */
+export const PUSH_USER_PHONE_NUMBER = 'PUSH_USER_PHONE_NUMBER';

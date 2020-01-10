@@ -8,7 +8,7 @@ import {
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
-    VIEW_CANDIDATE, ADD_CANDIDATE, NO_PENDING_ELECTION
+    VIEW_CANDIDATE, ADD_CANDIDATE, NO_PENDING_ELECTION, MODAL_HEADER
 } from '../constants';
 import actions from '../../viewElection/actions';
 import { components as AdminViewCandidates } from '../../viewCandidate';
@@ -67,7 +67,7 @@ export default function ViewElection() {
                 <Modal
                     key={electionAddress}
                     visible={visible}
-                    title="aloha"
+                    title={MODAL_HEADER}
                     onCancel={handleCancel}
                     footer={[]}
                 >

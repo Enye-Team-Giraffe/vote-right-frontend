@@ -2,7 +2,8 @@
 import {
     TOGGLE_LOADING_NIN,
     TOGGLE_CONFFIRMATION_CODE,
-    AUTHENTICATE_USER_STATUS
+    AUTHENTICATE_USER_STATUS,
+    PUSH_USER_PHONE_NUMBER
 } from './actionTypes';
 
 // define the default state of the loader to be false
@@ -37,5 +38,19 @@ const authenticateUserReducer = (state = false, action) => {
     }
 };
 
+const pushPhoneNumberReducer = (state = '', action) => {
+    switch (action.type) {
+    case PUSH_USER_PHONE_NUMBER:
+        return action.payload;
+    default:
+        return state;
+    }
+};
+
 // export this value
-export default { authenticateUserReducer, confirmReducer, loginLoandingReducer };
+export default {
+    authenticateUserReducer,
+    confirmReducer,
+    loginLoandingReducer,
+    pushPhoneNumberReducer,
+};
