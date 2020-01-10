@@ -2,15 +2,19 @@
     margin: 3rem auto;
     width: 90%;
 }
-
-
 .candidateView.--voters .ant-spin-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 
 }
-
-
-
-
+.candidateView.--voters .ant-card-cover {
+    overflow: hidden;
+    height: 330px;
+    width: 400px;
+    max-height: 330px;
+}
+.no_candidate{
+    font-family: var(--primary-font);
+    text-align: center;
+}

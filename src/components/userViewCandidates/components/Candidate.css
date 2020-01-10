@@ -2,12 +2,10 @@
     margin: 40px auto;
     max-width: 400px;
     border-radius: 10px;
-    /* box-shadow: 3px 3px 3px #e8eaf6; */
 }
 
 .candidateCard__image {
-    height: 250px;
-    width: 398px;
+    min-height: 330px;
 }
 
 .candidateCard .ant-card-body {
@@ -46,9 +44,15 @@
     font-family: var(--secondary-font);
     font-size: 15px;
 }
+
+.--center{
+    text-align: center;
+    padding-top: 5px;
+    font-size: 14px;
+}
 @media (min-width: 896px){
     .candidateCard {
-        margin: 20px auto;
+        margin: 20px 45px;
         max-width: 400px;
     }
 

@@ -5,7 +5,7 @@ import { Icon, Spin } from 'antd';
 import './ViewCandidates.css';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Candidate from './Candidate';
-import { LOADING_MESSAGE } from '../constants';
+import { LOADING_MESSAGE, NO_CANDIDATE } from '../constants';
 import { actions as viewStatsActions } from '../../viewStats';
 import actions from '../actions';
 
@@ -83,9 +83,18 @@ const ViewCandidates = ({ match }) => {
                                 age={candidate.age}
                                 pictureUrl={candidate.pictureLink}
                                 party={candidate.party}
+                                quote={candidate.quote}
+                                education={candidate.education}
                                 handleVote={handleVote}
                             />
                         ))
+                    }
+                    {
+                        (candidates.length === 0 && !candidateLoading) ? (
+                            <div className="no_candidate">
+                                {NO_CANDIDATE}
+                            </div>
+                        ) : ''
                     }
                 </Spin>
             </div>

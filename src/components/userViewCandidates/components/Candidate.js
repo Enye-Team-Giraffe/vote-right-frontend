@@ -5,7 +5,7 @@ import './Candidate.css';
 import { Card, Button, Icon } from 'antd';
 import './ViewCandidates.css';
 import {
-    AGE_LABEL, PARTY_LABEL, VOTE
+    AGE_LABEL, PARTY_LABEL, VOTE, EDU_LABEL
 } from '../constants';
 
 /**
@@ -17,7 +17,7 @@ import {
  * @return {component} - Candidate component
  */
 const Candidate = ({
-    id, pictureUrl, name, age, party, handleVote,
+    id, pictureUrl, name, age, party, handleVote, quote, education,
 }) => {
     /**
      * Handles click on vote button
@@ -42,8 +42,9 @@ const Candidate = ({
         >
             <p className="candidateCard__label --fontBig">{name}</p>
             <p className="candidateCard__label">{`${age} ${AGE_LABEL}`}</p>
-            <p className="candidateCard__label">{`${PARTY_LABEL} ${party}`}</p>
-            <p className="candidateCard__label">{`${PARTY_LABEL} ${party}`}</p>
+            <p className="candidateCard__label">{`${PARTY_LABEL} ${party.slice(0, 3)}`}</p>
+            <p className="candidateCard__label">{`${EDU_LABEL} ${education.slice(0, 10)}`}</p>
+            <p className="candidateCard__label --center"><i>{`'${quote}'`}</i></p>
             <Button
                 type="primary"
                 className="candidateCard__vote"
@@ -63,9 +64,11 @@ export default Candidate;
 
 Candidate.propTypes = {
     age: PropTypes.string.isRequired,
+    education: PropTypes.string.isRequired,
     handleVote: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     party: PropTypes.string.isRequired,
     pictureUrl: PropTypes.string.isRequired,
+    quote: PropTypes.string.isRequired,
 };
