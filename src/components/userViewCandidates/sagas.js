@@ -6,7 +6,7 @@ import { VOTE_CANDIDATE_REQUEST } from './actionTypes';
 import actions from './actions';
 import {
     SUCCESS_MESSAGE, WAIT_TIME, ERROR_MESSAGE,
-    LARGE_GAS
+    LARGE_GAS, VIEW_ELECTIONS_PATH
 } from './constants';
 
 // import web3 dependencies
@@ -25,7 +25,6 @@ function* vote(payload) {
             payload.candidateId, payload.age,
             payload.gender, payload.latlong,
             payload.phoneNumber
-
         )
             .send({ from: account, gas: LARGE_GAS });
         message.success(SUCCESS_MESSAGE, WAIT_TIME);
@@ -34,6 +33,8 @@ function* vote(payload) {
         message.error(err.msg || ERROR_MESSAGE, WAIT_TIME);
     } finally {
         yield put(actions.votingLoading(false));
+        // redirect to the view all elecitons tab
+        payload.history.push(VIEW_ELECTIONS_PATH);
     }
 }
 
