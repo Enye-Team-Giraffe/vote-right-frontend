@@ -225,8 +225,7 @@ export const MAP_OPTIONS = {
     },
     tooltip: {
         headerFormat: '',
-        pointFormat: `<b>{point.freq}</b><br><b>{point.keyword}</b>                      
-        <br>lat: {point.lat}, lon: {point.lon}`,
+        pointFormat: 'Party:<b>{point.keyword}</b>',
     },
 };
 

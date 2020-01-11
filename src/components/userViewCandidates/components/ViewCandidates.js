@@ -69,8 +69,7 @@ const ViewCandidates = ({ match }) => {
             gender: genders[Math.round(Math.random() * 1)],
             history,
             latlong,
-            phoneNumber: `${Math.round(Math.random() * 1000)}`,
-            // phoneNumber: user.phoneNumber,
+            phoneNumber: user.phoneNumber,
         }));
     };
 
