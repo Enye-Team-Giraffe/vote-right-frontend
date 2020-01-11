@@ -9,6 +9,7 @@ import {
     Card, Spin, Icon, Statistic
 } from 'antd';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import mapDataIE from '@highcharts/map-collection/countries/ng/ng-all.geo.json';
 import actions from '../actions';
 import {
     BAR_OPTIONS, PIE_OPTIONS, AGE_OPTIONS, NAME, AGE, GENDER_GROUP, AGE_GROUP,
@@ -17,6 +18,8 @@ import {
 import DataGrouper from '../utility/DataGrouper';
 
 import './ViewStats.css';
+
+const randomColorGenerator = require('randomcolor');
 
 highchartsMap(Highcharts);
 // reducer function used to get the count of males and females from the data
@@ -115,8 +118,54 @@ export default function ViewStats({ match }) {
             .map(newGroup => newGroup.Value)
             .reduce((current, previous) => current + previous, 0)));
     const ageGroupSeries = makeSeries(ageBrackets, candidateByAge);
+    // get the candidates id for the maps, and assign each candidate a color
+    const candidatesIds = candidates.map(candidate => candidate.id);
+    function mapCandidateToColor(candidateIds) {
+        const colorMap = {};
+        candidateIds.forEach(candidateId => {
+            colorMap[candidateId] = randomColorGenerator({ seed: candidateId });
+        });
+        return colorMap;
+    }
+    function mapCandidateIdToParty(paramCandidates) {
+        const idToPartyMap = {};
+        paramCandidates.forEach(candidate => {
+            idToPartyMap[candidate.id] = candidate.party;
+        });
+        return idToPartyMap;
+    }
+    const candidatesColor = mapCandidateToColor(candidatesIds);
+    const candidatesPartyToId = mapCandidateIdToParty(candidates);
 
+    const voterLocationMap = voters.map(voter => {
+        const voterLatLong = voter.latlong.split('|');
+        return {
+            color: candidatesColor[voter.votedCandidate],
+            keyword: candidatesPartyToId[voter.votedCandidate],
+            lat: Number(voterLatLong[0]),
+            lon: Number(voterLatLong[1]),
+            z: 4,
+        };
+    });
     // redefine new instances from the chart options, to include data from our state
+    const newMapOptions = {
+        ...MAP_OPTIONS,
+        series: [{
+            // Use the gb-all map with no data as a basemap
+            borderColor: '#A0A0A0',
+            mapData: mapDataIE,
+            name: 'Basemap',
+            nullColor: 'rgba(200, 200, 200, 0.3)',
+            showInLegend: false,
+        }, {
+            // Specify points using lat/lon
+            cursor: 'pointer',
+            data: voterLocationMap,
+            name: 'Location of voters and candidates of choice',
+            type: 'mapbubble',
+        }],
+    };
+
     const newBarOptions = {
         ...BAR_OPTIONS,
         series: [{
@@ -231,7 +280,7 @@ export default function ViewStats({ match }) {
                 <HighchartsReact
                     constructorType="mapChart"
                     highcharts={Highcharts}
-                    options={MAP_OPTIONS}
+                    options={newMapOptions}
                 />
             </Card>
             {

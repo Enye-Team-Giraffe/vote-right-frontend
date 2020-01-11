@@ -1,20 +1,22 @@
 .viewResultsLayout{
     padding:45px 50px;
 }
-.ant-modal{
+
+
+.ant-modal.userViewElectionModal{
     width: 70% !important;
     top: 50px;
 }
-.ant-modal-body {
+.ant-modal.userViewElectionModal .ant-modal-body {
     padding: 5px;
 }
-.ant-modal-title {
+.ant-modal.userViewElectionModal .ant-modal-title {
     text-align: center;
     font-weight: 700;
     letter-spacing: 0.8px;
     font-size: 20px;
 }
-.ant-modal-content {
+.ant-modal.userViewElectionModal .ant-modal-content {
     min-width: 330px;
 }
 .tableNameCol__text{
@@ -24,7 +26,7 @@
 
 
 
-.ant-modal-header {
+.ant-modal.userViewElectionModal .ant-modal-header {
     padding: 26px 24px;
 }
 .--paddingleft{
@@ -44,14 +46,14 @@
 }
 
 @media ( min-width:991px ){
-    .ant-modal{
+    .ant-modal.userViewElectionModal{
         margin-left: 400px;
-        width: calc(90% - 400px) !important;
+        width: calc(85% - 400px) !important;
     }
 }
 
 @media ( max-width: 991px ){
-    .ant-modal{
+    .ant-modal.userViewElectionModal{
         width: 90% !important;
     }
 }

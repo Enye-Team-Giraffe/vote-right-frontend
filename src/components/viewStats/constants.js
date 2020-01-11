@@ -205,7 +205,7 @@ export const MAP_OPTIONS = {
         color: '#4169E1',
         cursor: 'pointer',
         data: [{
-            keyword: 'Lagos', lat: 8.678779, lon: 7.526700, z: 10,
+            keyword: 'ikeja', lat: 8.678779, lon: 7.526700, z: 10,
         },
         {
             keyword: 'Lagos', lat: 6.588217, lon: 5.418247, z: 4,
@@ -225,8 +225,7 @@ export const MAP_OPTIONS = {
     },
     tooltip: {
         headerFormat: '',
-        pointFormat: `<b>{point.freq}</b><br><b>{point.keyword}</b>                      
-        <br>lat: {point.lat}, lon: {point.lon}`,
+        pointFormat: 'Party:<b>{point.keyword}</b>',
     },
 };
 
