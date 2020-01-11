@@ -2,12 +2,12 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducers from '../reducers'
+import reducers from '../reducers';
 import { mount } from '../../../../__test__/enzyme';
 import AdminLogin from './AdminLogin';
 import { SIGNINHEADER, SIGNIN } from '../constants';
 
-const mockStore = createStore(reducers.loginAdminReducer, {})
+const mockStore = createStore(reducers.loginAdminReducer, {});
 const wrapper = mount(
     <Provider store={mockStore}>
         <AdminLogin />

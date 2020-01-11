@@ -14,5 +14,4 @@ describe('WhyNin', () => {
     it('should render text', () => {
         expect(wrapper.find('Text').text()).toEqual(WHYNIN);
     });
-
 });
