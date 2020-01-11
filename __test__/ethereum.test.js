@@ -82,7 +82,6 @@ beforeEach(async ()=>{
 // run the tests
 describe("Elections",()=>{
 
-
     // test that both the factory and the election were sucessfully deployed to the network
     // by checking if they contain an address
     it("deploys a factory and a campaign ",()=>{
@@ -91,17 +90,11 @@ describe("Elections",()=>{
         assert.ok(election.options.address);
     });
 
-
-
-
     // confirm from the campaign that accounts[0] is marked as the manager of the contrat
     it("marks creator of the creator of the election as the admin/manager",async()=>{
         const manager = await election.methods.manager().call();
         assert.equal(manager,accounts[0]);
     });
-
-
-
 
     // confirm that after creating an election we can add candidates
     it("can add a candidate to the election",async()=>{
@@ -119,9 +112,6 @@ describe("Elections",()=>{
         // confirm if candidate added to election is the same as the one who was sent to it
         assert.equal(candidateArray['name'],testCandidate['name']);
     });
-
-
-
 
     // confirm that after we move the eleciton state to stage2,we can no longer add candidates
     it("cannot add candidates after voting has started",async()=>{
@@ -144,9 +134,6 @@ describe("Elections",()=>{
         }
 
     })
-
-
-
 
     // confirm that a voter can vote for a particular candidate
     it("can vote for candidate",async()=>{
@@ -179,9 +166,6 @@ describe("Elections",()=>{
         // after we vote this candidate his votecount must be 1
         assert.equal(votedCandidateArray['voteCount'],1)
     });
-
-
-
 
     // confirm that a voter cannot vote more than once
     it("cannot vote more than once",async()=>{
@@ -226,7 +210,6 @@ describe("Elections",()=>{
             assert.ok(err)
         }
     })
-
 
     // confirm that after election has been closed, no vote can be made again
     it("cannot vote again after election has closed",async()=>{
