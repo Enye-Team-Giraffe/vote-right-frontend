@@ -30,7 +30,7 @@ function* vote(payload) {
         message.success(SUCCESS_MESSAGE, WAIT_TIME);
         // use this to clear the field after we are done
     } catch (err) {
-        message.error(err.msg || ERROR_MESSAGE, WAIT_TIME);
+        message.error(err.message || ERROR_MESSAGE, WAIT_TIME);
     } finally {
         yield put(actions.votingLoading(false));
         // redirect to the view all elecitons tab

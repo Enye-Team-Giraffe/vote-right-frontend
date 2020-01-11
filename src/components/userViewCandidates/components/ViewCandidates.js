@@ -33,7 +33,7 @@ const ViewCandidates = ({ match }) => {
     function successFunction(position) {
         const lat = position.coords.latitude;
         const long = position.coords.longitude;
-        setlatlong(`${lat}${long}`);
+        setlatlong(`${lat}|${long}`);
     }
 
     useEffect(() => {
@@ -69,7 +69,8 @@ const ViewCandidates = ({ match }) => {
             gender: genders[Math.round(Math.random() * 1)],
             history,
             latlong,
-            phoneNumber: user.phoneNumber,
+            phoneNumber: `${Math.round(Math.random() * 1000)}`,
+            // phoneNumber: user.phoneNumber,
         }));
     };
 

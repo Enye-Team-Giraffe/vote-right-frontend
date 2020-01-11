@@ -105,7 +105,7 @@ export default function ViewElection() {
                                     />
                                     <Statistic
                                         className="--hide-on-very-small"
-                                        title={statistics[election.location][2]}
+                                        title={`Winner:${statistics[election.location][2]}`}
                                         value={statistics[election.location][3]}
                                         valueStyle={{ color: '#3f8600' }}
                                         suffix="Votes"
