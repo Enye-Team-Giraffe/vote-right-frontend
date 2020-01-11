@@ -1,16 +1,17 @@
 /* eslint-disable max-lines-per-function */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../../viewElection/components/ViewElection';
 import {
-    Card, Icon, Spin, Button, Statistic
+    Card, Icon, Spin, Button, Statistic, Modal
 } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
-    VIEW_CANDIDATE, ADD_CANDIDATE, NO_PENDING_ELECTION
+    VIEW_CANDIDATE, ADD_CANDIDATE, NO_PENDING_ELECTION, MODAL_HEADER
 } from '../constants';
 import actions from '../../viewElection/actions';
+import { components as AdminViewCandidates } from '../../viewCandidate';
 
 const { Meta } = Card;
 
@@ -21,12 +22,32 @@ const dateDiffFromToday = dateone => {
 };
 
 export default function ViewElection() {
+    // create a state variable to keep track of if the election modal is open
+    const [visible, setVisibility] = useState(false);
+    const [electionAddress, setElectionAddress] = useState('');
+
     const dispatch = useDispatch();
     const elections = useSelector(state => state.elections);
     const statistics = useSelector(state => state.statistics);
     const loadingElections = useSelector(state => state.electionListLoading);
 
     const antIcon = <Icon type="loading" className="loader" spin />;
+
+    /* This function rshows a modal which contains the results of an election
+    * it recieves the adress of an election as a string,
+    * This election is then what is shown on the modal
+    * it also sets the modal to be visible by setting the state responsible for such
+    * @param {String} electionAddressParam - A string which is an address of the election
+    * @return {void}
+    */
+    const showModal = electionAddressParam => {
+        setElectionAddress(electionAddressParam);
+        setVisibility(true);
+    };
+
+    // this function hides the modal
+    const handleCancel = () => { setVisibility(false); };
+
     // upon render of the page get all the elections
     useEffect(() => {
         dispatch(actions.loadElections());
@@ -43,6 +64,15 @@ export default function ViewElection() {
             />
 
             <div className="viewElection">
+                <Modal
+                    key={electionAddress}
+                    visible={visible}
+                    title={MODAL_HEADER}
+                    onCancel={handleCancel}
+                    footer={[]}
+                >
+                    <AdminViewCandidates address={electionAddress} />
+                </Modal>
                 {
                     elections.map(election => (
                         <div className="electionItem" key={election.location}>
@@ -82,18 +112,16 @@ export default function ViewElection() {
                                         type="primary"
                                         className="electionItem__subitem --button"
                                         key={Math.random()}
+                                        onClick={() => { showModal(election.location); }}
                                     >
-                                        <NavLink
-                                            to={'/dashboard/elections/'
-                                                + `${election.location}/candidates`}
-                                        >
+                                        <div>
                                             <Icon
                                                 className="electionItem__subitem__icon"
                                                 type="eye"
                                                 key="link"
                                             />
                                             {VIEW_CANDIDATE}
-                                        </NavLink>
+                                        </div>
                                     </Button>,
                                 ]}
                             >

@@ -1,6 +1,7 @@
 import {
     LOGIN_USER, AUTHENTICATE_USER, TOGGLE_LOADING_NIN,
-    TOGGLE_CONFFIRMATION_CODE, CONFIRM_CODE, AUTHENTICATE_USER_STATUS, IS_USER_LOGGEDIN
+    TOGGLE_CONFFIRMATION_CODE, CONFIRM_CODE, AUTHENTICATE_USER_STATUS, IS_USER_LOGGEDIN,
+    PUSH_USER_PHONE_NUMBER
 } from './actionTypes';
 
 /**
@@ -88,6 +89,15 @@ const isUserAuthenticated = () => ({
     type: IS_USER_LOGGEDIN,
 });
 
+/** Triggers a function to save the phone number of the current logged in user to state
+ * @function
+ * @return {Object} The {@link actionTypes.IS_USER_LOGGEDIN IS_USER_LOGGEDIN} action.
+ */
+const pushUserPhoneNumber = phoneNumber => ({
+    payload: phoneNumber,
+    type: PUSH_USER_PHONE_NUMBER,
+});
+
 // export the loginUser and authenticateUser as an object.
 export default {
     authenticateUser,
@@ -97,4 +107,5 @@ export default {
     isUserAuthenticated,
     loadingReducer,
     loginUser,
+    pushUserPhoneNumber,
 };

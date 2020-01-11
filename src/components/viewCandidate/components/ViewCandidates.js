@@ -1,31 +1,84 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect } from 'react';
-import './ViewCandidates.css';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Icon, Spin } from 'antd';
+import {
+    Icon, Spin, Table, Avatar, Tag
+} from 'antd';
+import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
-import { LOADING_MESSAGE, NO_CANDIDATE } from '../constants';
+import {
+    LOADING_MESSAGE, NO_CANDIDATE, WINNER
+} from '../constants';
 
-const { Meta } = Card;
+const IconText = ({ type, text }) => (
+    <span>
+        <Icon type={type} style={{ marginRight: 8 }} />
+        {text}
+    </span>
+);
 
-export default function ViewCandidates({ match }) {
+const columns = [
+    {
+        dataIndex: 'name',
+        render(text, record, index) {
+            return (
+                <div className="tableNameCol">
+                    <Avatar
+                        src={record.pictureLink}
+                        className="--paddingleft"
+                    />
+                    <div className="tableNameCol__text">
+                        {text}
+                    </div>
+                    {
+                        (index === 0) ? (
+                            <Tag
+                                color="geekblue"
+                                className="--paddingleft"
+                            >
+                                {WINNER}
+                            </Tag>
+                        ) : ''
+                    }
+                </div>
+            );
+        },
+        title: 'Name',
+    },
+    {
+        dataIndex: 'party',
+        ellipsis: true,
+        title: 'Party',
+    },
+    {
+        dataIndex: 'age',
+        title: 'Age',
+    },
+    {
+        dataIndex: 'education',
+        title: 'Education',
+    },
+
+];
+
+export default function ViewResults({ address }) {
+    // get the state variables
+    const candidates = useSelector(state => state.candidates);
+    const loading = useSelector(state => state.candidatesLoading);
     // dispatch the loadCandidates saga
     // which has been defined in the viewstats component
     const dispatch = useDispatch();
+    // sort the candidates by votecount
+    const sortedCandidate = candidates.sort((a, b) => b.voteCount - a.voteCount);
     useEffect(() => {
         dispatch(actions.pushCandidates([]));
         dispatch(actions.loadingCandidates(true));
-        dispatch(actions.loadCandidates(match.params.electionId));
-    }, [dispatch, match.params.electionId]);
-
+        dispatch(actions.loadCandidates(address));
+    }, [dispatch, address]);
     // item for customising the spinner
     const antIcon = <Icon type="loading" className="loader" spin />;
-    const candidates = useSelector(state => state.candidates);
-    const loading = useSelector(state => state.candidatesLoading);
     return (
-        <div>
-
+        <div className="viewCandidates --noPadding">
             <Spin
                 size="large"
                 indicator={antIcon}
@@ -33,63 +86,37 @@ export default function ViewCandidates({ match }) {
                 className="loader"
                 tip={LOADING_MESSAGE}
             />
-
-            <div className="viewCandidates --grid">
-                {
-                    candidates.map(candidate => (
-                        <Card
-                            key={candidate.id}
-                            className="viewCandidates__card"
-                            cover={(
-                                <img
-                                    className="viewCandidates__cardImage"
-                                    alt="example"
-                                    src="https://i.pravatar.cc/500"
-                                />
-                            )}
-                            actions={[
-                                <Icon type="setting" key="setting" />,
-                                <Icon type="edit" key="edit" />,
-                                <Icon type="ellipsis" key="ellipsis" />,
-                            ]}
-                        >
-                            <Meta
-                                className="viewCandidates__card__meta --name"
-                                title={candidate.name}
-                            />
-                            <Meta
-                                className="viewCandidates__card__meta --party"
-                                title={`${candidate.age} years of age`}
-                            />
-                            <Meta
-                                className="viewCandidates__card__meta --party"
-                                title={`Member of ${candidate.party}`}
-                            />
-                            <Meta
-                                className="viewCandidates__card__meta --education"
-                                title={`Last studied at ${candidate.education}`}
-                            />
-                            <Meta
-                                className="viewCandidates__card__meta --quote"
-                                description={`'${candidate.quote}'`}
-                            />
-                        </Card>
-                    ))
-                }
-                {
-                    // if there is no candidateloading  then show that there is none.
-                    (candidates.length === 0 && !loading) ? (
-                        <div className="no_candidate">
-                            {NO_CANDIDATE}
-                        </div>
-                    ) : ''
-                }
-            </div>
-
+            {
+                // if there is no candidateloading  then show that there is none.
+                (candidates.length === 0 && !loading) ? (
+                    <div className="no_candidate">
+                        {NO_CANDIDATE}
+                    </div>
+                )
+                    : ''
+            }
+            {
+                // if there is at least one candidate and we are done loading
+                // then show the table
+                (!loading && candidates.length > 0) ? (
+                    <Table
+                        rowKey="id"
+                        columns={columns}
+                        dataSource={sortedCandidate}
+                        expandedRowRender={record => <i>{`'${record.quote}'`}</i>}
+                    />
+                ) : ''
+            }
         </div>
     );
 }
 
-ViewCandidates.propTypes = {
-    match: ReactRouterPropTypes.match.isRequired,
+ViewResults.propTypes = {
+    address: PropTypes.string.isRequired,
 };
+
+IconText.propTypes = {
+    text: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+};
+

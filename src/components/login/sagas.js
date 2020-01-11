@@ -101,7 +101,13 @@ function* firebaseUserLogin(data) {
  */
 function* confirmUserCode(data) {
     const code = data.payload;
-    const confirmation = yield window.confirmationResult.confirm(code).then(() => SUCCESS_STATUS)
+    const confirmation = yield window.confirmationResult.confirm(code)
+        .then(result => (
+            {
+                message: SUCCESS_STATUS,
+                user: result.user,
+            }
+        ))
         .catch(() => {
         // User couldn't sign in (bad verification code?)
         // ...
@@ -110,11 +116,13 @@ function* confirmUserCode(data) {
         });
     yield put(actions.loadingReducer(false));
 
-    if (confirmation === SUCCESS_STATUS) {
+    if (confirmation.message === SUCCESS_STATUS) {
         // if the authentication goes thru
         // then change the state variable indicating this user is authenticated
         yield put(actions.authenticateUserStatus(true));
         yield put(actions.confirmationCodeSection(false));
+        // add the user to state
+        yield put(actions.pushUserPhoneNumber(confirmation.user));
     } else {
         // if user entered the wrong number
         // go back to login page
@@ -143,6 +151,8 @@ function* isUserLoggedIn() {
     if (loggedinUser && loggedinUser.phoneNumber) {
         // dispatch a function to change the state variable to user authenticated
         yield put(actions.authenticateUserStatus(true));
+        // add the user to state
+        yield put(actions.pushUserPhoneNumber(loggedinUser));
         // send an alert
         message.success(USER_ALREADY_LOGGED, WAIT_TIME);
     }

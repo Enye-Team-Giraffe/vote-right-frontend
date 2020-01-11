@@ -14,4 +14,5 @@ export const ERROR_MESSAGE = `
 export const LARGE_GAS = 3000000;
 export const EDU_LABEL = 'Last studied at : ';
 export const NO_CANDIDATE = 'There are no candidates in this election';
+export const VIEW_ELECTIONS_PATH = '/user/elections/ongoing';
 

@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Icon, Spin } from 'antd';
 import './ViewCandidates.css';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -20,8 +21,9 @@ import actions from '../actions';
 const ViewCandidates = ({ match }) => {
     // dispatch the loadCandidates saga
     // which has been defined in the viewstats component
-    const [latlong, setlatlong] = useState('');
     const dispatch = useDispatch();
+    const history = useHistory();
+    const [latlong, setlatlong] = useState('');
 
     function successFunction(position) {
         const lat = position.coords.latitude;
@@ -42,7 +44,7 @@ const ViewCandidates = ({ match }) => {
     const candidates = useSelector(state => state.candidates);
     const candidateLoading = useSelector(state => state.candidatesLoading);
     const votingLoading = useSelector(state => state.votingLoading);
-
+    const user = useSelector(state => state.user);
     /**
      * Handles click event to vote a candidate
      *
@@ -59,8 +61,9 @@ const ViewCandidates = ({ match }) => {
             candidateId,
             electionId: match.params.electionId,
             gender: genders[Math.round(Math.random() * 1)],
+            history,
             latlong,
-            phoneNumber: `${Math.floor(Math.random() * 1000)}`,
+            phoneNumber: user.phoneNumber,
         }));
     };
 
