@@ -58,6 +58,7 @@ export default function ViewElection() {
             >
                 <div className="viewElection">
                     <Modal
+                        className="userViewElectionModal"
                         key={electionAddress}
                         visible={visible}
                         title={MODAL_TITLE}

@@ -2,11 +2,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Icon, Spin } from 'antd';
+import {
+    Icon, Spin, Modal, message
+} from 'antd';
 import './ViewCandidates.css';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Candidate from './Candidate';
-import { LOADING_MESSAGE, NO_CANDIDATE } from '../constants';
+import {
+    LOADING_MESSAGE, NO_CANDIDATE, WAIT_TIME, CANCEL_VOTE
+} from '../constants';
 import { actions as viewStatsActions } from '../../viewStats';
 import actions from '../actions';
 
@@ -24,12 +28,14 @@ const ViewCandidates = ({ match }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [latlong, setlatlong] = useState('');
-
+    const { confirm } = Modal;
+    // a success function to load the latitide and longitude
     function successFunction(position) {
         const lat = position.coords.latitude;
         const long = position.coords.longitude;
         setlatlong(`${lat}${long}`);
     }
+
     useEffect(() => {
         dispatch(viewStatsActions.pushCandidates([]));
         dispatch(viewStatsActions.loadingCandidates(true));
@@ -67,6 +73,21 @@ const ViewCandidates = ({ match }) => {
         }));
     };
 
+    // a function to show the confirmation modal
+    function showConfirm(electionId) {
+        confirm({
+            content: 'This action is not reversible or repeatable',
+            onCancel() {
+                message.success(CANCEL_VOTE, WAIT_TIME);
+            },
+            onOk() {
+                handleVote(electionId);
+            },
+            title: 'Are you sure of your voted candidate?',
+            width: 600,
+        });
+    }
+
     return (
         <div className="candidateView --voters">
             <div className="candidateList">
@@ -88,7 +109,7 @@ const ViewCandidates = ({ match }) => {
                                 party={candidate.party}
                                 quote={candidate.quote}
                                 education={candidate.education}
-                                handleVote={handleVote}
+                                handleVote={showConfirm}
                             />
                         ))
                     }
