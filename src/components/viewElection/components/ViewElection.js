@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ViewElection.css';
 import {
-    Card, Icon, Spin, Statistic, Button
+    Card, Icon, Spin, Statistic, Button, Avatar
 } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE, NO_RUNNING_ELECTION } from '../constants';
@@ -12,6 +12,21 @@ import { LOADING_MESSAGE, NO_RUNNING_ELECTION } from '../constants';
 import actions from '../actions';
 
 const { Meta } = Card;
+
+//  a function to display the title of the card
+const CardTitle = ({title}) =>(
+    <div className="cardTitle">
+        <div className="cardTitle__title">
+            The {title}
+        </div>
+        <div className="cardTitle__meta">
+        <Avatar className="cardTitle__meta__image" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+            <span className="cardTitle__meta__text">
+                <Icon type="arrow-up" /> Leading with 10 votes!
+            </span>
+        </div>
+    </div>
+);
 
 export default function ViewElection() {
     const dispatch = useDispatch();
@@ -40,7 +55,7 @@ export default function ViewElection() {
                     elections.map(election => (
                         <div className="electionItem" key={election.location}>
                             <Card
-                                title={`The ${election.name}`}
+                                title={<CardTitle title={election.name}/>}
                                 actions={[
                                     <div
                                         className="electionItem__subitem --text"

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../../viewElection/components/ViewElection';
 import {
-    Card, Icon, Spin, Button, Statistic, Modal
+    Card, Icon, Spin, Button, Statistic, Modal, Avatar
 } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
@@ -20,6 +20,23 @@ const dateDiffFromToday = dateone => {
     const diff = Math.abs(Date.now() - (Number(dateone) * 1000)) / (1000 * 60 * 60 * 24);
     return Math.round(diff, 0);
 };
+//  a function to display the title of the card
+const CardTitle = ({title}) =>(
+    <div className="cardTitle">
+        <div className="cardTitle__title">
+            The {title}
+        </div>
+        <div className="cardTitle__image">
+            <Avatar className="cardTitle__image__avatar">USER</Avatar>
+            <Avatar className="cardTitle__image__avatar" style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
+            <Avatar className="cardTitle__image__avatar">USER</Avatar>
+            <Avatar className="cardTitle__image__avatar" style={{ backgroundColor: '#87d068' }} icon="user" />
+            <span className="cardTitle_icon">
+                <Icon className="electionItem__subitem__icon" type="plus"/>
+            </span>
+        </div>
+    </div>
+);
 
 export default function ViewElection() {
     // create a state variable to keep track of if the election modal is open
@@ -77,7 +94,7 @@ export default function ViewElection() {
                     elections.map(election => (
                         <div className="electionItem" key={election.location}>
                             <Card
-                                title={`The ${election.name}`}
+                                title={<CardTitle title={election.name}/>}
                                 actions={[
                                     <div
                                         className="electionItem__subitem --text"

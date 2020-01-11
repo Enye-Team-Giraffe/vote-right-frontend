@@ -4,3 +4,9 @@
 .ant-card-actions > li > span a:not(.ant-btn), .ant-card-actions > li > span > .anticon:hover {
     color:white;
 }
+.cardTitle__meta__image{
+    margin-right: 10px;
+}
+.cardTitle__meta__text{
+    font-family: var(--secondary-font);
+}

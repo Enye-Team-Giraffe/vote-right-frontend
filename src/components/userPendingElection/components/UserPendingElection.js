@@ -3,14 +3,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../../viewElection/components/ViewElection';
 import {
-    Card, Icon, Spin, Statistic
+    Card, Icon, Spin, Statistic, Avatar
 } from 'antd';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
     NO_PENDING_ELECTION
 } from '../constants';
 import actions from '../../viewElection/actions';
-
+import "./UserPendingElection.css";
 const { Meta } = Card;
 
 //  a function to get the difference in date between two time stamps
@@ -18,6 +18,24 @@ const dateDiffFromToday = dateone => {
     const diff = Math.abs(Date.now() - (Number(dateone) * 1000)) / (1000 * 60 * 60 * 24);
     return Math.round(diff, 0);
 };
+
+//  a function to display the title of the card
+const CardTitle = ({title}) =>(
+    <div className="cardTitle">
+        <div className="cardTitle__title">
+            The {title}
+        </div>
+        <div className="cardTitle__image">
+            <Avatar className="cardTitle__image__avatar">USER</Avatar>
+            <Avatar className="cardTitle__image__avatar" style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
+            <Avatar className="cardTitle__image__avatar">USER</Avatar>
+            <Avatar className="cardTitle__image__avatar" style={{ backgroundColor: '#87d068' }} icon="user" />
+            <span className="cardTitle_icon">
+                <Icon className="electionItem__subitem__icon" type="plus"/>
+            </span>
+        </div>
+    </div>
+);
 
 export default function ViewElection() {
     const dispatch = useDispatch();
@@ -46,7 +64,7 @@ export default function ViewElection() {
                     elections.map(election => (
                         <div className="electionItem" key={election.location}>
                             <Card
-                                title={`The ${election.name}`}
+                                title={<CardTitle title={election.name}/>}
                                 actions={[
                                     <div
                                         className="electionItem__subitem --text"

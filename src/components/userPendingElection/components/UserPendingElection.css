@@ -1,0 +1,16 @@
+.cardTitle{
+    display: flex;
+    justify-content: space-between;
+}
+.cardTitle__title{
+    margin-right:50px;
+}
+.cardTitle__image__avatar{
+    margin-left:-8px;
+}
+.cardTitle__image__avatar:nth-child(3){
+    z-index: 300;
+}
+.cardTitle_icon{
+    margin-left: 4px;
+}

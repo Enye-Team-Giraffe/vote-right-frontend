@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    Card, Icon, Spin, Button, Statistic, Modal
+    Card, Icon, Spin, Button, Statistic, Modal, Avatar
 } from 'antd';
 import { components as ViewResults } from '../../userViewResults';
 
@@ -11,6 +11,21 @@ import { LOADING_MESSAGE, MODAL_TITLE, VIEW_RESULT } from '../constants';
 import { actions } from '../../viewElection';
 
 const { Meta } = Card;
+
+//  a function to display the title of the card
+const CardTitle = ({title}) =>(
+    <div className="cardTitle">
+        <div className="cardTitle__title">
+            The {title}
+        </div>
+        <div className="cardTitle__meta">
+        <Avatar className="cardTitle__meta__image" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+            <span className="cardTitle__meta__text">
+                <Icon type="arrow-up" /> Won with 10 votes
+            </span>
+        </div>
+    </div>
+);
 
 export default function ViewElection() {
     // create a state variable to keep track of if the election modal is open
@@ -71,7 +86,7 @@ export default function ViewElection() {
                         elections.map(election => (
                             <div className="electionItem" key={election.location}>
                                 <Card
-                                    title={`The ${election.name}`}
+                                    title={<CardTitle title={election.name}/>}
                                     actions={[
                                         <div
                                             className="electionItem__subitem"
@@ -117,18 +132,17 @@ export default function ViewElection() {
                                     ]}
                                 >
                                     <Meta
-                                        title={election.name}
                                         description={election.description}
                                     />
                                     <p />
                                     <div className="electionItem__statistics">
-                                        <Statistic
+                                        {/* <Statistic
                                             className="--hide-on-very-small"
                                             title={`Winner:${statistics[election.location][2]}`}
                                             value={statistics[election.location][3]}
                                             valueStyle={{ color: '#3f8600' }}
                                             suffix="Votes"
-                                        />
+                                        /> */}
                                         <Statistic
                                             title="Candidates"
                                             value={statistics[election.location][0]}
