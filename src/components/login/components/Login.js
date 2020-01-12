@@ -51,6 +51,8 @@ function Login() {
             // check if this iser is already authenticated
             dispatch(actions.isUserAuthenticated());
         }
+        // make sure the action to enter a code is closed upon ren-render
+        dispatch(actions.confirmationCodeSection(false));
     }, [dispatch, userAuthenticated]);
     // create a dispatch instance for our actions
 
