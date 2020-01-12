@@ -92,7 +92,7 @@ const LandingPage = () => {
                     </div>
                     <div className="homepage-wrapper__content--wrapper --animated" key={stateKey}>
                         <div className="homepage-wrapper__content__description">{currentText.FIRSTTITLE}</div>
-                        <div className="homepage-wrapper__content__description --bolder">{currentText.SECONDTITLE}</div>
+                        <div className="homepage-wrapper__content__description --landingbolder">{currentText.SECONDTITLE}</div>
                         <div className="homepage-wrapper__content__text">
                             {currentText.HOMETEXT}
                         </div>
