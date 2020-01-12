@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    Card, Icon, Spin, Button, Statistic, Modal, Avatar
+    Card, Icon, Spin, Button, Statistic, Modal, Avatar,Tag
 } from 'antd';
 import { components as ViewResults } from '../../userViewResults';
 
@@ -13,19 +13,64 @@ import { actions } from '../../viewElection';
 const { Meta } = Card;
 
 //  a function to display the title of the card
-const CardTitle = ({title}) =>(
+const CardTitle = ({ title }) => (
     <div className="cardTitle">
-        <div className="cardTitle__title">
-            The {title}
+        <div className="cardTitle__tag">
+            <Tag style={{'width':"150px", textAlign:'center'}} color="red">Concluded Election</Tag>
         </div>
-        <div className="cardTitle__meta">
-        <Avatar className="cardTitle__meta__image" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            <span className="cardTitle__meta__text">
-                <Icon type="arrow-up" /> Won with 10 votes
+        <div className="cardTitle__title">
+            The {' '} {title} {' '} Election
+        </div>
+
+    </div>
+);
+
+const CardMeta = ({ 
+        description, daysTillStart, 
+        numCandidates, numVotes,
+        leadingCandidateName,leadingCandidateVote
+     }) => (
+    <div className="cardMeta">
+        <div className="cardMeta__description">
+            { description }
+        </div>
+        <div className="cardMeta__meta">
+            <Icon className="cardMeta__meta__icon" type="clock-circle" />
+            <span  className="cardMeta__meta__text">
+                Started on {daysTillStart}.
+            </span>
+        </div>
+        <div className="cardMeta__meta">
+            <Icon className="cardMeta__meta__icon" type="team" />
+            <span  className="cardMeta__meta__text">
+                {numCandidates} Candidates Contested
+            </span>
+        </div>
+        <div className="cardMeta__meta">
+            <Icon className="cardMeta__meta__icon" type="inbox"/>
+            <span  className="cardMeta__meta__text">
+                {numVotes} Votes Casted
+            </span>
+        </div>
+        <hr className="divider --ongoing"/>
+        <div className="cardMeta__meta">
+        <Avatar  className="cardMeta__meta__icon" style={{ backgroundColor: '#87d068' }} icon="user" />
+            <span  className="cardMeta__meta__text">
+                <span className="--bolder">{leadingCandidateName}</span> Won The Election Having {" "}
+                <span className="--bolder">{leadingCandidateVote} Votes</span>
             </span>
         </div>
     </div>
-);
+)
+
+const CardFooter = ({ endDate }) =>(
+    <div className="cardTitle__meta">
+        <Icon type="calendar" className="cardTitle__meta__icon" />
+        <span  className="cardTitle__meta__text">
+            Ended : {endDate}
+        </span>
+    </div>
+)
 
 export default function ViewElection() {
     // create a state variable to keep track of if the election modal is open
@@ -86,34 +131,12 @@ export default function ViewElection() {
                         elections.map(election => (
                             <div className="electionItem" key={election.location}>
                                 <Card
-                                    title={<CardTitle title={election.name}/>}
+                                    title={<CardTitle title={election.name} />}
                                     actions={[
-                                        <div
-                                            className="electionItem__subitem"
-                                            key={election.startdate}
-                                        >
-                                            <div>
-                                                <Icon
-                                                    className="electionItem__subitem__icon"
-                                                    type="play-circle"
-                                                    key="play-circle"
-                                                />
-                                                {toDateString(election.startdate)}
-                                            </div>
-                                        </div>,
-                                        <div
-                                            className="electionItem__subitem"
-                                            key={election.enddate}
-                                        >
-                                            <div>
-                                                <Icon
-                                                    className="electionItem__subitem__icon"
-                                                    type="pause-circle"
-                                                    key="calendar"
-                                                />
-                                                {toDateString(election.enddate)}
-                                            </div>
-                                        </div>,
+                                        <CardFooter 
+                                            endDate={toDateString(election.enddate)}
+                                        />
+                                        ,
                                         <Button
                                             type="primary"
                                             className="electionItem__subitem --button"
@@ -131,29 +154,18 @@ export default function ViewElection() {
                                         </Button>,
                                     ]}
                                 >
-                                    <Meta
-                                        description={election.description}
-                                    />
-                                    <p />
-                                    <div className="electionItem__statistics">
-                                        {/* <Statistic
-                                            className="--hide-on-very-small"
-                                            title={`Winner:${statistics[election.location][2]}`}
-                                            value={statistics[election.location][3]}
-                                            valueStyle={{ color: '#3f8600' }}
-                                            suffix="Votes"
-                                        /> */}
-                                        <Statistic
-                                            title="Candidates"
-                                            value={statistics[election.location][0]}
-                                            valueStyle={{ color: '#3f8600' }}
+                                <Meta
+                                    description={
+                                        <CardMeta 
+                                            description={election.description}
+                                            daysTillStart={toDateString(election.startdate)}
+                                            numCandidates={statistics[election.location][0]}
+                                            numVotes={statistics[election.location][1]}
+                                            leadingCandidateName={statistics[election.location][2]}
+                                            leadingCandidateVote={statistics[election.location][3]}
                                         />
-                                        <Statistic
-                                            title="Total Votes"
-                                            value={statistics[election.location][1]}
-                                            valueStyle={{ color: '#3f8600' }}
-                                        />
-                                    </div>
+                                    }
+                                />
                                 </Card>
                             </div>
                         ))

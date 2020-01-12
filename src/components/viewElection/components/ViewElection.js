@@ -14,15 +14,19 @@ import actions from '../actions';
 const { Meta } = Card;
 
 //  a function to display the title of the card
-const CardTitle = ({title}) =>(
+const CardTitle = ({ title }) => (
     <div className="cardTitle">
         <div className="cardTitle__title">
-            The {title}
+            The
+            {' '}
+            {title}
         </div>
         <div className="cardTitle__meta">
-        <Avatar className="cardTitle__meta__image" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+            <Avatar className="cardTitle__meta__image" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
             <span className="cardTitle__meta__text">
-                <Icon type="arrow-up" /> Leading with 10 votes!
+                <Icon type="arrow-up" />
+                {' '}
+Leading with 10 votes!
             </span>
         </div>
     </div>
@@ -55,7 +59,7 @@ export default function ViewElection() {
                     elections.map(election => (
                         <div className="electionItem" key={election.location}>
                             <Card
-                                title={<CardTitle title={election.name}/>}
+                                title={<CardTitle title={election.name} />}
                                 actions={[
                                     <div
                                         className="electionItem__subitem --text"

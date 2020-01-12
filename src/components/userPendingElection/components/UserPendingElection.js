@@ -3,14 +3,15 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../../viewElection/components/ViewElection';
 import {
-    Card, Icon, Spin, Statistic, Avatar
+    Card, Icon, Spin, Tag
 } from 'antd';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
     NO_PENDING_ELECTION
 } from '../constants';
 import actions from '../../viewElection/actions';
-import "./UserPendingElection.css";
+import './UserPendingElection.css';
+
 const { Meta } = Card;
 
 //  a function to get the difference in date between two time stamps
@@ -20,22 +21,46 @@ const dateDiffFromToday = dateone => {
 };
 
 //  a function to display the title of the card
-const CardTitle = ({title}) =>(
+const CardTitle = ({ title }) => (
     <div className="cardTitle">
-        <div className="cardTitle__title">
-            The {title}
+        <div className="cardTitle__tag">
+            <Tag style={{'width':"150px", textAlign:'center'}} color="volcano">Pending Election</Tag>
         </div>
-        <div className="cardTitle__image">
-            <Avatar className="cardTitle__image__avatar">USER</Avatar>
-            <Avatar className="cardTitle__image__avatar" style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
-            <Avatar className="cardTitle__image__avatar">USER</Avatar>
-            <Avatar className="cardTitle__image__avatar" style={{ backgroundColor: '#87d068' }} icon="user" />
-            <span className="cardTitle_icon">
-                <Icon className="electionItem__subitem__icon" type="plus"/>
+        <div className="cardTitle__title">
+            The {' '} {title} {' '} Election
+        </div>
+
+    </div>
+);
+
+const CardMeta = ({ description, daysTillStart, numCandidates }) => (
+    <div className="cardMeta">
+        <div className="cardMeta__description">
+            { description }
+        </div>
+        <div className="cardMeta__meta">
+            <Icon className="cardMeta__meta__icon" type="clock-circle" />
+            <span  className="cardMeta__meta__text">
+                Starts in {daysTillStart} days
+            </span>
+        </div>
+        <div className="cardMeta__meta">
+            <Icon className="cardMeta__meta__icon" type="team" />
+            <span  className="cardMeta__meta__text">
+                {numCandidates} Registered Candidates
             </span>
         </div>
     </div>
-);
+)
+
+const CardFooter = ({ endDate }) =>(
+    <div className="cardTitle__meta">
+        <Icon type="calendar" className="cardTitle__meta__icon" />
+        <span  className="cardTitle__meta__text">
+            Ends on {endDate}
+        </span>
+    </div>
+)
 
 export default function ViewElection() {
     const dispatch = useDispatch();
@@ -64,41 +89,20 @@ export default function ViewElection() {
                     elections.map(election => (
                         <div className="electionItem" key={election.location}>
                             <Card
-                                title={<CardTitle title={election.name}/>}
+                                title={<CardTitle title={election.name} />}
                                 actions={[
-                                    <div
-                                        className="electionItem__subitem --text"
-                                        key={election.enddate}
-                                    >
-                                        <div>
-                                            <Icon
-                                                className="electionItem__subitem__icon"
-                                                type="carry-out"
-                                            />
-                                            {`Ends on ${toDateString(election.enddate)}`}
-                                        </div>
-                                    </div>,
+                                    <CardFooter endDate={toDateString(election.startdate)}/>
                                 ]}
                             >
                                 <Meta
-                                    description={election.description}
+                                    description={
+                                        <CardMeta 
+                                            description={election.description}
+                                            daysTillStart={dateDiffFromToday(election.startdate)}
+                                            numCandidates={statistics[election.location][0]}
+                                        />
+                                    }
                                 />
-
-                                <p />
-                                <div className="electionItem__statistics">
-                                    <Statistic
-                                        title="Candidates"
-                                        value={statistics[election.location][0]}
-                                        precision={0}
-                                        valueStyle={{ color: '#3f8600' }}
-                                    />
-                                    <Statistic
-                                        title="Days till start"
-                                        value={dateDiffFromToday(election.startdate)}
-                                        valueStyle={{ color: '#3f8600' }}
-                                        prefix={<Icon type="arrow-down" />}
-                                    />
-                                </div>
                             </Card>
                         </div>
                     ))

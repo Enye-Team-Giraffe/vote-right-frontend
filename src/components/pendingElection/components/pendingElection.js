@@ -3,12 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../../viewElection/components/ViewElection';
 import {
-    Card, Icon, Spin, Button, Statistic, Modal, Avatar
+    Card, Icon, Spin, Modal, Tag
 } from 'antd';
-import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
-    VIEW_CANDIDATE, ADD_CANDIDATE, NO_PENDING_ELECTION, MODAL_HEADER
+    NO_PENDING_ELECTION, MODAL_HEADER
 } from '../constants';
 import actions from '../../viewElection/actions';
 import { components as AdminViewCandidates } from '../../viewCandidate';
@@ -20,23 +19,48 @@ const dateDiffFromToday = dateone => {
     const diff = Math.abs(Date.now() - (Number(dateone) * 1000)) / (1000 * 60 * 60 * 24);
     return Math.round(diff, 0);
 };
+
 //  a function to display the title of the card
-const CardTitle = ({title}) =>(
+const CardTitle = ({ title }) => (
     <div className="cardTitle">
-        <div className="cardTitle__title">
-            The {title}
+        <div className="cardTitle__tag">
+            <Tag style={{'width':"150px", textAlign:'center'}} color="green">Pending Election</Tag>
         </div>
-        <div className="cardTitle__image">
-            <Avatar className="cardTitle__image__avatar">USER</Avatar>
-            <Avatar className="cardTitle__image__avatar" style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
-            <Avatar className="cardTitle__image__avatar">USER</Avatar>
-            <Avatar className="cardTitle__image__avatar" style={{ backgroundColor: '#87d068' }} icon="user" />
-            <span className="cardTitle_icon">
-                <Icon className="electionItem__subitem__icon" type="plus"/>
+        <div className="cardTitle__title">
+            The {' '} {title} {' '} Election
+        </div>
+
+    </div>
+);
+
+const CardMeta = ({ description, daysTillStart, numCandidates }) => (
+    <div className="cardMeta">
+        <div className="cardMeta__description">
+            { description }
+        </div>
+        <div className="cardMeta__meta">
+            <Icon className="cardMeta__meta__icon" type="clock-circle" />
+            <span  className="cardMeta__meta__text">
+                Starts in {daysTillStart} days
+            </span>
+        </div>
+        <div className="cardMeta__meta">
+            <Icon className="cardMeta__meta__icon" type="team" />
+            <span  className="cardMeta__meta__text">
+                {numCandidates} Registered Candidates
             </span>
         </div>
     </div>
-);
+)
+
+const CardFooter = ({ endDate }) =>(
+    <div className="cardTitle__meta">
+        <Icon type="calendar" className="cardTitle__meta__icon" />
+        <span  className="cardTitle__meta__text">
+            Ends on 2020-10-11
+        </span>
+    </div>
+)
 
 export default function ViewElection() {
     // create a state variable to keep track of if the election modal is open
@@ -94,77 +118,23 @@ export default function ViewElection() {
                     elections.map(election => (
                         <div className="electionItem" key={election.location}>
                             <Card
-                                title={<CardTitle title={election.name}/>}
+                                title={<CardTitle title={election.name} />}
                                 actions={[
-                                    <div
-                                        className="electionItem__subitem --text"
-                                        key={election.enddate}
-                                    >
-                                        <div>
-                                            <Icon
-                                                className="electionItem__subitem__icon"
-                                                type="carry-out"
-                                            />
-                                            {toDateString(election.enddate)}
-                                        </div>
-                                    </div>,
-                                    <Button
-                                        type="primary"
-                                        className="electionItem__subitem --button"
-                                        key={election.name}
-                                    >
-                                        <NavLink
-                                            to={'/dashboard/elections/'
-                                                + `${election.location}/register-candidate`}
-                                        >
-                                            <Icon
-                                                className="electionItem__subitem__icon"
-                                                type="plus"
-                                                key="link"
-                                            />
-                                            {ADD_CANDIDATE}
-                                        </NavLink>
-                                    </Button>,
-                                    <Button
-                                        type="primary"
-                                        className="electionItem__subitem --button"
-                                        key={Math.random()}
-                                        onClick={() => { showModal(election.location); }}
-                                    >
-                                        <div>
-                                            <Icon
-                                                className="electionItem__subitem__icon"
-                                                type="eye"
-                                                key="link"
-                                            />
-                                            {VIEW_CANDIDATE}
-                                        </div>
-                                    </Button>,
+                                    <CardFooter endDate="lol"/>
                                 ]}
                             >
                                 <Meta
-                                    description={election.description}
+                                    description={
+                                        <CardMeta 
+                                            description={election.description}
+                                            daysTillStart={dateDiffFromToday(election.startdate)}
+                                            numCandidates={statistics[election.location][0]}
+                                        />
+                                    }
                                 />
-
-                                <p />
-                                <div className="electionItem__statistics">
-                                    <Statistic
-                                        title="Candidates"
-                                        value={statistics[election.location][0]}
-                                        precision={0}
-                                        valueStyle={{ color: '#3f8600' }}
-                                    />
-                                    <Statistic
-                                        title="Days till start"
-                                        value={dateDiffFromToday(election.startdate)}
-                                        valueStyle={{ color: '#3f8600' }}
-                                        prefix={<Icon type="arrow-down" />}
-                                    />
-                                </div>
                             </Card>
                         </div>
                     ))
-
                 }
                 {
                     (elections.length === 0 && !loadingElections) ? (

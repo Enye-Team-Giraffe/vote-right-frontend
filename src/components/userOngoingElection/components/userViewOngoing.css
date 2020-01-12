@@ -10,3 +10,11 @@
 .cardTitle__meta__text{
     font-family: var(--secondary-font);
 }
+.divider{
+    margin-top: 25px;
+    border: 0.5px solid green;
+}
+.--bolder{
+    font-family: var(--primary-font);
+    font-size: 15.5px;
+}
