@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    Card, Icon, Spin, Button, Statistic, Modal, Avatar,Tag
+    Card, Icon, Spin, Button, Modal, Avatar, Tag
 } from 'antd';
 import { components as ViewResults } from '../../userViewResults';
 
@@ -16,61 +16,83 @@ const { Meta } = Card;
 const CardTitle = ({ title }) => (
     <div className="cardTitle">
         <div className="cardTitle__tag">
-            <Tag style={{'width':"150px", textAlign:'center'}} color="red">Concluded Election</Tag>
+            <Tag style={{ width: '150px', textAlign: 'center' }} color="red">Concluded Election</Tag>
         </div>
         <div className="cardTitle__title">
-            The {' '} {title} {' '} Election
+            The
+            {' '}
+            {' '}
+            {title}
+            {' '}
+            {' '}
+Election
         </div>
 
     </div>
 );
 
-const CardMeta = ({ 
-        description, daysTillStart, 
-        numCandidates, numVotes,
-        leadingCandidateName,leadingCandidateVote
-     }) => (
+const CardMeta = ({
+    description, daysTillStart,
+    numCandidates, numVotes,
+    leadingCandidateName, leadingCandidateVote,
+}) => (
     <div className="cardMeta">
         <div className="cardMeta__description">
             { description }
         </div>
         <div className="cardMeta__meta">
             <Icon className="cardMeta__meta__icon" type="clock-circle" />
-            <span  className="cardMeta__meta__text">
-                Started on {daysTillStart}.
+            <span className="cardMeta__meta__text">
+                Started on
+                {' '}
+                {daysTillStart}
+.
             </span>
         </div>
         <div className="cardMeta__meta">
             <Icon className="cardMeta__meta__icon" type="team" />
-            <span  className="cardMeta__meta__text">
-                {numCandidates} Candidates Contested
+            <span className="cardMeta__meta__text">
+                {numCandidates}
+                {' '}
+Candidates Contested
             </span>
         </div>
         <div className="cardMeta__meta">
-            <Icon className="cardMeta__meta__icon" type="inbox"/>
-            <span  className="cardMeta__meta__text">
-                {numVotes} Votes Casted
+            <Icon className="cardMeta__meta__icon" type="inbox" />
+            <span className="cardMeta__meta__text">
+                {numVotes}
+                {' '}
+Votes Casted
             </span>
         </div>
-        <hr className="divider --ongoing"/>
+        <hr className="divider --ongoing" />
         <div className="cardMeta__meta">
-        <Avatar  className="cardMeta__meta__icon" style={{ backgroundColor: '#87d068' }} icon="user" />
-            <span  className="cardMeta__meta__text">
-                <span className="--bolder">{leadingCandidateName}</span> Won The Election Having {" "}
-                <span className="--bolder">{leadingCandidateVote} Votes</span>
+            <Avatar className="cardMeta__meta__icon" style={{ backgroundColor: '#87d068' }} icon="user" />
+            <span className="cardMeta__meta__text">
+                <span className="--bolder">{leadingCandidateName}</span>
+                {' '}
+Won The Election Having
+                {' '}
+                <span className="--bolder">
+                    {leadingCandidateVote}
+                    {' '}
+Votes
+                </span>
             </span>
         </div>
     </div>
-)
+);
 
-const CardFooter = ({ endDate }) =>(
+const CardFooter = ({ endDate }) => (
     <div className="cardTitle__meta">
         <Icon type="calendar" className="cardTitle__meta__icon" />
-        <span  className="cardTitle__meta__text">
-            Ended : {endDate}
+        <span className="cardTitle__meta__text">
+            Ended :
+            {' '}
+            {endDate}
         </span>
     </div>
-)
+);
 
 export default function ViewElection() {
     // create a state variable to keep track of if the election modal is open
@@ -133,10 +155,9 @@ export default function ViewElection() {
                                 <Card
                                     title={<CardTitle title={election.name} />}
                                     actions={[
-                                        <CardFooter 
+                                        <CardFooter
                                             endDate={toDateString(election.enddate)}
-                                        />
-                                        ,
+                                        />,
                                         <Button
                                             type="primary"
                                             className="electionItem__subitem --button"
@@ -154,24 +175,22 @@ export default function ViewElection() {
                                         </Button>,
                                     ]}
                                 >
-                                <Meta
-                                    description={
-                                        <CardMeta 
-                                            description={election.description}
-                                            daysTillStart={toDateString(election.startdate)}
-                                            numCandidates={statistics[election.location][0]}
-                                            numVotes={statistics[election.location][1]}
-                                            leadingCandidateName={statistics[election.location][2]}
-                                            leadingCandidateVote={statistics[election.location][3]}
-                                        />
-                                    }
-                                />
+                                    <Meta
+                                        description={(
+                                            <CardMeta
+                                                description={election.description}
+                                                daysTillStart={toDateString(election.startdate)}
+                                                numCandidates={statistics[election.location][0]}
+                                                numVotes={statistics[election.location][1]}
+                                                leadingCandidateName={statistics[election.location][2]}
+                                                leadingCandidateVote={statistics[election.location][3]}
+                                            />
+                                        )}
+                                    />
                                 </Card>
                             </div>
                         ))
-
                     }
-
                 </div>
             </Spin>
         </div>

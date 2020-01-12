@@ -24,10 +24,16 @@ const dateDiffFromToday = dateone => {
 const CardTitle = ({ title }) => (
     <div className="cardTitle">
         <div className="cardTitle__tag">
-            <Tag style={{'width':"150px", textAlign:'center'}} color="volcano">Pending Election</Tag>
+            <Tag style={{ width: '150px', textAlign: 'center' }} color="volcano">Pending Election</Tag>
         </div>
         <div className="cardTitle__title">
-            The {' '} {title} {' '} Election
+            The
+            {' '}
+            {' '}
+            {title}
+            {' '}
+            {' '}
+Election
         </div>
 
     </div>
@@ -40,27 +46,35 @@ const CardMeta = ({ description, daysTillStart, numCandidates }) => (
         </div>
         <div className="cardMeta__meta">
             <Icon className="cardMeta__meta__icon" type="clock-circle" />
-            <span  className="cardMeta__meta__text">
-                Starts in {daysTillStart} days
+            <span className="cardMeta__meta__text">
+                Starts in
+                {' '}
+                {daysTillStart}
+                {' '}
+days
             </span>
         </div>
         <div className="cardMeta__meta">
             <Icon className="cardMeta__meta__icon" type="team" />
-            <span  className="cardMeta__meta__text">
-                {numCandidates} Registered Candidates
+            <span className="cardMeta__meta__text">
+                {numCandidates}
+                {' '}
+Registered Candidates
             </span>
         </div>
     </div>
-)
+);
 
-const CardFooter = ({ endDate }) =>(
+const CardFooter = ({ endDate }) => (
     <div className="cardTitle__meta">
         <Icon type="calendar" className="cardTitle__meta__icon" />
-        <span  className="cardTitle__meta__text">
-            Ends on {endDate}
+        <span className="cardTitle__meta__text">
+            Ends on
+            {' '}
+            {endDate}
         </span>
     </div>
-)
+);
 
 export default function ViewElection() {
     const dispatch = useDispatch();
@@ -91,17 +105,17 @@ export default function ViewElection() {
                             <Card
                                 title={<CardTitle title={election.name} />}
                                 actions={[
-                                    <CardFooter endDate={toDateString(election.startdate)}/>
+                                    <CardFooter endDate={toDateString(election.startdate)} />,
                                 ]}
                             >
                                 <Meta
-                                    description={
-                                        <CardMeta 
+                                    description={(
+                                        <CardMeta
                                             description={election.description}
                                             daysTillStart={dateDiffFromToday(election.startdate)}
                                             numCandidates={statistics[election.location][0]}
                                         />
-                                    }
+                                    )}
                                 />
                             </Card>
                         </div>
