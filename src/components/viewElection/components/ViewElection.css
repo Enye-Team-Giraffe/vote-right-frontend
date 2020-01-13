@@ -9,10 +9,10 @@
     background-color: hsl(208, 100%, 98.5%);
 }
 .electionItem{
-    width: 45%;
+    width: 450px;
     max-width: 700px;
-    min-width: 500px;
-    margin: 0px 20px 70px 20px;
+    /* min-width: 40px; */
+    margin: 0px 10px 50px 10px;
 }
 
 
@@ -62,7 +62,19 @@
 }
 @media (max-width:1380px){
     .electionItem{
-        width: 90%;
         min-width: 300px;
+    }
+}
+
+@media (max-width: 854px){
+    .electionItem{
+        width: 70%;
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 1155px) and (min-width: 991px){
+    .electionItem{
+        width: 70%;
     }
 }

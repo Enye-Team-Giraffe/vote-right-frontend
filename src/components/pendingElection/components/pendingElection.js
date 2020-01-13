@@ -1,14 +1,15 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import '../../viewElection/components/ViewElection';
-import {
-    Card, Icon, Spin, Button, Statistic, Modal
-} from 'antd';
 import { NavLink } from 'react-router-dom';
+import '../../viewElection/components/ViewElection';
+import PropTypes from 'prop-types';
+import {
+    Card, Icon, Spin, Modal, Tag, Button
+} from 'antd';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
-    VIEW_CANDIDATE, ADD_CANDIDATE, NO_PENDING_ELECTION, MODAL_HEADER
+    NO_PENDING_ELECTION, MODAL_HEADER, ADD_CANDIDATE, VIEW_CANDIDATE
 } from '../constants';
 import actions from '../../viewElection/actions';
 import { components as AdminViewCandidates } from '../../viewCandidate';
@@ -20,6 +21,66 @@ const dateDiffFromToday = dateone => {
     const diff = Math.abs(Date.now() - (Number(dateone) * 1000)) / (1000 * 60 * 60 * 24);
     return Math.round(diff, 0);
 };
+
+//  a function to display the title of the card
+const CardTitle = ({ title }) => (
+    <div className="cardTitle">
+        <div className="cardTitle__tag">
+            <Tag
+                style={{ textAlign: 'center', width: '150px' }}
+                color="volcano"
+            >
+                Pending Election
+            </Tag>
+        </div>
+        <div className="cardTitle__title">
+            The
+            {' '}
+            {' '}
+            {title}
+            {' '}
+            {' '}
+            Election
+        </div>
+
+    </div>
+);
+
+const CardMeta = ({
+    description, daysTillStart, numCandidates, endDate,
+}) => (
+    <div className="cardMeta">
+        <div className="cardMeta__description">
+            { description }
+        </div>
+        <div className="cardMeta__meta">
+            <Icon className="cardMeta__meta__icon" type="clock-circle" />
+            <span className="cardMeta__meta__text">
+                Starts in
+                {' '}
+                {daysTillStart}
+                {' '}
+days
+            </span>
+        </div>
+        <div className="cardMeta__meta">
+            <Icon className="cardMeta__meta__icon" type="team" />
+            <span className="cardMeta__meta__text">
+                {numCandidates}
+                {' '}
+Registered Candidates
+            </span>
+        </div>
+        <div className="cardMeta__meta">
+            <Icon type="calendar" className="cardMeta__meta__icon" />
+            <span className="cardMeta__meta__text">
+                Ends on
+                {' '}
+                {endDate}
+            </span>
+        </div>
+    </div>
+);
 
 export default function ViewElection() {
     // create a state variable to keep track of if the election modal is open
@@ -66,6 +127,7 @@ export default function ViewElection() {
             <div className="viewElection">
                 <Modal
                     key={electionAddress}
+                    className="userViewElectionModal"
                     visible={visible}
                     title={MODAL_HEADER}
                     onCancel={handleCancel}
@@ -77,20 +139,8 @@ export default function ViewElection() {
                     elections.map(election => (
                         <div className="electionItem" key={election.location}>
                             <Card
-                                title={`The ${election.name}`}
+                                title={<CardTitle title={election.name} />}
                                 actions={[
-                                    <div
-                                        className="electionItem__subitem --text"
-                                        key={election.enddate}
-                                    >
-                                        <div>
-                                            <Icon
-                                                className="electionItem__subitem__icon"
-                                                type="carry-out"
-                                            />
-                                            {toDateString(election.enddate)}
-                                        </div>
-                                    </div>,
                                     <Button
                                         type="primary"
                                         className="electionItem__subitem --button"
@@ -126,28 +176,18 @@ export default function ViewElection() {
                                 ]}
                             >
                                 <Meta
-                                    description={election.description}
+                                    description={(
+                                        <CardMeta
+                                            description={election.description}
+                                            daysTillStart={dateDiffFromToday(election.startdate)}
+                                            numCandidates={statistics[election.location][0]}
+                                            endDate={toDateString(election.startdate)}
+                                        />
+                                    )}
                                 />
-
-                                <p />
-                                <div className="electionItem__statistics">
-                                    <Statistic
-                                        title="Candidates"
-                                        value={statistics[election.location][0]}
-                                        precision={0}
-                                        valueStyle={{ color: '#3f8600' }}
-                                    />
-                                    <Statistic
-                                        title="Days till start"
-                                        value={dateDiffFromToday(election.startdate)}
-                                        valueStyle={{ color: '#3f8600' }}
-                                        prefix={<Icon type="arrow-down" />}
-                                    />
-                                </div>
                             </Card>
                         </div>
                     ))
-
                 }
                 {
                     (elections.length === 0 && !loadingElections) ? (
@@ -160,3 +200,15 @@ export default function ViewElection() {
         </div>
     );
 }
+
+CardTitle.propTypes = {
+    title: PropTypes.string.isRequired,
+};
+
+CardMeta.propTypes = {
+    daysTillStart: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    endDate: PropTypes.string.isRequired,
+    numCandidates: PropTypes.string.isRequired,
+};
+
