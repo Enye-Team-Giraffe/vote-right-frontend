@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect } from 'react';
-
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import './ViewElection.css';
 import {
@@ -17,7 +17,12 @@ const { Meta } = Card;
 const CardTitle = ({ title }) => (
     <div className="cardTitle">
         <div className="cardTitle__tag">
-            <Tag style={{ width: '150px', textAlign: 'center' }} color="green">Ongoing Election</Tag>
+            <Tag
+                style={{ textAlign: 'center', width: '150px' }}
+                color="green"
+            >
+            Ongoing Election
+            </Tag>
         </div>
         <div className="cardTitle__title">
             The
@@ -68,7 +73,11 @@ Votes Casted
         </div>
         <hr className="divider" />
         <div className="cardMeta__meta">
-            <Avatar className="cardMeta__meta__icon" style={{ backgroundColor: '#87d068' }} icon="user" />
+            <Avatar
+                className="cardMeta__meta__icon"
+                style={{ backgroundColor: '#87d068' }}
+                icon="user"
+            />
             <span className="cardMeta__meta__text">
                 <span className="--bolder">{leadingCandidateName}</span>
                 {' '}
@@ -125,6 +134,7 @@ export default function ViewElection() {
                                 title={<CardTitle title={election.name} />}
                                 actions={[
                                     <CardFooter
+                                        key={election.enddate}
                                         endDate={toDateString(election.enddate)}
                                     />,
                                     <Button
@@ -175,3 +185,20 @@ export default function ViewElection() {
         </div>
     );
 }
+
+CardTitle.propTypes = {
+    title: PropTypes.string.isRequired,
+};
+
+CardMeta.propTypes = {
+    daysTillStart: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    leadingCandidateName: PropTypes.string.isRequired,
+    leadingCandidateVote: PropTypes.string.isRequired,
+    numCandidates: PropTypes.string.isRequired,
+    numVotes: PropTypes.string.isRequired,
+};
+
+CardFooter.propTypes = {
+    endDate: PropTypes.string.isRequired,
+};

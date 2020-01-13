@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../../viewElection/components/ViewElection';
+import PropTypes from 'prop-types';
 import {
     Card, Icon, Spin, Tag
 } from 'antd';
@@ -24,7 +25,12 @@ const dateDiffFromToday = dateone => {
 const CardTitle = ({ title }) => (
     <div className="cardTitle">
         <div className="cardTitle__tag">
-            <Tag style={{ width: '150px', textAlign: 'center' }} color="volcano">Pending Election</Tag>
+            <Tag
+                style={{ textAlign: 'center', width: '150px' }}
+                color="volcano"
+            >
+                Pending Election
+            </Tag>
         </div>
         <div className="cardTitle__title">
             The
@@ -105,7 +111,10 @@ export default function ViewElection() {
                             <Card
                                 title={<CardTitle title={election.name} />}
                                 actions={[
-                                    <CardFooter endDate={toDateString(election.startdate)} />,
+                                    <CardFooter
+                                        key={election.startdate}
+                                        endDate={toDateString(election.startdate)}
+                                    />,
                                 ]}
                             >
                                 <Meta
@@ -133,3 +142,17 @@ export default function ViewElection() {
         </div>
     );
 }
+
+CardTitle.propTypes = {
+    title: PropTypes.string.isRequired,
+};
+
+CardMeta.propTypes = {
+    daysTillStart: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    numCandidates: PropTypes.string.isRequired,
+};
+CardFooter.propTypes = {
+    endDate: PropTypes.string.isRequired,
+};
+
