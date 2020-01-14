@@ -32,6 +32,7 @@ export default function PrivateRoute({
     useEffect(() => {
         if (!usrAuthenticated) {
             // set the state for both user and admin
+            // if they are logged in
             dispatch(actions.isAdminAuthenticated());
             dispatch(userActions.isUserAuthenticated());
         }
