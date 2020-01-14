@@ -41,7 +41,7 @@ function Login() {
     const [nin, setNin] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [gender, setGender] = useState('');
-    const [age, setAge] = useState(0);
+    const [age, setAge] = useState(18);
     const [confirmationCode, setConfirmationode] = useState('');
     const captchaRef = React.createRef();
 
@@ -129,7 +129,12 @@ function Login() {
         // start spinning the loader
         dispatch(actions.loadingReducer(true));
         // check if the entered code was true
-        dispatch(actions.confirmCode(confirmationCode));
+        dispatch(actions.confirmCode({
+            age,
+            confirmationCode,
+            gender,
+            phoneNumber,
+        }));
     };
 
     /**
@@ -144,7 +149,7 @@ function Login() {
         dispatch(actions.loadingReducer(true));
         // dispatch the function to authenticate the NIN
         dispatch(actions.authenticateUser({
-            age, gender, nin, phoneNumber,
+            nin, phoneNumber,
         }));
 
         // clear the captcha

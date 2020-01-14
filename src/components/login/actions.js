@@ -98,6 +98,15 @@ const pushUserPhoneNumber = phoneNumber => ({
     type: PUSH_USER_PHONE_NUMBER,
 });
 
+/** Triggers a function to add a user to the state
+ * @function
+ * @return {Object} The {@link actionTypes.IS_USER_LOGGEDIN IS_USER_LOGGEDIN} action.
+ */
+const pushUserDetails = userDetails => ({
+    payload: userDetails,
+    type: PUSH_USER_PHONE_NUMBER,
+});
+
 // export the loginUser and authenticateUser as an object.
 export default {
     authenticateUser,
@@ -107,5 +116,6 @@ export default {
     isUserAuthenticated,
     loadingReducer,
     loginUser,
+    pushUserDetails,
     pushUserPhoneNumber,
 };
