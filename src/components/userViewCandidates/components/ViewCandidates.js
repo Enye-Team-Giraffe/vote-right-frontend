@@ -59,14 +59,13 @@ const ViewCandidates = ({ match }) => {
      * @param {string} -
      * @return {void}
      */
-    const genders = ['male', 'female'];
     const handleVote = candidateId => {
         dispatch(actions.votingLoading(true));
         dispatch(actions.voteCandidateRequest({
-            age: Math.floor(Math.random() * 100),
+            age: user.age,
             candidateId,
             electionId: match.params.electionId,
-            gender: genders[Math.round(Math.random() * 1)],
+            gender: user.gender,
             history,
             latlong,
             phoneNumber: user.phoneNumber,

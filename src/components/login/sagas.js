@@ -129,7 +129,7 @@ function* confirmUserCode(data) {
         gender: data.payload.gender,
         phoneNumber: encodePhoneNumber(data.payload.phoneNumber),
     };
-    // conirm if the code entered is correct
+    // confirm if the code entered is correct
     const confirmation = yield window.confirmationResult.confirm(code)
         .then(result => (
             {
@@ -152,12 +152,14 @@ function* confirmUserCode(data) {
         yield put(actions.confirmationCodeSection(false));
         // add user to session
         addUserToSession(userDetails);
+        // send an alert
+        message.success(USER_ALREADY_LOGGED, WAIT_TIME);
         // add the user to state
         yield put(actions.pushUserPhoneNumber(userDetails));
     } else {
         // if user entered the wrong number
         // go back to login page
-        message.success(CROSS_CHECK, WAIT_TIME);
+        message.error(CROSS_CHECK, WAIT_TIME);
     }
 }
 
@@ -168,25 +170,13 @@ function* confirmUserCode(data) {
  * @return {void}
  */
 function* isUserLoggedIn() {
-    // create a promise which returns if the user is called or not
-    const authPromise = new Promise((resolve => {
-        app.auth().onAuthStateChanged(user => {
-            if (user) {
-                resolve(user);
-            }
-        });
-    }));
-    // check what teh promise resolves
-    const loggedinUser = yield authPromise.then(user => user);
+    const loggedinUser = yield JSON.parse(window.sessionStorage.getItem('user'));
     // if it resolves an object and the object contains a phoneNumber
     if (loggedinUser && loggedinUser.phoneNumber) {
         // dispatch a function to change the state variable to user authenticated
         yield put(actions.authenticateUserStatus(true));
         // add the user to state
         yield put(actions.pushUserPhoneNumber(loggedinUser));
-
-        // send an alert
-        message.success(USER_ALREADY_LOGGED, WAIT_TIME);
     }
 }
 

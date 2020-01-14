@@ -1,7 +1,8 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 import { message } from 'antd';
 import { LOGOUT } from './actionTypes';
 import { LOGOUT_SUCESSFULL, WAIT_TIME } from './constants';
+import { actions as adminLoginActions } from '../adminLoginPage';
 
 /**
  * Watches for the {@link actionTypes.LOGOUT LOGOUT} action.
@@ -18,7 +19,7 @@ function* logout(action) {
     // redirect the user to the home page
     action.payload.push('/');
     // yield an action that we were sucessfull
-    yield true;
+    yield put(adminLoginActions.authenticateAdmin(false));
 }
 
 // map the saga to the functoin

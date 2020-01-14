@@ -28,12 +28,12 @@ function* FirebaseLoginAdmin(data) {
         yield app
             .auth()
             .signInWithEmailAndPassword(email, password);
-        // if there was no error, then we can go ahead
         // stop  the spinner
         yield put(actions.loadingAdmin(false));
         // add admin to session
         addUserToSession({ email, password });
-        // set the state variable authenticated as true
+        // Indicate that login was sucessfull
+        message.success(ADMIN_ALREADY_LOGGED, WAIT_TIME);
         yield put(actions.authenticateAdmin(true));
     } catch (error) {
         // if there was an error, say so and stop spinning the looader
@@ -54,7 +54,6 @@ function* isAdminLoggedIn() {
     if (LoggedInAdmin && LoggedInAdmin.email) {
         // set the adminAuthenticated state to true
         yield put(actions.authenticateAdmin(true));
-        message.success(ADMIN_ALREADY_LOGGED, WAIT_TIME);
     }
 }
 
