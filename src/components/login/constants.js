@@ -20,4 +20,9 @@ export const USER_ALREADY_LOGGED = 'Please proceed to user dashboard';
 export const LOADING_MESSAGE = 'loading....';
 export const CROSS_CHECK = 'Please cross-check your code';
 export const WRONG_CODE = 'Invalid verification Code';
-
+export const HALF_WIDTH = { width: '48%' };
+export const PHONE_NUMBER_LEN = 11;
+export const GENDERS = ['Male', 'Female'];
+export const RESEND = 'resend';
+export const NO_MESSAGE = 'Did not get a message?';
+export const WRONG_NIN_OR_NUMBER = ['Wrong', 'NIN/phone number?'];
