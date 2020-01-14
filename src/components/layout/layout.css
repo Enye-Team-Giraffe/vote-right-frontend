@@ -29,7 +29,7 @@
     width: 35%; 
     display: flex;
     flex-direction: column;    
-    margin-top: 250px;
+    margin-top: 15%;
     align-items: center;
     font-family: var(--secondary-font);
 }
