@@ -61,3 +61,11 @@ export const IS_USER_LOGGEDIN = 'IS_USER_LOGGEDIN';
  * @type {String}
  */
 export const PUSH_USER_PHONE_NUMBER = 'PUSH_USER_PHONE_NUMBER';
+
+/**
+ * Fired by the {@link actions.pushUserDetails pushUserDetails}
+ * action creator.
+ *
+ * @type {String}
+ */
+export const PUSH_USER_DETAILS = 'PUSH_USER_DETAILS';

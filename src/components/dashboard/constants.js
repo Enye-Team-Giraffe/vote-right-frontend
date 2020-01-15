@@ -8,4 +8,5 @@ export const MENU = {
 export const LOGOUT = 'logout';
 export const WAIT_TIME = 2;
 export const LOGOUT_SUCESSFULL = 'Your logout was sucessfull';
+export const ADMIN = 'admin';
 

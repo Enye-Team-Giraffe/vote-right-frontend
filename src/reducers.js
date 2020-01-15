@@ -21,6 +21,7 @@ const allReducers = combineReducers({
     statistics: pushElectionReducer.pushStatistics,
     user: userReducer.pushPhoneNumberReducer,
     userAuthenticated: userReducer.authenticateUserReducer,
+    userDetails: userReducer.pushUserDetails,
     userLoading: userReducer.loginLoandingReducer,
     voters: pushVoterReducer.pushVoters,
     votersListLoading: pushVoterReducer.loadingVoters,

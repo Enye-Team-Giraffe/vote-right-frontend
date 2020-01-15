@@ -6,6 +6,16 @@ import { app } from '../configuredFirebase';
 import actions from './actions';
 
 /**
+ * A function to add a user to a session.
+ * @param {Object} user - the user to be added to the session.
+ * @return {void}
+ */
+const addUserToSession = user => {
+    const jsonUser = JSON.stringify(user);
+    window.sessionStorage.setItem('user', jsonUser);
+};
+
+/**
  * Watches for the {@link actionTypes.LOGIN_ADMIN LOGIN_ADMIN} action.
  * Gets the requested data from the server.
  *
@@ -18,11 +28,12 @@ function* FirebaseLoginAdmin(data) {
         yield app
             .auth()
             .signInWithEmailAndPassword(email, password);
-        // if there was no error, then we can go ahead
-        // message.success(SUCCESS_SIGNIN, WAIT_TIME);
         // stop  the spinner
         yield put(actions.loadingAdmin(false));
-        // set the state variable authenticated as true
+        // add admin to session
+        addUserToSession({ email, password });
+        // Indicate that login was sucessfull
+        message.success(ADMIN_ALREADY_LOGGED, WAIT_TIME);
         yield put(actions.authenticateAdmin(true));
     } catch (error) {
         // if there was an error, say so and stop spinning the looader
@@ -38,20 +49,11 @@ function* FirebaseLoginAdmin(data) {
  * @return {void}
  */
 function* isAdminLoggedIn() {
-    // create a promise that when called returns the logged in user
-    const authPromise = new Promise((resolve => {
-        app.auth().onAuthStateChanged(user => {
-            if (user) {
-                resolve(user);
-            }
-        });
-    }));
-    const LoggedInAdmin = yield authPromise.then(user => user);
+    const LoggedInAdmin = JSON.parse(window.sessionStorage.getItem('user'));
     // if there is currently a logged in user and he has an admin property
     if (LoggedInAdmin && LoggedInAdmin.email) {
         // set the adminAuthenticated state to true
         yield put(actions.authenticateAdmin(true));
-        message.success(ADMIN_ALREADY_LOGGED, WAIT_TIME);
     }
 }
 

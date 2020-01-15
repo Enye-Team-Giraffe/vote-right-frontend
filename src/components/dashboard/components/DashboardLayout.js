@@ -5,10 +5,10 @@ import { Layout } from 'antd';
 import {
     Route, Switch, useHistory
 } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
 import SideNav from './SideNav';
-import { LOGOUT } from '../constants';
+import { LOGOUT, ADMIN } from '../constants';
+import { protectedRoute as ProtectedRoute } from '../../protectedRoute/components';
 import CreateElection from '../../createElection/components';
 import { components as ViewElection } from '../../viewElection';
 import { components as ViewStats } from '../../viewStats';
@@ -61,34 +61,41 @@ const DashboardLayout = () => {
                 </Header>
                 <Content className="content">
                     <Switch>
-                        <Route
+                        <ProtectedRoute
                             exact
                             path="/dashboard/elections/ongoing"
                             component={ViewElection}
+                            authenticated={ADMIN}
                         />
-                        <Route
+                        <ProtectedRoute
                             exact
                             path="/dashboard/elections"
                             component={CreateElection}
+                            authenticated={ADMIN}
                         />
                         <Route
                             path="/dashboard/elections/:electionId/statistics"
+                            authenticated={ADMIN}
                             component={ViewStats}
                         />
                         <Route
                             path="/dashboard/elections/:electionId/register-candidate"
+                            authenticated={ADMIN}
                             component={AddCandidate}
                         />
-                        <Route
+                        <ProtectedRoute
                             path="/dashboard/elections/pending"
+                            authenticated={ADMIN}
                             component={PendingEleciton}
                         />
                         <Route
                             path="/dashboard/elections/concluded"
+                            authenticated={ADMIN}
                             component={FinishedElection}
                         />
                         <Route
                             path="/dashboard/elections/:electionId/candidates"
+                            authenticated={ADMIN}
                             component={ViewCandidate}
                         />
                     </Switch>

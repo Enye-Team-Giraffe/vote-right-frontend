@@ -1,8 +1,8 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 import { message } from 'antd';
 import { LOGOUT } from './actionTypes';
-import { app } from '../configuredFirebase';
 import { LOGOUT_SUCESSFULL, WAIT_TIME } from './constants';
+import { actions as adminLoginActions } from '../adminLoginPage';
 
 /**
  * Watches for the {@link actionTypes.LOGOUT LOGOUT} action.
@@ -12,13 +12,14 @@ import { LOGOUT_SUCESSFULL, WAIT_TIME } from './constants';
  * @return {void}
  */
 function* logout(action) {
-    // signout of firebase
-    yield app.auth().signOut().then(() => {
-        message.success(LOGOUT_SUCESSFULL, WAIT_TIME);
-        action.payload.push('/');
-    }).catch(error => {
-        message.success(error.message, WAIT_TIME);
-    });
+    // signout of from the session
+    window.sessionStorage.removeItem('user');
+    // alert the user that the logout was sucessfull
+    message.success(LOGOUT_SUCESSFULL, WAIT_TIME);
+    // redirect the user to the home page
+    action.payload.push('/');
+    // yield an action that we were sucessfull
+    yield put(adminLoginActions.authenticateAdmin(false));
 }
 
 // map the saga to the functoin

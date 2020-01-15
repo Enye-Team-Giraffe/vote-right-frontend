@@ -3,7 +3,8 @@
 // import the modules to use
 import React, { useState, useEffect } from 'react';
 import {
-    Typography, Input, Button, Spin, Icon
+    Typography, Input, Button, Spin, Icon, Select,
+    InputNumber
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,7 +12,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { Redirect } from 'react-router-dom';
 import {
-    SIGNINWITHACCOUNT, SIGNIN, CONFIRM_HEADER, CONFIRM, LOADING_MESSAGE
+    SIGNINWITHACCOUNT, SIGNIN, CONFIRM_HEADER, CONFIRM, LOADING_MESSAGE,
+    HALF_WIDTH, PHONE_NUMBER_LEN, GENDERS, RESEND, NO_MESSAGE, WRONG_NIN_OR_NUMBER
 } from '../constants';
 
 // import the css
@@ -22,6 +24,7 @@ import 'antd/dist/antd.css';
 import actions from '../actions';
 
 const { Title } = Typography;
+const { Option } = Select;
 
 /**
  * Login form to authenticate voters
@@ -37,8 +40,11 @@ function Login() {
     // initialise the states of the component and default them to an empty string
     const [nin, setNin] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [gender, setGender] = useState('');
+    const [age, setAge] = useState(18);
     const [confirmationCode, setConfirmationode] = useState('');
     const captchaRef = React.createRef();
+
     // a piece of code to run upon completion
     useEffect(() => {
         // attach the captcha to the windows
@@ -96,6 +102,24 @@ function Login() {
     };
 
     /**
+     * Handles changes in the age of the user
+     * @function
+     * @param {event} event - the event of trigger of the event
+     */
+    const handleChangeGender = changedGender => {
+        setGender(changedGender);
+    };
+
+    /**
+     * Handles changes in the age of the user
+     * @function
+     * @param {event} event - the event of trigger of the event
+     */
+    const handleChangeAge = changedAge => {
+        setAge(changedAge);
+    };
+
+    /**
      * Handles code that was input by the user
      * @function
      * @param {event} event - the event of trigger of the event
@@ -105,7 +129,12 @@ function Login() {
         // start spinning the loader
         dispatch(actions.loadingReducer(true));
         // check if the entered code was true
-        dispatch(actions.confirmCode(confirmationCode));
+        dispatch(actions.confirmCode({
+            age,
+            confirmationCode,
+            gender,
+            phoneNumber,
+        }));
     };
 
     /**
@@ -119,7 +148,9 @@ function Login() {
         // dispatch the action to alert the loader
         dispatch(actions.loadingReducer(true));
         // dispatch the function to authenticate the NIN
-        dispatch(actions.authenticateUser({ nin, phoneNumber }));
+        dispatch(actions.authenticateUser({
+            nin, phoneNumber,
+        }));
 
         // clear the captcha
         if (window.recaptchaVerifier && captchaRef.current) {
@@ -180,7 +211,7 @@ function Login() {
             <div ref={captchaRef}>
                 <div id="cap" />
             </div>
-            {!confirmationCodeInput
+            {confirmationCodeInput
                 ? (
                     <form className="form" onSubmit={handleSubmit}>
                         <Spin
@@ -210,12 +241,45 @@ function Login() {
                                 <Input
                                     className="form__input"
                                     placeholder="Phone Number"
-                                    minLength={11}
-                                    maxLength={11}
+                                    minLength={PHONE_NUMBER_LEN}
+                                    maxLength={PHONE_NUMBER_LEN}
                                     value={phoneNumber}
                                     onChange={handleChangePhoneNumber}
                                     required
                                 />
+                                <div className="-flex --space-between">
+                                    {/* the input item for the gender */}
+                                    <Select
+                                        className="form__input"
+                                        style={HALF_WIDTH}
+                                        onChange={handleChangeGender}
+                                        placeholder="Gender"
+                                        required
+                                    >
+                                        {
+                                            GENDERS.map(optionGender => (
+                                                <Option
+                                                    key={optionGender}
+                                                    value={optionGender}
+                                                >
+                                                    {optionGender}
+                                                </Option>
+                                            ))
+                                        }
+                                    </Select>
+                                    {/* the input item for the age */}
+                                    <InputNumber
+                                        style={HALF_WIDTH}
+                                        className="form__input"
+                                        placeholder="Gender"
+                                        min={18}
+                                        max={150}
+                                        value={age}
+                                        onChange={handleChangeAge}
+                                        required
+                                    />
+                                </div>
+
                                 <div className="-flex">
                                     {/* Submit button */}
                                     <Button
@@ -264,7 +328,7 @@ function Login() {
 
                                 <div className="alt -flex --animate -fast">
                                     <span className="alt__text">
-                                        Wrong
+                                        {WRONG_NIN_OR_NUMBER[0]}
                                         {' '}
                                         <span
                                             className="alt__text--resend"
@@ -273,14 +337,14 @@ function Login() {
                                             role="button"
                                             tabIndex="0"
                                         >
-                                             NIN/phone number?
+                                            {WRONG_NIN_OR_NUMBER[1]}
                                         </span>
                                     </span>
                                 </div>
 
                                 <div className="alt -flex --animate -slow">
                                     <span className="alt__text">
-                                        Did not get a message?
+                                        {NO_MESSAGE}
                                         <span
                                             className="alt__text--resend"
                                             onClick={resendCode}
@@ -288,7 +352,7 @@ function Login() {
                                             role="button"
                                             tabIndex="0"
                                         >
-                                            resend
+                                            {RESEND}
                                         </span>
                                     </span>
                                 </div>

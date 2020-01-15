@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { ADMIN, ADMIN_HOME, USER_HOME } from './constants';
 import { actions } from '../../adminLoginPage';
+import { actions as userActions } from '../../login';
 
 /**
  * A wrapper for routers, which is used to limit which route users who have not signed in can use
@@ -30,7 +31,10 @@ export default function PrivateRoute({
     // otherwise check firebase if the user is authenticated via cookies
     useEffect(() => {
         if (!usrAuthenticated) {
+            // set the state for both user and admin
+            // if they are logged in
             dispatch(actions.isAdminAuthenticated());
+            dispatch(userActions.isUserAuthenticated());
         }
     }, [dispatch, usrAuthenticated]);
 

@@ -29,6 +29,17 @@
     background-color: #322f61;
 }
 
+.--halfwidth{
+    width: 100px;
+}
+
+.--leftpadding{
+    margin-left: 10px;
+}
+.-flex.--space-between{
+    justify-content: space-between;
+}
+
 @media (max-width: 950px) {
     .form {
         width: 100%;

@@ -22,6 +22,28 @@ import actions from './actions';
 import { app } from '../configuredFirebase';
 
 /**
+ * A function to convert the phone number into a contrycode preceeded format
+ * @param {Number} number - the number which we wnt to append  country code to
+ * @return {void}
+ */
+const encodePhoneNumber = number => {
+    // convert the password to string for easy slicing and nomenclature
+    const stringPassword = String(number);
+    const phoneNumber = `+234${stringPassword.slice(1)}`;
+    return phoneNumber;
+};
+
+/**
+ * A function to add a user to a session.
+ * @param {Object} user - the user to be added to the session.
+ * @return {void}
+ */
+const addUserToSession = user => {
+    const jsonUser = JSON.stringify(user);
+    window.sessionStorage.setItem('user', jsonUser);
+};
+
+/**
  * Watches for the {@link actionTypes.authenticateUser authenticateUser} action.
  * Validates the passed in NIN and the Number using the API
  * @param {Object} body - the data to send to the endpoint {payload:{phoneNumber,nin}}
@@ -100,7 +122,14 @@ function* firebaseUserLogin(data) {
  * @return {void}
  */
 function* confirmUserCode(data) {
-    const code = data.payload;
+    const code = data.payload.confirmationCode;
+    // the details of the user to login
+    const userDetails = {
+        age: data.payload.age,
+        gender: data.payload.gender,
+        phoneNumber: encodePhoneNumber(data.payload.phoneNumber),
+    };
+    // confirm if the code entered is correct
     const confirmation = yield window.confirmationResult.confirm(code)
         .then(result => (
             {
@@ -121,12 +150,16 @@ function* confirmUserCode(data) {
         // then change the state variable indicating this user is authenticated
         yield put(actions.authenticateUserStatus(true));
         yield put(actions.confirmationCodeSection(false));
+        // add user to session
+        addUserToSession(userDetails);
+        // send an alert
+        message.success(USER_ALREADY_LOGGED, WAIT_TIME);
         // add the user to state
-        yield put(actions.pushUserPhoneNumber(confirmation.user));
+        yield put(actions.pushUserPhoneNumber(userDetails));
     } else {
         // if user entered the wrong number
         // go back to login page
-        message.success(CROSS_CHECK, WAIT_TIME);
+        message.error(CROSS_CHECK, WAIT_TIME);
     }
 }
 
@@ -137,24 +170,13 @@ function* confirmUserCode(data) {
  * @return {void}
  */
 function* isUserLoggedIn() {
-    // create a promise which returns if the user is called or not
-    const authPromise = new Promise((resolve => {
-        app.auth().onAuthStateChanged(user => {
-            if (user) {
-                resolve(user);
-            }
-        });
-    }));
-    // check what teh promise resolves
-    const loggedinUser = yield authPromise.then(user => user);
+    const loggedinUser = yield JSON.parse(window.sessionStorage.getItem('user'));
     // if it resolves an object and the object contains a phoneNumber
     if (loggedinUser && loggedinUser.phoneNumber) {
         // dispatch a function to change the state variable to user authenticated
         yield put(actions.authenticateUserStatus(true));
         // add the user to state
         yield put(actions.pushUserPhoneNumber(loggedinUser));
-        // send an alert
-        message.success(USER_ALREADY_LOGGED, WAIT_TIME);
     }
 }
 
