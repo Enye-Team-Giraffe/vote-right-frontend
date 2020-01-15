@@ -9,7 +9,7 @@ import './ViewCandidates.css';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Candidate from './Candidate';
 import {
-    LOADING_MESSAGE, NO_CANDIDATE, WAIT_TIME, CANCEL_VOTE
+    LOADING_MESSAGE, NO_CANDIDATE, WAIT_TIME, CANCEL_VOTE, MAX_CANDIDATE
 } from '../constants';
 import { actions as viewStatsActions } from '../../viewStats';
 import actions from '../actions';
@@ -28,6 +28,7 @@ const ViewCandidates = ({ match }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [latlong, setlatlong] = useState('');
+    const comaparedList = useState(new Set())[0];
     const { confirm } = Modal;
     // a success function to load the latitide and longitude
     function successFunction(position) {
@@ -72,7 +73,14 @@ const ViewCandidates = ({ match }) => {
         }));
     };
 
-    // a function to show the confirmation modal
+    /**
+     * Handles click event to show a confirmation modal
+     *
+     * @function
+     *
+     * @param {string} - electionId which is the id of the displayed election
+     * @return {void}
+     */
     function showConfirm(electionId) {
         confirm({
             content: 'This action is not reversible or repeatable',
@@ -86,6 +94,29 @@ const ViewCandidates = ({ match }) => {
             width: 600,
         });
     }
+    /**
+     * Handles click add a user to compare to state
+     *
+     * @function
+     *
+     * @param {Number} - The index of the candidate to add to compare list
+     * @return {void}
+     */
+    function selectCandidateToCompare(candidateIndex) {
+        return (passedFunction, parameter) => {
+            if (!comaparedList.has(candidateIndex)) {
+                if (comaparedList.size < 2) {
+                    comaparedList.add(candidateIndex);
+                    passedFunction(parameter);
+                } else {
+                    message.error(MAX_CANDIDATE, WAIT_TIME);
+                }
+            } else {
+                comaparedList.delete(candidateIndex);
+                passedFunction(parameter);
+            }
+        };
+    }
 
     return (
         <div className="candidateView --voters">
@@ -98,7 +129,7 @@ const ViewCandidates = ({ match }) => {
                     tip={LOADING_MESSAGE}
                 >
                     {
-                        candidates.map(candidate => (
+                        candidates.map((candidate, index) => (
                             <Candidate
                                 key={candidate.id}
                                 id={candidate.id}
@@ -109,6 +140,9 @@ const ViewCandidates = ({ match }) => {
                                 quote={candidate.quote}
                                 education={candidate.education}
                                 handleVote={showConfirm}
+                                selectCandidateToCompare={
+                                    selectCandidateToCompare(index)
+                                }
                             />
                         ))
                     }
