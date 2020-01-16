@@ -6,6 +6,7 @@ import {
     Icon, Spin, Table, Avatar, Tag
 } from 'antd';
 import PropTypes from 'prop-types';
+import { TwitterShareButton } from 'react-twitter-embed';
 import { actions } from '../../viewStats';
 import {
     LOADING_MESSAGE, NO_CANDIDATE, WINNER
@@ -99,12 +100,21 @@ export default function ViewResults({ address }) {
                 // if there is at least one candidate and we are done loading
                 // then show the table
                 (!loading && candidates.length > 0) ? (
-                    <Table
-                        rowKey="id"
-                        columns={columns}
-                        dataSource={sortedCandidate}
-                        expandedRowRender={record => <i>{`'${record.quote}'`}</i>}
-                    />
+                    <div>
+                        <TwitterShareButton
+                            url={`https://voteright-e8208.firebaseapp.com/result/${address}`}
+                            options={{
+                                size: 'large',
+                                text: 'Election Result',
+                            }}
+                        />
+                        <Table
+                            rowKey="id"
+                            columns={columns}
+                            dataSource={sortedCandidate}
+                            expandedRowRender={record => <i>{`'${record.quote}'`}</i>}
+                        />
+                    </div>
                 ) : ''
             }
         </div>
