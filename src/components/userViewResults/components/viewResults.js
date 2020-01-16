@@ -62,7 +62,7 @@ const columns = [
     },
 ];
 
-export default function ViewResults({ address }) {
+export default function ViewResults({ address, name }) {
     // get the state variables
     const candidates = useSelector(state => state.candidates);
     const loading = useSelector(state => state.candidatesLoading);
@@ -105,7 +105,7 @@ export default function ViewResults({ address }) {
                             url={`https://voteright-e8208.firebaseapp.com/result/${address}`}
                             options={{
                                 size: 'large',
-                                text: 'Election Result',
+                                text: name,
                             }}
                         />
                         <Table
@@ -123,6 +123,7 @@ export default function ViewResults({ address }) {
 
 ViewResults.propTypes = {
     address: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
 };
 
 IconText.propTypes = {

@@ -107,6 +107,7 @@ export default function ViewElection() {
     // create a state variable to keep track of if the election modal is open
     const [visible, setVisibility] = useState(false);
     const [electionAddress, setElectionAddress] = useState('');
+    const [electionName, setElectionName] = useState('');
 
     const dispatch = useDispatch();
     const elections = useSelector(state => state.elections);
@@ -124,8 +125,9 @@ export default function ViewElection() {
     * @param {String} electionAddressParam - A string which is an address of the election
     * @return {void}
     */
-    const showModal = electionAddressParam => {
+    const showModal = (electionAddressParam, electionNameParam) => {
         setElectionAddress(electionAddressParam);
+        setElectionName(electionNameParam);
         setVisibility(true);
     };
 
@@ -156,7 +158,7 @@ export default function ViewElection() {
                         onCancel={handleCancel}
                         footer={[]}
                     >
-                        <ViewResults address={electionAddress} />
+                        <ViewResults address={electionAddress} name={electionName} />
                     </Modal>
                     {
                         elections.map(election => (
@@ -172,7 +174,9 @@ export default function ViewElection() {
                                             type="primary"
                                             className="electionItem__subitem --button"
                                             key={election.name}
-                                            onClick={() => { showModal(election.location); }}
+                                            onClick={() => {
+                                                showModal(election.location, election.name);
+                                            }}
                                         >
                                             <div>
                                                 <Icon
