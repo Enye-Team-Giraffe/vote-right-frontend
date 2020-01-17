@@ -53,6 +53,8 @@ const Candidate = ({
             actions={[
                 <a
                     className="candidateCard__metaitem"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     key="lol"
                     href={`${GOOGLE_SEARCH}${name}`}
                 >
@@ -60,6 +62,8 @@ const Candidate = ({
                 </a>,
                 <a
                     className="candidateCard__metaitem"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     key="lol"
                     href={`${WIKIPEDIA_SEARCH}${name.split(' ').join('_')}`}
                 >
@@ -67,6 +71,8 @@ const Candidate = ({
                 </a>,
                 <a
                     className="candidateCard__metaitem"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     key="lol"
                     href={`${YOUTUBE_SEARCH}${name}`}
                 >

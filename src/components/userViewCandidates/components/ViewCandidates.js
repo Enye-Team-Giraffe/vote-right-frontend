@@ -113,8 +113,7 @@ const ViewCandidates = ({ match }) => {
                     message.error(MAX_CANDIDATE, WAIT_TIME);
                 }
             } else {
-                comaparedList.delete(candidateIndex);
-                setComaparedList(comaparedList);
+                setComaparedList(new Set([]));
             }
         };
     }

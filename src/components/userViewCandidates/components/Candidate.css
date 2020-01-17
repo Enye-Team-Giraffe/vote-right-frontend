@@ -76,6 +76,9 @@
 .candidateCard__metaitem *{
     color: black;
 }
+.candidateCard__metaitem:hover *{
+    color: #54A9FF;
+}
 @media (min-width: 896px){
     .candidateCard {
         margin: 20px 20px;
