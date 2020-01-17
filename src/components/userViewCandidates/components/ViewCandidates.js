@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
-    Icon, Spin, Modal, message, Button
+    Icon, Spin, Modal, message, Button, Avatar
 } from 'antd';
 import './ViewCandidates.css';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Candidate from './Candidate';
+import CompareCandidate from './CompareCandidate';
 import {
     LOADING_MESSAGE, NO_CANDIDATE, WAIT_TIME, CANCEL_VOTE, MAX_CANDIDATE
 } from '../constants';
@@ -126,12 +127,37 @@ const ViewCandidates = ({ match }) => {
         setComaparedList(new Set([]));
         setCompareModalVisibility(false);
     }
+    /**
+     * component for displaying the title of comparing contesting candidates
+     * @function
+     * @return {void}
+     */
+    function CompareCandidatesTitle() {
+        return (
+            <div className="compareCandidate">
+                <div className="compareCandidate__text">
+                    Compare Candidates
+                </div>
+                <div className="compareCandidate__icons">
+                    {
+                        Array.from(comaparedList).map(candidateIndex => (
+                            <Avatar
+                                key={candidateIndex}
+                                className="compareCandidate__icon -small-margin"
+                                src={candidates[candidateIndex].pictureLink}
+                            />
+                        ))
+                    }
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="candidateView --voters">
             <div className="candidateList">
                 <Modal
-                    title="Vertically centered modal dialog"
+                    title={<CompareCandidatesTitle />}
                     centered
                     visible={comaparedList.size === 2}
                     onCancel={stopCompare}
@@ -142,9 +168,9 @@ const ViewCandidates = ({ match }) => {
                         </Button>,
                     ]}
                 >
-                    <p>some contents...</p>
-                    <p>some contents...</p>
-                    <p>some contents...</p>
+                    <CompareCandidate
+                        candidateList={comaparedList}
+                    />
                 </Modal>
                 <Spin
                     size="large"

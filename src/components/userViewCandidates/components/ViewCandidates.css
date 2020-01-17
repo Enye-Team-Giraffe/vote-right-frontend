@@ -18,3 +18,12 @@
     font-family: var(--primary-font);
     text-align: center;
 }
+.compareCandidate{
+    display: flex;
+    justify-content: space-between;
+    margin-right:40px;
+    align-items: center;
+}
+.compareCandidate__icon.-small-margin{
+    margin-right: -7px;
+}
