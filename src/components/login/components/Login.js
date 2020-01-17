@@ -38,6 +38,7 @@ function Login() {
     const userAuthenticated = useSelector(state => state.userAuthenticated);
 
     // initialise the states of the component and default them to an empty string
+    const [nin] = useState(101);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [gender, setGender] = useState('');
     const [age, setAge] = useState(18);
@@ -133,7 +134,7 @@ function Login() {
         dispatch(actions.loadingReducer(true));
         // dispatch the function to authenticate the NIN
         dispatch(actions.authenticateUser({
-            phoneNumber,
+            nin, phoneNumber,
         }));
 
         // clear the captcha
@@ -213,6 +214,8 @@ function Login() {
                                 >
                                     {SIGNINWITHACCOUNT}
                                 </Title>
+                                {/* Nin input field */}
+
                                 {/* Phone number input field */}
                                 <Input
                                     className="form__input"
