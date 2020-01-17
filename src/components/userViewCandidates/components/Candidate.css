@@ -23,7 +23,7 @@
 }
 
 .candidateCard__vote {
-    margin-top: 25px;
+    margin-top: 10px;
     width: 60%;
     height: 40px;
     font-weight: bold;
@@ -63,6 +63,15 @@
 .candidateCard__section__button:hover.--selected{
     background: #87D068;
     color: blue;
+}
+.candidateCard__label.-header{
+    margin-bottom: 15px;
+}
+.candidateCard__label{
+    margin-bottom: 10px;
+}
+.candidateCard__label__icon{
+    margin-right: 10px;
 }
 @media (min-width: 896px){
     .candidateCard {

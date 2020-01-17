@@ -27,3 +27,6 @@
 .compareCandidate__icon.-small-margin{
     margin-right: -7px;
 }
+.candidateView.--voters{
+    background:linear-gradient(to bottom right, hsl(208, 100%, 98.5%) 30%, rgba(181, 209, 231,.6));
+}

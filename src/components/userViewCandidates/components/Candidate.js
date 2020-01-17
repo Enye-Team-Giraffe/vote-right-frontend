@@ -50,7 +50,9 @@ const Candidate = ({
             )}
         >
             <div className="candidateCard__section">
-                <p className="candidateCard__label --fontBig">{name}</p>
+                <p className="candidateCard__label -header --fontBig">
+                    {name}
+                </p>
                 <Button
                     className={`candidateCard__section__button ${(isSelected)
                         ? '--selected' : ''}
@@ -62,10 +64,22 @@ const Candidate = ({
                     Compare
                 </Button>
             </div>
-            <p className="candidateCard__label">{`${age} ${AGE_LABEL}`}</p>
-            <p className="candidateCard__label">{`${PARTY_LABEL} ${party.slice(0, 3)}`}</p>
-            <p className="candidateCard__label">{`${EDU_LABEL} ${education.slice(0, 10)}`}</p>
-            <p className="candidateCard__label --center"><i>{`'${quote}'`}</i></p>
+            <p className="candidateCard__label">
+                <Icon className="candidateCard__label__icon" type="user" />
+                {`${age} ${AGE_LABEL}`}
+            </p>
+            <p className="candidateCard__label">
+                <Icon className="candidateCard__label__icon" type="usergroup-add" />
+                {`${PARTY_LABEL} ${party.slice(0, 3)}`}
+            </p>
+            <p className="candidateCard__label">
+                <Icon className="candidateCard__label__icon" type="book" />
+                {`${EDU_LABEL} ${education.slice(0, 10)}`}
+            </p>
+            <p className="candidateCard__label --center">
+                <Icon type="sound" />
+                <i>{`'${quote}'`}</i>
+            </p>
             <Button
                 type="primary"
                 className="candidateCard__vote"
