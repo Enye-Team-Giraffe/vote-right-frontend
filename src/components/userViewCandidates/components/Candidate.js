@@ -2,7 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Candidate.css';
-import { Card, Button, Icon } from 'antd';
+import {
+    Card, Button, Icon
+} from 'antd';
 import './ViewCandidates.css';
 import {
     AGE_LABEL, PARTY_LABEL, VOTE, EDU_LABEL,

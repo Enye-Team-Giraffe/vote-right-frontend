@@ -1,7 +1,6 @@
 .candidateCard {
     margin: 40px auto;
     max-width: 400px;
-    border-radius: 10px;
 }
 
 .candidateCard__image {
@@ -81,7 +80,7 @@
 }
 @media (min-width: 896px){
     .candidateCard {
-        margin: 20px 20px;
+        margin: 40px 35px;
         max-width: 400px;
     }
 
