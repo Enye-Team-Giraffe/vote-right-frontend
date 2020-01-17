@@ -2,7 +2,8 @@ export const SIGNIN = 'Sign In';
 export const SIGNINWITHACCOUNT = 'Fill in your details to proceed';
 export const WHYWENEED = 'Why do we request for your Phone Number?';
 export const WHYNIN = `We only use your Phone Number for identity verification purposes, 
-                        To participate in voting ensure you have a Valid Phone number which is close to you.
+                        To participate in voting ensure you have a Valid Phone number
+                         which is close to you.
                         Be rest assured that all you data is confidential and secure. Vote Right!`;
 export const ERROR_STATUS = 'error';
 export const SUCCESS_STATUS = 'success';
