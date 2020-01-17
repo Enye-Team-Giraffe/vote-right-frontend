@@ -25,11 +25,10 @@ const authenticateUser = payload => {
     // convert the password to string for easy slicing and nomenclature
     const stringPassword = String(payload.phoneNumber);
     const phoneNumber = `+234${stringPassword.slice(1)}`;
-    const { nin } = payload;
 
     // return the actiontype and the password which has been appended with country code
     return {
-        payload: { nin, phoneNumber },
+        payload: { phoneNumber },
         type: AUTHENTICATE_USER,
     };
 };

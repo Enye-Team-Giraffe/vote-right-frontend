@@ -51,6 +51,7 @@ const addUserToSession = user => {
  */
 // function to validate the NIN using API calls
 function* validateNIN(action) {
+    console.log(action)
     // make a call to tHE verification API
     // passing in the NIN and phoneNumber
     const response = yield fetch(`${BASE_URL}/authenticate`, {

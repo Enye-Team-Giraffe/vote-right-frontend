@@ -31,3 +31,7 @@
 .candidateView.--voters{
     background:linear-gradient(to bottom right, hsl(208, 100%, 98.5%) 30%, white);
 }
+.compareCandidate__text{
+    font-family: var(--primary-font);
+    font-size: 23px;
+}
