@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Candidate.css';
 import { Card, Button, Icon } from 'antd';
@@ -18,9 +18,8 @@ import {
  */
 const Candidate = ({
     id, pictureUrl, name, age, party, handleVote, quote, education,
-    selectCandidateToCompare,
+    selectCandidateToCompare, isSelected,
 }) => {
-    const [disabled, setDisability] = useState(false);
     /**
      * Handles click on vote button
      *
@@ -29,16 +28,15 @@ const Candidate = ({
     const handleClick = () => {
         handleVote(id);
     };
-        /**
+    /**
      * upon click of the compare button,
      * it disables the button and adds the user to compare
      *
      * @function
      */
     const toggleAndCompare = () => {
-        selectCandidateToCompare(setDisability, !disabled);
+        selectCandidateToCompare();
     };
-
     return (
         <Card
             key={id}
@@ -54,7 +52,7 @@ const Candidate = ({
             <div className="candidateCard__section">
                 <p className="candidateCard__label --fontBig">{name}</p>
                 <Button
-                    className={`candidateCard__section__button ${(disabled === true)
+                    className={`candidateCard__section__button ${(isSelected)
                         ? '--selected' : ''}
                     `}
                     shape="round"
@@ -90,6 +88,7 @@ Candidate.propTypes = {
     education: PropTypes.string.isRequired,
     handleVote: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
+    isSelected: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired,
     party: PropTypes.string.isRequired,
     pictureUrl: PropTypes.string.isRequired,

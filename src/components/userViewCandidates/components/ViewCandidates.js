@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
-    Icon, Spin, Modal, message
+    Icon, Spin, Modal, message, Button
 } from 'antd';
 import './ViewCandidates.css';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -28,7 +28,8 @@ const ViewCandidates = ({ match }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [latlong, setlatlong] = useState('');
-    const comaparedList = useState(new Set())[0];
+    const [comaparedList, setComaparedList] = useState(new Set());
+    const [compareModalVisibility, setCompareModalVisibility] = useState(false);
     const { confirm } = Modal;
     // a success function to load the latitide and longitude
     function successFunction(position) {
@@ -103,24 +104,48 @@ const ViewCandidates = ({ match }) => {
      * @return {void}
      */
     function selectCandidateToCompare(candidateIndex) {
-        return (passedFunction, parameter) => {
+        return () => {
             if (!comaparedList.has(candidateIndex)) {
                 if (comaparedList.size < 2) {
-                    comaparedList.add(candidateIndex);
-                    passedFunction(parameter);
+                    setComaparedList(new Set([...comaparedList, candidateIndex]));
                 } else {
                     message.error(MAX_CANDIDATE, WAIT_TIME);
                 }
             } else {
                 comaparedList.delete(candidateIndex);
-                passedFunction(parameter);
+                setComaparedList(comaparedList);
             }
         };
+    }
+    /**
+     * Handles stop comparing the two candidates
+     * @function
+     * @return {void}
+     */
+    function stopCompare() {
+        setComaparedList(new Set([]));
+        setCompareModalVisibility(false);
     }
 
     return (
         <div className="candidateView --voters">
             <div className="candidateList">
+                <Modal
+                    title="Vertically centered modal dialog"
+                    centered
+                    visible={comaparedList.size === 2}
+                    onCancel={stopCompare}
+                    onOk={stopCompare}
+                    footer={[
+                        <Button key="back" onClick={stopCompare}>
+                            Return
+                        </Button>,
+                    ]}
+                >
+                    <p>some contents...</p>
+                    <p>some contents...</p>
+                    <p>some contents...</p>
+                </Modal>
                 <Spin
                     size="large"
                     indicator={antIcon}
@@ -143,6 +168,8 @@ const ViewCandidates = ({ match }) => {
                                 selectCandidateToCompare={
                                     selectCandidateToCompare(index)
                                 }
+                                isSelected={comaparedList.has(index)}
+                                resetKey={compareModalVisibility}
                             />
                         ))
                     }
