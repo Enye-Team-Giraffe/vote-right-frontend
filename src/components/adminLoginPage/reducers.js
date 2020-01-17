@@ -15,7 +15,7 @@ const loginAdminReducer = (state = loading, action) => {
     }
 };
 /**
- * Triggers an operation to change a state indicating an admin has been logged in
+ * Triggers an o peration to change a state indicating an admin has been logged in
  * @function
  * @return {Object} The {@link actionTypes.AUTHENTICATE_ADMIN AUTHENTICATE_ADMIN} action.
  */

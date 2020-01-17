@@ -93,6 +93,7 @@ function* validateNIN(action) {
 function* firebaseUserLogin(data) {
     // receive the phone number from the payload of the parametr
     const phoneNumber = data.payload;
+    // console.log(phoneNumber)
     const appVerifier = window.recaptchaVerifier;
     // call a method of firebase to authenticate the entered phone number
     const status = yield app.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
@@ -104,6 +105,7 @@ function* firebaseUserLogin(data) {
 
             return ERROR_STATUS;
         });
+    // const status = SUCCESS_STATUS
 
     // stop the spinner from loading
     yield put(actions.loadingReducer(false));
@@ -144,7 +146,7 @@ function* confirmUserCode(data) {
             return ERROR_STATUS;
         });
     yield put(actions.loadingReducer(false));
-
+    // const confirmation = {"message":SUCCESS_STATUS}
     if (confirmation.message === SUCCESS_STATUS) {
         // if the authentication goes thru
         // then change the state variable indicating this user is authenticated

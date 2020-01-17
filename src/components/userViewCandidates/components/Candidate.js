@@ -18,6 +18,7 @@ import {
  */
 const Candidate = ({
     id, pictureUrl, name, age, party, handleVote, quote, education,
+    selectCandidateToCompare, isSelected,
 }) => {
     /**
      * Handles click on vote button
@@ -27,7 +28,15 @@ const Candidate = ({
     const handleClick = () => {
         handleVote(id);
     };
-
+    /**
+     * upon click of the compare button,
+     * it disables the button and adds the user to compare
+     *
+     * @function
+     */
+    const toggleAndCompare = () => {
+        selectCandidateToCompare();
+    };
     return (
         <Card
             key={id}
@@ -40,7 +49,19 @@ const Candidate = ({
                 />
             )}
         >
-            <p className="candidateCard__label --fontBig">{name}</p>
+            <div className="candidateCard__section">
+                <p className="candidateCard__label --fontBig">{name}</p>
+                <Button
+                    className={`candidateCard__section__button ${(isSelected)
+                        ? '--selected' : ''}
+                    `}
+                    shape="round"
+                    icon="paper-clip"
+                    onClick={toggleAndCompare}
+                >
+                    Compare
+                </Button>
+            </div>
             <p className="candidateCard__label">{`${age} ${AGE_LABEL}`}</p>
             <p className="candidateCard__label">{`${PARTY_LABEL} ${party.slice(0, 3)}`}</p>
             <p className="candidateCard__label">{`${EDU_LABEL} ${education.slice(0, 10)}`}</p>
@@ -67,8 +88,10 @@ Candidate.propTypes = {
     education: PropTypes.string.isRequired,
     handleVote: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
+    isSelected: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired,
     party: PropTypes.string.isRequired,
     pictureUrl: PropTypes.string.isRequired,
     quote: PropTypes.string.isRequired,
+    selectCandidateToCompare: PropTypes.func.isRequired,
 };

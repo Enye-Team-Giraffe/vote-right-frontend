@@ -1,0 +1,11 @@
+.candidateComparison__compareItem{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.candidateComparison__compareItem__icon{
+    margin-right: 20px;
+}
+.--bold{
+    font-weight: bolder;
+}
