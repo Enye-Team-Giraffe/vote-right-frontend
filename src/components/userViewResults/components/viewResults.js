@@ -6,10 +6,9 @@ import {
     Icon, Spin, Table, Avatar, Tag
 } from 'antd';
 import PropTypes from 'prop-types';
-import { TwitterShareButton } from 'react-twitter-embed';
 import { actions } from '../../viewStats';
 import {
-    LOADING_MESSAGE, NO_CANDIDATE, WINNER
+    LOADING_MESSAGE, NO_CANDIDATE, WINNER, URL, FACEBOOK, TWITTER,
 } from '../constants';
 
 const IconText = ({ type, text }) => (
@@ -101,13 +100,28 @@ export default function ViewResults({ address, name }) {
                 // then show the table
                 (!loading && candidates.length > 0) ? (
                     <div>
-                        <TwitterShareButton
-                            url={`https://voteright-e8208.firebaseapp.com/result/${address}`}
-                            options={{
-                                size: 'large',
-                                text: name,
-                            }}
-                        />
+                        <a
+                            href={`https://www.facebook.com/sharer/sharer.php?u=${URL}/${address}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img
+                                className="--small --greyscale"
+                                src={FACEBOOK.src}
+                                alt={FACEBOOK.alt}
+                            />
+                        </a>
+                        <a
+                            href={`https://twitter.com/share?text=${name}&url=${URL}/${address}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img
+                                className="--small --greyscale"
+                                src={TWITTER.src}
+                                alt={TWITTER.alt}
+                            />
+                        </a>
                         <Table
                             rowKey="id"
                             columns={columns}
