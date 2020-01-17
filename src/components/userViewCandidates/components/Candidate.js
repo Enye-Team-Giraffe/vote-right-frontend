@@ -5,7 +5,9 @@ import './Candidate.css';
 import { Card, Button, Icon } from 'antd';
 import './ViewCandidates.css';
 import {
-    AGE_LABEL, PARTY_LABEL, VOTE, EDU_LABEL
+    AGE_LABEL, PARTY_LABEL, VOTE, EDU_LABEL,
+    GOOGLE_SEARCH, YOUTUBE_SEARCH, WIKIPEDIA_SEARCH
+
 } from '../constants';
 
 /**
@@ -48,6 +50,29 @@ const Candidate = ({
                     alt="candidate_picture"
                 />
             )}
+            actions={[
+                <a
+                    className="candidateCard__metaitem"
+                    key="lol"
+                    href={GOOGLE_SEARCH}
+                >
+                    <Icon type="google" />
+                </a>,
+                <a
+                    className="candidateCard__metaitem"
+                    key="lol"
+                    href={WIKIPEDIA_SEARCH}
+                >
+                    <Icon type="search" />
+                </a>,
+                <a
+                    className="candidateCard__metaitem"
+                    key="lol"
+                    href={YOUTUBE_SEARCH}
+                >
+                    <Icon type="youtube" />
+                </a>,
+            ]}
         >
             <div className="candidateCard__section">
                 <p className="candidateCard__label -header --fontBig">
