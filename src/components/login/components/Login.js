@@ -250,7 +250,7 @@ function Login() {
                                     <InputNumber
                                         style={HALF_WIDTH}
                                         className="form__input"
-                                        placeholder="Gender"
+                                        placeholder="Age"
                                         min={18}
                                         max={150}
                                         value={age}
