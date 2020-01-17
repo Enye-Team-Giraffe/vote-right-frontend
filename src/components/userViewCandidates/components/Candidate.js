@@ -54,21 +54,21 @@ const Candidate = ({
                 <a
                     className="candidateCard__metaitem"
                     key="lol"
-                    href={GOOGLE_SEARCH}
+                    href={`${GOOGLE_SEARCH}${name}`}
                 >
                     <Icon type="google" />
                 </a>,
                 <a
                     className="candidateCard__metaitem"
                     key="lol"
-                    href={WIKIPEDIA_SEARCH}
+                    href={`${WIKIPEDIA_SEARCH}${name.split(' ').join('_')}`}
                 >
                     <Icon type="search" />
                 </a>,
                 <a
                     className="candidateCard__metaitem"
                     key="lol"
-                    href={YOUTUBE_SEARCH}
+                    href={`${YOUTUBE_SEARCH}${name}`}
                 >
                     <Icon type="youtube" />
                 </a>,
