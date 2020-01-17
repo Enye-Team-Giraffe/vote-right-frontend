@@ -55,8 +55,11 @@ export default function CompareCandidate({ candidateList }) {
                             type="notification"
                         />
                         <div className="candidateComparison__compareItem__text">
-                            Alex says
-                            <span className="--bold"> Lorem ipsum dolor sit amet. </span>
+                            {` ${candidates[candidateListAsArray[0]].name} `}
+                            says
+                            <span className="--bold">
+                                {` ${candidates[candidateListAsArray[0]].quote} `}
+                            </span>
                         </div>
                     </div>
                     <div className="candidateComparison__compareItem">
@@ -65,8 +68,11 @@ export default function CompareCandidate({ candidateList }) {
                             type="notification"
                         />
                         <div className="candidateComparison__compareItem__text">
-                            Joshua says
-                            <span className="--bold"> Lorem ipsum dolor sit amet. </span>
+                            {` ${candidates[candidateListAsArray[1]].name} `}
+                            says
+                            <span className="--bold">
+                                {` ${candidates[candidateListAsArray[1]].quote} `}
+                            </span>
                         </div>
                     </div>
 
