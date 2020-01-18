@@ -24,7 +24,14 @@
     display: inline;
 }
 
+.viewResults__share {
+    display: flex;
+    justify-content: center;
+}
 
+.viewResults__shareLink {
+    margin: 10px;
+}
 
 .ant-modal.userViewElectionModal .ant-modal-header {
     padding: 26px 24px;

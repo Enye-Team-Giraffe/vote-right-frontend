@@ -8,7 +8,8 @@ import {
 import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
 import {
-    LOADING_MESSAGE, NO_CANDIDATE, WINNER
+    LOADING_MESSAGE, NO_CANDIDATE, WINNER, URL, FACEBOOK,
+    TWITTER, FACEBOOK_SHARER_URL, TWITTER_SHARE_URL
 } from '../constants';
 
 const IconText = ({ type, text }) => (
@@ -61,7 +62,7 @@ const columns = [
     },
 ];
 
-export default function ViewResults({ address }) {
+export default function ViewResults({ address, name }) {
     // get the state variables
     const candidates = useSelector(state => state.candidates);
     const loading = useSelector(state => state.candidatesLoading);
@@ -99,12 +100,40 @@ export default function ViewResults({ address }) {
                 // if there is at least one candidate and we are done loading
                 // then show the table
                 (!loading && candidates.length > 0) ? (
-                    <Table
-                        rowKey="id"
-                        columns={columns}
-                        dataSource={sortedCandidate}
-                        expandedRowRender={record => <i>{`'${record.quote}'`}</i>}
-                    />
+                    <div>
+                        <div className="viewResults__share">
+                            <a
+                                href={`${FACEBOOK_SHARER_URL}?u=${URL}/${address}&quote=${name}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="viewResults__shareLink"
+                            >
+                                <img
+                                    className="--small --greyscale"
+                                    src={FACEBOOK.src}
+                                    alt={FACEBOOK.alt}
+                                />
+                            </a>
+                            <a
+                                href={`${TWITTER_SHARE_URL}?text=${name}&url=${URL}/${address}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="viewResults__shareLink"
+                            >
+                                <img
+                                    className="--small --greyscale"
+                                    src={TWITTER.src}
+                                    alt={TWITTER.alt}
+                                />
+                            </a>
+                        </div>
+                        <Table
+                            rowKey="id"
+                            columns={columns}
+                            dataSource={sortedCandidate}
+                            expandedRowRender={record => <i>{`'${record.quote}'`}</i>}
+                        />
+                    </div>
                 ) : ''
             }
         </div>
@@ -113,6 +142,7 @@ export default function ViewResults({ address }) {
 
 ViewResults.propTypes = {
     address: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
 };
 
 IconText.propTypes = {
