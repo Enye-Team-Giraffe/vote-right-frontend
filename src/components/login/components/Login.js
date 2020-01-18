@@ -38,7 +38,7 @@ function Login() {
     const userAuthenticated = useSelector(state => state.userAuthenticated);
 
     // initialise the states of the component and default them to an empty string
-    const [nin, setNin] = useState('');
+    const [nin] = useState(101);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [gender, setGender] = useState('');
     const [age, setAge] = useState(18);
@@ -61,21 +61,6 @@ function Login() {
         dispatch(actions.confirmationCodeSection(false));
     }, [dispatch, userAuthenticated]);
     // create a dispatch instance for our actions
-
-    /**
-     * Handles users NIN number
-     * @function
-     * @param {event} event - the event of the input field
-     */
-    const handleChangeNin = ({ target }) => {
-        const pattern = /^\d+$/;
-        if (pattern.test(target.value)) {
-            setNin(target.value);
-        }
-        if (nin.length === 1 && target.value === '') {
-            setNin(target.value);
-        }
-    };
 
     /**
      * Handles users phone number
@@ -230,13 +215,7 @@ function Login() {
                                     {SIGNINWITHACCOUNT}
                                 </Title>
                                 {/* Nin input field */}
-                                <Input
-                                    className="form__input"
-                                    placeholder="NIN number"
-                                    value={nin}
-                                    onChange={handleChangeNin}
-                                    required
-                                />
+
                                 {/* Phone number input field */}
                                 <Input
                                     className="form__input"
@@ -271,7 +250,7 @@ function Login() {
                                     <InputNumber
                                         style={HALF_WIDTH}
                                         className="form__input"
-                                        placeholder="Gender"
+                                        placeholder="Age"
                                         min={18}
                                         max={150}
                                         value={age}

@@ -51,7 +51,7 @@ const addUserToSession = user => {
  */
 // function to validate the NIN using API calls
 function* validateNIN(action) {
-    // make a call to tHE verification API
+    // make a call to THE verification API
     // passing in the NIN and phoneNumber
     const response = yield fetch(`${BASE_URL}/authenticate`, {
         body: JSON.stringify(action.payload),
@@ -77,7 +77,7 @@ function* validateNIN(action) {
         // start the loader to spin
         yield put(actions.loadingReducer(true));
         // use firebase to send a key to the phoneNumber
-        yield put(actions.loginUser(response.data.phoneNumber));
+        yield put(actions.loginUser(action.payload.phoneNumber));
     } else {
         // something unknown happened
         message.error(UNKNOWN_ERROR, WAIT_TIME);

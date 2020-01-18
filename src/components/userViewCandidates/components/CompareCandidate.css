@@ -3,6 +3,9 @@
     align-items: center;
     margin-bottom: 20px;
 }
+.candidateComparison{
+    font-family: var(--secondary-font);
+}
 .candidateComparison__compareItem__icon{
     margin-right: 20px;
 }
