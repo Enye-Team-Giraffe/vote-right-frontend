@@ -8,7 +8,8 @@ import {
 import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
 import {
-    LOADING_MESSAGE, NO_CANDIDATE, WINNER, URL, FACEBOOK, TWITTER,
+    LOADING_MESSAGE, NO_CANDIDATE, WINNER, URL, FACEBOOK,
+    TWITTER, FACEBOOK_SHARER_URL, TWITTER_SHARE_URL
 } from '../constants';
 
 const IconText = ({ type, text }) => (
@@ -100,28 +101,32 @@ export default function ViewResults({ address, name }) {
                 // then show the table
                 (!loading && candidates.length > 0) ? (
                     <div>
-                        <a
-                            href={`https://www.facebook.com/sharer/sharer.php?u=${URL}/${address}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <img
-                                className="--small --greyscale"
-                                src={FACEBOOK.src}
-                                alt={FACEBOOK.alt}
-                            />
-                        </a>
-                        <a
-                            href={`https://twitter.com/share?text=${name}&url=${URL}/${address}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <img
-                                className="--small --greyscale"
-                                src={TWITTER.src}
-                                alt={TWITTER.alt}
-                            />
-                        </a>
+                        <div className="viewResults__share">
+                            <a
+                                href={`${FACEBOOK_SHARER_URL}?u=${URL}/${address}&quote=${name}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="viewResults__shareLink"
+                            >
+                                <img
+                                    className="--small --greyscale"
+                                    src={FACEBOOK.src}
+                                    alt={FACEBOOK.alt}
+                                />
+                            </a>
+                            <a
+                                href={`${TWITTER_SHARE_URL}?text=${name}&url=${URL}/${address}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="viewResults__shareLink"
+                            >
+                                <img
+                                    className="--small --greyscale"
+                                    src={TWITTER.src}
+                                    alt={TWITTER.alt}
+                                />
+                            </a>
+                        </div>
                         <Table
                             rowKey="id"
                             columns={columns}

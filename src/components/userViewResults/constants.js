@@ -7,6 +7,8 @@ export const NO_CANDIDATE = 'There are no candidates for this election';
 export const TOLERANCE = 0.0001;
 export const WINNER = 'Winner';
 export const URL = 'https://voteright-e8208.firebaseapp.com/result/';
+export const FACEBOOK_SHARER_URL = 'https://www.facebook.com/sharer/sharer.php';
+export const TWITTER_SHARE_URL = 'https://twitter.com/share';
 
 export const FACEBOOK = {
     alt: 'facebook',

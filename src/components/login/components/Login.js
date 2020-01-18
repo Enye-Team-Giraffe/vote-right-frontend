@@ -211,7 +211,7 @@ function Login() {
             <div ref={captchaRef}>
                 <div id="cap" />
             </div>
-            {!confirmationCodeInput
+            {confirmationCodeInput
                 ? (
                     <form className="form" onSubmit={handleSubmit}>
                         <Spin
