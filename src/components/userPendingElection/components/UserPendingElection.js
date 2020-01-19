@@ -29,6 +29,7 @@ const CardTitle = ({ title }) => (
                 style={{ textAlign: 'center', width: '150px' }}
                 color="volcano"
             >
+                <Icon type="loading-3-quarters" className="--paddingRight" />
                 Pending Election
             </Tag>
         </div>

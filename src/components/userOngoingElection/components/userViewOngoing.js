@@ -20,7 +20,8 @@ const CardTitle = ({ title }) => (
                 style={{ textAlign: 'center', width: '150px' }}
                 color="green"
             >
-            Ongoing Election
+                <Icon type="check" className="--paddingRight" />
+                Ongoing Election
             </Tag>
         </div>
         <div className="cardTitle__title">
