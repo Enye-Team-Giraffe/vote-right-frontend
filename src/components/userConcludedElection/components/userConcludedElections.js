@@ -7,7 +7,7 @@ import {
 import PropTypes from 'prop-types';
 import { components as ViewResults } from '../../userViewResults';
 import './userConcludedElections.css';
-import { LOADING_MESSAGE, MODAL_TITLE, VIEW_RESULT } from '../constants';
+import { LOADING_MESSAGE, MODAL_TITLE, VIEW_RESULT, NO_RUNNING_ELECTION } from '../constants';
 import { actions } from '../../viewElection';
 
 const { Meta } = Card;
@@ -209,6 +209,13 @@ export default function ViewElection() {
                                 </Card>
                             </div>
                         ))
+                    }
+                    {
+                        (elections.length === 0 && !loadingElections) ? (
+                            <div className="no_candidate">
+                                {NO_RUNNING_ELECTION}
+                            </div>
+                        ) : ''
                     }
                 </div>
             </Spin>
