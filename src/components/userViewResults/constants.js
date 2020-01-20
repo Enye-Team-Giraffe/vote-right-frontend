@@ -1,7 +1,7 @@
+import mapDataIE from '@highcharts/map-collection/countries/ng/ng-all.geo.json';
 import Facebook from '../../static/icons/facebook.svg';
 import Instagram from '../../static/icons/instagram.svg';
 import Twitter from '../../static/icons/twitter.svg';
-import mapDataIE from '@highcharts/map-collection/countries/ng/ng-all.geo.json';
 
 export const LOADING_MESSAGE = 'Loading...';
 export const NO_CANDIDATE = 'There are no candidates for this election';
@@ -92,6 +92,32 @@ export const AGE_OPTIONS = {
         },
     },
 };
+export const BAR_OPTIONS = {
+    chart: {
+        type: 'column',
+    },
+    series: [{
+        data: [107, 150],
+        name: 'gender',
+    }],
+    subtitle: {
+        text: 'A bar chart of all the votes by gender',
+    },
+    title: {
+        text: 'Male vs Female participation',
+    },
+    xAxis: {
+        categories: ['Female', 'Male'],
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Votes',
+        },
+    },
+};
 export const AGE_BRACKETS = ['18-25', '26-40', '41-60', '60+'];
 export const AGE = 'AGE';
+export const GENDERS = ['Male', 'Female'];
+export const NAME = 'VOTES';
 

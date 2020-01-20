@@ -16,13 +16,20 @@ import { actions } from '../../viewStats';
 import {
     LOADING_MESSAGE, NO_CANDIDATE, WINNER, URL, FACEBOOK,
     TWITTER, FACEBOOK_SHARER_URL, TWITTER_SHARE_URL,
-    MAP_OPTIONS, AGE_OPTIONS, AGE_BRACKETS, AGE
+    MAP_OPTIONS, AGE_OPTIONS, AGE_BRACKETS, AGE,
+    GENDERS, BAR_OPTIONS, NAME
 } from '../constants';
 
 const randomColorGenerator = require('randomcolor');
 
 highchartsMap(Highcharts);
-
+// reducer function used to get the count of males and females from the data
+const countGender = (oldCount, person) => {
+    const newCount = oldCount;
+    newCount[0] += (person.gender === GENDERS[1]);
+    newCount[1] += (person.gender === GENDERS[0]);
+    return newCount;
+};
 const IconText = ({ type, text }) => (
     <span>
         <Icon type={type} style={{ marginRight: 8 }} />
@@ -119,6 +126,8 @@ export default function ViewResults({ address, name }) {
     const voterAgeDist = voters.reduce(countAge, {
         '18-25': 0, '26-40': 0, '41-60': 0, '60+': 0,
     });
+        // get the number of each gender vote
+    const genderCount = voters.reduce(countGender, [0, 0]);
     // manipulation of data required to be used for the map
     // get the candidates id for the maps, and assign each candidate a color
     const candidatesIds = candidates.map(candidate => candidate.id);
@@ -188,8 +197,8 @@ export default function ViewResults({ address, name }) {
     };
     // define an array to be used for mapping
     const chartOptions = [
-        { options: newAgeOptions, size: ' --large' },
         { options: newBarOptions, size: '--large' },
+        { options: newAgeOptions, size: ' --large' },
     ];
     const hideUntilLoaded = () => ((loading) ? '--hidden' : '');
 
@@ -250,7 +259,10 @@ export default function ViewResults({ address, name }) {
                         />
                         <Collapse>
                             <Panel header="Show statistics" key="1">
-                                <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
+                                <Card
+                                    className={`chart --large ${hideUntilLoaded()}`}
+                                    key={Math.random()}
+                                >
                                     <HighchartsReact
                                         constructorType="mapChart"
                                         highcharts={Highcharts}
