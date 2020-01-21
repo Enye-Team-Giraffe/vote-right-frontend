@@ -7,17 +7,15 @@ import HighchartsReact from 'highcharts-react-official';
 import highchartsMap from 'highcharts/modules/map';
 import mapDataIE from '@highcharts/map-collection/countries/ng/ng-all.geo.json';
 import proj4 from 'proj4';
-
 import {
     Icon, Spin, Table, Avatar, Tag, Collapse, Card
 } from 'antd';
 import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
 import {
-    LOADING_MESSAGE, NO_CANDIDATE, WINNER, URL, FACEBOOK,
-    TWITTER, FACEBOOK_SHARER_URL, TWITTER_SHARE_URL,
-    MAP_OPTIONS, AGE_OPTIONS, AGE_BRACKETS, AGE,
-    GENDERS, BAR_OPTIONS, NAME
+    LOADING_MESSAGE, NO_CANDIDATE, WINNER, URL, FACEBOOK, GENDERS,
+    TWITTER, FACEBOOK_SHARER_URL, TWITTER_SHARE_URL, BAR_OPTIONS,
+    MAP_OPTIONS, AGE_OPTIONS, AGE_BRACKETS, AGE, NAME
 } from '../constants';
 
 const randomColorGenerator = require('randomcolor');
@@ -46,9 +44,7 @@ const countAge = (oldCount, person) => {
     newCount[AGE_BRACKETS[3]] += (person.age > 60);
     return newCount;
 };
-
 const { Panel } = Collapse;
-
 const columns = [
     {
         dataIndex: 'name',
@@ -97,7 +93,6 @@ export default function ViewResults({ address, name }) {
     const candidates = useSelector(state => state.candidates);
     const loading = useSelector(state => state.candidatesLoading);
     const voters = useSelector(state => state.voters);
-
     // dispatch the loadCandidates saga
     // which has been defined in the viewstats component
     const dispatch = useDispatch();
@@ -121,7 +116,6 @@ export default function ViewResults({ address, name }) {
     // item for customising the spinner
     const antIcon = <Icon type="loading" className="loader" spin />;
     // manipulation of data to be used for age distribution of voters
-
     // get the number of each age group vote
     const voterAgeDist = voters.reduce(countAge, {
         '18-25': 0, '26-40': 0, '41-60': 0, '60+': 0,
