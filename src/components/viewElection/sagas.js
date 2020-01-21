@@ -19,7 +19,7 @@ const electionFactory = require('../../web3/electionFactory');
  *
  * @return {void}
  */
-function* loadElections() {
+function* loadElections(action) {
     // make async request to load data
     try {
         // get an array that determines the length of elections we have
@@ -37,7 +37,11 @@ function* loadElections() {
             electionAdresses.map(async address => {
                 const electionInterface = await getElectionInterface(address);
                 const statistic = await electionInterface.methods.getStats().call();
-                return statistic;
+                const statisticArray = Array.from(Object.values(statistic));
+                const phoneNumber = action.payload || 'default';
+                const hasVoted = await electionInterface.methods.hasVoted(phoneNumber).call();
+                statisticArray.push(hasVoted);
+                return statisticArray;
             })
         );
         // map the election ID's to their stats for easy retrieval from the state

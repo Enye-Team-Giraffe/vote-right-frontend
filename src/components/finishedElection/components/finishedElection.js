@@ -23,6 +23,7 @@ const CardTitle = ({ title }) => (
                 style={{ textAlign: 'center', width: '150px' }}
                 color="red"
             >
+                <Icon type="history" className="--paddingRight" />
                 Concluded Election
             </Tag>
         </div>

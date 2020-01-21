@@ -251,6 +251,7 @@ function Login() {
                                         style={HALF_WIDTH}
                                         className="form__input"
                                         placeholder="Age"
+                                        l
                                         min={18}
                                         max={150}
                                         value={age}

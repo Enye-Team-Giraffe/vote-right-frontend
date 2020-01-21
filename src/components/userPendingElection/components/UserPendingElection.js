@@ -18,7 +18,7 @@ const { Meta } = Card;
 //  a function to get the difference in date between two time stamps
 const dateDiffFromToday = dateone => {
     const diff = Math.abs(Date.now() - (Number(dateone) * 1000)) / (1000 * 60 * 60 * 24);
-    return Math.round(diff, 0);
+    return String(Math.round(diff, 0));
 };
 
 //  a function to display the title of the card
@@ -29,6 +29,7 @@ const CardTitle = ({ title }) => (
                 style={{ textAlign: 'center', width: '150px' }}
                 color="volcano"
             >
+                <Icon type="loading-3-quarters" className="--paddingRight" />
                 Pending Election
             </Tag>
         </div>

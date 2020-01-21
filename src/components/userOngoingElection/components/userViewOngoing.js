@@ -7,7 +7,9 @@ import {
 } from 'antd';
 import PropTypes from 'prop-types';
 import './userViewOngoing.css';
-import { LOADING_MESSAGE, NO_RUNNING_ELECTION } from '../constants';
+import {
+    LOADING_MESSAGE, NO_RUNNING_ELECTION, ALREADY_VOTED, VOTE
+} from '../constants';
 import { actions } from '../../viewElection';
 
 const { Meta } = Card;
@@ -20,7 +22,8 @@ const CardTitle = ({ title }) => (
                 style={{ textAlign: 'center', width: '150px' }}
                 color="green"
             >
-            Ongoing Election
+                <Icon type="check" className="--paddingRight" />
+                Ongoing Election
             </Tag>
         </div>
         <div className="cardTitle__title">
@@ -108,12 +111,13 @@ export default function ViewElection() {
     const elections = useSelector(state => state.elections);
     const loadingElections = useSelector(state => state.electionListLoading);
     const statistics = useSelector(state => state.statistics);
+    const user = useSelector(state => state.user);
 
     const antIcon = <Icon type="loading" className="loader" spin />;
     // upon render of the page get all the elections
     useEffect(() => {
-        dispatch(actions.loadElections());
-    }, [dispatch]);
+        dispatch(actions.loadElections(user.phoneNumber));
+    }, [dispatch, user.phoneNumber]);
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
     return (
         <div className="viewElectionLayout">
@@ -139,6 +143,9 @@ export default function ViewElection() {
                                             type="primary"
                                             className="electionItem__subitem --button"
                                             key={election.name}
+                                            disabled={
+                                                statistics[election.location][4]
+                                            }
                                         >
                                             <NavLink
                                                 to={'/user/elections/ongoing/'
@@ -146,10 +153,15 @@ export default function ViewElection() {
                                             >
                                                 <Icon
                                                     className="electionItem__subitem__icon"
-                                                    type="link"
+                                                    type={(statistics[election.location][4])
+                                                        ? 'check' : 'link'}
                                                     key="link"
                                                 />
-                                                Vote
+                                                {
+                                                    (statistics[election.location][4])
+                                                        ? `${ALREADY_VOTED}`
+                                                        : `${VOTE}`
+                                                }
                                             </NavLink>
                                         </Button>,
                                     ]}

@@ -18,3 +18,6 @@
     font-family: var(--primary-font);
     font-size: 15.5px;
 }
+.cardTitle__tag .--paddingRight{
+    margin-right:5px;
+}

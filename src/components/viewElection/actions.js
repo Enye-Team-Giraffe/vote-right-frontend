@@ -8,7 +8,8 @@ import {
  * @function
  * @return {Object} The {@link actionTypes.LOAD_ELECTIONS LOAD_ELECTIONS} action.
  */
-const loadElections = () => ({
+const loadElections = (phoneNumber = null) => ({
+    payload: phoneNumber,
     type: LOAD_ELECTIONS,
 });
 /**
