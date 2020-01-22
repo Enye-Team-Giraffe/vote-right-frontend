@@ -8,7 +8,8 @@ const firebaseConfig = {
     projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
     storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
 };
-
+// because the script breaks during testing as the environmental variables are not yet set
+// thus this section only takes place during testing and a dummy value is assigned.
 if (firebaseConfig['measurementId'] === undefined){
     firebaseConfig['measurementId']="1234"
 }
