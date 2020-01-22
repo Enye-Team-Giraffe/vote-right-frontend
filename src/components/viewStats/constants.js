@@ -231,6 +231,6 @@ export const MAP_OPTIONS = {
 
 export const NAME = 'VOTES';
 export const AGE = 'AGE';
-export const GENDERS = ['male', 'female'];
+export const GENDERS = ['Male', 'Female'];
 export const AGE_BRACKETS = ['18-25', '26-40', '41-60', '60+'];
 
