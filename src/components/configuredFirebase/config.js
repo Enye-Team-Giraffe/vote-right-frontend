@@ -10,8 +10,8 @@ const firebaseConfig = {
 };
 // because the script breaks during testing as the environmental variables are not yet set
 // thus this section only takes place during testing and a dummy value is assigned.
-if (firebaseConfig['measurementId'] === undefined){
-    firebaseConfig['measurementId']="1234"
+if (firebaseConfig.measurementId === undefined) {
+    firebaseConfig.measurementId = '1234';
 }
 
 export default firebaseConfig;

@@ -161,6 +161,7 @@ function* confirmUserCode(data) {
 
         // log the event
         analytics.logEvent('user_logged_in');
+        analytics.setUserProperties({ gender: data.payload.gender });
     } else {
         // if user entered the wrong number
         // go back to login page
