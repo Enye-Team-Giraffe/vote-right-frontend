@@ -7,8 +7,11 @@ import {
     Card, Icon, Spin, Button, Avatar, Tag
 } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { LOADING_MESSAGE, NO_RUNNING_ELECTION } from '../constants';
-
+import {
+    LOADING_MESSAGE, NO_RUNNING_ELECTION,
+    ADMIN_VIEW_ONGOING_ELECTIONS
+} from '../constants';
+import { analytics } from '../../configuredFirebase';
 import actions from '../actions';
 
 const { Meta } = Card;
@@ -115,6 +118,7 @@ export default function ViewElection() {
     // upon render of the page get all the elections
     useEffect(() => {
         dispatch(actions.loadElections());
+        analytics.logEvent(ADMIN_VIEW_ONGOING_ELECTIONS);
     }, [dispatch]);
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
     return (

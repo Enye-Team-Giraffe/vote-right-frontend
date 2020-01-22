@@ -1,1 +1,2 @@
 export const NO_FINISHED_ELECTION = 'No Finished Election';
+export const ADMIN_VIEW_CONCLUDED_ELECTION = 'ADMIN_VIEW_CONCLUDED_ELECTION';

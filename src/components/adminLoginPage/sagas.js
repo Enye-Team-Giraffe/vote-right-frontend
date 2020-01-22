@@ -2,7 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 import { message } from 'antd';
 import { LOGIN_ADMIN, IS_ADMIN_LOGGEDIN } from './actionTypes';
 import { WAIT_TIME, ADMIN_ALREADY_LOGGED } from './constants';
-import { app } from '../configuredFirebase';
+import { app, analytics } from '../configuredFirebase';
 import actions from './actions';
 
 /**
@@ -30,10 +30,9 @@ function* FirebaseLoginAdmin(data) {
             .signInWithEmailAndPassword(email, password);
         // stop  the spinner
         yield put(actions.loadingAdmin(false));
-        // add admin to session
         addUserToSession({ email, password });
-        // Indicate that login was sucessfull
         message.success(ADMIN_ALREADY_LOGGED, WAIT_TIME);
+        analytics.logEvent('admin_logged_in');
         yield put(actions.authenticateAdmin(true));
     } catch (error) {
         // if there was an error, say so and stop spinning the looader

@@ -1,4 +1,5 @@
 /* eslint-disable max-lines-per-function */
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -10,8 +11,10 @@ import './CreateElection.css';
 import actions from '../actions';
 import {
     NAME, DESCRIPTION, STARTDATE, ENDDATE, CREATEELECTION, ELECTION_TYPE,
-    ROW_HEIGHT, BUTTON_TEXT, ELECTION_TYPE_OPTIONS, ELECTION_WARNING
+    ROW_HEIGHT, BUTTON_TEXT, ELECTION_TYPE_OPTIONS, ELECTION_WARNING,
+    ADMIN_VIEW_CREATE_ELECTION
 } from '../constants';
+import { analytics } from '../../configuredFirebase';
 
 /**
  * Form for creating election
@@ -53,6 +56,7 @@ const CreateElection = ({ form }) => {
     const antIcon = <Icon type="loading" className="loader" spin />;
 
     const { getFieldDecorator } = form;
+    analytics.logEvent(ADMIN_VIEW_CREATE_ELECTION);
 
     return (
         <div className="createElection">
@@ -159,6 +163,6 @@ const WrappedCreateElection = Form.create({ name: 'register' })(CreateElection);
 export default WrappedCreateElection;
 
 CreateElection.propTypes = {
-    form: PropTypes.func.isRequired,
+    form: PropTypes.object.isRequired,
 };
 

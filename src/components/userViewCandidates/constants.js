@@ -20,3 +20,5 @@ export const MAX_CANDIDATE = 'you can only add 2 candidates';
 export const GOOGLE_SEARCH = 'https://google.com/search?q=';
 export const YOUTUBE_SEARCH = 'https://www.youtube.com/results?search_query=';
 export const WIKIPEDIA_SEARCH = 'https://en.wikipedia.org/wiki/';
+export const USER_VIEW_CANDIDATES = 'USER_VIEW_CANDIDATES';
+export const USER_COMPARE_CANDIDATES = 'USER_COMPARE_CANDIDATES';

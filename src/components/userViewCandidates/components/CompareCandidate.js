@@ -4,10 +4,15 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Icon } from 'antd';
 import './CompareCandidate.css';
+import { analytics } from '../../configuredFirebase';
+import {
+    USER_COMPARE_CANDIDATES
+} from '../constants';
 
 export default function CompareCandidate({ candidateList }) {
     const candidates = useSelector(state => state.candidates);
     const candidateListAsArray = Array.from(candidateList);
+    analytics.logEvent(USER_COMPARE_CANDIDATES);
     return (
         (candidateListAsArray.length === 2)
             ? (

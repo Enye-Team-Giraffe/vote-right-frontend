@@ -6,9 +6,11 @@ import { message } from 'antd';
 import { CREATE_ELECTION } from './actionTypes';
 import {
     WAIT_TIME, LARGE_GAS,
-    CREATE_ELECTION_SUCCESS, VIEW_ELECTIONS_PATH
+    CREATE_ELECTION_SUCCESS, VIEW_ELECTIONS_PATH,
+    ADMIN_CREATE_ELECTION
 } from './constants';
 import actions from './actions';
+import { analytics } from '../configuredFirebase';
 
 // import web3 dependencies
 const web3 = require('../../web3/configuredWeb3');
@@ -30,8 +32,8 @@ function* createElection(action) {
             body.startDate, body.endDate).send({
             from: account, gas: LARGE_GAS,
         });
-        // if no error was thrown then we alert that it was sucessful
         message.success(CREATE_ELECTION_SUCCESS, WAIT_TIME);
+        analytics.logEvent(ADMIN_CREATE_ELECTION);
         // redirect to the view all elecitons tab
         body.history.push(VIEW_ELECTIONS_PATH);
     } catch (err) {

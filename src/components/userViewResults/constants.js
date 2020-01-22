@@ -120,4 +120,5 @@ export const AGE_BRACKETS = ['18-25', '26-40', '41-60', '60+'];
 export const AGE = 'AGE';
 export const GENDERS = ['Male', 'Female'];
 export const NAME = 'VOTES';
+export const USER_VIEW_RESULTS = 'USER_VIEW_RESULTS';
 

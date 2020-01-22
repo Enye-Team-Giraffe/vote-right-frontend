@@ -13,9 +13,10 @@ import mapDataIE from '@highcharts/map-collection/countries/ng/ng-all.geo.json';
 import actions from '../actions';
 import {
     BAR_OPTIONS, PIE_OPTIONS, AGE_OPTIONS, NAME, AGE, GENDER_GROUP, AGE_GROUP,
-    GENDERS, AGE_BRACKETS, MAP_OPTIONS, LOADING_MESSAGE
+    GENDERS, AGE_BRACKETS, MAP_OPTIONS, LOADING_MESSAGE, ADMIN_VIEW_STATS
 } from '../constants';
 import DataGrouper from '../utility/DataGrouper';
+import { analytics } from '../../configuredFirebase';
 
 import './ViewStats.css';
 
@@ -62,6 +63,8 @@ const bucketAge = age => {
 const makeSeries = (keys, data) => keys.map((key, index) => ({
     data: data[index], name: key,
 }));
+// loud an event to be made
+analytics.logEvent(ADMIN_VIEW_STATS);
 export default function ViewStats({ match }) {
     const dispatch = useDispatch();
     // get the data from state

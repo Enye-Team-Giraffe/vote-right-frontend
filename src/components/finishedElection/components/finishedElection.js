@@ -9,8 +9,8 @@ import {
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
-import { NO_FINISHED_ELECTION } from '../constants';
-
+import { NO_FINISHED_ELECTION, ADMIN_VIEW_CONCLUDED_ELECTION } from '../constants';
+import { analytics } from '../../configuredFirebase';
 import actions from '../../viewElection/actions';
 
 const { Meta } = Card;
@@ -112,7 +112,7 @@ export default function ViewElection() {
     const elections = useSelector(state => state.elections);
     const loadingElections = useSelector(state => state.electionListLoading);
     const statistics = useSelector(state => state.statistics);
-
+    analytics.logEvent(ADMIN_VIEW_CONCLUDED_ELECTION);
     const antIcon = <Icon type="loading" className="loader" spin />;
     // upon render of the page get all the elections
     useEffect(() => {

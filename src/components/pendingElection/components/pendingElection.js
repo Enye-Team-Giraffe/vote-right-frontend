@@ -9,10 +9,12 @@ import {
 } from 'antd';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
-    NO_PENDING_ELECTION, MODAL_HEADER, ADD_CANDIDATE, VIEW_CANDIDATE
+    NO_PENDING_ELECTION, MODAL_HEADER, ADD_CANDIDATE, VIEW_CANDIDATE,
+    ADMIN_VIEW_PENDING_ELECTION
 } from '../constants';
 import actions from '../../viewElection/actions';
 import { components as AdminViewCandidates } from '../../viewCandidate';
+import { analytics } from '../../configuredFirebase';
 
 const { Meta } = Card;
 
@@ -115,6 +117,8 @@ export default function ViewElection() {
         dispatch(actions.loadElections());
     }, [dispatch]);
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
+    analytics.logEvent(ADMIN_VIEW_PENDING_ELECTION);
+
     return (
         <div className="viewElectionLayout">
             <Spin
@@ -207,7 +211,7 @@ CardTitle.propTypes = {
 };
 
 CardMeta.propTypes = {
-    daysTillStart: PropTypes.string.isRequired,
+    daysTillStart: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     endDate: PropTypes.string.isRequired,
     numCandidates: PropTypes.string.isRequired,

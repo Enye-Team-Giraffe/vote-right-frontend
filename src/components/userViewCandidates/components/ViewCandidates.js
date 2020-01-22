@@ -10,10 +10,12 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import Candidate from './Candidate';
 import CompareCandidate from './CompareCandidate';
 import {
-    LOADING_MESSAGE, NO_CANDIDATE, WAIT_TIME, CANCEL_VOTE, MAX_CANDIDATE
+    LOADING_MESSAGE, NO_CANDIDATE, WAIT_TIME, CANCEL_VOTE, MAX_CANDIDATE,
+    USER_VIEW_CANDIDATES
 } from '../constants';
 import { actions as viewStatsActions } from '../../viewStats';
 import actions from '../actions';
+import { analytics } from '../../configuredFirebase';
 
 /**
  * Display candidates view
@@ -43,6 +45,7 @@ const ViewCandidates = ({ match }) => {
         dispatch(viewStatsActions.pushCandidates([]));
         dispatch(viewStatsActions.loadingCandidates(true));
         dispatch(viewStatsActions.loadCandidates(match.params.electionId));
+        analytics.logEvent(USER_VIEW_CANDIDATES);
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(successFunction);
         }

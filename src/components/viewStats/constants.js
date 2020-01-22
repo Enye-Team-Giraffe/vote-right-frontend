@@ -233,4 +233,5 @@ export const NAME = 'VOTES';
 export const AGE = 'AGE';
 export const GENDERS = ['Male', 'Female'];
 export const AGE_BRACKETS = ['18-25', '26-40', '41-60', '60+'];
+export const ADMIN_VIEW_STATS = 'ADMIN_VIEW_STATS';
 

@@ -19,7 +19,7 @@ import {
     WRONG_CODE, CROSS_CHECK
 } from './constants';
 import actions from './actions';
-import { app } from '../configuredFirebase';
+import { app, analytics } from '../configuredFirebase';
 
 /**
  * A function to convert the phone number into a contrycode preceeded format
@@ -158,6 +158,9 @@ function* confirmUserCode(data) {
         message.success(USER_ALREADY_LOGGED, WAIT_TIME);
         // add the user to state
         yield put(actions.pushUserPhoneNumber(userDetails));
+
+        // log the event
+        analytics.logEvent('user_logged_in');
     } else {
         // if user entered the wrong number
         // go back to login page

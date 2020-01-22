@@ -3,3 +3,4 @@ export const WAIT_TIME = 2.0;
 export const LOADING_MESSAGE = 'Loading Elections from the blockchain...';
 export const META_ITEM = [{}];
 export const NO_RUNNING_ELECTION = 'No Running election';
+export const ADMIN_VIEW_ONGOING_ELECTIONS = 'ADMIN_VIEW_ONGOING_ELECTIONS';
