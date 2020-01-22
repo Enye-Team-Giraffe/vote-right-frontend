@@ -8,7 +8,6 @@ import firebaseConfig from './config';
 const app = firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics();
 const storage = firebase.storage();
-
 export {
     app, firebase, storage, analytics
 };
