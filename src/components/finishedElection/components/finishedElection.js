@@ -12,6 +12,7 @@ import { LOADING_MESSAGE } from '../../viewElection/constants';
 import { NO_FINISHED_ELECTION, ADMIN_VIEW_CONCLUDED_ELECTION } from '../constants';
 import { analytics } from '../../configuredFirebase';
 import actions from '../../viewElection/actions';
+import Particles from '../../particleBackground';
 
 const { Meta } = Card;
 
@@ -133,6 +134,7 @@ export default function ViewElection() {
                 {
                     elections.map(election => (
                         <div className="electionItem" key={election.location}>
+                            <Particles />
                             <Card
                                 title={<CardTitle title={election.name} />}
                                 actions={[

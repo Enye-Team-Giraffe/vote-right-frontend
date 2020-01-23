@@ -15,6 +15,7 @@ import {
 import actions from '../../viewElection/actions';
 import { components as AdminViewCandidates } from '../../viewCandidate';
 import { analytics } from '../../configuredFirebase';
+import Particles from '../../particleBackground'
 
 const { Meta } = Card;
 
@@ -121,6 +122,7 @@ export default function ViewElection() {
 
     return (
         <div className="viewElectionLayout">
+            <Particles />
             <Spin
                 size="large"
                 indicator={antIcon}

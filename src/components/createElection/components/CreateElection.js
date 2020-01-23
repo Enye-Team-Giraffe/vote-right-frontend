@@ -14,6 +14,7 @@ import {
     ROW_HEIGHT, BUTTON_TEXT, ELECTION_TYPE_OPTIONS, ELECTION_WARNING,
     ADMIN_VIEW_CREATE_ELECTION
 } from '../constants';
+import Particles from '../../particleBackground';
 import { analytics } from '../../configuredFirebase';
 
 /**
@@ -60,6 +61,7 @@ const CreateElection = ({ form }) => {
 
     return (
         <div className="createElection">
+            <Particles />
             <Form className="createElectionForm" onSubmit={handleSubmit}>
                 <Spin
                     size="large"

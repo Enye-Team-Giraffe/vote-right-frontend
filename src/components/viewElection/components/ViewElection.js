@@ -9,12 +9,11 @@ import {
 import { NavLink } from 'react-router-dom';
 import {
     LOADING_MESSAGE, NO_RUNNING_ELECTION,
-    ADMIN_VIEW_ONGOING_ELECTIONS, PARTICLE_STYLE
+    ADMIN_VIEW_ONGOING_ELECTIONS,
 } from '../constants';
 import { analytics } from '../../configuredFirebase';
 import actions from '../actions';
-import Particles from 'react-particles-js';
-import { particleParameters } from '../constants';
+import Particles from "../../particleBackground"
 
 
 const { Meta } = Card;
@@ -127,10 +126,7 @@ export default function ViewElection() {
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
     return (
         <div className="viewElectionLayout">
-            <Particles
-                params={particleParameters}
-                style={PARTICLE_STYLE}
-            />
+            <Particles/>
             <Spin
                 size="large"
                 indicator={antIcon}
