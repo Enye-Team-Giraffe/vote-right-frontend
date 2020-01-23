@@ -9,7 +9,8 @@ import { components as ViewResults } from '../../userViewResults';
 import './userConcludedElections.css';
 import {
     LOADING_MESSAGE, MODAL_TITLE, VIEW_RESULT, NO_RUNNING_ELECTION,
-    USER_VIEW_ONGOING_ELECTIONS
+    USER_VIEW_ONGOING_ELECTIONS, URL, FACEBOOK, TWITTER,
+    FACEBOOK_SHARER_URL, TWITTER_SHARE_URL
 } from '../constants';
 import { actions } from '../../viewElection';
 import { analytics } from '../../configuredFirebase';
@@ -109,6 +110,52 @@ const CardFooter = ({ endDate }) => (
     </div>
 );
 
+const ModalTitle = ({ title, address, name }) => (
+    <div className="modalTitle">
+        <div className="dummyitem">
+                .
+        </div>
+
+        <div className="modalTitle__text">
+            {title}
+        </div>
+
+        <div className="modalTitle__icons">
+            <div className="modalTitle__viewResults__share">
+                <Icon
+                    className="modalTitle__icon"
+                    type="share-alt"
+                />
+                <a
+                    href={`${FACEBOOK_SHARER_URL}?u=${URL}/${address}&quote=${name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="modalTitle__viewResults__shareLink"
+                >
+                    <img
+                        className="--very --small --greyscale"
+                        src={FACEBOOK.src}
+                        alt={FACEBOOK.alt}
+                    />
+                </a>
+                <a
+                    href={`${TWITTER_SHARE_URL}?text=${name}&url=${URL}/${address}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="modalTitle__viewResults__shareLink"
+                >
+                    <img
+                        className="--very --small --greyscale"
+                        src={TWITTER.src}
+                        alt={TWITTER.alt}
+                    />
+                </a>
+            </div>
+        </div>
+
+    </div>
+);
+
 export default function ViewElection() {
     // create a state variable to keep track of if the election modal is open
     const [visible, setVisibility] = useState(false);
@@ -162,7 +209,13 @@ export default function ViewElection() {
                         className="userViewElectionModal"
                         key={electionAddress}
                         visible={visible}
-                        title={MODAL_TITLE}
+                        title={(
+                            <ModalTitle
+                                title={MODAL_TITLE}
+                                address={electionAddress}
+                                name={electionName}
+                            />
+                        )}
                         onCancel={handleCancel}
                         footer={[]}
                     >
@@ -245,4 +298,10 @@ CardMeta.propTypes = {
 
 CardFooter.propTypes = {
     endDate: PropTypes.string.isRequired,
+};
+
+ModalTitle.propTypes = {
+    address: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
 };

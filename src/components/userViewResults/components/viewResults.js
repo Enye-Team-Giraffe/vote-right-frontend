@@ -13,9 +13,9 @@ import {
 import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
 import {
-    LOADING_MESSAGE, NO_CANDIDATE, WINNER, URL, FACEBOOK, GENDERS,
-    TWITTER, FACEBOOK_SHARER_URL, TWITTER_SHARE_URL, BAR_OPTIONS,
-    MAP_OPTIONS, AGE_OPTIONS, AGE_BRACKETS, AGE, NAME, USER_VIEW_RESULTS
+    LOADING_MESSAGE, NO_CANDIDATE, WINNER, GENDERS,
+    BAR_OPTIONS, MAP_OPTIONS, AGE_OPTIONS, AGE_BRACKETS,
+    AGE, NAME, USER_VIEW_RESULTS
 } from '../constants';
 import { analytics } from '../../configuredFirebase';
 
@@ -89,7 +89,7 @@ const columns = [
     },
 ];
 
-export default function ViewResults({ address, name }) {
+export default function ViewResults({ address }) {
     // get the state variables
     const candidates = useSelector(state => state.candidates);
     const loading = useSelector(state => state.candidatesLoading);
@@ -222,32 +222,6 @@ export default function ViewResults({ address, name }) {
                 // then show the table
                 (!loading && candidates.length > 0) ? (
                     <div>
-                        <div className="viewResults__share">
-                            <a
-                                href={`${FACEBOOK_SHARER_URL}?u=${URL}/${address}&quote=${name}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="viewResults__shareLink"
-                            >
-                                <img
-                                    className="--small --greyscale"
-                                    src={FACEBOOK.src}
-                                    alt={FACEBOOK.alt}
-                                />
-                            </a>
-                            <a
-                                href={`${TWITTER_SHARE_URL}?text=${name}&url=${URL}/${address}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="viewResults__shareLink"
-                            >
-                                <img
-                                    className="--small --greyscale"
-                                    src={TWITTER.src}
-                                    alt={TWITTER.alt}
-                                />
-                            </a>
-                        </div>
                         <Table
                             rowKey="id"
                             columns={columns}
@@ -291,7 +265,6 @@ export default function ViewResults({ address, name }) {
 
 ViewResults.propTypes = {
     address: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
 };
 
 IconText.propTypes = {
