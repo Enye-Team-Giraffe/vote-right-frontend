@@ -113,7 +113,9 @@ const CardFooter = ({ endDate }) => (
 const ModalTitle = ({ title, address, name }) => (
     <div className="modalTitle">
         <div className="dummyitem">
-                .
+                
+                {/* the component for download 
+                lection result button goes here */}
         </div>
 
         <div className="modalTitle__text">
