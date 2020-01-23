@@ -15,8 +15,9 @@ import { actions } from '../../viewStats';
 import {
     LOADING_MESSAGE, NO_CANDIDATE, WINNER, URL, FACEBOOK, GENDERS,
     TWITTER, FACEBOOK_SHARER_URL, TWITTER_SHARE_URL, BAR_OPTIONS,
-    MAP_OPTIONS, AGE_OPTIONS, AGE_BRACKETS, AGE, NAME
+    MAP_OPTIONS, AGE_OPTIONS, AGE_BRACKETS, AGE, NAME, USER_VIEW_RESULTS
 } from '../constants';
+import { analytics } from '../../configuredFirebase';
 
 const randomColorGenerator = require('randomcolor');
 
@@ -98,6 +99,7 @@ export default function ViewResults({ address, name }) {
     const dispatch = useDispatch();
     // sort the candidates by votecount
     const sortedCandidate = candidates.sort((a, b) => b.voteCount - a.voteCount);
+
     useEffect(() => {
         // clear the voters and candidates initial state
         dispatch(actions.pushCandidates([]));
@@ -112,6 +114,7 @@ export default function ViewResults({ address, name }) {
         if (typeof window !== 'undefined') {
             window.proj4 = window.proj4 || proj4;
         }
+        analytics.logEvent(USER_VIEW_RESULTS);
     }, [dispatch, address]);
     // item for customising the spinner
     const antIcon = <Icon type="loading" className="loader" spin />;

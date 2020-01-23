@@ -8,9 +8,12 @@ import {
 import PropTypes from 'prop-types';
 import './userViewOngoing.css';
 import {
-    LOADING_MESSAGE, NO_RUNNING_ELECTION, ALREADY_VOTED, VOTE
+    LOADING_MESSAGE, NO_RUNNING_ELECTION, ALREADY_VOTED, VOTE,
+    USER_VIEW_ONGOING_ELECTIONS
 } from '../constants';
 import { actions } from '../../viewElection';
+import { analytics } from '../../configuredFirebase';
+import Particles from '../../particleBackground';
 
 const { Meta } = Card;
 
@@ -117,10 +120,12 @@ export default function ViewElection() {
     // upon render of the page get all the elections
     useEffect(() => {
         dispatch(actions.loadElections(user.phoneNumber));
+        analytics.logEvent(USER_VIEW_ONGOING_ELECTIONS);
     }, [dispatch, user.phoneNumber]);
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
     return (
         <div className="viewElectionLayout">
+            <Particles />
             <Spin
                 size="large"
                 indicator={antIcon}

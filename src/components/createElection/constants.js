@@ -14,7 +14,7 @@ export const SMALL_GAS = 1000000;
 export const ROW_HEIGHT = 3;
 export const CREATE_ELECTION_SUCCESS = 'Election sucesfully created';
 export const BUTTON_TEXT = 'Create new election';
-export const VIEW_ELECTIONS_PATH = '/dashboard/pending_election';
+export const VIEW_ELECTIONS_PATH = '/dashboard/elections/pending';
 export const ELECTION_TYPE_OPTIONS = [
     { key: '1', text: 'Presidential', value: 'presidential' },
     { key: '2', text: 'Gubernatorial', value: 'gubernatorial' },
@@ -24,3 +24,5 @@ export const ELECTION_TYPE_OPTIONS = [
 export const ELECTION_WARNING = `Enter in the details of the election you wish to create
 These cannot be changed once finalised
 `;
+export const ADMIN_CREATE_ELECTION = 'ADMIN_CREATE_ELECTION';
+export const ADMIN_VIEW_CREATE_ELECTION = 'ADMIN_VIEW_CREATE_ELECTION';

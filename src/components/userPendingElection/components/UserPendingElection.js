@@ -8,10 +8,12 @@ import {
 } from 'antd';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
-    NO_PENDING_ELECTION
+    NO_PENDING_ELECTION, USER_VIEW_ONGOING_ELECTION
 } from '../constants';
 import actions from '../../viewElection/actions';
 import './UserPendingElection.css';
+import { analytics } from '../../configuredFirebase';
+import Particles from '../../particleBackground';
 
 const { Meta } = Card;
 
@@ -92,11 +94,13 @@ export default function ViewElection() {
     const antIcon = <Icon type="loading" className="loader" spin />;
     // upon render of the page get all the elections
     useEffect(() => {
-        dispatch(actions.loadElections());
+        dispatch(actions.loadElections(USER_VIEW_ONGOING_ELECTION));
+        analytics.logEvent();
     }, [dispatch]);
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
     return (
         <div className="viewElectionLayout">
+            <Particles />
             <Spin
                 size="large"
                 indicator={antIcon}
