@@ -19,6 +19,7 @@ import {
 } from '../constants';
 import { analytics } from '../../configuredFirebase';
 
+
 const randomColorGenerator = require('randomcolor');
 
 highchartsMap(Highcharts);
@@ -99,6 +100,7 @@ export default function ViewResults({ address, name }) {
     const dispatch = useDispatch();
     // sort the candidates by votecount
     const sortedCandidate = candidates.sort((a, b) => b.voteCount - a.voteCount);
+    
     useEffect(() => {
         // clear the voters and candidates initial state
         dispatch(actions.pushCandidates([]));

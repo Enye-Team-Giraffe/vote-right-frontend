@@ -16,6 +16,8 @@ import {
 import { actions as viewStatsActions } from '../../viewStats';
 import actions from '../actions';
 import { analytics } from '../../configuredFirebase';
+import Particles from '../../particleBackground';
+
 
 /**
  * Display candidates view
@@ -157,6 +159,7 @@ const ViewCandidates = ({ match }) => {
 
     return (
         <div className="candidateView --voters">
+            <Particles />
             <div className="candidateList">
                 <Modal
                     title={<CompareCandidatesTitle />}

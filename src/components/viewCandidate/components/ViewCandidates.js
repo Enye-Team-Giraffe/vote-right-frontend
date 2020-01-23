@@ -9,6 +9,8 @@ import { actions } from '../../viewStats';
 import {
     LOADING_MESSAGE, NO_CANDIDATE, WINNER
 } from '../constants';
+import Particles from '../../particleBackground';
+
 
 const IconText = ({ type, text }) => (
     <span>
@@ -79,6 +81,7 @@ export default function ViewResults({ address }) {
     const antIcon = <Icon type="loading" className="loader" spin />;
     return (
         <div className="viewCandidates --noPadding">
+            <Particles />
             <Spin
                 size="large"
                 indicator={antIcon}

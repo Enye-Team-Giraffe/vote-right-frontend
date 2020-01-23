@@ -17,6 +17,8 @@ import {
 } from '../constants';
 import DataGrouper from '../utility/DataGrouper';
 import { analytics } from '../../configuredFirebase';
+import Particles from '../../particleBackground';
+
 
 import './ViewStats.css';
 
@@ -249,6 +251,7 @@ export default function ViewStats({ match }) {
     const hideUntilLoaded = () => ((loading) ? '--hidden' : '');
     return (
         <div className="statisticsLayout">
+            <Particles />
             <Spin
                 size="large"
                 indicator={antIcon}

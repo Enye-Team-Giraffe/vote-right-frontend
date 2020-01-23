@@ -13,6 +13,8 @@ import {
 import actions from '../../viewElection/actions';
 import './UserPendingElection.css';
 import { analytics } from '../../configuredFirebase';
+import Particles from '../../particleBackground';
+
 
 const { Meta } = Card;
 
@@ -99,6 +101,7 @@ export default function ViewElection() {
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
     return (
         <div className="viewElectionLayout">
+            <Particles />
             <Spin
                 size="large"
                 indicator={antIcon}

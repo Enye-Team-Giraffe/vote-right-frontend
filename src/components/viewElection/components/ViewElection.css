@@ -5,8 +5,7 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    background:linear-gradient(to bottom right, hsl(208, 100%, 98.5%) 40%, white);
-    background-color: hsl(208, 100%, 98.5%);
+    background-color: hsla(208, 100%, 98.5%,.6);
 }
 .electionItem{
     width: 450px;
