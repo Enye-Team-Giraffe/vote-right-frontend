@@ -9,15 +9,13 @@ import {
 import { NavLink } from 'react-router-dom';
 import {
     LOADING_MESSAGE, NO_RUNNING_ELECTION,
-    ADMIN_VIEW_ONGOING_ELECTIONS,
+    ADMIN_VIEW_ONGOING_ELECTIONS
 } from '../constants';
 import { analytics } from '../../configuredFirebase';
 import actions from '../actions';
-import Particles from "../../particleBackground"
-
+import Particles from '../../particleBackground';
 
 const { Meta } = Card;
-
 
 //  a function to display the title of the card
 const CardTitle = ({ title }) => (
@@ -126,7 +124,7 @@ export default function ViewElection() {
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
     return (
         <div className="viewElectionLayout">
-            <Particles/>
+            <Particles />
             <Spin
                 size="large"
                 indicator={antIcon}

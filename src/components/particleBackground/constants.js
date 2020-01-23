@@ -1,10 +1,10 @@
 export const PARTICLE_STYLE = {
+    display: 'flex',
     height: '100%',
+    justifyContent: 'center',
     left: 0,
     paddingTop: '12%',
     position: 'absolute',
-    display:"flex",
-    justifyContent:"center",
     top: 0,
 };
 export const particleParameters = {
@@ -18,6 +18,9 @@ export const particleParameters = {
             enable: true,
             opacity: 0.5,
             width: 1,
+        },
+        move: {
+            enable: false,
         },
         number: {
             density: {
@@ -45,9 +48,6 @@ export const particleParameters = {
                 width: 1,
             },
             type: 'circle',
-        },
-        move: {
-            enable: false,
         },
         size: {
             random: true,

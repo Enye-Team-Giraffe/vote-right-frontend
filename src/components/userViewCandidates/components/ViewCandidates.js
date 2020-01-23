@@ -18,7 +18,6 @@ import actions from '../actions';
 import { analytics } from '../../configuredFirebase';
 import Particles from '../../particleBackground';
 
-
 /**
  * Display candidates view
  *

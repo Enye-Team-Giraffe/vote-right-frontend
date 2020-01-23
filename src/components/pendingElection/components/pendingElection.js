@@ -15,7 +15,7 @@ import {
 import actions from '../../viewElection/actions';
 import { components as AdminViewCandidates } from '../../viewCandidate';
 import { analytics } from '../../configuredFirebase';
-import Particles from '../../particleBackground'
+import Particles from '../../particleBackground';
 
 const { Meta } = Card;
 

@@ -15,7 +15,6 @@ import { actions } from '../../viewElection';
 import { analytics } from '../../configuredFirebase';
 import Particles from '../../particleBackground';
 
-
 const { Meta } = Card;
 
 //  a function to display the title of the card

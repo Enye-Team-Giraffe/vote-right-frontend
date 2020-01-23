@@ -19,7 +19,6 @@ import DataGrouper from '../utility/DataGrouper';
 import { analytics } from '../../configuredFirebase';
 import Particles from '../../particleBackground';
 
-
 import './ViewStats.css';
 
 const randomColorGenerator = require('randomcolor');

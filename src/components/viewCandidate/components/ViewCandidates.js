@@ -11,7 +11,6 @@ import {
 } from '../constants';
 import Particles from '../../particleBackground';
 
-
 const IconText = ({ type, text }) => (
     <span>
         <Icon type={type} style={{ marginRight: 8 }} />

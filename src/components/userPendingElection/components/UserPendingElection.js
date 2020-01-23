@@ -15,7 +15,6 @@ import './UserPendingElection.css';
 import { analytics } from '../../configuredFirebase';
 import Particles from '../../particleBackground';
 
-
 const { Meta } = Card;
 
 //  a function to get the difference in date between two time stamps
