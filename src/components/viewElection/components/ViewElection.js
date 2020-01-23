@@ -13,6 +13,7 @@ import {
 } from '../constants';
 import { analytics } from '../../configuredFirebase';
 import actions from '../actions';
+import Particles from 'react-particles-js';
 
 const { Meta } = Card;
 
@@ -123,6 +124,7 @@ export default function ViewElection() {
     const toDateString = tstamp => new Date(Number(tstamp) * 1000).toDateString().slice(0, 15);
     return (
         <div className="viewElectionLayout">
+            <Particles/>
             <Spin
                 size="large"
                 indicator={antIcon}
