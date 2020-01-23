@@ -1,9 +1,16 @@
 /* Entire side nav bar */
 .sideNav {
     min-height: 100vh;
-    background-color: var(--primary-color);
+    /* background-color: var(--primary-color); */
     width: 300px !important;
     flex: 0 0 300px !important;
+    background-image: linear-gradient( 
+        to right, 
+        black, 
+        rgba(59, 47, 132,0) 100%) , 
+        url(../../../static/images/rising_sun.jpg
+        );
+    background-size: 650px 100vh;
 }
 
 /* Start of top section of side nav bar */
@@ -29,7 +36,8 @@
 
 /* Menu of side nav bar */
 .menu {
-    background-color: var(--primary-color);
+    background:unset;
+    /* background-color: var(--primary-color); */
 }
 
 /* Start side nav bar toggle element */
@@ -39,7 +47,7 @@
     background-color: #FFFFFF;
 }
 .ant-layout-sider-zero-width-trigger:hover{
-    background-color: var(--primary-color);
+    /* background-color: var(--primary-color); */
     color: #FFFFFF;
 }
 .sideNav__sideitem:first-of-type{
@@ -59,6 +67,11 @@
         font-size: 13.8px !important;
         font-weight: bold;
     }
+
+    /* Entire side nav bar */
+    .sideNav {
+        background-size: 650px 100vh;
+    }
 }
 
 @media (min-width: 1000px) {
@@ -66,6 +79,7 @@
         min-width: 300px !important;
         flex: 0 0 300px !important;
     }
+
     .ant-layout-sider-children {
         position: fixed;
         width: 300px;
