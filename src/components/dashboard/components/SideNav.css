@@ -6,11 +6,12 @@
     flex: 0 0 300px !important;
     background-image: linear-gradient( 
         to right, 
-        rgba(48, 47, 47, 0.801), 
+        rgb(0, 0, 0), 
         rgba(59, 47, 132,0) 100%) , 
         url(../../../static/images/rising_sun.jpg
         );
     background-size: 650px 100vh;
+    z-index: 999;
 }
 
 /* Start of top section of side nav bar */
@@ -34,11 +35,7 @@
 }
 /* End of top section of side nav bar */
 
-/* Menu of side nav bar */
-.menu {
-    /* background:unset; */
-    /* background-color: var(--primary-color); */
-}
+
 
 /* Start side nav bar toggle element */
 .ant-layout-sider-zero-width-trigger {
@@ -72,8 +69,14 @@
     }
 
     /* Entire side nav bar */
-    .sideNav {
+    .sideNav { 
         background-size: 650px 100vh;
+        background-image: linear-gradient( 
+            to right, 
+            rgba(32, 30, 30, 0.966), 
+            rgba(36, 29, 82, 0) 100%) , 
+            url(../../../static/images/rising_sun.jpg
+        );
     }
 }
 
