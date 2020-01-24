@@ -21,4 +21,3 @@ export const TWITTER = {
     alt: 'twitter',
     src: Twitter,
 };
-
