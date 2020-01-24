@@ -110,7 +110,11 @@ const CardFooter = ({ endDate }) => (
 
 export default function ViewElection() {
     const dispatch = useDispatch();
-    const elections = useSelector(state => state.elections);
+    const allElections = useSelector(state => state.elections);
+    const today = Math.round(Date.now() / 1000);
+    const elections = allElections.filter(
+        election => today > election.endDate
+    );
     const loadingElections = useSelector(state => state.electionListLoading);
     const statistics = useSelector(state => state.statistics);
     analytics.logEvent(ADMIN_VIEW_CONCLUDED_ELECTION);

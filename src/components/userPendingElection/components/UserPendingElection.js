@@ -87,7 +87,11 @@ const CardFooter = ({ endDate }) => (
 
 export default function ViewElection() {
     const dispatch = useDispatch();
-    const elections = useSelector(state => state.elections);
+    const allElections = useSelector(state => state.elections);
+    const today = Math.round(Date.now() / 1000);
+    const elections = allElections.filter(
+        election => (today < election.startdate)
+    );
     const statistics = useSelector(state => state.statistics);
     const loadingElections = useSelector(state => state.electionListLoading);
 
@@ -118,7 +122,7 @@ export default function ViewElection() {
                                 actions={[
                                     <CardFooter
                                         key={election.startdate}
-                                        endDate={toDateString(election.startdate)}
+                                        endDate={toDateString(election.enddate)}
                                     />,
                                 ]}
                             >

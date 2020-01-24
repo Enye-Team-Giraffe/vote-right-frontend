@@ -113,8 +113,8 @@ const CardFooter = ({ endDate }) => (
 const ModalTitle = ({ title, address, name }) => (
     <div className="modalTitle">
         <div className="dummyitem">
-                
-                {/* the component for download 
+
+            {/* the component for download
                 lection result button goes here */}
         </div>
 
@@ -165,7 +165,11 @@ export default function ViewElection() {
     const [electionName, setElectionName] = useState('');
 
     const dispatch = useDispatch();
-    const elections = useSelector(state => state.elections);
+    const allElections = useSelector(state => state.elections);
+    const today = Math.round(Date.now() / 1000);
+    const elections = allElections.filter(
+        election => today > election.endDate
+    );
     const loadingElections = useSelector(state => state.electionListLoading);
     const statistics = useSelector(state => state.statistics);
     // filter the elections and only select the ones
