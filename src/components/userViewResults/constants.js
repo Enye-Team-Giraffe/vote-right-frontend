@@ -121,4 +121,10 @@ export const AGE = 'AGE';
 export const GENDERS = ['Male', 'Female'];
 export const NAME = 'VOTES';
 export const USER_VIEW_RESULTS = 'USER_VIEW_RESULTS';
+export const POSITION_TAGS = [
+    'Winner',
+    'Runner up',
+    'Second runner up',
+    'Third runner up',
+];
 
