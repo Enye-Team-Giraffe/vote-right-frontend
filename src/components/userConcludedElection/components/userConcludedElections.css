@@ -16,3 +16,26 @@ button.electionItem__subitem:hover > a{
     color: rgb(146, 149, 155);
     cursor: default;
 }
+
+.modalTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modalTitle__text{
+    text-align: center;
+}
+.modalTitle__icon{
+    transform: scale(1.9);
+    padding-right: 9px;
+}
+.--very.--small{
+    height: 33px;
+    width: 33px;
+}
+.--very.--small:first-of-type{
+    margin-right:-6px;
+}
+.modalTitle__icons{
+    padding-right: 40px;
+}
