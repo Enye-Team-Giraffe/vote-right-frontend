@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import {
-    Card, Icon, Spin, Button, Avatar, Tag
+    Card, Icon, Spin, Button, Avatar, Tag, Alert
 } from 'antd';
 import PropTypes from 'prop-types';
 import './userViewOngoing.css';
@@ -199,7 +199,11 @@ export default function ViewElection() {
                     {
                         (elections.length === 0 && !loadingElections) ? (
                             <div className="no_candidate">
-                                {NO_RUNNING_ELECTION}
+                                <Alert
+                                    message={NO_RUNNING_ELECTION}
+                                    type="info"
+                                    showIcon
+                                />
                             </div>
                         ) : ''
                     }

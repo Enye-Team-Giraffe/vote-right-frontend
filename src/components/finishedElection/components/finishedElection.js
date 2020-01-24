@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../../viewElection/components/ViewElection';
 import {
-    Card, Icon, Spin, Button, Avatar, Tag
+    Card, Icon, Spin, Button, Avatar, Tag, Alert
 } from 'antd';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -185,7 +185,11 @@ export default function ViewElection() {
                 {
                     (elections.length === 0 && !loadingElections) ? (
                         <div className="no_candidate">
-                            {NO_FINISHED_ELECTION}
+                            <Alert
+                                message={NO_FINISHED_ELECTION}
+                                type="info"
+                                showIcon
+                            />
                         </div>
                     ) : ''
                 }

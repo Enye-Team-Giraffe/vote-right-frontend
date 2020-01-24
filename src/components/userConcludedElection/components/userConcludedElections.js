@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    Card, Icon, Spin, Button, Modal, Avatar, Tag
+    Card, Icon, Spin, Button, Modal, Avatar, Tag, Alert
 } from 'antd';
 import PropTypes from 'prop-types';
 import { components as ViewResults } from '../../userViewResults';
@@ -279,7 +279,11 @@ export default function ViewElection() {
                     {
                         (elections.length === 0 && !loadingElections) ? (
                             <div className="no_candidate">
-                                {NO_RUNNING_ELECTION}
+                                <Alert
+                                    message={NO_RUNNING_ELECTION}
+                                    type="info"
+                                    showIcon
+                                />
                             </div>
                         ) : ''
                     }
