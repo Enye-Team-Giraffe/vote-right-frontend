@@ -3,12 +3,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Typography } from 'antd';
-import './ViewResult.css';
+import './ViewSharedResult.css';
 import { VOTERIGHT } from '../constants';
+import { components as ViewResults } from '../../userViewResults';
+import Particles from '../../particleBackground';
 
 const { Title } = Typography;
 
-const ViewResult = ({ match }) => (
+const ViewSharedResult = ({ match }) => (
     <div>
         <div className="heading -fullWidth -static">
             <Link to="/">
@@ -19,14 +21,16 @@ const ViewResult = ({ match }) => (
         </div>
 
         <div>
-            <h1>{match.params.electionId}</h1>
+            <div className="viewSharedResult">
+                <ViewResults address={match.params.electionId} />
+            </div>
         </div>
 
     </div>
 );
 
-export default ViewResult;
+export default ViewSharedResult;
 
-ViewResult.propTypes = {
+ViewSharedResult.propTypes = {
     match: ReactRouterPropTypes.match.isRequired,
 };

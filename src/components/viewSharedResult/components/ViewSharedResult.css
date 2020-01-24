@@ -5,3 +5,8 @@
 .-static {
     position: static;
 }
+
+.viewSharedResult {
+    width: 80%;
+    margin: 30px auto;
+}
