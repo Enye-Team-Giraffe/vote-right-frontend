@@ -123,7 +123,7 @@ const ModalTitle = ({ title, address, name }) => {
     }, [address]);
     return (
         <div className="modalTitle">
-            <div>
+            <div className="dummyitem">
                 <PDFDownloadLink
                     document={
                         <PdfDocument name={name} candidates={sortedCandidates} />
@@ -133,7 +133,10 @@ const ModalTitle = ({ title, address, name }) => {
                     {({
                         blob, url, loading, error,
                     }) => (
-                        loading ? 'Loading Document' : 'Download now!'
+                        <Button disabled={candidates.length === 0}>
+                            <Icon type={candidates.length === 0 ? 'loading' : 'download'} />
+                            {candidates.length === 0 ? 'loading' : 'Download result'}
+                        </Button>
                     )}
                 </PDFDownloadLink>
             </div>
