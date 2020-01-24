@@ -27,7 +27,7 @@ export const particleParameters = {
                 enable: true,
                 value_area: 150,
             },
-            value: 4,
+            value: 5,
         },
         opacity: {
             anim: {
