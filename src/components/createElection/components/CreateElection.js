@@ -26,10 +26,26 @@ import { analytics } from '../../configuredFirebase';
 const CreateElection = ({ form }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-
+    function a(n) {
+        if (n <= 9) {
+            return `0${n}`;
+        }
+        return n;
+    }
     // function to convert a datetime string into a timestamp
     const toTimestamp = dateString => (Date.parse(dateString) / 1000);
-
+    // function to get today's date in year-month-day
+    const toyymmddFormatStart = () => {
+        const d = new Date();
+        const formattedDate = `${d.getFullYear()}-${a(d.getMonth() + 1)}-${a(d.getDate()) + 1}`;
+        return formattedDate;
+    };
+    // function to get today's date in year-month-day
+    const toyymmddFormatEnd = () => {
+        const d = new Date();
+        const formattedDate = `${d.getFullYear()}-${a(d.getMonth() + 1)}-${a(d.getDate()) + 2}`;
+        return formattedDate;
+    };
     /**
      * Handles submission of form data
      * @function
@@ -133,7 +149,10 @@ const CreateElection = ({ form }) => {
                                         required: true,
                                     },
                                 ],
-                            })(<DatePicker className="-fullWidth" />)}
+                            })(<DatePicker
+                                className="-fullWidth"
+                                disabledDate={d => !d || d.isBefore(toyymmddFormatStart())}
+                            />)}
                         </Form.Item>
 
                         <Form.Item label={ENDDATE}>
@@ -144,7 +163,10 @@ const CreateElection = ({ form }) => {
                                         required: true,
                                     },
                                 ],
-                            })(<DatePicker className="-fullWidth" />)}
+                            })(<DatePicker
+                                className="-fullWidth"
+                                disabledDate={d => !d || d.isBefore(toyymmddFormatEnd())}
+                            />)}
                         </Form.Item>
 
                         <div className="createElection__submit-button">
