@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import {
     Card, Icon, Spin, Button, Modal, Avatar, Tag
 } from 'antd';
@@ -13,8 +14,10 @@ import {
     FACEBOOK_SHARER_URL, TWITTER_SHARE_URL
 } from '../constants';
 import { actions } from '../../viewElection';
+import { actions as statsActions } from '../../viewStats';
 import { analytics } from '../../configuredFirebase';
 import Particles from '../../particleBackground';
+import PdfDocument from './PdfDocument';
 
 const { Meta } = Card;
 
@@ -110,53 +113,72 @@ const CardFooter = ({ endDate }) => (
     </div>
 );
 
-const ModalTitle = ({ title, address, name }) => (
-    <div className="modalTitle">
-        <div className="dummyitem">
-                
-                {/* the component for download 
-                lection result button goes here */}
-        </div>
-
-        <div className="modalTitle__text">
-            {title}
-        </div>
-
-        <div className="modalTitle__icons">
-            <div className="modalTitle__viewResults__share">
-                <Icon
-                    className="modalTitle__icon"
-                    type="share-alt"
-                />
-                <a
-                    href={`${FACEBOOK_SHARER_URL}?u=${URL}/${address}&quote=${name}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="modalTitle__viewResults__shareLink"
+/* eslint-disable no-unused-vars */
+const ModalTitle = ({ title, address, name }) => {
+    const dispatch = useDispatch();
+    const candidates = useSelector(state => state.candidates);
+    const sortedCandidates = candidates.sort((a, b) => b.voteCount - a.voteCount);
+    useEffect(() => {
+        dispatch(statsActions.loadCandidates(address));
+    }, [address]);
+    return (
+        <div className="modalTitle">
+            <div className="dummyitem">
+                <PDFDownloadLink
+                    document={
+                        <PdfDocument name={name} candidates={sortedCandidates} />
+                    }
+                    fileName="result.pdf"
                 >
-                    <img
-                        className="--very --small --greyscale"
-                        src={FACEBOOK.src}
-                        alt={FACEBOOK.alt}
-                    />
-                </a>
-                <a
-                    href={`${TWITTER_SHARE_URL}?text=${name}&url=${URL}/${address}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="modalTitle__viewResults__shareLink"
-                >
-                    <img
-                        className="--very --small --greyscale"
-                        src={TWITTER.src}
-                        alt={TWITTER.alt}
-                    />
-                </a>
+                    {({
+                        blob, url, loading, error,
+                    }) => (
+                        <Button disabled={candidates.length === 0}>
+                            <Icon type={candidates.length === 0 ? 'loading' : 'download'} />
+                            {candidates.length === 0 ? 'loading' : 'Download result'}
+                        </Button>
+                    )}
+                </PDFDownloadLink>
             </div>
-        </div>
+            <div className="modalTitle__text">
+                {title}
+            </div>
+            <div className="modalTitle__icons">
+                <div className="modalTitle__viewResults__share">
+                    <Icon
+                        className="modalTitle__icon"
+                        type="share-alt"
+                    />
+                    <a
+                        href={`${FACEBOOK_SHARER_URL}?u=${URL}/${address}&quote=${name}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="modalTitle__viewResults__shareLink"
+                    >
+                        <img
+                            className="--very --small --greyscale"
+                            src={FACEBOOK.src}
+                            alt={FACEBOOK.alt}
+                        />
+                    </a>
+                    <a
+                        href={`${TWITTER_SHARE_URL}?text=${name}&url=${URL}/${address}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="modalTitle__viewResults__shareLink"
+                    >
+                        <img
+                            className="--very --small --greyscale"
+                            src={TWITTER.src}
+                            alt={TWITTER.alt}
+                        />
+                    </a>
+                </div>
+            </div>
 
-    </div>
-);
+        </div>
+    );
+};
 
 export default function ViewElection() {
     // create a state variable to keep track of if the election modal is open
@@ -221,7 +243,7 @@ export default function ViewElection() {
                         onCancel={handleCancel}
                         footer={[]}
                     >
-                        <ViewResults address={electionAddress} name={electionName} />
+                        <ViewResults address={electionAddress} />
                     </Modal>
                     {
                         elections.map(election => (
@@ -303,7 +325,7 @@ CardFooter.propTypes = {
 };
 
 ModalTitle.propTypes = {
-    address: PropTypes.string.isRequired,
+    address: PropTypes.arrayOf.isRequired,
     name: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
 };
