@@ -6,12 +6,11 @@ import { Typography } from 'antd';
 import './ViewSharedResult.css';
 import { VOTERIGHT } from '../constants';
 import { components as ViewResults } from '../../userViewResults';
-import Particles from '../../particleBackground';
 
 const { Title } = Typography;
 
 const ViewSharedResult = ({ match }) => (
-    <div>
+    <div className="viewSharedResult">
         <div className="heading -fullWidth -static">
             <Link to="/">
                 <Title level={1}>
@@ -21,7 +20,7 @@ const ViewSharedResult = ({ match }) => (
         </div>
 
         <div>
-            <div className="viewSharedResult">
+            <div className="viewSharedResult__table">
                 <ViewResults address={match.params.electionId} />
             </div>
         </div>

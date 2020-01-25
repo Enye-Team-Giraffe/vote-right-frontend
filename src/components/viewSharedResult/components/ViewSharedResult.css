@@ -3,10 +3,16 @@
 }
 
 .-static {
-    position: static;
+    position: relative;
 }
 
 .viewSharedResult {
+    background-color: #F7FBFF;
+    min-height: 100vh;
+}
+
+.viewSharedResult__table {
     width: 80%;
     margin: 30px auto;
+    background-color: #FFFFFF;
 }
