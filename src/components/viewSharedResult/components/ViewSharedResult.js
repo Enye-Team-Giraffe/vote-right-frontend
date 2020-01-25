@@ -31,7 +31,7 @@ const ViewSharedResult = ({ match }) => {
 
     useEffect(() => {
         dispatch(viewElectionactions.loadElections());
-    }, [match.params.electionId]);
+    }, [dispatch, match.params.electionId]);
 
     return (
         <div className="viewSharedResult">
