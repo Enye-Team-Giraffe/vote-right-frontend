@@ -16,3 +16,9 @@
     margin: 30px auto;
     background-color: #FFFFFF;
 }
+
+@media (min-width: 1224px){
+    .viewSharedResult__table {
+        width: 1000px;
+    }
+}
