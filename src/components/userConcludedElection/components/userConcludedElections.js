@@ -120,7 +120,7 @@ const ModalTitle = ({ title, address, name }) => {
     const sortedCandidates = candidates.sort((a, b) => b.voteCount - a.voteCount);
     useEffect(() => {
         dispatch(statsActions.loadCandidates(address));
-    }, [address]);
+    }, [address, dispatch]);
     return (
         <div className="modalTitle">
             <div className="dummyitem">
