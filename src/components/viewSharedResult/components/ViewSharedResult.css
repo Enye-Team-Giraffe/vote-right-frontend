@@ -1,0 +1,30 @@
+.-fullWidth {
+    width: 100%;
+}
+
+.-static {
+    position: relative;
+}
+
+.viewSharedResult {
+    background-color: #F7FBFF;
+    min-height: 100vh;
+}
+
+.viewSharedResult__electionName {
+    color: var(--primary-color);
+    font-family: var(--secondary-font);
+    text-align: center;
+}
+
+.viewSharedResult__table {
+    width: 80%;
+    margin: 30px auto;
+    background-color: #FFFFFF;
+}
+
+@media (min-width: 1224px){
+    .viewSharedResult__table {
+        width: 1000px;
+    }
+}
