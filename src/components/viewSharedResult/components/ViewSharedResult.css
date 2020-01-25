@@ -11,6 +11,12 @@
     min-height: 100vh;
 }
 
+.viewSharedResult__electionName {
+    color: var(--primary-color);
+    font-family: var(--secondary-font);
+    text-align: center;
+}
+
 .viewSharedResult__table {
     width: 80%;
     margin: 30px auto;
