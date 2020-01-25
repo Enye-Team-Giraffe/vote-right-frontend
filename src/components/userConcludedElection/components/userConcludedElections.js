@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import {
-    Card, Icon, Spin, Button, Modal, Avatar, Tag
+    Card, Icon, Spin, Button, Modal, Avatar, Tag, Alert
 } from 'antd';
 import PropTypes from 'prop-types';
 import { components as ViewResults } from '../../userViewResults';
@@ -187,7 +187,11 @@ export default function ViewElection() {
     const [electionName, setElectionName] = useState('');
 
     const dispatch = useDispatch();
-    const elections = useSelector(state => state.elections);
+    const allElections = useSelector(state => state.elections);
+    const today = Math.round(Date.now() / 1000);
+    const elections = allElections.filter(
+        election => today > election.endDate
+    );
     const loadingElections = useSelector(state => state.electionListLoading);
     const statistics = useSelector(state => state.statistics);
     // filter the elections and only select the ones
@@ -297,7 +301,11 @@ export default function ViewElection() {
                     {
                         (elections.length === 0 && !loadingElections) ? (
                             <div className="no_candidate">
-                                {NO_RUNNING_ELECTION}
+                                <Alert
+                                    message={NO_RUNNING_ELECTION}
+                                    type="info"
+                                    showIcon
+                                />
                             </div>
                         ) : ''
                     }

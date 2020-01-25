@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import './ViewElection.css';
 import {
-    Card, Icon, Spin, Button, Avatar, Tag
+    Card, Icon, Spin, Button, Avatar, Tag, Alert
 } from 'antd';
 import { NavLink } from 'react-router-dom';
 import {
@@ -111,7 +111,11 @@ const CardFooter = ({ endDate }) => (
 
 export default function ViewElection() {
     const dispatch = useDispatch();
-    const elections = useSelector(state => state.elections);
+    const allElections = useSelector(state => state.elections);
+    const today = Math.round(Date.now() / 1000);
+    const elections = allElections.filter(
+        election => (election.startdate < today && election.enddate > today)
+    );
     const loadingElections = useSelector(state => state.electionListLoading);
     const statistics = useSelector(state => state.statistics);
 
@@ -183,7 +187,11 @@ export default function ViewElection() {
                 {
                     (elections.length === 0 && !loadingElections) ? (
                         <div className="no_candidate">
-                            {NO_RUNNING_ELECTION}
+                            <Alert
+                                message={NO_RUNNING_ELECTION}
+                                type="info"
+                                showIcon
+                            />
                         </div>
                     ) : ''
                 }

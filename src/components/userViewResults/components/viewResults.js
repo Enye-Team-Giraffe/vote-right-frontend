@@ -13,9 +13,9 @@ import {
 import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
 import {
-    LOADING_MESSAGE, NO_CANDIDATE, WINNER, GENDERS,
+    LOADING_MESSAGE, NO_CANDIDATE, GENDERS,
     BAR_OPTIONS, MAP_OPTIONS, AGE_OPTIONS, AGE_BRACKETS,
-    AGE, NAME, USER_VIEW_RESULTS
+    AGE, NAME, USER_VIEW_RESULTS, POSITION_TAGS
 } from '../constants';
 import { analytics } from '../../configuredFirebase';
 
@@ -49,9 +49,9 @@ const { Panel } = Collapse;
 const columns = [
     {
         dataIndex: 'name',
-        render(text, record, index) {
+        render(text, record) {
             return (
-                <div className="tableNameCol">
+                <div className="tableNameCol -name">
                     <Avatar
                         src={record.pictureLink}
                         className="--paddingleft"
@@ -59,20 +59,33 @@ const columns = [
                     <div className="tableNameCol__text">
                         {text}
                     </div>
+                </div>
+            );
+        },
+        title: 'Name',
+    },
+    {
+        dataIndex: 'Position',
+        render(text, record, index) {
+            return (
+                <div className="tableNameCol">
                     {
                         (index === 0) ? (
                             <Tag
                                 color="geekblue"
                                 className="--paddingleft"
                             >
-                                {WINNER}
+                                {
+                                    POSITION_TAGS[index]
+                                    || `${index}th position`
+                                }
                             </Tag>
                         ) : ''
                     }
                 </div>
             );
         },
-        title: 'Name',
+        title: 'Position',
     },
     {
         dataIndex: 'party',

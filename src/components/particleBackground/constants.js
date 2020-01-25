@@ -25,9 +25,9 @@ export const particleParameters = {
         number: {
             density: {
                 enable: true,
-                value_area: 700,
+                value_area: 150,
             },
-            value: 12,
+            value: 5,
         },
         opacity: {
             anim: {

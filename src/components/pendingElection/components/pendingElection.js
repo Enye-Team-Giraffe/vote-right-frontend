@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import '../../viewElection/components/ViewElection';
 import PropTypes from 'prop-types';
 import {
-    Card, Icon, Spin, Modal, Tag, Button
+    Card, Icon, Spin, Modal, Tag, Button, Alert
 } from 'antd';
 import { LOADING_MESSAGE } from '../../viewElection/constants';
 import {
@@ -92,7 +92,11 @@ export default function ViewElection() {
     const [electionAddress, setElectionAddress] = useState('');
 
     const dispatch = useDispatch();
-    const elections = useSelector(state => state.elections);
+    const allElections = useSelector(state => state.elections);
+    const today = Math.round(Date.now() / 1000);
+    const elections = allElections.filter(
+        election => (today < election.startdate)
+    );
     const statistics = useSelector(state => state.statistics);
     const loadingElections = useSelector(state => state.electionListLoading);
 
@@ -199,7 +203,11 @@ export default function ViewElection() {
                 {
                     (elections.length === 0 && !loadingElections) ? (
                         <div className="no_candidate">
-                            {NO_PENDING_ELECTION}
+                            <Alert
+                                message={NO_PENDING_ELECTION}
+                                type="info"
+                                showIcon
+                            />
                         </div>
                     ) : ''
                 }
