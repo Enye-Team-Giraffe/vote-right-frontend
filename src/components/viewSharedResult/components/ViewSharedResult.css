@@ -23,6 +23,12 @@
     background-color: #FFFFFF;
 }
 
+.notFound {
+    margin: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
 @media (min-width: 1224px){
     .viewSharedResult__table {
         width: 1000px;

@@ -1,11 +1,15 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-lines-per-function */
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Typography } from 'antd';
+import {
+    Card, Typography, Icon, Spin, Button, Alert
+} from 'antd';
 import './ViewSharedResult.css';
-import { VOTERIGHT } from '../constants';
+import { VOTERIGHT, LOADING_MESSAGE, NOT_FOUND } from '../constants';
 import { components as ViewResults } from '../../userViewResults';
 import { actions as viewElectionactions } from '../../viewElection';
 
@@ -26,12 +30,26 @@ const ViewSharedResult = ({ match }) => {
         return foundElection || {};
     };
 
+    const isElectionValid = (elections, address) => {
+        const foundElection = elections.find(election => election.location === address);
+        if (foundElection) {
+            return true;
+        }
+        return false;
+    };
+
+    const loadingElections = useSelector(state => state.electionListLoading);
     const elections = useSelector(state => state.elections);
     const election = findElectionByAddress(elections, match.params.electionId);
+    const isElectionFound = isElectionValid(elections, match.params.electionId);
+    const candidates = useSelector(state => state.candidates);
+    const sortedCandidates = candidates.sort((a, b) => b.voteCount - a.voteCount);
 
     useEffect(() => {
         dispatch(viewElectionactions.loadElections());
     }, [dispatch, match.params.electionId]);
+
+    const spinIcon = <Icon type="loading" className="loader" spin />;
 
     return (
         <div className="viewSharedResult">
@@ -44,17 +62,42 @@ const ViewSharedResult = ({ match }) => {
             </div>
 
             <div>
-                <Card className="viewSharedResult__table">
-                    <Title
-                        level={2}
-                        className="viewSharedResult__electionName"
-                    >
-                        {election.name ? `${election.name} Result` : ''}
-                    </Title>
-                    {election.name
-                        ? <ViewResults address={match.params.electionId} />
-                        : ''}
-                </Card>
+                <Spin
+                    size="large"
+                    indicator={spinIcon}
+                    spinning={loadingElections}
+                    className="loader"
+                    tip={LOADING_MESSAGE}
+                >
+                    {isElectionFound
+                        ? (
+                            <Card className="viewSharedResult__table">
+                                <Title
+                                    level={2}
+                                    className="viewSharedResult__electionName"
+                                >
+                                    {election.name}
+                                </Title>
+                                {election.name
+                                    ? (
+                                        <div>
+                                            <ViewResults address={match.params.electionId} />
+                                        </div>
+                                    )
+                                    : ''}
+                            </Card>
+                        )
+                        : (!isElectionFound && !loadingElections)
+                            ? (
+                                <div className="notFound">
+                                    <Alert
+                                        message={NOT_FOUND}
+                                        type="info"
+                                        showIcon
+                                    />
+                                </div>
+                            ) : ''}
+                </Spin>
             </div>
 
         </div>
