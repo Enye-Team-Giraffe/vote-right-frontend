@@ -54,35 +54,32 @@ const Row = ({
     </View>
 );
 
-const PdfDocument = ({ name, candidates }) => {
-    console.log('CANDY', candidates)
-    return (
-        <Document>
-            <Page style={styles.body}>
-                <View>
-                    <Text style={styles.title}>{name}</Text>
-                    <Row
-                        name="Name"
-                        age="Age"
-                        party="Party"
-                        voteCount="Vote Count"
-                    />
-                    {
-                        candidates.map(candidate => (
-                            <Row
-                                key={candidate.id}
-                                name={candidate.name}
-                                age={candidate.age}
-                                party={candidate.party}
-                                voteCount={candidate.voteCount}
-                            />
-                        ))
-                    }
-                </View>
-            </Page>
-        </Document>
-    );
-}
+const PdfDocument = ({ name, candidates }) => (
+    <Document>
+        <Page style={styles.body}>
+            <View>
+                <Text style={styles.title}>{name}</Text>
+                <Row
+                    name="Name"
+                    age="Age"
+                    party="Party"
+                    voteCount="Vote Count"
+                />
+                {
+                    candidates.map(candidate => (
+                        <Row
+                            key={candidate.id}
+                            name={candidate.name}
+                            age={candidate.age}
+                            party={candidate.party}
+                            voteCount={candidate.voteCount}
+                        />
+                    ))
+                }
+            </View>
+        </Page>
+    </Document>
+);
 
 export default PdfDocument;
 

@@ -5,11 +5,14 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     Card, Typography, Icon, Spin, Button, Alert
 } from 'antd';
-import { PDFDownloadLink, Page, Text, View, Document } from '@react-pdf/renderer';
+import {
+    PDFDownloadLink, Page, Text, View, Document
+} from '@react-pdf/renderer';
 import './ViewSharedResult.css';
 import { VOTERIGHT, LOADING_MESSAGE, NOT_FOUND } from '../constants';
 import { components as ViewResults } from '../../userViewResults';
@@ -18,7 +21,7 @@ import PdfDocument from '../../userConcludedElection/components/PdfDocument';
 
 const { Title } = Typography;
 
-const Download = ({name, candidates }) => (
+const Download = ({ name, candidates }) => (
     <PDFDownloadLink
         document={
             (
@@ -33,8 +36,8 @@ const Download = ({name, candidates }) => (
         {({
             blob, url, loading, error,
         }) => (
-            <Button>
-                <Icon type="download"/>
+            <Button className="viewShareResult__download">
+                <Icon type="download" />
                 Download result
             </Button>
         )}
@@ -106,14 +109,13 @@ const ViewSharedResult = ({ match }) => {
                                 {election.name
                                     ? (
                                         <div>
-                                            {!loadingElections ?
-                                                (
+                                            {!loadingElections
+                                                ? (
                                                     <Download
                                                         name={election.name}
                                                         candidates={sortedCandidates}
                                                     />
-                                                ) : ''
-                                            }
+                                                ) : ''}
                                             <ViewResults address={match.params.electionId} />
                                         </div>
                                     )
@@ -141,4 +143,16 @@ export default ViewSharedResult;
 
 ViewSharedResult.propTypes = {
     match: ReactRouterPropTypes.match.isRequired,
+};
+
+Download.propTypes = {
+    candidates: PropTypes.arrayOf(
+        PropTypes.shape({
+            age: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            party: PropTypes.string.isRequired,
+            voteCount: PropTypes.string.isRequired,
+        }).isRequired
+    ).isRequired,
+    name: PropTypes.string.isRequired,
 };

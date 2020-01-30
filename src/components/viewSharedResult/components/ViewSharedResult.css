@@ -17,6 +17,10 @@
     text-align: center;
 }
 
+.viewShareResult__download {
+    margin-bottom: 5px;
+}
+
 .viewSharedResult__table {
     width: 80%;
     margin: 30px auto;
