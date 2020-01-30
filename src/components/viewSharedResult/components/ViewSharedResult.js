@@ -1,19 +1,45 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable max-lines-per-function */
-import React, { useEffect } from 'react';
+/* eslint-disable react/display-name */
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     Card, Typography, Icon, Spin, Button, Alert
 } from 'antd';
+import { PDFDownloadLink, Page, Text, View, Document } from '@react-pdf/renderer';
 import './ViewSharedResult.css';
 import { VOTERIGHT, LOADING_MESSAGE, NOT_FOUND } from '../constants';
 import { components as ViewResults } from '../../userViewResults';
 import { actions as viewElectionactions } from '../../viewElection';
+import PdfDocument from '../../userConcludedElection/components/PdfDocument';
 
 const { Title } = Typography;
+
+const Download = ({name, candidates }) => (
+    <PDFDownloadLink
+        document={
+            (
+                <PdfDocument
+                    name={name}
+                    candidates={candidates}
+                />
+            )
+        }
+        fileName="result.pdf"
+    >
+        {({
+            blob, url, loading, error,
+        }) => (
+            <Button>
+                <Icon type="download"/>
+                Download result
+            </Button>
+        )}
+    </PDFDownloadLink>
+);
 
 const ViewSharedResult = ({ match }) => {
     const dispatch = useDispatch();
@@ -60,7 +86,6 @@ const ViewSharedResult = ({ match }) => {
                     </Title>
                 </Link>
             </div>
-
             <div>
                 <Spin
                     size="large"
@@ -81,6 +106,14 @@ const ViewSharedResult = ({ match }) => {
                                 {election.name
                                     ? (
                                         <div>
+                                            {!loadingElections ?
+                                                (
+                                                    <Download
+                                                        name={election.name}
+                                                        candidates={sortedCandidates}
+                                                    />
+                                                ) : ''
+                                            }
                                             <ViewResults address={match.params.electionId} />
                                         </div>
                                     )
