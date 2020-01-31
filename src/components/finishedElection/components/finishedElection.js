@@ -29,13 +29,9 @@ const CardTitle = ({ title }) => (
             </Tag>
         </div>
         <div className="cardTitle__title">
-            The
-            {' '}
-            {' '}
+
             {title}
-            {' '}
-            {' '}
-Election
+
         </div>
 
     </div>
@@ -113,7 +109,7 @@ export default function ViewElection() {
     const allElections = useSelector(state => state.elections);
     const today = Math.round(Date.now() / 1000);
     const elections = allElections.filter(
-        election => today > election.endDate
+        election => (today > election.enddate)
     );
     const loadingElections = useSelector(state => state.electionListLoading);
     const statistics = useSelector(state => state.statistics);
