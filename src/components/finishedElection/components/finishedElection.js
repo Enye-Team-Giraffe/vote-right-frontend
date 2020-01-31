@@ -133,12 +133,11 @@ export default function ViewElection() {
                 className="loader"
                 tip={LOADING_MESSAGE}
             />
-
+            <Particles />
             <div className="viewElection">
                 {
                     elections.map(election => (
                         <div className="electionItem" key={election.location}>
-                            <Particles />
                             <Card
                                 title={<CardTitle title={election.name} />}
                                 actions={[

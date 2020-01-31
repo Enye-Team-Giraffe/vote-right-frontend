@@ -16,6 +16,7 @@ const uuidv4 = require('uuid/v4');
 const web3 = require('../../web3/configuredWeb3');
 const getElectionInterface = require('../../web3/election');
 
+// the blob of the image is stored in this variable
 let picture = null;
 
 const isMissingField = check => {
