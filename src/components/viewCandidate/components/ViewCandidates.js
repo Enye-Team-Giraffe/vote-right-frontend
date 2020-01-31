@@ -2,12 +2,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    Icon, Spin, Table, Avatar, Tag
+    Icon, Spin, Table, Avatar
 } from 'antd';
 import PropTypes from 'prop-types';
 import { actions } from '../../viewStats';
 import {
-    LOADING_MESSAGE, NO_CANDIDATE, WINNER
+    LOADING_MESSAGE, NO_CANDIDATE
 } from '../constants';
 import Particles from '../../particleBackground';
 
@@ -21,7 +21,7 @@ const IconText = ({ type, text }) => (
 const columns = [
     {
         dataIndex: 'name',
-        render(text, record, index) {
+        render(text, record) {
             return (
                 <div className="tableNameCol">
                     <Avatar
@@ -31,16 +31,6 @@ const columns = [
                     <div className="tableNameCol__text">
                         {text}
                     </div>
-                    {
-                        (index === 0) ? (
-                            <Tag
-                                color="geekblue"
-                                className="--paddingleft"
-                            >
-                                {WINNER}
-                            </Tag>
-                        ) : ''
-                    }
                 </div>
             );
         },

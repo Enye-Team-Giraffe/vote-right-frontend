@@ -191,7 +191,7 @@ export default function ViewElection() {
     const today = Math.round(Date.now() / 1000);
     const elections = allElections.filter(
         election => today > election.endDate
-    );
+    ).sort((first, second) => first.startdate - second.startdate);
     const loadingElections = useSelector(state => state.electionListLoading);
     const statistics = useSelector(state => state.statistics);
     // filter the elections and only select the ones
