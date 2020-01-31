@@ -12,7 +12,7 @@ import { protectedRoute as ProtectedRoute } from '../../protectedRoute/component
 import CreateElection from '../../createElection/components';
 import { components as ViewElection } from '../../viewElection';
 import { components as ViewStats } from '../../viewStats';
-import AddCandidate from '../../adminAddCandidate/components';
+import AddCandidate from '../../addCandidate/components';
 import { component as PendingEleciton } from '../../pendingElection';
 import { component as FinishedElection } from '../../finishedElection';
 import { components as ViewCandidate } from '../../viewCandidate';

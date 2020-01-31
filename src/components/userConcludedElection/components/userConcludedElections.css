@@ -26,15 +26,15 @@ button.electionItem__subitem:hover > a{
     text-align: center;
 }
 .modalTitle__icon{
-    transform: scale(1.9);
+    transform: scale(1.5);
     padding-right: 9px;
 }
 .--very.--small{
-    height: 33px;
-    width: 33px;
+    height: 32px;
+    width: 32px;
 }
 .--very.--small:first-of-type{
-    margin-right:-6px;
+    margin-right:2px;
 }
 .modalTitle__icons{
     padding-right: 40px;

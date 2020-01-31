@@ -34,13 +34,7 @@ const CardTitle = ({ title }) => (
             </Tag>
         </div>
         <div className="cardTitle__title">
-            The
-            {' '}
-            {' '}
             {title}
-            {' '}
-            {' '}
-Election
         </div>
 
     </div>
