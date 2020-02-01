@@ -30,13 +30,7 @@ const CardTitle = ({ title }) => (
             </Tag>
         </div>
         <div className="cardTitle__title">
-            The
-            {' '}
-            {' '}
             {title}
-            {' '}
-            {' '}
-Election
         </div>
 
     </div>
@@ -46,6 +40,7 @@ const CardMeta = ({
     description, daysTillStart,
     numCandidates, numVotes,
     leadingCandidateName, leadingCandidateVote,
+    candidatePicture,
 }) => (
     <div className="cardMeta">
         <div className="cardMeta__description">
@@ -80,8 +75,7 @@ Votes Casted
         <div className="cardMeta__meta">
             <Avatar
                 className="cardMeta__meta__icon"
-                style={{ backgroundColor: '#87d068' }}
-                icon="user"
+                src={candidatePicture}
             />
             <span className="cardMeta__meta__text">
                 <span className="--bolder">{leadingCandidateName}</span>
@@ -153,7 +147,7 @@ export default function ViewElection() {
                                             className="electionItem__subitem --button"
                                             key={election.name}
                                             disabled={
-                                                statistics[election.location][4]
+                                                statistics[election.location][5]
                                             }
                                         >
                                             <NavLink
@@ -162,12 +156,12 @@ export default function ViewElection() {
                                             >
                                                 <Icon
                                                     className="electionItem__subitem__icon"
-                                                    type={(statistics[election.location][4])
+                                                    type={(statistics[election.location][5])
                                                         ? 'check' : 'link'}
                                                     key="link"
                                                 />
                                                 {
-                                                    (statistics[election.location][4])
+                                                    (statistics[election.location][5])
                                                         ? `${ALREADY_VOTED}`
                                                         : `${VOTE}`
                                                 }
@@ -187,6 +181,9 @@ export default function ViewElection() {
                                                 }
                                                 leadingCandidateVote={
                                                     statistics[election.location][3]
+                                                }
+                                                candidatePicture={
+                                                    statistics[election.location][4]
                                                 }
                                             />
                                         )}
@@ -218,6 +215,7 @@ CardTitle.propTypes = {
 };
 
 CardMeta.propTypes = {
+    candidatePicture: PropTypes.string.isRequired,
     daysTillStart: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     leadingCandidateName: PropTypes.string.isRequired,

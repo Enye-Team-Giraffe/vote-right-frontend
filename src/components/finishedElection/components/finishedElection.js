@@ -41,6 +41,7 @@ const CardMeta = ({
     description, daysTillStart,
     numCandidates, numVotes,
     leadingCandidateName, leadingCandidateVote,
+    candidatePicture,
 }) => (
     <div className="cardMeta">
         <div className="cardMeta__description">
@@ -75,8 +76,7 @@ Votes Casted
         <div className="cardMeta__meta">
             <Avatar
                 className="cardMeta__meta__icon"
-                style={{ backgroundColor: '#87d068' }}
-                icon="user"
+                src={candidatePicture}
             />
             <span className="cardMeta__meta__text">
                 <span className="--bolder">{leadingCandidateName}</span>
@@ -110,7 +110,7 @@ export default function ViewElection() {
     const today = Math.round(Date.now() / 1000);
     const elections = allElections.filter(
         election => (today > election.enddate)
-    );
+    ).sort((first, second) => first.enddate - second.enddate);
     const loadingElections = useSelector(state => state.electionListLoading);
     const statistics = useSelector(state => state.statistics);
     analytics.logEvent(ADMIN_VIEW_CONCLUDED_ELECTION);
@@ -169,6 +169,9 @@ export default function ViewElection() {
                                             numVotes={statistics[election.location][1]}
                                             leadingCandidateName={statistics[election.location][2]}
                                             leadingCandidateVote={statistics[election.location][3]}
+                                            candidatePicture={
+                                                statistics[election.location][4]
+                                            }
                                         />
                                     )}
                                 />
@@ -199,6 +202,7 @@ CardTitle.propTypes = {
 };
 
 CardMeta.propTypes = {
+    candidatePicture: PropTypes.string.isRequired,
     daysTillStart: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     leadingCandidateName: PropTypes.string.isRequired,

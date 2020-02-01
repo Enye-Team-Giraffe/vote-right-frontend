@@ -51,7 +51,6 @@ export default function CompareCandidate({ candidateList }) {
                             <span className="--bold">
                                 {` ${candidates[candidateListAsArray[0]].education} `}
                             </span>
-                            years old
                         </div>
                     </div>
                     <div className="candidateComparison__compareItem">

@@ -66,6 +66,7 @@ const ViewCandidates = ({ match }) => {
      * @param {string} -
      * @return {void}
      */
+
     const handleVote = candidateId => {
         dispatch(actions.votingLoading(true));
         dispatch(actions.voteCandidateRequest({

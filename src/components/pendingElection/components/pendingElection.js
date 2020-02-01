@@ -90,6 +90,7 @@ export default function ViewElection() {
     const dispatch = useDispatch();
     const allElections = useSelector(state => state.elections);
     const today = Math.round(Date.now() / 1000);
+
     const elections = allElections.filter(
         election => (today < election.startdate)
     ).sort((first, second) => first.startdate - second.startdate);
