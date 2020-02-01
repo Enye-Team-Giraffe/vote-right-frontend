@@ -148,7 +148,7 @@ export default function ViewStats({ match }) {
             keyword: candidatesPartyToId[voter.votedCandidate],
             lat: Number(voterLatLong[0]),
             lon: Number(voterLatLong[1]),
-            z: 1,
+            z: 15,
         };
     });
     // redefine new instances from the chart options, to include data from our state
@@ -165,6 +165,8 @@ export default function ViewStats({ match }) {
             // Specify points using lat/lon
             cursor: 'pointer',
             data: voterLocationMap,
+            maxSize: '10%',
+            minSize: 7,
             name: 'Location of voters and candidates of choice',
             type: 'mapbubble',
         }],
