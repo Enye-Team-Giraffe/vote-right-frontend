@@ -149,10 +149,7 @@ const AddCandidate = ({ match }) => {
         updateImage(null);
     };
     const antIcon = <Icon type="loading" className="loader" spin />;
-    const addCandidateLoading = useSelector(store => store.addCandidateLoading.candidate);
-
-    useEffect(() => {
-    });
+    const addCandidateLoading = useSelector(store => store.addCandidateLoading);
 
     return (
         <div className="addCandidate" key={key}>
