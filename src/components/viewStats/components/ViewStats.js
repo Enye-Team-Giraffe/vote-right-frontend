@@ -148,7 +148,7 @@ export default function ViewStats({ match }) {
             keyword: candidatesPartyToId[voter.votedCandidate],
             lat: Number(voterLatLong[0]),
             lon: Number(voterLatLong[1]),
-            z: 4,
+            z: 1,
         };
     });
     // redefine new instances from the chart options, to include data from our state

@@ -26,6 +26,7 @@ import { analytics } from '../../configuredFirebase';
 const CreateElection = ({ form }) => {
     const dispatch = useDispatch();
     const history = useHistory();
+
     function a(n) {
         if (n <= 9) {
             return `0${n}`;
@@ -36,14 +37,18 @@ const CreateElection = ({ form }) => {
     const toTimestamp = dateString => (Date.parse(dateString) / 1000);
     // function to get today's date in year-month-day
     const toyymmddFormatStart = () => {
-        const d = new Date();
-        const formattedDate = `${d.getFullYear()}-${a(d.getMonth() + 1)}-${a(d.getDate()) + 1}`;
+        const today = new Date();
+        const d = new Date(today);
+        d.setDate(d.getDate() + 1);
+        const formattedDate = `${d.getFullYear()}-${a(d.getMonth() + 1)}-${a(d.getDate())}`;
         return formattedDate;
     };
     // function to get today's date in year-month-day
     const toyymmddFormatEnd = () => {
-        const d = new Date();
-        const formattedDate = `${d.getFullYear()}-${a(d.getMonth() + 1)}-${a(d.getDate()) + 2}`;
+        const today = new Date();
+        const d = new Date(today);
+        d.setDate(d.getDate() + 2);
+        const formattedDate = `${d.getFullYear()}-${a(d.getMonth() + 1)}-${a(d.getDate())}`;
         return formattedDate;
     };
     /**

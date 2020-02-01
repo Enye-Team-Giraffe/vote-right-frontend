@@ -80,7 +80,18 @@ const columns = [
                                     || `${index}th position`
                                 }
                             </Tag>
-                        ) : ''
+                        )
+                            : (
+                                <Tag
+                                    color="geekblue"
+                                    className="--paddingleft"
+                                >
+                                    {
+                                        POSITION_TAGS[index]
+                                        || `${index}th position`
+                                    }
+                                </Tag>
+                            )
                     }
                 </div>
             );

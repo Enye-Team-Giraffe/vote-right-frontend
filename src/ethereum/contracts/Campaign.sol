@@ -10,9 +10,9 @@ contract ElectionFactory{
     }
     address[] public deployedElections;
     Summary[] public summaries;
-    
-    function createElection(string name,string description,uint startdate, uint enddate) public {       
-        address newElection = new Election(msg.sender,name,description,startdate,enddate);       
+
+    function createElection(string name,string description,uint startdate, uint enddate) public {
+        address newElection = new Election(msg.sender,name,description,startdate,enddate);
         Summary memory newSummary = Summary({
             location:newElection,
             name:name,
@@ -20,14 +20,14 @@ contract ElectionFactory{
             startdate:startdate,
             enddate:enddate
         });
-        
+
         summaries.push(newSummary);
         deployedElections.push(newElection);
-    }    
+    }
     function getDeployedElections() public view returns(address[]){
         return deployedElections;
     }
-    
+
     function electionsLength() public view returns(uint){
         return summaries.length;
     }
@@ -36,7 +36,7 @@ contract ElectionFactory{
 contract Election {
     ///////////////////////////////////////////////// initialise the variables and structs we are to use duting the election ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     // an election consists of two characteristics,
-    // the candidates and the voters, 
+    // the candidates and the voters,
     // and we need to create a proper representation
     // this defines what properties a voter should look like.
     struct Voter {
@@ -78,7 +78,7 @@ contract Election {
     function aboutElection() public view returns (string,string,uint,uint){
         return (nameOfElection,description,startdate,enddate);
     }
-    //create a modifier which is going to secure certain functions 
+    //create a modifier which is going to secure certain functions
     // so that they can only be run be the manager of the contract
     modifier restricted(){
         require(msg.sender == manager);
@@ -88,12 +88,12 @@ contract Election {
     // this serves as a constrictor for this contract, and assigns a manager to this contract
     // also initialise the contract
     function Election(address creator,string electionName,string electionDescription,uint electionStartdate, uint electionEnddate) public{
-        manager=creator;
-        nameOfElection=electionName;
-        description=electionDescription;
-        startdate=electionStartdate;
-        enddate=electionEnddate;
-        electionState=1;
+        manager = creator;
+        nameOfElection = electionName;
+        description = electionDescription;
+        startdate = electionStartdate;
+        enddate = electionEnddate;
+        electionState = 1;
     }
     // first thing to do in an election is to create add to the array of candidates
     function addCandidate( string id, string name, uint age, string party,string quote, string pictureLink,string education ) public restricted{
@@ -109,23 +109,23 @@ contract Election {
             education:education,
             voteCount:0
         });
-        
+
         // create a mapping of generated clientId to the index it is stored in the array
-        indexes[id]=candidates.length;
-        candidates.push(newCandidate);     
+        indexes[id] = candidates.length;
+        candidates.push(newCandidate);
     }
     // after adding enough candidates, the next thing to do would be to change the state of the election to started
     // so that the voting can begin
     function concludeInitialisation() public{
         electionState = 2;
-    }       
+    }
     // after done adding candidates, next thing is to begin voting
     // everytime they vote add info about the voter
     function vote(string candidateId, uint age,string gender,string latlong,string phoneNumber) public {
         // election must have started and must not have finished
         require( (electionState == 2) || (now > startdate ) && (now < enddate) );
         // also to confirm that this particular person has not voted more than once.
-        require( !voted[phoneNumber] );
+        require(!voted[phoneNumber]);
         // retrive the index the item is stored on the array
         uint index = indexes[candidateId];
         // retrieve this candidate from it's array
@@ -139,11 +139,11 @@ contract Election {
             gender:gender,
             latlong:latlong,
             votedCandidate:candidateId
-        });   
+        });
         // add this person to the array of voters we currently have
         voters.push(newVoter);
         // record that this person has already voted
-        voted[phoneNumber]=true;
+        voted[phoneNumber] = true;
         // increase the total vote counting
         totalVoteCount++;
     }
@@ -171,23 +171,24 @@ contract Election {
         return voters.length;
     }
     // function to get all the stats of an election
-    function getStats() public view returns(uint,uint,string,int){
-        uint localNumCandidate=candidates.length;
+    function getStats() public view returns(uint,uint,string,int,string){
+        uint localNumCandidate = candidates.length;
         if(localNumCandidate>0){
-            uint leadingCandidate=0;
-            for (uint i=1;i<candidates.length;i++){
+            uint leadingCandidate = 0;
+            for (uint i = 1;i<candidates.length;i++){
                 if(candidates[i].voteCount>candidates[leadingCandidate].voteCount){
-                    leadingCandidate=i;
+                    leadingCandidate = i;
                 }
             }
-    
+
             int localLeadingCandidateVote = candidates[leadingCandidate].voteCount;
             string storage localLeadingCandidateName = candidates[leadingCandidate].name;
-    
-            return (localNumCandidate,totalVoteCount,localLeadingCandidateName,localLeadingCandidateVote);
+            string storage localLeadingCandidatePicture = candidates[leadingCandidate].pictureLink;
+
+            return (localNumCandidate,totalVoteCount,localLeadingCandidateName,localLeadingCandidateVote,localLeadingCandidatePicture);
         }
         else{
-            return (0,0,"",0);
-        }   
+            return (0,0,"",0,"");
+        }
     }
 }

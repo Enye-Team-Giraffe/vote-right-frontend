@@ -1,10 +1,7 @@
 export const PARTICLE_STYLE = {
-    display: 'flex',
-    height: '78%',
-    justifyContent: 'center',
     left: 0,
     position: 'absolute',
-    top: '22%',
+    top: 0,
 };
 export const particleParameters = {
     particles: {

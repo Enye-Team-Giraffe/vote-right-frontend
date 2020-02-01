@@ -35,7 +35,9 @@
 }
 /* End of top section of side nav bar */
 
-
+.header{
+    z-index: 99;
+}
 
 /* Start side nav bar toggle element */
 .ant-layout-sider-zero-width-trigger {
