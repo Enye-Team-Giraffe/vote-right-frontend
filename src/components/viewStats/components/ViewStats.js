@@ -270,16 +270,6 @@ export default function ViewStats({ match }) {
                         suffix="+"
                     />
                 </Card>
-                <Card className="statisticsLayout__statistic__card">
-                    <Statistic
-                        title="Activity"
-                        value={totalVotes}
-                        precision={2}
-                        valueStyle={{ color: '#3f8600' }}
-                        prefix={<Icon type="arrow-up" />}
-                        suffix="%"
-                    />
-                </Card>
             </div>
             <Card className={`chart ${hideUntilLoaded()}`} key={Math.random()}>
                 <HighchartsReact
