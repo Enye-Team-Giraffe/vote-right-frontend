@@ -39,3 +39,9 @@ button.electionItem__subitem:hover > a{
 .modalTitle__icons{
     padding-right: 40px;
 }
+.share__icon {
+    filter: grayscale(65%);
+    transform: scale(1.5);
+    margin: 7px;
+    color: rgb(14, 47, 124);
+}

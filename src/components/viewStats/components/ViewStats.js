@@ -148,7 +148,7 @@ export default function ViewStats({ match }) {
             keyword: candidatesPartyToId[voter.votedCandidate],
             lat: Number(voterLatLong[0]),
             lon: Number(voterLatLong[1]),
-            z: 1,
+            z: 15,
         };
     });
     // redefine new instances from the chart options, to include data from our state
@@ -165,6 +165,8 @@ export default function ViewStats({ match }) {
             // Specify points using lat/lon
             cursor: 'pointer',
             data: voterLocationMap,
+            maxSize: '10%',
+            minSize: 7,
             name: 'Location of voters and candidates of choice',
             type: 'mapbubble',
         }],
@@ -268,16 +270,6 @@ export default function ViewStats({ match }) {
                         valueStyle={{ color: '#3f8600' }}
                         prefix={<Icon type="inbox" />}
                         suffix="+"
-                    />
-                </Card>
-                <Card className="statisticsLayout__statistic__card">
-                    <Statistic
-                        title="Activity"
-                        value={totalVotes}
-                        precision={2}
-                        valueStyle={{ color: '#3f8600' }}
-                        prefix={<Icon type="arrow-up" />}
-                        suffix="%"
                     />
                 </Card>
             </div>
