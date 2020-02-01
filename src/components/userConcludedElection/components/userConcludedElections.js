@@ -10,7 +10,7 @@ import { components as ViewResults } from '../../userViewResults';
 import './userConcludedElections.css';
 import {
     LOADING_MESSAGE, MODAL_TITLE, VIEW_RESULT, NO_RUNNING_ELECTION,
-    USER_VIEW_ONGOING_ELECTIONS, URL, FACEBOOK, TWITTER,
+    USER_VIEW_ONGOING_ELECTIONS, URL,
     FACEBOOK_SHARER_URL, TWITTER_SHARE_URL
 } from '../constants';
 import { actions } from '../../viewElection';
@@ -149,10 +149,9 @@ const ModalTitle = ({ title, address, name }) => {
                         rel="noopener noreferrer"
                         className="modalTitle__viewResults__shareLink"
                     >
-                        <img
-                            className="--very --small --greyscale"
-                            src={FACEBOOK.src}
-                            alt={FACEBOOK.alt}
+                        <Icon
+                            className="share__icon"
+                            type="facebook"
                         />
                     </a>
                     <a
@@ -161,10 +160,9 @@ const ModalTitle = ({ title, address, name }) => {
                         rel="noopener noreferrer"
                         className="modalTitle__viewResults__shareLink"
                     >
-                        <img
-                            className="--very --small --greyscale"
-                            src={TWITTER.src}
-                            alt={TWITTER.alt}
+                        <Icon
+                            className="share__icon"
+                            type="twitter"
                         />
                     </a>
                 </div>
