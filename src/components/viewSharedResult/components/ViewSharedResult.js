@@ -1,15 +1,48 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-lines-per-function */
-import React, { useEffect } from 'react';
+/* eslint-disable react/display-name */
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Typography } from 'antd';
+import {
+    Card, Typography, Icon, Spin, Button, Alert
+} from 'antd';
+import {
+    PDFDownloadLink, Page, Text, View, Document
+} from '@react-pdf/renderer';
 import './ViewSharedResult.css';
-import { VOTERIGHT } from '../constants';
+import { VOTERIGHT, LOADING_MESSAGE, NOT_FOUND } from '../constants';
 import { components as ViewResults } from '../../userViewResults';
 import { actions as viewElectionactions } from '../../viewElection';
+import PdfDocument from '../../userConcludedElection/components/PdfDocument';
 
 const { Title } = Typography;
+
+const Download = ({ name, candidates }) => (
+    <PDFDownloadLink
+        document={
+            (
+                <PdfDocument
+                    name={name}
+                    candidates={candidates}
+                />
+            )
+        }
+        fileName="result.pdf"
+    >
+        {({
+            blob, url, loading, error,
+        }) => (
+            <Button className="viewShareResult__download">
+                <Icon type="download" />
+                Download result
+            </Button>
+        )}
+    </PDFDownloadLink>
+);
 
 const ViewSharedResult = ({ match }) => {
     const dispatch = useDispatch();
@@ -26,12 +59,26 @@ const ViewSharedResult = ({ match }) => {
         return foundElection || {};
     };
 
+    const isElectionValid = (elections, address) => {
+        const foundElection = elections.find(election => election.location === address);
+        if (foundElection) {
+            return true;
+        }
+        return false;
+    };
+
+    const loadingElections = useSelector(state => state.electionListLoading);
     const elections = useSelector(state => state.elections);
     const election = findElectionByAddress(elections, match.params.electionId);
+    const isElectionFound = isElectionValid(elections, match.params.electionId);
+    const candidates = useSelector(state => state.candidates);
+    const sortedCandidates = candidates.sort((a, b) => b.voteCount - a.voteCount);
 
     useEffect(() => {
         dispatch(viewElectionactions.loadElections());
     }, [dispatch, match.params.electionId]);
+
+    const spinIcon = <Icon type="loading" className="loader" spin />;
 
     return (
         <div className="viewSharedResult">
@@ -42,19 +89,50 @@ const ViewSharedResult = ({ match }) => {
                     </Title>
                 </Link>
             </div>
-
             <div>
-                <Card className="viewSharedResult__table">
-                    <Title
-                        level={2}
-                        className="viewSharedResult__electionName"
-                    >
-                        {election.name ? `${election.name} Result` : ''}
-                    </Title>
-                    {election.name
-                        ? <ViewResults address={match.params.electionId} />
-                        : ''}
-                </Card>
+                <Spin
+                    size="large"
+                    indicator={spinIcon}
+                    spinning={loadingElections}
+                    className="loader"
+                    tip={LOADING_MESSAGE}
+                >
+                    {isElectionFound
+                        ? (
+                            <Card className="viewSharedResult__table">
+                                <Title
+                                    level={2}
+                                    className="viewSharedResult__electionName"
+                                >
+                                    {election.name}
+                                </Title>
+                                {election.name
+                                    ? (
+                                        <div>
+                                            {!loadingElections
+                                                ? (
+                                                    <Download
+                                                        name={election.name}
+                                                        candidates={sortedCandidates}
+                                                    />
+                                                ) : ''}
+                                            <ViewResults address={match.params.electionId} />
+                                        </div>
+                                    )
+                                    : ''}
+                            </Card>
+                        )
+                        : (!isElectionFound && !loadingElections)
+                            ? (
+                                <div className="notFound">
+                                    <Alert
+                                        message={NOT_FOUND}
+                                        type="info"
+                                        showIcon
+                                    />
+                                </div>
+                            ) : ''}
+                </Spin>
             </div>
 
         </div>
@@ -65,4 +143,16 @@ export default ViewSharedResult;
 
 ViewSharedResult.propTypes = {
     match: ReactRouterPropTypes.match.isRequired,
+};
+
+Download.propTypes = {
+    candidates: PropTypes.arrayOf(
+        PropTypes.shape({
+            age: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            party: PropTypes.string.isRequired,
+            voteCount: PropTypes.string.isRequired,
+        }).isRequired
+    ).isRequired,
+    name: PropTypes.string.isRequired,
 };

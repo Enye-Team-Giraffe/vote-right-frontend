@@ -17,10 +17,20 @@
     text-align: center;
 }
 
+.viewShareResult__download {
+    margin-bottom: 5px;
+}
+
 .viewSharedResult__table {
     width: 80%;
     margin: 30px auto;
     background-color: #FFFFFF;
+}
+
+.notFound {
+    margin: 3rem;
+    display: flex;
+    justify-content: center;
 }
 
 @media (min-width: 1224px){
