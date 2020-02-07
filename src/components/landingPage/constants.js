@@ -3,10 +3,10 @@ import Instagram from '../../static/icons/instagram.svg';
 import Twitter from '../../static/icons/twitter.svg';
 import Youtube from '../../static/icons/youtube.svg';
 
-export const FACEBOOK_PAGE = 'www.facebook.com';
-export const INSTAGRAM_PAGE = 'www.instagram.com';
-export const TWITTER_PAGE = 'www.twitter.com';
-export const YOUTUBE_PAGE = 'www.youtube.com';
+export const FACEBOOK_PAGE = 'https://www.facebook.com';
+export const INSTAGRAM_PAGE = 'https://www.instagram.com/';
+export const TWITTER_PAGE = 'https://twitter.com/home';
+export const YOUTUBE_PAGE = 'https://www.youtube.com/';
 export const LOGO = 'voteRight';
 export const LOGINETXT = 'Login';
 
