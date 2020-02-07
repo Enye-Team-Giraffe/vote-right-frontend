@@ -9,7 +9,7 @@ describe('Admin login actions', () => {
         const payload = {
             email: 'example@email.com',
             password: '123456',
-        }
+        };
         const expectedAction = {
             payload,
             type: LOGIN_ADMIN,
@@ -41,5 +41,4 @@ describe('Admin login actions', () => {
         };
         expect(actions.isAdminAuthenticated()).toEqual(expectedAction);
     });
-
 });

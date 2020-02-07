@@ -118,21 +118,30 @@ const ModalTitle = ({ title, address, name }) => {
     return (
         <div className="modalTitle">
             <div className="dummyitem">
-                <PDFDownloadLink
-                    document={
-                        <PdfDocument name={name} candidates={sortedCandidates} />
-                    }
-                    fileName="result.pdf"
-                >
-                    {({
-                        blob, url, loading, error,
-                    }) => (
-                        <Button disabled={candidates.length === 0}>
-                            <Icon type={candidates.length === 0 ? 'loading' : 'download'} />
-                            {candidates.length === 0 ? 'loading' : 'Download result'}
+                {candidates.length !== 0
+                    ? (
+                        <PDFDownloadLink
+                            document={
+                                <PdfDocument name={name} candidates={sortedCandidates} />
+                            }
+                            fileName="result.pdf"
+                        >
+                            {({
+                                blob, url, loading, error,
+                            }) => (
+                                <Button>
+                                    <Icon type="download" />
+                                    Download result
+                                </Button>
+                            )}
+                        </PDFDownloadLink>
+                    )
+                    : (
+                        <Button disabled>
+                            <Icon type="loading" />
+                            loading
                         </Button>
                     )}
-                </PDFDownloadLink>
             </div>
             <div className="modalTitle__text">
                 {title}
