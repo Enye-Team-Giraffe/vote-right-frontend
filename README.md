@@ -3,7 +3,7 @@
 <br />
 <p align="center">
   <a href="https://voteright-e8208.firebaseapp.com">
-    <img src="logo.png" alt="Logo" >
+    <img src="logo.PNG" alt="Logo" >
   </a>
 
   <h3 align="center">voteRight</h3>
@@ -41,7 +41,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[<img src="homepage.png" alt="homepage" >](https://voteright-e8208.firebaseapp.com)
+[<img src="homepage.PNG" alt="homepage" >](https://voteright-e8208.firebaseapp.com)
 
 voteRight is a voting application based on blockchain technology. A secured, decentralized, auditable and open platform for e-voting and vote counting that everybody can trust.
 
